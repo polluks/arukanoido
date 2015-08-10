@@ -17,6 +17,8 @@
                             "stackmem-start.asm"
                             "stackmem-end.asm"
                             "lowmem-start.asm"
+                              "gfx-sprites.asm"
+                              "sprite-inits.asm"
                               "chars.asm"
                               "screen.asm"
                               "blitter.asm"
@@ -31,9 +33,6 @@
                           "controllers.asm"
                           "sprites.asm"
                           "sprites-vic.asm"
-                          "sprite-inits.asm"
-
-                          "gfx-sprites.asm"
                           ))
         cmds))
 

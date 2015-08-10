@@ -83,12 +83,12 @@ test_sprite_out:
     lda sprites_x,x
     clc
     adc #8
-    cmp #@(* 23 8)
+    cmp #@(* (++ screen_columns) 8)
     bcs +out
     lda sprites_y,x
     clc
     adc #8
-    cmp #@(* 24 8)
+    cmp #@(* (++ screen_rows) 8)
 out:rts
 
 ; Find collision with other sprite.

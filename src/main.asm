@@ -1,4 +1,10 @@
 start:
+    ldx #0
+    lda #0
+l:  sta 0,x
+    dex
+    bne -l
+
     ; Clear screen.
     ldx #0
 l:  lda #0
@@ -57,5 +63,43 @@ l:  pha
 done:
     pla
 
-forever:
-    jmp forever
+    ; Fill sprite slots with stars.
+    ldx #@(- num_sprites 2)
+l:  jsr remove_sprite
+    dex
+    bpl -l
+
+    ; Make player sprite.
+    ldx #@(- num_sprites 1)
+    ldy #@(- player_left_init sprite_inits)
+    jsr replace_sprite 
+    ldx #@(- num_sprites 2)
+    ldy #@(- player_right_init sprite_inits)
+    jsr replace_sprite 
+
+    ; Initialize sprite frame.
+    lda spriteframe
+    eor #framemask
+    sta spriteframe
+    ora #first_sprite_char
+    sta next_sprite_char
+
+mainloop:
+l:  lda $9004
+    bne -l
+
+    ; Call the functions that control sprite behaviour.
+n:  ldx #@(-- num_sprites)
+l1: lda sprites_fh,x
+    sta @(+ +m1 2)
+    lda sprites_fl,x
+    sta @(++ +m1)
+    stx call_controllers_x
+m1: jsr $1234
+    ldx call_controllers_x
+n1: dex
+    bpl -l1
+
+    jsr draw_sprites
+
+    jmp mainloop

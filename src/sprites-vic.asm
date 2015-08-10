@@ -11,14 +11,12 @@ n:  dex
     ldx #@(-- num_sprites)
 l:  lda sprites_i,x
     bmi +n
-
     lda #0
     sta foreground_collision
     jsr draw_sprite
     lda foreground_collision
     ora sprites_i,x
     sta sprites_i,x
-
 n:  dex
     bpl -l
 
