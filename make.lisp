@@ -25,6 +25,7 @@
                           "random.asm"
                           "math.asm"
                           "bits.asm"
+                          "line-addresses.asm"
                           "gfx-sprites.asm"
                           "gfx-background.asm"
                           ))

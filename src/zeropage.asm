@@ -1,7 +1,9 @@
 num_chars    = 128
 num_sprites  = 16
-screen_height = @(* 32 8)
-screen_width = @(* 15 8)
+screen_columns = 15
+screen_rows = 32
+screen_width = @(* screen_columns 8)
+screen_height = @(* screen_rows 8)
 
 charset      = $1000
 screen       = $1e00
