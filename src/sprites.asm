@@ -27,7 +27,7 @@ replace_sprite2:
     ldy add_sprite_y
     jmp replace_sprite
 
-; Replace sprite by decorative background star.
+; Replace sprite by dummy.
 ;
 ; X: sprite index
 remove_sprite:
@@ -35,15 +35,6 @@ remove_sprite:
     sty add_sprite_y
 
 remove_sprite_regs_already_saved:
-    ; Add background star.
-    jsr random              ; Set X position.
-    sta dummy_init
-    jsr random              ; Set Y position.
-    and #%11111000          ; (Align on rows to save chars,)
-    sta @(++ dummy_init)
-    jsr random              ; Set speed.
-    and #3
-    sta @(+ dummy_init 7)
     ldy #@(- dummy_init sprite_inits)
 
 ; Replace sprite by another.
