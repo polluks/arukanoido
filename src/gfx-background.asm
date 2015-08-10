@@ -1,3 +1,5 @@
+    fill @(- #x1380 *pc*)
+
 gfx_background:
 
 %11111110
