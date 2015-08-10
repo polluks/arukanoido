@@ -23,6 +23,13 @@ l:  lda stackmem,x
     dex
     bpl -l
 
+    ; Clear character 0.
+    ldx #7
+    lda #0
+l:  sta charset,x
+    dex
+    bpl -l
+
     lda #20     ; Horizontal screen origin.
     sta $9000
     lda #21     ; Vertical screen origin.
