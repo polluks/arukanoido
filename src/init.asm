@@ -27,7 +27,7 @@ l:  lda stackmem,x
     sta $9000
     lda #21     ; Vertical screen origin.
     sta $9001
-    lda #15     ; Number of columns.
+    lda #@(+ 128 15) ; Number of columns.
     sta $9002
     lda #@(* 32 2) ; Number of rows.
     sta $9003
