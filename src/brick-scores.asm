@@ -1,4 +1,4 @@
-bricks:
+brick_scores:
     white       50
     orange      60
     cyan        70
@@ -7,4 +7,3 @@ bricks:
     blue        100
     purple      110
     yellow      120
-
