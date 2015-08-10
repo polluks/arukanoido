@@ -23,6 +23,8 @@ l:  lda stackmem,x
     dex
     bpl -l
 
+    txs
+
     ; Clear character 0.
     ldx #7
     lda #0
