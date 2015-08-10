@@ -41,7 +41,7 @@ l:  sta charset,x
     lda #@(+ vic_screen_1e00 vic_charset_1000)
     sta $9005
     lda #@(* light_cyan 16) ; Auxiliary color.
-    sta $900d
+    sta $900e
     lda #@(+ reverse red)   ; Screen and border color.
     sta $900f
 

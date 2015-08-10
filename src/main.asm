@@ -4,14 +4,58 @@ start:
 l:  lda #0
     sta screen,x
     sta @(+ 256 screen),x
-    lda #white
+    lda #@(+ multicolor white)
     sta colors,x
     sta @(+ 256 colors),x
     dex
     bne -l
 
-    ; Draw border.
-    ; Unpack bricks.
+    ; Draw top border without connectors.
+    ldx #13
+    lda #bg_top_1
+l:  sta @(+ screen 30),x
+    dex
+    bne -l
+
+    ; Draw top border connectors.
+    lda #bg_top_2
+    sta @(+ screen 30 3),x
+    sta @(+ screen 30 10),x
+    lda #bg_top_3
+    sta @(+ screen 30 4),x
+    sta @(+ screen 30 11),x
+
+    ; Draw corners.
+    lda #bg_corner_left
+    sta @(+ screen 30)
+    lda #bg_corner_right
+    sta @(+ screen 30 14)
+    
+    ; Draw sides.
+    lda #0
+    sta scrx
+    lda #3
+    sta scry
+a:  ldx #5
+    lda #bg_side
+l:  pha
+    lda scry
+    cmp #32
+    beq +done
+    jsr scrcoladdr
+    pla
+    sta (scr),y
+    ldy #14
+    sta (scr),y
+    clc
+    adc #1
+    inc scry
+    dex
+    bne -l
+    jmp -a
+
+done:
+    pla
 
 forever:
     jmp forever

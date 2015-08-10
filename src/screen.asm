@@ -1,7 +1,7 @@
 ; Calculate line address in screen and colour memory.
 scrcoladdr:
     ldy scry
-    lda $edfd,y
+    lda line_addresses,y
     sta scr
     sta col
     cpy #@(++ (/ 256 screen_columns))
