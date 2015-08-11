@@ -12,7 +12,7 @@ ctrl_vaus_left:
     bne no_fire
 
 fire:
-    lda #20
+    lda #9
     sta is_firing
     tya
     pha
@@ -60,6 +60,6 @@ ctrl_laser:
     lda sprites_y,x
     cmp #24
     bcc +n
-    lda #1
+    lda #4
     jmp sprite_up
 n:  jmp remove_sprite
