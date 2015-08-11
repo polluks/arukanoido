@@ -86,9 +86,7 @@ sprites_l:  fill num_sprites  ; Low character addresses.
 sprites_fl: fill num_sprites  ; Function controlling the sprite (low).
 sprites_fh: fill num_sprites  ; Function controlling the sprite (high).
 sprites_d:  fill num_sprites  ; Whatever the controllers want.
-                              ; Bullet:    SSSSCCCC step and counter
-                              ; Star:      pixels/odd frames, 0 is 1 in blue
-                              ; Explosion: position in explosion_colors
+sprites_d2:  fill num_sprites ; Whatever the controllers want.
 sprites_ox: fill num_sprites  ; Former X positions for cleaning up.
 sprites_oy: fill num_sprites  ; Former Y positions for cleaning up.
 

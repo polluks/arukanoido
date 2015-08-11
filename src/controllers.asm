@@ -70,6 +70,27 @@ ball_directions_x:  @(ball-directions-x)
 ball_directions_y:  @(ball-directions-y)
 
 ball_reflected: 0
+px: 0
+py: 0
+side_degrees: 0
+
+get_soft_collision:
+    lsr
+    lsr
+    lsr
+    sta scrx
+    tya
+    lsr
+    lsr
+    lsr
+    sta scry
+    jsr scrcoladdr
+    lda (scr),y
+    and #foreground
+    cmp #foreground
+    bne +n
+    lda #0
+n:  rts
 
 ctrl_ball:
     lda ball_reflected
@@ -78,26 +99,61 @@ ctrl_ball:
     jmp no_collision
 
 n: 
-    lda sprites_i,x
-    and #fg_collision
-    beq no_collision
+;    lda sprites_d,x
+;    clc
+;    adc #64
+;    bpl other_side
 
-    lda #8
-    sta ball_reflected
-    lda sprites_x,x
-    lsr
-    lsr
-    lsr
-    cmp sprites_ox,x
-    beq no_x_collision
-
-no_x_collision:
+    ; Bounce downwards.
     lda #0
-    sta sprites_i,x
-    lda sprites_d,x
+    sta side_degrees
+    lda sprites_x,x
+    ldy sprites_y,x
+    iny
+    iny
+    iny
+    iny
+    jsr get_soft_collision
+    beq reflect
+
+    ; Bounce left.
+    lda #64
+    sta side_degrees
+    lda sprites_x,x
+    sec
+    sbc #1
+    ldy sprites_y,x
+    jsr get_soft_collision
+    beq reflect
+    jmp no_collision
+    
+other_side:
+    ; Bounce upwards.
+    lda #128
+    sta side_degrees
+    lda sprites_x,x
+    ldy sprites_y,x
+    dey
+    jsr get_soft_collision
+    beq reflect
+    
+    ; Bounce right.
+    lda #192
+    sta side_degrees
+    lda sprites_x,x
     clc
-    adc #@(half +degrees+)
-    and #@(-- +degrees+)
+    adc #3
+    ldy sprites_y,x
+    jsr get_soft_collision
+    bne no_collision
+
+reflect:
+    lda sprites_d,x
+    sec
+    sbc side_degrees
+    jsr neg
+    clc
+    adc side_degrees
     sta sprites_d,x
 
 no_collision:
