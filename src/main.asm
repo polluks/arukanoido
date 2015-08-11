@@ -77,16 +77,16 @@ l:  jsr remove_sprite
     ldy #@(- player_right_init sprite_inits)
     jsr replace_sprite 
 
+mainloop:
+l:  lda $9004
+    bne -l
+
     ; Initialize sprite frame.
     lda spriteframe
     eor #framemask
     sta spriteframe
     ora #first_sprite_char
     sta next_sprite_char
-
-mainloop:
-l:  lda $9004
-    bne -l
 
     ; Call the functions that control sprite behaviour.
 n:  ldx #@(-- num_sprites)
