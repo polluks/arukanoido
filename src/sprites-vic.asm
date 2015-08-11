@@ -1,12 +1,4 @@
 draw_sprites:
-    ; Draw decorative sprites.
-    ldx #@(-- num_sprites)
-l:  lda sprites_i,x
-    bpl +n
-    jsr draw_sprite
-n:  dex
-    bpl -l
-
     ; Draw other sprites.
     ldx #@(-- num_sprites)
 l:  lda sprites_i,x
