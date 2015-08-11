@@ -108,6 +108,8 @@ n:
     lda #0
     sta side_degrees
     lda sprites_x,x
+    clc
+    adc #1
     ldy sprites_y,x
     dey
     jsr get_soft_collision
@@ -120,6 +122,9 @@ n:
     sec
     sbc #1
     ldy sprites_y,x
+    iny
+    iny
+    iny
     jsr get_soft_collision
     beq reflect
     
@@ -127,6 +132,8 @@ n:
     lda #128
     sta side_degrees
     lda sprites_x,x
+    clc
+    adc #1
     ldy sprites_y,x
     iny
     iny
@@ -143,6 +150,9 @@ n:
     clc
     adc #4
     ldy sprites_y,x
+    iny
+    iny
+    iny
     jsr get_soft_collision
     bne no_collision
 
