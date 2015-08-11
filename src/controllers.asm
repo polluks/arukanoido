@@ -32,7 +32,7 @@ n:  tya
     lda sprites_x,x
     cmp #9
     bcc +n
-    lda #1
+    lda #2
     jmp sprite_left
 
     ; Joystick right.
@@ -43,7 +43,7 @@ n:  lda #0          ;Fetch rest of joystick status.
     lda sprites_x,x
     cmp #@(* (- screen_columns 3) 8)
     bcs ctrl_dummy
-    lda #1
+    lda #2
     jmp sprite_right
 
 ctrl_dummy:
