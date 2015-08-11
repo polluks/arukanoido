@@ -11,7 +11,7 @@ player_right_init:
 72 @(* 29 8)    0 @(+ multicolor white) <vaus_right <ctrl_vaus_right >ctrl_vaus_right 0
 
 ball_init:
-70 @(- (* 29 8) 4)   0 white <ball <ctrl_ball >ctrl_ball @(* +degrees+ 0.45)
+70 @(- (* 29 8) 4)   0 white <ball <ctrl_ball >ctrl_ball 48
 
 laser_init:
 0 @(* 29 8)     0 white                 <laser <ctrl_laser >ctrl_laser 0

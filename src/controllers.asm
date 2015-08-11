@@ -66,12 +66,9 @@ ctrl_laser:
     jmp sprite_up
 n:  jmp remove_sprite
 
-ball_directions_x:  @(ball-directions-x)
-ball_directions_y:  @(ball-directions-y)
+ball_directions_y:  @(ball-directions)
+ball_directions_x = @(+ ball_directions_y (/ +degrees+ 4))
 
-ball_reflected: 0
-px: 0
-py: 0
 side_degrees: 0
 
 get_soft_collision:
@@ -88,22 +85,13 @@ get_soft_collision:
     lda (scr),y
     and #foreground
     cmp #foreground
-    bne +n
-    lda #0
-n:  rts
+    rts
 
 ctrl_ball:
-    lda ball_reflected
-    beq +n
-    dec ball_reflected
-    jmp no_collision
-
-n: 
-;    lda sprites_d,x
-;    clc
-;    adc #64
-;    bpl other_side
-
+    jsr +c
+    jsr +c
+    jsr +c
+c:
     ; Bounce downwards.
     lda #0
     sta side_degrees
@@ -118,9 +106,9 @@ n:
     ; Bounce left.
     lda #64
     sta side_degrees
-    ldy sprites_x,x
-    dey
-    tya
+    lda sprites_x,x
+    clc
+    adc #3
     ldy sprites_y,x
     iny
     iny
@@ -146,9 +134,9 @@ n:
     ; Bounce right.
     lda #192
     sta side_degrees
-    lda sprites_x,x
-    clc
-    adc #4
+    ldy sprites_x,x
+    dey
+    tya
     ldy sprites_y,x
     iny
     iny
@@ -170,16 +158,44 @@ n:
     jsr neg
     clc
     adc side_degrees
+    clc
+    adc #128
     sta sprites_d,x
 
+    jsr traject_ball
+    jsr traject_ball
+
 no_collision:
+
+traject_ball:
     ldy sprites_d,x
     lda ball_directions_x,y
     clc
-    adc sprites_x,x
-    sta sprites_x,x
+    bmi +m
+    adc sprites_dx,x
+    bmi +n
+    inc sprites_x,x
+    jmp +n
+
+m:  adc sprites_dx,x
+    bpl +n
+    dec sprites_x,x
+
+n: 
+    sta sprites_dx,x
+
+    ldy sprites_d,x
     lda ball_directions_y,y
     clc
-    adc sprites_y,x
-    sta sprites_y,x
+    bmi +m
+    adc sprites_dy,x
+    bmi +n
+    inc sprites_y,x
+    jmp +n
+
+m:  adc sprites_dy,x
+    bpl +n
+    dec sprites_y,x
+
+n:  sta sprites_dy,x
     rts

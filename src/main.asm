@@ -20,6 +20,7 @@ l:  lda #0
     ldx #13
     lda #bg_top_1
 l:  sta @(+ screen 30),x
+    sta @(+ screen 30 (* 29 15)),x
     dex
     bne -l
 

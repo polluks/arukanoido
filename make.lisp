@@ -27,11 +27,10 @@
   (let m (/ 360 +degrees+)
     (integers-to-bytes (full-wave (maptimes [integer (* smax (degree-sin (* m _)))] (/ +degrees+ 4))))))
 
-(defun ball-directions-y ()
+(defun ball-directions ()
   (alet (* (/ +degrees+ 4) 3)
-    (subseq (+ (ball-directions-x)
-               (ball-directions-x))
-            ! (+ +degrees+ !))))
+    (+ (subseq (ball-directions-x) ! +degrees+)
+       (ball-directions-x))))
 
 (defun make (to files cmds)
   (apply #'assemble-files to files)
@@ -67,8 +66,7 @@
 
 (make-game :prg "arkanoid.prg" "obj/arkanoid.vice.txt")
 
-(print (length (ball-directions-x)))
-(print (ball-directions-x))
-(print (length (ball-directions-y)))
-(print (ball-directions-y))
+(print (length (ball-directions)))
+(print (ball-directions))
+
 (quit)
