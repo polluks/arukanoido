@@ -63,6 +63,22 @@ l:  pha
 done:
     pla
 
+    lda #13
+    sta scrx
+    lda #@(+ 4 3)
+    sta scry
+o:  jsr scrcoladdr
+l:  lda #bg_block
+    sta (scr),y
+    lda #blue
+    sta (col),y
+    dey
+    bne -l
+    inc scry
+    lda scry
+    cmp #@(+ 4 3 5)
+    bne -o
+    
     ; Fill sprite slots with stars.
     ldx #@(- num_sprites 3)
 l:  jsr remove_sprite
