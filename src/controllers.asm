@@ -6,6 +6,14 @@ ctrl_vaus_left:
     and #joy_fire
     bne no_fire
 
+    lda is_firing
+    beq fire
+    dec is_firing
+    bne no_fire
+
+fire:
+    lda #20
+    sta is_firing
     tya
     pha
     lda sprites_x,x
@@ -16,7 +24,6 @@ ctrl_vaus_left:
     tay
 
 no_fire:
-operate_joystick:
 
     ; Joystick left.
 n:  tya

@@ -55,6 +55,8 @@ joystick_status:      0
 
 lifes:                0 ; Number of lifes left.
 
+is_firing:            0 ; Laser interval countdown.
+
 ; Temporaries.
 tmp:                  0
 tmp2:
