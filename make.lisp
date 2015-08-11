@@ -4,13 +4,17 @@
   (when (< #x100 *pc*)
     (error "Zero page overflow by ~A bytes." (- *pc* #x100))))
 
-(defun ball-directions-x ()
-  (let m (/ 360 16)
-    (integers-to-bytes (maptimes [integer (* 2 (degree-sin (* m _)))] 16))))
+(defconstant +degrees+ 32)
+(defconstant smax 3)
 
-(defun ball-directions-y ()
-  (let m (/ 360 16)
-    (integers-to-bytes (maptimes [integer (* 2 (degree-cos (* m _)))] 16))))
+(defun negate (x)
+  (@ [- _] x))
+
+(defun full-wave (x)
+  (+ x
+     (reverse x)
+     (negate x)
+     (reverse (negate x))))
 
 (defun integer-to-byte (x)
   (? (< x 0)
@@ -19,8 +23,12 @@
 
 (define-filter integers-to-bytes #'integer-to-byte)
 
-(print (ball-directions-x))
-(print (ball-directions-y))
+(defun ball-directions-x ()
+  (let m (/ 360 +degrees+)
+    (integers-to-bytes (full-wave (maptimes [integer (* smax (degree-sin (* m _)))] (/ +degrees+ 4))))))
+
+(defun ball-directions-y ()
+  (subseq (+ (ball-directions-x) (ball-directions-x)) (/ +degrees+ 4) +degrees+))
 
 (defun make (to files cmds)
   (apply #'assemble-files to files)
@@ -55,4 +63,9 @@
         cmds))
 
 (make-game :prg "arkanoid.prg" "obj/arkanoid.vice.txt")
+
+(print (ball-directions-x))
+(print (ball-directions-y))
+;(print (elt (ball-directions-x) (half +degrees+)))
+(print (degree-sin 179))
 (quit)
