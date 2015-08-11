@@ -17,6 +17,8 @@ fire:
     tya
     pha
     lda sprites_x,x
+    clc
+    adc #4
     sta laser_init
     ldy #@(- laser_init sprite_inits)
     jsr add_sprite
