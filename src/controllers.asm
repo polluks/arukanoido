@@ -107,9 +107,9 @@ n:
     ; Bounce downwards.
     lda #0
     sta side_degrees
-    lda sprites_x,x
-    clc
-    adc #1
+    ldy sprites_x,x
+    iny
+    tya
     ldy sprites_y,x
     dey
     jsr get_soft_collision
@@ -118,9 +118,9 @@ n:
     ; Bounce left.
     lda #64
     sta side_degrees
-    lda sprites_x,x
-    sec
-    sbc #1
+    ldy sprites_x,x
+    dey
+    tya
     ldy sprites_y,x
     iny
     iny
@@ -131,9 +131,9 @@ n:
     ; Bounce upwards.
     lda #128
     sta side_degrees
-    lda sprites_x,x
-    clc
-    adc #1
+    ldy sprites_x,x
+    iny
+    tya
     ldy sprites_y,x
     iny
     iny
@@ -157,6 +157,13 @@ n:
     bne no_collision
 
 reflect:
+    lda (scr),y
+    cmp #bg_block
+    bne +n
+    lda #0
+    sta (scr),y
+n:
+
     lda sprites_d,x
     sec
     sbc side_degrees
