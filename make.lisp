@@ -4,6 +4,24 @@
   (when (< #x100 *pc*)
     (error "Zero page overflow by ~A bytes." (- *pc* #x100))))
 
+(defun ball-directions-x ()
+  (let m (/ 360 16)
+    (integers-to-bytes (maptimes [integer (* 2 (degree-sin (* m _)))] 16))))
+
+(defun ball-directions-y ()
+  (let m (/ 360 16)
+    (integers-to-bytes (maptimes [integer (* 2 (degree-cos (* m _)))] 16))))
+
+(defun integer-to-byte (x)
+  (? (< x 0)
+     (+ 256 x)
+     x))
+
+(define-filter integers-to-bytes #'integer-to-byte)
+
+(print (ball-directions-x))
+(print (ball-directions-y))
+
 (defun make (to files cmds)
   (apply #'assemble-files to files)
   (make-vice-commands cmds "break .stop"))

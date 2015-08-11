@@ -65,3 +65,29 @@ ctrl_laser:
     lda #4
     jmp sprite_up
 n:  jmp remove_sprite
+
+ball_directions_x:  @(ball-directions-x)
+ball_directions_y:  @(ball-directions-y)
+
+ctrl_ball:
+    lda sprites_i,x
+    and #fg_collision
+    beq no_collision
+    lda #0
+    sta sprites_i,x
+    lda sprites_d,x
+    clc
+    adc #4
+    and #15
+    sta sprites_d,x
+no_collision:
+    ldy sprites_d,x
+    lda ball_directions_x,y
+    clc
+    adc sprites_x,x
+    sta sprites_x,x
+    lda ball_directions_y,y
+    clc
+    adc sprites_y,x
+    sta sprites_y,x
+    rts

@@ -64,7 +64,7 @@ done:
     pla
 
     ; Fill sprite slots with stars.
-    ldx #@(- num_sprites 2)
+    ldx #@(- num_sprites 3)
 l:  jsr remove_sprite
     dex
     bpl -l
@@ -75,6 +75,9 @@ l:  jsr remove_sprite
     jsr replace_sprite 
     ldx #@(- num_sprites 2)
     ldy #@(- player_right_init sprite_inits)
+    jsr replace_sprite 
+    ldx #@(- num_sprites 3)
+    ldy #@(- ball_init sprite_inits)
     jsr replace_sprite 
 
 mainloop:
