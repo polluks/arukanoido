@@ -111,19 +111,9 @@ l:  cpy tmp             ; Skip same sprite.
     sec
     sbc sprites_x,y
     jsr abs
-    cmp #8
+    cmp collision_x_distance
     bcs +n             ; Too far off horizontally...
 
-    ; Halven collision box of horizontal laser vertically.
-    lda #8
-    sta collision_y_distance
-    lda sprites_l,y
-    cmp #<laser
-    bne not_a_hoizontal_laser
-    lda #2
-    sta collision_y_distance
-
-not_a_hoizontal_laser:
     lda sprites_y,x     ; Get Y distance.
     sec
     sbc sprites_y,y

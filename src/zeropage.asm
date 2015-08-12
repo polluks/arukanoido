@@ -59,13 +59,15 @@ is_firing:            0 ; Laser interval countdown.
 
 current_level:        0 0
 
+collision_y_distance: 0
+collision_x_distance: 0
+
 ; Temporaries.
 tmp:                  0
 tmp2:
 distance_x:           0 ; Sprite collision X distance.
 tmp3:
-distance_y:
-collision_y_distance: 0 ; Sprite collision Y distance.
+distance_y:           0 ; Sprite collision Y distance.
 
 ; Temporary stores for index registers.
 add_sprite_x:         0

@@ -107,6 +107,9 @@ l1: lda sprites_fh,x
     lda sprites_fl,x
     sta @(++ +m1)
     stx call_controllers_x
+    lda #8
+    sta collision_x_distance
+    sta collision_y_distance
 m1: jsr $1234
     ldx call_controllers_x
 n1: dex
