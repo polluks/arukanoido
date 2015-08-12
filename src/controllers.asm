@@ -147,12 +147,17 @@ c:
 reflect:
     ; Clear hit brick.
     lda (scr),y
-    cmp #bg_brick_special1
-    beq +y
+    cmp #@(++ bg_brick_special3)
+    bcs +n
     cmp #bg_brick
-    bne +n
+    bcc +n
+    beq +y
+    lda (scr),y
+    sec
+    sbc #1
+    bne +w  ; jmp
 y:  lda #0
-    sta (scr),y
+w:  sta (scr),y
 n:
 
     lda sprites_d,x
