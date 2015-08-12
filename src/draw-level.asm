@@ -22,7 +22,7 @@ l:  tya
     lda #bg_brick
     cpx #8
     bcc +n
-    lda #bg_brick_special1
+    lda #bg_brick_special2
 n:  sta @(++ +l2)
     pla
     lsr
