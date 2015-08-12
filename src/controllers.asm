@@ -92,7 +92,7 @@ ctrl_ball:
     jsr +c
     jsr +c
 c:
-    ; Bounce downwards.
+    ; Bounce back downwards.
     lda #0
     sta side_degrees
     ldy sprites_x,x
@@ -103,7 +103,7 @@ c:
     jsr get_soft_collision
     beq reflect
 
-    ; Bounce left.
+    ; Bounce back left.
     lda #64
     sta side_degrees
     lda sprites_x,x
@@ -116,7 +116,7 @@ c:
     jsr get_soft_collision
     beq reflect
     
-    ; Bounce upwards.
+    ; Bounce back upwards.
     lda #128
     sta side_degrees
     ldy sprites_x,x
@@ -131,7 +131,7 @@ c:
     jsr get_soft_collision
     beq reflect
     
-    ; Bounce right.
+    ; Bounce back right.
     lda #192
     sta side_degrees
     ldy sprites_x,x
@@ -145,6 +145,7 @@ c:
     bne no_collision
 
 reflect:
+    ; Clear hit block.
     lda (scr),y
     cmp #bg_block
     bne +n
@@ -153,6 +154,16 @@ reflect:
 n:
 
     lda sprites_d,x
+    clc
+    adc #128
+    sta sprites_d,x
+    jsr traject_ball
+    jsr traject_ball
+
+    ; Apply reflection.
+    lda sprites_d,x
+    clc
+    adc #128
     sec
     sbc side_degrees
     jsr neg
@@ -161,9 +172,6 @@ n:
     clc
     adc #128
     sta sprites_d,x
-
-    jsr traject_ball
-    jsr traject_ball
 
 no_collision:
 
