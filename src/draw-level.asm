@@ -41,7 +41,7 @@ l2: lda #bg_brick
 done:
     pla
     lda current_level
-    clc
+    sec     ; (Missing increment.)
     adc tmp
     sta current_level
     bcc +n
