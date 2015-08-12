@@ -13,7 +13,7 @@ bg_block = @(+ bg_start 0)
 %11111110
 %00000000
 
-bg_block_special = @(+ bg_start 1)
+bg_block_special1 = @(+ bg_start 1)
 %10101010
 %01010100
 %10101010
@@ -23,7 +23,39 @@ bg_block_special = @(+ bg_start 1)
 %10101010
 %00000000
 
-bg_side = @(+ bg_start 2)
+; Three more copies to count down hits (four in level 32):
+
+bg_block_special2 = @(+ bg_start 2)
+%10101010
+%01010100
+%10101010
+%01010100
+%10101010
+%01010100
+%10101010
+%00000000
+
+bg_block_special3 = @(+ bg_start 3)
+%10101010
+%01010100
+%10101010
+%01010100
+%10101010
+%01010100
+%10101010
+%00000000
+
+bg_block_special4 = @(+ bg_start 4)
+%10101010
+%01010100
+%10101010
+%01010100
+%10101010
+%01010100
+%10101010
+%00000000
+
+bg_side = @(+ bg_start 5)
 %00111100
 %10111100
 %10111111
@@ -69,7 +101,7 @@ bg_side = @(+ bg_start 2)
 %00101100
 %00000000
 
-bg_corner_left = @(+ bg_start 7)
+bg_corner_left = @(+ bg_start 10)
 %00000000
 %00001010
 %00101111
@@ -79,7 +111,7 @@ bg_corner_left = @(+ bg_start 7)
 %00101111
 %00000011
 
-bg_top_1 = @(+ bg_start 8)
+bg_top_1 = @(+ bg_start 11)
 %00000000
 %10101010
 %11111111
@@ -89,7 +121,7 @@ bg_top_1 = @(+ bg_start 8)
 %00000000
 %00000000
 
-bg_top_2 = @(+ bg_start 9)
+bg_top_2 = @(+ bg_start 12)
 %00101010
 %10111100
 %11111111
@@ -99,7 +131,7 @@ bg_top_2 = @(+ bg_start 9)
 %00111111
 %00000000
 
-bg_top_3 = @(+ bg_start 10)
+bg_top_3 = @(+ bg_start 13)
 %10101000
 %00111110
 %11111111
@@ -109,7 +141,7 @@ bg_top_3 = @(+ bg_start 10)
 %11111100
 %00000000
 
-bg_corner_right = @(+ bg_start 11)
+bg_corner_right = @(+ bg_start 14)
 %00000000
 %10100000
 %11111000
@@ -119,6 +151,7 @@ bg_corner_right = @(+ bg_start 11)
 %11111100
 %11000000
 
+bg_minivaus = @(+ bg_start 15)
 %01110100
 %10101000
 %01110100
