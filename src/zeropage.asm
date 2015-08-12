@@ -57,6 +57,8 @@ lifes:                0 ; Number of lifes left.
 
 is_firing:            0 ; Laser interval countdown.
 
+current_level:        0 0
+
 ; Temporaries.
 tmp:                  0
 tmp2:

@@ -3,7 +3,7 @@
 bg_start = @(+ 64 48)
 gfx_background:
 
-bg_block = @(+ bg_start 0)
+bg_brick = @(+ bg_start 0)
 %11111110
 %11111110
 %11111110
@@ -13,7 +13,7 @@ bg_block = @(+ bg_start 0)
 %11111110
 %00000000
 
-bg_block_special1 = @(+ bg_start 1)
+bg_brick_special1 = @(+ bg_start 1)
 %10101010
 %01010100
 %10101010
@@ -25,7 +25,7 @@ bg_block_special1 = @(+ bg_start 1)
 
 ; Three more copies to count down hits (four in level 32):
 
-bg_block_special2 = @(+ bg_start 2)
+bg_brick_special2 = @(+ bg_start 2)
 %10101010
 %01010100
 %10101010
@@ -35,7 +35,7 @@ bg_block_special2 = @(+ bg_start 2)
 %10101010
 %00000000
 
-bg_block_special3 = @(+ bg_start 3)
+bg_brick_special3 = @(+ bg_start 3)
 %10101010
 %01010100
 %10101010
@@ -45,7 +45,7 @@ bg_block_special3 = @(+ bg_start 3)
 %10101010
 %00000000
 
-bg_block_special4 = @(+ bg_start 4)
+bg_brick_special4 = @(+ bg_start 4)
 %10101010
 %01010100
 %10101010

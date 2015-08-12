@@ -43,7 +43,7 @@
                           "../bender/vic-20/basic-loader.asm"
                           "init.asm"
                             "stackmem-start.asm"
-                            "brick-scores.asm"
+                            "brick-info.asm"
                             "stackmem-end.asm"
                             "lowmem-start.asm"
                               "gfx-sprites.asm"
@@ -62,6 +62,8 @@
                           "controllers.asm"
                           "sprites.asm"
                           "sprites-vic.asm"
+                          "draw-level.asm"
+                          "level-data.asm"
                           ))
         cmds))
 

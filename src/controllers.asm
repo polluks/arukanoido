@@ -145,11 +145,13 @@ c:
     bne no_collision
 
 reflect:
-    ; Clear hit block.
+    ; Clear hit brick.
     lda (scr),y
-    cmp #bg_block
+    cmp #bg_brick_special1
+    beq +y
+    cmp #bg_brick
     bne +n
-    lda #0
+y:  lda #0
     sta (scr),y
 n:
 

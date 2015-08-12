@@ -5,6 +5,12 @@ l:  sta 0,x
     dex
     bne -l
 
+    ; Set to first level.
+    lda #<level_data
+    sta current_level
+    lda #>level_data
+    sta @(++ current_level)
+
     ; Clear screen.
     ldx #0
 l:  lda #0
@@ -15,6 +21,8 @@ l:  lda #0
     sta @(+ 256 colors),x
     dex
     bne -l
+
+    jsr draw_level
 
     ; Draw top border without connectors.
     ldx #13
@@ -64,23 +72,7 @@ l:  pha
 done:
     pla
 
-    lda #13
-    sta scrx
-    lda #@(+ 4 3)
-    sta scry
-o:  jsr scrcoladdr
-l:  lda #bg_block
-    sta (scr),y
-    lda #blue
-    sta (col),y
-    dey
-    bne -l
-    inc scry
-    lda scry
-    cmp #@(+ 4 3 5)
-    bne -o
-    
-    ; Fill sprite slots with stars.
+    ; Empty sprite slots.
     ldx #@(- num_sprites 3)
 l:  jsr remove_sprite
     dex
