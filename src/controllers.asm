@@ -26,7 +26,6 @@ fire:
     tay
 
 no_fire:
-
     ; Joystick left.
 n:  tya
     and #joy_left
@@ -89,12 +88,13 @@ get_soft_collision:
 
 vaus_hit: 0
 
+vaus_edge_distraction = 16
 ball_width      = 3
 ball_height     = 5
 
 ctrl_ball:
-;    jsr +c
-;    jsr +c
+    jsr +c
+    jsr +c
     jsr +c
 c:
     ; Test on collision with sprites.
@@ -107,7 +107,7 @@ c:
 
     ; Test on collision with Vaus.
 
-    lda #@(+ 128 0)
+    lda #@(- 128 vaus_edge_distraction)
     sta side_degrees
     lda sprites_l,y
     cmp #<vaus_left
@@ -119,7 +119,7 @@ c:
     cmp #<vaus_middle
     beq reflect_from_vaus
 
-    lda #@(- 128 0)
+    lda #@(+ 128 vaus_edge_distraction)
     sta side_degrees
     lda sprites_l,y
     cmp #<vaus_right
@@ -146,7 +146,10 @@ no_hit:
     ldy sprites_y,x
     dey
     jsr get_soft_collision
-    beq hit_brick
+    bne +n
+    inc sprites_y,x
+    jmp hit_brick
+n:
 
     ; Bounce back left.
     lda #64
@@ -159,7 +162,10 @@ no_hit:
     iny
     iny
     jsr get_soft_collision
-    beq hit_brick
+    bne +n
+    dec sprites_x,x
+    jmp hit_brick
+n:
     
     ; Bounce back upwards.
     lda #128
@@ -174,7 +180,10 @@ no_hit:
     iny
     iny
     jsr get_soft_collision
-    beq hit_brick
+    bne +n
+    dec sprites_y,x
+    jmp hit_brick
+n:
     
     ; Bounce back right.
     lda #192
@@ -188,36 +197,33 @@ no_hit:
     iny
     jsr get_soft_collision
     bne traject_ball
+    inc sprites_x,x
 
 hit_brick:
+    ; Check brick type.
     lda (scr),y
     cmp #@(++ bg_brick_special4)
-    bcs +n
+    bcs not_a_brick
     cmp #bg_brick_special1
-    beq +y
+    beq remove_brick
     cmp #bg_brick
-    bcc +n
-    beq +y
+    bcc not_a_brick
+    beq remove_brick
+
+    ; Degrade special brick.
     lda (scr),y
     sec
     sbc #1
-    bne +w  ; jmp
-y:  lda #0
-w:  sta (scr),y
-n:
+    jmp modify_brick
+
+remove_brick:
+    lda #0
+modify_brick:
+    sta (scr),y
+not_a_brick:
 
 reflect:
-    ; Bounce back two steps in opposite direction.
     lda sprites_d,x
-    clc
-    adc #128
-    sta sprites_d,x
-    jsr traject_ball
-    jsr traject_ball
-
-    lda sprites_d,x
-    clc
-    adc #128
     sec
     sbc side_degrees
     jsr neg
@@ -225,17 +231,10 @@ reflect:
     adc side_degrees
     clc
     adc #128
-
-    ; Avoid bouncing infinitely horizontally.
-    cmp #192
-    bne +n
-    lda #200
-    bne +j
-n:  cmp #64
-    bne +j
-    lda #56
-
-j:  sta sprites_d,x
+    sta sprites_d,x
+    lda #0
+    sta sprites_dx,x
+    sta sprites_dy,x
 
 traject_ball:
     ldy sprites_d,x
@@ -243,12 +242,12 @@ traject_ball:
     clc
     bmi +m
     adc sprites_dx,x
-    bmi +n
+    bcc +n
     inc sprites_x,x
     jmp +n
 
 m:  adc sprites_dx,x
-    bpl +n
+    bcc +n
     dec sprites_x,x
 
 n:  sta sprites_dx,x
@@ -258,12 +257,12 @@ n:  sta sprites_dx,x
     clc
     bmi +m
     adc sprites_dy,x
-    bmi +n
+    bcc +n
     inc sprites_y,x
     jmp +n
 
 m:  adc sprites_dy,x
-    bpl +n
+    bcc +n
     dec sprites_y,x
 
 n:  sta sprites_dy,x
