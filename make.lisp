@@ -72,4 +72,12 @@
 (print (length (ball-directions)))
 (print (ball-directions))
 
+(alet (elt (ball-directions) (/ +degrees+ 4))
+  (unless (zero? !)
+    (error "Sine of 0 should be 0 instead of ~A.~%" !)))
+
+(alet (elt (ball-directions) (+ (/ +degrees+ 4) (/ +degrees+ 2)))
+  (unless (zero? !)
+    (error "Sine of 180 should be 0 instead of ~A.~%" !)))
+
 (quit)
