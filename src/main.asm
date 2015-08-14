@@ -28,7 +28,7 @@ l:  lda #0
     ldx #13
     lda #bg_top_1
 l:  sta @(+ screen 30),x
-    sta @(+ screen 30 (* 29 15)),x
+;    sta @(+ screen 30 (* 29 15)),x
     dex
     bne -l
 
@@ -93,6 +93,10 @@ l:  jsr remove_sprite
 
     lda #4
     sta ball_speed
+    lda #3
+    sta lifes
+
+    jsr redraw_lifes
 
 mainloop:
     jsr random      ; Improve randomness.
@@ -129,3 +133,24 @@ n1: dex
     jsr draw_sprites
 
     jmp mainloop
+
+redraw_lifes:
+    lda #1
+    sta scrx
+    lda #31
+    sta scry
+    lda lifes
+    sta tmp
+l:  dec tmp
+    beq +n
+    jsr scrcoladdr
+    lda #bg_minivaus
+    sta (scr),y
+    lda #@(+ multicolor white)
+    sta (col),y
+    inc scrx
+    jmp -l
+n:  jsr scrcoladdr
+    lda #0
+    sta (scr),y
+    rts
