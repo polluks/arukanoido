@@ -80,10 +80,10 @@ l:  jsr remove_sprite
 
     ; Make player sprite.
     ldx #@(- num_sprites 1)
-    ldy #@(- player_left_init sprite_inits)
+    ldy #@(- vaus_left_init sprite_inits)
     jsr replace_sprite 
     ldx #@(- num_sprites 2)
-    ldy #@(- player_right_init sprite_inits)
+    ldy #@(- vaus_right_init sprite_inits)
     jsr replace_sprite 
     ldx #@(- num_sprites 3)
     ldy #@(- ball_init sprite_inits)

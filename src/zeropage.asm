@@ -56,6 +56,7 @@ joystick_status:      0
 lifes:                0 ; Number of lifes left.
 
 is_firing:            0 ; Laser interval countdown.
+has_laser:            0
 
 current_level:        0 0
 

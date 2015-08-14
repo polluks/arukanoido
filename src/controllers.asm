@@ -3,8 +3,11 @@ ctrl_vaus_left:
     sta $9113
     lda $9111
     tay
+
     and #joy_fire
     bne no_fire
+    lda has_laser
+    beq no_fire
 
     lda is_firing
     beq fire
@@ -148,7 +151,7 @@ no_hit:
     jsr get_soft_collision
     bne +n
     inc sprites_y,x
-    jmp hit_brick
+    jmp +h
 n:
 
     ; Bounce back left.
@@ -164,7 +167,7 @@ n:
     jsr get_soft_collision
     bne +n
     dec sprites_x,x
-    jmp hit_brick
+    jmp +h
 n:
     
     ; Bounce back upwards.
@@ -182,7 +185,7 @@ n:
     jsr get_soft_collision
     bne +n
     dec sprites_y,x
-    jmp hit_brick
+    jmp +h
 n:
     
     ; Bounce back right.
@@ -199,27 +202,8 @@ n:
     bne traject_ball
     inc sprites_x,x
 
-hit_brick:
-    ; Check brick type.
-    lda (scr),y
-    cmp #@(++ bg_brick_special4)
+h:  jsr hit_brick
     bcs reflect
-    cmp #bg_brick_special1
-    beq remove_brick
-    cmp #bg_brick
-    bcc reflect
-    beq remove_brick
-
-    ; Degrade special brick.
-    lda (scr),y
-    sec
-    sbc #1
-    jmp modify_brick
-
-remove_brick:
-    lda #0
-modify_brick:
-    sta (scr),y
 
     ; Make bonus.
     jsr random
@@ -295,6 +279,43 @@ n:  sta sprites_dy,x
 ctrl_bonus:
     lda sprites_y,x
     beq +r
-    lda #1
-    jmp sprite_down
+    jsr find_hit
+    bcs +m
+    lda sprites_i,y
+    and #is_vaus
+    beq +m
+    lda sprites_l,x
+    cmp #<bonus_l
+    bne +r
+    inc has_laser
 r:  jmp remove_sprite
+    
+m:  lda #1
+    jmp sprite_down
+
+hit_brick:
+    ; Check brick type.
+    ldy scrx
+    lda (scr),y
+    cmp #@(++ bg_brick_special4)
+    bcs +r
+    cmp #bg_brick_special1
+    beq remove_brick
+    cmp #bg_brick
+    bcc +r
+    beq remove_brick
+
+    ; Degrade special brick.
+    lda (scr),y
+    sec
+    sbc #1
+    jmp modify_brick
+
+remove_brick:
+    lda #0
+modify_brick:
+    sta (scr),y
+    clc
+    rts
+r:  sec
+    rts
