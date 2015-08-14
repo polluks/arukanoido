@@ -2,10 +2,17 @@ ctrl_vaus_left:
     lda #0              ; Fetch joystick status.
     sta $9113
     lda $9111
-    tay
+    sta joystick_status
 
     and #joy_fire
     bne no_fire
+    ldy #@(- num_sprites 2)
+l:  lda sprites_i,y
+    and #%11111101
+    sta sprites_i,y
+    dey
+    bpl -l
+
     lda has_laser
     beq no_fire
 
@@ -17,27 +24,33 @@ ctrl_vaus_left:
 fire:
     lda #9
     sta is_firing
-    tya
-    pha
     lda sprites_x,x
     clc
     adc #4
     sta laser_init
     ldy #@(- laser_init sprite_inits)
     jsr add_sprite
-    pla
-    tay
 
 no_fire:
     ; Joystick left.
-n:  tya
+n:  lda joystick_status
     and #joy_left
     bne +n
     lda sprites_x,x
     cmp #9
     bcc +n
     lda #2
-    jmp sprite_left
+    jsr sprite_left
+
+    stx tmp
+    ldx #@(-- num_sprites)
+l:  lda sprites_i,x
+    and #catched_ball
+    jsr sprite_left
+    dex
+    bpl -l
+r:  ldx tmp
+    rts
 
     ; Joystick right.
 n:  lda #0          ;Fetch rest of joystick status.
@@ -48,7 +61,15 @@ n:  lda #0          ;Fetch rest of joystick status.
     cmp #@(* (- screen_columns 3) 8)
     bcs ctrl_dummy
     lda #2
-    jmp sprite_right
+    jsr sprite_right
+
+    stx tmp
+    ldx #@(-- num_sprites)
+l:  lda sprites_i,x
+    and #catched_ball
+    jsr sprite_right
+    dex
+    bpl -l
 
 ctrl_dummy:
     rts
@@ -102,7 +123,7 @@ get_soft_collision:
     lda (scr),y
     and #foreground
     cmp #foreground
-    rts
+r:  rts
 
 vaus_hit: 0
 
@@ -111,6 +132,9 @@ ball_width      = 3
 ball_height     = 5
 
 ctrl_ball:
+    lda sprites_i,x
+    and #catched_ball
+    bne -r
     jsr +c
     jsr +c
     jsr +c
@@ -244,6 +268,7 @@ a:  jsr random
     asl
     clc
     adc #<bonus_l
+lda #<bonus_l
     sta @(+ bonus_init 4)
     ldy #@(- bonus_init sprite_inits)
     jsr add_sprite
