@@ -67,7 +67,7 @@
                           ))
         cmds))
 
-(make-game :prg "arukanuido.prg" "obj/arukanuido.vice.txt")
+(make-game :prg "arukanuido.prg" "arukanuido.vice.txt")
 
 (print (length (ball-directions)))
 (print (ball-directions))
