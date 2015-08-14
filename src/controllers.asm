@@ -13,8 +13,9 @@ l:  lda sprites_i,y
     dey
     bpl -l
 
-    lda has_laser
-    beq no_fire
+    lda mode
+    cmp #mode_laser
+    bne no_fire
 
     lda is_firing
     beq fire
@@ -173,7 +174,14 @@ reset_vaus_hit:
     jmp no_hit
 
 reflect_from_vaus:
-    lda vaus_hit
+    lda mode
+    cmp #mode_catching
+    bne +n
+    lda sprites_i,x
+    ora #catched_ball
+    sta sprites_i,x
+    jmp reflect
+n:  lda vaus_hit
     bne no_hit
     inc vaus_hit
     jmp reflect
@@ -268,7 +276,6 @@ a:  jsr random
     asl
     clc
     adc #<bonus_l
-lda #<bonus_l
     sta @(+ bonus_init 4)
     ldy #@(- bonus_init sprite_inits)
     jsr add_sprite
@@ -326,8 +333,14 @@ ctrl_bonus:
     beq +m
     lda sprites_l,x
     cmp #<bonus_l
+    bne +n
+    lda #mode_laser
+    sta mode
+    jmp +r
+n:  cmp #<bonus_c
     bne +r
-    inc has_laser
+    lda #mode_catching
+    sta mode
 r:  jmp remove_sprite
     
 m:  lda #1
