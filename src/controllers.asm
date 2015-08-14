@@ -203,11 +203,11 @@ hit_brick:
     ; Check brick type.
     lda (scr),y
     cmp #@(++ bg_brick_special4)
-    bcs not_a_brick
+    bcs reflect
     cmp #bg_brick_special1
     beq remove_brick
     cmp #bg_brick
-    bcc not_a_brick
+    bcc reflect
     beq remove_brick
 
     ; Degrade special brick.
@@ -220,7 +220,23 @@ remove_brick:
     lda #0
 modify_brick:
     sta (scr),y
-not_a_brick:
+
+    jsr random
+    and #%11
+    bne reflect
+
+    lda scrx
+    asl
+    asl
+    asl
+    sta bonus_init
+    lda scry
+    asl
+    asl
+    asl
+    sta @(++ bonus_init)
+    ldy #@(- bonus_init sprite_inits)
+    jsr add_sprite
 
 reflect:
     lda sprites_d,x
@@ -267,3 +283,11 @@ m:  adc sprites_dy,x
 
 n:  sta sprites_dy,x
     rts
+
+ctrl_bonus:
+    lda sprites_y,x
+    cmp #255
+    beq +r
+    lda #1
+    jmp sprite_down
+r:  jmp remove_sprite
