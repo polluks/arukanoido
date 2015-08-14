@@ -239,18 +239,15 @@ modify_brick:
     jsr add_sprite
 
 reflect:
-    lda sprites_d,x
+    lda sprites_d,x     ; Get degrees.
     sec
-    sbc side_degrees
-    jsr neg
+    sbc side_degrees    ; Rotate back to zero degrees.
+    jsr neg             ; Get absolute deviation.
     clc
-    adc side_degrees
+    adc side_degrees    ; Rotate back to original axis.
     clc
-    adc #128
+    adc #128            ; Rotate to opposite direction.
     sta sprites_d,x
-    lda #0
-    sta sprites_dx,x
-    sta sprites_dy,x
 
 traject_ball:
     ldy sprites_d,x
@@ -286,7 +283,6 @@ n:  sta sprites_dy,x
 
 ctrl_bonus:
     lda sprites_y,x
-    cmp #255
     beq +r
     lda #1
     jmp sprite_down
