@@ -15,7 +15,12 @@ n:  dex
     ; Remove remaining chars of sprites in old frame.
     ldx #@(-- num_sprites)
 l:  ; Remove old chars.
-    lda sprites_ox,x
+    lda sprites_i,x
+    and #decorative
+    beq +j
+    cmp #$ff
+    beq +n
+j:  lda sprites_ox,x
     sta scrx                ; (upper left)
     lda sprites_oy,x
     sta scry
@@ -28,27 +33,29 @@ l:  ; Remove old chars.
     inc scrx                ; (bottom right)
     jsr clear_char
 
+    lda sprites_i,x
+    and #decorative
+    beq +m
+    lda #$ff
+    bne +c
+
     ; Save current position as old one.
-    jsr xpixel_to_char
+m:  jsr xpixel_to_char
     sta sprites_ox,x
     lda sprites_y,x
     jsr pixel_to_char
-    sta sprites_oy,x
+c:  sta sprites_oy,x
 
-    dex
+n:  dex
     bpl -l
     rts
 
 xpixel_to_char:
     lda sprites_x,x
 pixel_to_char:
-    cmp #$f8
-    bcs +l      ; Keep sprite from popping out on the left.
     lsr
     lsr
     lsr
-    rts
-l:  lda #$ff
     rts
 
 ; Draw a single sprite.
