@@ -136,9 +136,16 @@ ctrl_ball:
     lda sprites_i,x
     and #catched_ball
     bne -r
+    ldy ball_speed
+l:  tya
+    pha
     jsr +c
-    jsr +c
-    jsr +c
+    pla
+    tay
+    dey
+    bne -l
+    rts
+
 c:
     ; Test on collision with sprites.
     lda #ball_width
@@ -350,7 +357,7 @@ n:  cmp #<bonus_c
     jmp +r
 
 n:  cmp #<bonus_d
-    bne +r
+    bne +n
     ldy #@(- num_sprites 2) ; Find ball.
 l:  lda sprites_l,y
     cmp #<ball
@@ -382,6 +389,13 @@ f:  lda #0
     
     lda #mode_disruption
     sta mode
+    jmp +r
+
+n:  cmp #<bonus_s
+    bne +r
+    lda ball_speed
+    beq +r
+    dec ball_speed
 
 r:  jmp remove_sprite
     

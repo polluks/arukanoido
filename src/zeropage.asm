@@ -55,7 +55,7 @@ joystick_status:      0
 
 lifes:                0 ; Number of lifes left.
 
-ball_is_moving:       0
+ball_speed:           0
 is_firing:            0 ; Laser interval countdown.
 
 mode_laser = 1

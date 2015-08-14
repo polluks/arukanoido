@@ -91,7 +91,12 @@ l:  jsr remove_sprite
     ldy #@(- ball_init sprite_inits)
     jsr replace_sprite 
 
+    lda #4
+    sta ball_speed
+
 mainloop:
+    jsr random      ; Improve randomness.
+
     lda mode
     cmp #mode_disruption
     beq +n
