@@ -222,7 +222,7 @@ modify_brick:
     sta (scr),y
 
     jsr random
-    and #%11
+    and #%111
     bne reflect
 
     lda scrx
