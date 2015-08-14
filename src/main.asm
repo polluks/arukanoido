@@ -85,13 +85,19 @@ l:  jsr remove_sprite
     ldx #@(- num_sprites 2)
     ldy #@(- vaus_right_init sprite_inits)
     jsr replace_sprite 
+    lda #catched_ball
+    sta @(+ ball_init 2)
     ldx #@(- num_sprites 3)
     ldy #@(- ball_init sprite_inits)
     jsr replace_sprite 
 
 mainloop:
+    lda mode
+    cmp #mode_disruption
+    beq +n
 l:  lda $9004
     bne -l
+n:
 
     ; Initialize sprite frame.
     lda spriteframe

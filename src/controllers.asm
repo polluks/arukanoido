@@ -253,6 +253,10 @@ h:  jsr hit_brick
     bcs reflect
 
     ; Make bonus.
+    lda mode
+    cmp #mode_disruption    ; No bonuses in disruption mode.
+    beq reflect
+
     jsr random
     and #%111   ; Approximately every eighth brick.
     bne reflect
@@ -331,16 +335,54 @@ ctrl_bonus:
     lda sprites_i,y
     and #is_vaus
     beq +m
+
     lda sprites_l,x
     cmp #<bonus_l
     bne +n
     lda #mode_laser
     sta mode
     jmp +r
+
 n:  cmp #<bonus_c
-    bne +r
+    bne +n
     lda #mode_catching
     sta mode
+    jmp +r
+
+n:  cmp #<bonus_d
+    bne +r
+    ldy #@(- num_sprites 2) ; Find ball.
+l:  lda sprites_l,y
+    cmp #<ball
+    beq +f
+    dey
+    bpl -l
+f:  lda #0
+    sta @(+ ball_init 2)
+    lda sprites_x,y
+    sta ball_init
+    lda sprites_y,y
+    sta @(+ ball_init 1)
+    ldy #@(- ball_init sprite_inits)
+    lda sprites_d,y
+    clc
+    adc #16
+    and #127
+    pha
+    sta @(+ ball_init 7)
+    ldy #@(- ball_init sprite_inits)
+    jsr add_sprite
+    pla
+    sec
+    sbc #16
+    and #127
+    sta @(+ ball_init 7)
+    ldy #@(- ball_init sprite_inits)
+    jsr add_sprite
+    
+    lda #mode_disruption
+    sta mode
+
 r:  jmp remove_sprite
     
 m:  lda #1

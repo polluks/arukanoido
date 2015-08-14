@@ -60,6 +60,7 @@ is_firing:            0 ; Laser interval countdown.
 
 mode_laser = 1
 mode_catching = 2
+mode_disruption = 3
 mode:                 0
 
 current_level:        0 0
