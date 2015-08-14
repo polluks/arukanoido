@@ -96,7 +96,7 @@ l:  jsr remove_sprite
     lda #3
     sta lifes
 
-    jsr redraw_lifes
+    jsr draw_lifes
 
 mainloop:
     jsr random      ; Improve randomness.
@@ -134,7 +134,7 @@ n1: dex
 
     jmp mainloop
 
-redraw_lifes:
+draw_lifes:
     lda #1
     sta scrx
     lda #31
