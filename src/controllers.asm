@@ -1,3 +1,5 @@
+bonus_probability = %11
+
 ctrl_vaus_left:
     lda #0              ; Fetch joystick status.
     sta $9113
@@ -122,9 +124,13 @@ get_soft_collision:
     sta scry
     jsr scrcoladdr
     lda (scr),y
+    cmp #bg_minivaus
+    beq +n
     and #foreground
     cmp #foreground
 r:  rts
+n:  lda #1
+    rts
 
 vaus_hit: 0
 
@@ -265,7 +271,7 @@ h:  jsr hit_brick
     beq reflect
 
     jsr random
-    and #%111   ; Approximately every eighth brick.
+    and #bonus_probability
     bne reflect
 
     lda scrx
