@@ -221,8 +221,9 @@ remove_brick:
 modify_brick:
     sta (scr),y
 
+    ; Make bonus.
     jsr random
-    and #%111
+    and #%111   ; Approximately every eighth brick.
     bne reflect
 
     lda scrx
@@ -235,6 +236,16 @@ modify_brick:
     asl
     asl
     sta @(++ bonus_init)
+a:  jsr random
+    and #%111
+    cmp #%111
+    beq -a      ; Only seven bonuses available.
+    asl
+    asl
+    asl
+    clc
+    adc #<bonus_l
+    sta @(+ bonus_init 4)
     ldy #@(- bonus_init sprite_inits)
     jsr add_sprite
 
