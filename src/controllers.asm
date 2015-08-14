@@ -282,12 +282,17 @@ a:  jsr random
     and #%111
     cmp #%111
     beq -a      ; Only seven bonuses available.
+    pha
     asl
     asl
     asl
     clc
     adc #<bonus_l
     sta @(+ bonus_init 4)
+    pla
+    tay
+    lda bonus_colors,y
+    sta @(+ bonus_init 3)
     ldy #@(- bonus_init sprite_inits)
     jsr add_sprite
 
