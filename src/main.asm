@@ -90,12 +90,8 @@ l:  jsr remove_sprite
     jsr replace_sprite 
 
 mainloop:
-    lda #@(+ reverse blue)
-;    sta $900f
 l:  lda $9004
     bne -l
-    lda #@(+ reverse red)
-;    sta $900f
 
     ; Initialize sprite frame.
     lda spriteframe
@@ -107,7 +103,6 @@ l:  lda $9004
     ; Call the functions that control sprite behaviour.
 n:  ldx #@(-- num_sprites)
 l1: lda sprites_fh,x
-;    inc $900f
     sta @(+ +m1 2)
     lda sprites_fl,x
     sta @(++ +m1)
