@@ -366,7 +366,7 @@ ctrl_bonus:
     sta @(+ +selfmod 2)
 selfmod:
     jsr $1234
-    jmp remove_sprite
+r:  jmp remove_sprite
     
 m:  lda #1
     jmp sprite_down
@@ -446,7 +446,8 @@ f:  lda #0
     rts
 
 apply_bonus_p:
-    rts
+    inc lifes
+    jmp draw_lifes
 
 hit_brick:
     ; Check brick type.
