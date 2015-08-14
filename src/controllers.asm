@@ -353,22 +353,65 @@ ctrl_bonus:
     lda sprites_i,y
     and #is_vaus
     beq +m
-
     lda sprites_l,x
-    cmp #<bonus_l
-    bne +n
+    sec
+    sbc #bonus_l
+    lsr
+    lsr
+    lsr
+    tay
+    lda bonus_funs_l,y
+    sta @(+ +selfmod 1)
+    lda bonus_funs_h,y
+    sta @(+ +selfmod 2)
+selfmod:
+    jsr $1234
+    jmp remove_sprite
+    
+m:  lda #1
+    jmp sprite_down
+
+bonus_funs_l:
+    <apply_bonus_l
+    <apply_bonus_e
+    <apply_bonus_c
+    <apply_bonus_s
+    <apply_bonus_b
+    <apply_bonus_d
+    <apply_bonus_p
+
+bonus_funs_h:
+    >apply_bonus_l
+    >apply_bonus_e
+    >apply_bonus_c
+    >apply_bonus_s
+    >apply_bonus_b
+    >apply_bonus_d
+    >apply_bonus_p
+
+apply_bonus_l:
     lda #mode_laser
     sta mode
-    jmp +r
+    rts
 
-n:  cmp #<bonus_c
-    bne +n
+apply_bonus_e:
+    rts
+
+apply_bonus_c:
     lda #mode_catching
     sta mode
-    jmp +r
+    rts
 
-n:  cmp #<bonus_d
-    bne +n
+apply_bonus_s:
+    lda ball_speed
+    beq +n
+    dec ball_speed
+n:  rts
+
+apply_bonus_b:
+    rts
+
+apply_bonus_d:
     ldy #@(- num_sprites 2) ; Find ball.
 l:  lda sprites_l,y
     cmp #<ball
@@ -400,18 +443,10 @@ f:  lda #0
     
     lda #mode_disruption
     sta mode
-    jmp +r
+    rts
 
-n:  cmp #<bonus_s
-    bne +r
-    lda ball_speed
-    beq +r
-    dec ball_speed
-
-r:  jmp remove_sprite
-    
-m:  lda #1
-    jmp sprite_down
+apply_bonus_p:
+    rts
 
 hit_brick:
     ; Check brick type.
