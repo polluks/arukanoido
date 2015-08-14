@@ -64,7 +64,22 @@ ctrl_laser:
     lda sprites_y,x
     cmp #24
     bcc +n
-    lda #8
+    lda sprites_x,x
+    ldy sprites_y,x
+    jsr get_soft_collision
+    bne +o
+    jsr hit_brick
+    bcc +n
+o:  lda sprites_x,x
+    clc
+    adc #7
+    ldy sprites_y,x
+    jsr get_soft_collision
+    bne +m
+    jsr hit_brick
+    bcc +n
+m:  lda #8
+m:  lda #8
     jmp sprite_up
 n:  jmp remove_sprite
 
