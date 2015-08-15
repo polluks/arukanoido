@@ -15,6 +15,8 @@ ctrl_bonus:
     lda sprites_i,y
     and #is_vaus
     beq +m
+    lda #0
+    sta mode
     lda sprites_l,x
     sec
     sbc #bonus_l
