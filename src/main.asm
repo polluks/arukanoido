@@ -82,6 +82,8 @@ l:  jsr remove_sprite
     sta lifes
 
 retry:
+    jsr clean_sprites
+
     ; Make player sprite.
     ldx #@(- num_sprites 1)
     ldy #@(- vaus_left_init sprite_inits)
