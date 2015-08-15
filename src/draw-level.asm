@@ -1,6 +1,7 @@
 draw_level:
     lda #0
     sta scrx
+    inc scrx
     tay
     lda (current_level),y
     iny
@@ -51,21 +52,7 @@ done:
     inc @(++ current_level)
 n:
 
-    ; Correct border colors.
-    ldy #0
-l:  lda #@(+ multicolor white)
-    sta (col),y
-    tya
-    clc
-    adc #14
-    bcs +r
-    tay
-    lda #@(+ multicolor white)
-    sta (col),y
-    iny
-    bne -l
-
-r:  rts
+    rts
 
 plot_brick:
     cmp #0

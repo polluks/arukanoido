@@ -19,13 +19,20 @@ n:  dex
 
     lda #3
     sta lifes
+    lda #0
+    sta level
 
-next_level:
-    ; Set to first level.
+    ; Set pointer to first level data.
     lda #<level_data
     sta current_level
     lda #>level_data
     sta @(++ current_level)
+
+next_level:
+    inc level
+    lda level
+    cmp #3
+    beq start
 
     ; Clear screen.
     ldx #0
@@ -113,7 +120,7 @@ retry:
     sta @(+ ball_init 1)
     lda #catched_ball
     sta @(+ ball_init 2)
-    lda #32
+    lda #16
     sta @(+ ball_init 7)
     ldx #@(- num_sprites 3)
     ldy #@(- ball_init sprite_inits)
@@ -131,7 +138,7 @@ retry:
 mainloop:
     lda bricks_left
     bne +n
-    jmp start
+    jmp next_level
 n:
 
     jsr random      ; Improve randomness.
