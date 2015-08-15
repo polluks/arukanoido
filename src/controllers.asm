@@ -8,13 +8,13 @@ ctrl_vaus_left:
 
     lda $9008
     cmp old_paddle_value
-    bne paddle_change
+    bne paddle_change   ; The paddle did something…
     lda is_using_paddle
-    bne paddle_fire
-    beq joy
+    bne paddle_fire     ; Joystick is blocked…
+    beq joy             ; The paddle never moved…
 
 paddle_change:
-    sta is_using_paddle
+    sta is_using_paddle ; Block the joystick.
     jsr neg
     lsr
     and #%11111110
@@ -29,6 +29,8 @@ n:  sec
     sta tmp2
     jsr sprite_right
 
+    ; Move catched balls relative to Vaus.
+    ; TODO: Unnecessary to loop. There can only be one ball.
     stx tmp
     ldx #@(-- num_sprites)
 l:  lda sprites_i,x
@@ -89,6 +91,7 @@ n:  lda joystick_status
     lda #2
     jsr sprite_left
 
+    ; XXX only one catched ball
     stx tmp
     ldx #@(-- num_sprites)
 l:  lda sprites_i,x
@@ -110,6 +113,7 @@ n:  lda #0          ;Fetch rest of joystick status.
     lda #2
     jsr sprite_right
 
+    ; XXX only one catched ball
     stx tmp
     ldx #@(-- num_sprites)
 l:  lda sprites_i,x

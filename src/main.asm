@@ -7,6 +7,7 @@ l:  sta 0,x
     dex
     bne -l
 
+    ; Prepare paddle auto–detection.
     lda $9008
     sta old_paddle_value
 
