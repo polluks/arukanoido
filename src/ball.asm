@@ -25,6 +25,22 @@ ctrl_ball:
     lda caught_ball
     bpl -r
 
+    ; Correct X position if too far of to the left.
+    lda sprites_x,x
+    cmp #8
+    bcs +n
+    lda #8
+    sta sprites_x,x
+n:
+
+    ; Correct X position if too far of to the right.
+    lda sprites_x,x
+    cmp #@(- (* 14 8) ball_width)
+    bcc +n
+    lda #@(- (* 14 8) ball_width)
+    sta sprites_x,x
+n:
+
     ldy ball_speed
 l:  tya
     pha
