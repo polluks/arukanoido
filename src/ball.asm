@@ -214,30 +214,40 @@ traject_ball:
     ; Traject on X axis.
     ldy sprites_d,x
     lda ball_directions_x,y
-    clc
     bmi +m
-    adc sprites_dx,x
+    lda sprites_dx,x
+    clc
+    adc ball_directions_x,y
     bcc +n
     inc sprites_x,x
     jmp +n
 
-m:  adc sprites_dx,x
-    bcc +n
+m:  jsr neg
+    sta tmp
+    lda sprites_dx,x
+    sec
+    sbc tmp
+    bcs +n
     dec sprites_x,x
 
 n:  sta sprites_dx,x
 
     ; Traject on Y axis.
     lda ball_directions_y,y
-    clc
     bmi +m
-    adc sprites_dy,x
+    lda sprites_dy,x
+    clc
+    adc ball_directions_y,y
     bcc +n
     inc sprites_y,x
     jmp +n
 
-m:  adc sprites_dy,x
-    bcc +n
+m:  jsr neg
+    sta tmp
+    lda sprites_dy,x
+    sec
+    sbc tmp
+    bcs +n
     dec sprites_y,x
 
 n:  sta sprites_dy,x
