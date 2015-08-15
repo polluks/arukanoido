@@ -6,8 +6,52 @@ ctrl_vaus_left:
     lda $9111
     sta joystick_status
 
+    lda $9008
+    cmp old_paddle_value
+    bne paddle_change
+    lda is_using_paddle
+    bne paddle_fire
+    beq joy
+
+paddle_change:
+    sta is_using_paddle
+    jsr neg
+    lsr
+    and #%11111110
+    cmp #8
+    bcs +n
+    lda #8
+n:  cmp #@(- (* 14 8) 16)
+    bcc +n
+    lda #@(- (* 14 8) 16)
+n:  sec
+    sbc sprites_x,x
+    sta tmp2
+    jsr sprite_right
+
+    stx tmp
+    ldx #@(-- num_sprites)
+l:  lda sprites_i,x
+    and #catched_ball
+    beq +n
+    lda tmp2
+    jsr sprite_right
+n:  dex
+    bpl -l
+r:  ldx tmp
+
+paddle_fire:
+    lda joystick_status
+    and #joy_left
+    beq do_fire
+
+joy:
+    lda joystick_status
+
     and #joy_fire
     bne no_fire
+do_fire:
+    ; XXX only one catched ball
     ldy #@(- num_sprites 2)
 l:  lda sprites_i,y
     and #%11111101

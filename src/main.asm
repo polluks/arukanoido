@@ -1,9 +1,14 @@
+default_ball_speed = 5
+
 start:
     ldx #0
     lda #0
 l:  sta 0,x
     dex
     bne -l
+
+    lda $9008
+    sta old_paddle_value
 
     ; Set to first level.
     lda #<level_data
@@ -107,7 +112,7 @@ retry:
     ldy #@(- ball_init sprite_inits)
     jsr replace_sprite 
 
-    lda #4
+    lda #default_ball_speed
     sta ball_speed
     lda #0
     sta mode
