@@ -28,7 +28,7 @@ n:  lda #1
 vaus_hit: 0
 
 vaus_edge_distraction = 16
-ball_width      = 8
+ball_width      = 3
 ball_height     = 5
 
 ctrl_ball:
@@ -49,7 +49,7 @@ l:  tya
 
 c:
     ; Test on collision with sprites.
-    lda #ball_width
+    lda #8 ;ball_width
     sta collision_x_distance
     lda #ball_height
     sta collision_y_distance
