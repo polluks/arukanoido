@@ -89,6 +89,11 @@ retry:
     ldx #@(- num_sprites 2)
     ldy #@(- vaus_right_init sprite_inits)
     jsr replace_sprite 
+
+    lda #70
+    sta ball_init
+    lda #@(- (* 29 8) 5)
+    sta @(+ ball_init 1)
     lda #catched_ball
     sta @(+ ball_init 2)
     ldx #@(- num_sprites 3)
