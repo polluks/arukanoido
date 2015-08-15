@@ -37,32 +37,46 @@ l:  tya
 
 c:
     ; Test on collision with sprites.
-    lda #8 ;ball_width
-    sta collision_x_distance
-    lda #ball_height
-    sta collision_y_distance
-    jsr find_hit
-    bcs reset_vaus_hit
+;    lda #8 ;ball_width
+;    sta collision_x_distance
+;    lda #ball_height
+;    sta collision_y_distance
+;    jsr find_hit
+;    bcs reset_vaus_hit
 
     ; Test on collision with Vaus.
+    lda sprites_y,x
+    cmp #@(- vaus_y (-- ball_height))
+    bcc reset_vaus_hit
+    cmp #@(+ vaus_y (- 8 (-- ball_height)))
+    bcs reset_vaus_hit
 
-    lda #@(- 128 vaus_edge_distraction)
-    sta side_degrees
-    lda sprites_l,y
-    cmp #<vaus_left
-    beq reflect_from_vaus
+    lda @(+ sprites_x (-- num_sprites))
+    sta tmp
+    lda sprites_x,x
+    cmp tmp
+    bcc reset_vaus_hit
 
-    lda #128
-    sta side_degrees
-    lda sprites_l,y
-    cmp #<vaus_middle
-    beq reflect_from_vaus
+    lda tmp
+    clc
+    adc #16
+    sta tmp
+    lda sprites_x,x
+    cmp tmp
+    bcs reset_vaus_hit
+    
+    lda tmp
+    sec
+    sbc #8
+    sec
+    sbc sprites_x,x
+    jsr neg
+    asl
+    clc
+    adc #@(+ 128 ball_width)
 
-    lda #@(+ 128 vaus_edge_distraction)
     sta side_degrees
-    lda sprites_l,y
-    cmp #<vaus_right
-    beq reflect_from_vaus
+    jmp reflect_from_vaus
 
 reset_vaus_hit:
     lda #0

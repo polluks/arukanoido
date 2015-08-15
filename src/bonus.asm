@@ -83,9 +83,9 @@ l:  lda sprites_i,x
     and #is_bonus
     beq +n
     jsr remove_sprite
-    dex
+n:  dex
     bpl -l
-n:
+    ldx tmp
 
     ldy #@(- num_sprites 2) ; Find ball.
 l:  lda sprites_l,y
