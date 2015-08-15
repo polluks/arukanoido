@@ -60,6 +60,7 @@
                           "init-end.asm"
                           "main.asm"
                           "controllers.asm"
+                          "bonus.asm"
                           "sprites.asm"
                           "sprites-vic.asm"
                           "draw-level.asm"

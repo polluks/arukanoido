@@ -3,16 +3,6 @@ vaus_right =    3
 ball =          4
 laser =         5
 bonus_laser =   6
-vaus_mini =     13
-
-bonus_colors:
-    @(+ multicolor yellow)
-    @(+ multicolor blue)
-    @(+ multicolor green)
-    @(+ multicolor yellow)
-    @(+ multicolor purple)
-    @(+ multicolor cyan)
-    @(+ multicolor white)
 
 sprite_gfx:
 vaus_left:
@@ -134,13 +124,3 @@ bonus_p:
     %10011010
     %10011010
     %00101000
-
-mini_vaus:
-    %01110100
-    %10101000
-    %01110100
-    %01110100
-    %00000000
-    %00000000
-    %00000000
-    %00000000
