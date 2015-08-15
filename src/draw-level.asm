@@ -17,10 +17,13 @@ l:  tya
     pha
     and #15
     tax
-    lda brick_colors,x
+    lda @(-- brick_colors),x
     sta curcol
     lda #bg_brick
-    cpx #8
+    cpx #0
+    bne +n
+    txa
+n:  cpx #b_silver
     bcc +n
     lda #bg_brick_special2
 n:  sta @(++ +l2)
@@ -65,8 +68,11 @@ l:  lda #@(+ multicolor white)
 r:  rts
 
 plot_brick:
+    cmp #0
+    beq +n
     sta (scr),y
     lda curcol
     sta (col),y
-    iny
+    inc bricks_left
+n:  iny
     rts

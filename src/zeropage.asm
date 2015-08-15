@@ -18,13 +18,17 @@ framechars          = @(half num_chars)
 num_score_digits = 8
 
 first_sprite_char   = 1
-num_trailing_foreground_chars  = 2
 
-; First char of scrolling terrain.
+; First char of everything that is not a sprite.
 foreground          = @(+ (half framechars) (quarter framechars))
 
 ; First char of score digits.
 score_char0         = foreground
+
+bonus_probability = %11                                                         
+vaus_edge_distraction = 16
+ball_width      = 3
+ball_height     = 5
 
     org 0
     data
@@ -66,7 +70,11 @@ mode_catching = 2
 mode_disruption = 3
 mode:                 0
 
+vaus_hit:             0
+side_degrees:         0
+
 current_level:        0 0
+bricks_left:          0
 
 collision_y_distance: 0
 collision_x_distance: 0

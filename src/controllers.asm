@@ -1,5 +1,3 @@
-bonus_probability = %11
-
 ctrl_vaus_left:
     lda #0              ; Fetch joystick status.
     sta $9113

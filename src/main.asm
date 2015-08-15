@@ -2,15 +2,25 @@ default_ball_speed = 5
 
 start:
     ldx #0
-    lda #0
-l:  sta 0,x
-    dex
+    nop
+l:  lda #0
+    sta 0,x
+    cpx #81
+    bcs +n
+    ; Copy digits from character ROM.
+    lda @(-- (+ charset_locase (* 8 #x30))),x
+    sta @(-- (+ charset (* 8 score_char0))),x
+n:  dex
     bne -l
 
     ; Prepare paddle auto–detection.
     lda $9008
     sta old_paddle_value
 
+    lda #3
+    sta lifes
+
+next_level:
     ; Set to first level.
     lda #<level_data
     sta current_level
@@ -34,7 +44,6 @@ l:  lda #0
     ldx #13
     lda #bg_top_1
 l:  sta @(+ screen 30),x
-;    sta @(+ screen 30 (* 29 15)),x
     dex
     bne -l
 
@@ -84,9 +93,6 @@ l:  jsr remove_sprite
     dex
     bpl -l
 
-    lda #3
-    sta lifes
-
 retry:
     ldx #$ff
     txs
@@ -123,6 +129,11 @@ retry:
     jsr draw_lifes
 
 mainloop:
+    lda bricks_left
+    bne +n
+    jmp start
+n:
+
     jsr random      ; Improve randomness.
 
     lda mode

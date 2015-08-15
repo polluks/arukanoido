@@ -1,9 +1,5 @@
-bonus_probability = %11
-
 ball_directions_y:  @(ball-directions)
 ball_directions_x = @(+ ball_directions_y (/ +degrees+ 4))
-
-side_degrees: 0
 
 get_soft_collision:
     lsr
@@ -24,12 +20,6 @@ get_soft_collision:
 r:  rts
 n:  lda #1
     rts
-
-vaus_hit: 0
-
-vaus_edge_distraction = 16
-ball_width      = 3
-ball_height     = 5
 
 ctrl_ball:
     ; TODO: Won't need this in sprite info since the ball
@@ -288,6 +278,7 @@ hit_brick:
     jmp modify_brick
 
 remove_brick:
+    dec bricks_left
     lda #0
 modify_brick:
     sta (scr),y
