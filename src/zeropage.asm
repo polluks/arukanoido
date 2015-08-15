@@ -25,7 +25,7 @@ foreground          = @(+ (half framechars) (quarter framechars))
 ; First char of score digits.
 score_char0         = foreground
 
-bonus_probability = %11                                                         
+bonus_probability = %111
 vaus_edge_distraction = 16
 ball_width      = 3
 ball_height     = 5
