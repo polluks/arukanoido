@@ -28,7 +28,7 @@ n:  lda #1
 vaus_hit: 0
 
 vaus_edge_distraction = 16
-ball_width      = 3
+ball_width      = 8
 ball_height     = 5
 
 ctrl_ball:
