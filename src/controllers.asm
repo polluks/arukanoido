@@ -343,7 +343,14 @@ m:  adc sprites_dy,x
     dec sprites_y,x
 
 n:  sta sprites_dy,x
-    rts
+
+    lda sprites_y,x
+    bne +n
+    dec lifes
+    beq +o
+    jmp retry
+o:  jmp start
+n:  rts
 
 hit_brick:
     ; Check brick type.

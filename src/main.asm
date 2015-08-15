@@ -78,6 +78,10 @@ l:  jsr remove_sprite
     dex
     bpl -l
 
+    lda #3
+    sta lifes
+
+retry:
     ; Make player sprite.
     ldx #@(- num_sprites 1)
     ldy #@(- vaus_left_init sprite_inits)
@@ -93,8 +97,8 @@ l:  jsr remove_sprite
 
     lda #4
     sta ball_speed
-    lda #3
-    sta lifes
+    lda #0
+    sta mode
 
     jsr draw_lifes
 
