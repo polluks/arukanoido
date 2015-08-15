@@ -353,7 +353,12 @@ n:  sta sprites_dy,x
     jmp retry
 o:  jmp start
 n:  rts
-c:  jmp remove_sprite
+c:  lda balls
+    cmp #1
+    bne +r
+    lda #0
+    sta mode
+r:  jmp remove_sprite
 
 hit_brick:
     ; Check brick type.
