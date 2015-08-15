@@ -17,7 +17,7 @@ get_soft_collision:
     sta scry
     jsr scrcoladdr
     lda (scr),y
-    cmp #bg_minivaus
+    cmp #bg_minivaus    ; Ignore miniature Vaus displaying # of lifes.
     beq +n
     and #foreground
     cmp #foreground
@@ -32,6 +32,8 @@ ball_width      = 3
 ball_height     = 5
 
 ctrl_ball:
+    ; TODO: Won't need this in sprite info since the ball
+    ; can only be caught if not in disruption mode.
     lda sprites_i,x
     and #catched_ball
     bne -r
@@ -83,6 +85,8 @@ reflect_from_vaus:
     lda mode
     cmp #mode_catching
     bne +n
+
+    ; Catch ball.
     lda sprites_i,x
     ora #catched_ball
     sta sprites_i,x
@@ -156,7 +160,7 @@ n:
     inc sprites_x,x
 
 h:  jsr hit_brick
-    bcs reflect
+    bcs reflect         ; Not a brick.
 
     ; Make bonus.
     lda mode
@@ -207,6 +211,7 @@ reflect:
     sta sprites_d,x
 
 traject_ball:
+    ; Traject on X axis.
     ldy sprites_d,x
     lda ball_directions_x,y
     clc
@@ -222,7 +227,7 @@ m:  adc sprites_dx,x
 
 n:  sta sprites_dx,x
 
-    ldy sprites_d,x
+    ; Traject on Y axis.
     lda ball_directions_y,y
     clc
     bmi +m
@@ -237,6 +242,7 @@ m:  adc sprites_dy,x
 
 n:  sta sprites_dy,x
 
+    ; Deal with lost ball.
     lda sprites_y,x
     bne +n
     dec balls
@@ -249,7 +255,7 @@ n:  rts
 c:  lda balls
     cmp #1
     bne +r
-    lda #0
+    lda #0              ; Reset from disruption bonus.
     sta mode
 r:  jmp remove_sprite
 
@@ -265,7 +271,7 @@ hit_brick:
     bcc +r
     beq remove_brick
 
-    ; Degrade special brick.
+    ; Degrade silver brick.
     lda (scr),y
     sec
     sbc #1
