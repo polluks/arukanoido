@@ -266,7 +266,7 @@ hit_brick:
     cmp #@(++ bg_brick_special4)
     bcs +r
     cmp #bg_brick_special1
-    beq remove_brick
+    beq check_golden_brick
     cmp #bg_brick
     bcc +r
     beq remove_brick
@@ -277,6 +277,11 @@ hit_brick:
     sbc #1
     jmp modify_brick
 
+check_golden_brick:
+    lda (col),y
+    and #$0f
+    cmp #yellow
+    beq +r
 remove_brick:
     dec bricks_left
     lda #0

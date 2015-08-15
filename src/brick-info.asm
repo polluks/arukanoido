@@ -7,7 +7,7 @@ b_blue = 6
 b_purple = 7
 b_yellow = 8
 b_silver = 9
-b_gold = 10
+b_golden = 10
 
 ;; Future compression scheme
 

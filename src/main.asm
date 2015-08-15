@@ -31,7 +31,7 @@ n:  dex
 next_level:
     inc level
     lda level
-    cmp #3
+    cmp #4
     beq start
 
     ; Clear screen.

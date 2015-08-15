@@ -26,7 +26,12 @@ l:  tya
     txa
 n:  cpx #b_silver
     bcc +n
-    lda #bg_brick_special2
+    cpx #b_golden
+    bne +m
+    dec bricks_left
+    lda #bg_brick_special1
+    jmp +n
+m:  lda #bg_brick_special2
 n:  sta @(++ +l2)
     pla
     lsr
