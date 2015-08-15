@@ -103,8 +103,8 @@ f:  lda #0
     ldy #@(- ball_init sprite_inits)
     jsr add_sprite
     
-    lda #3
-    sta balls
+    inc balls
+    inc balls
     lda #mode_disruption
     sta mode
     rts
