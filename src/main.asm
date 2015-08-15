@@ -104,6 +104,8 @@ retry:
     sta ball_speed
     lda #0
     sta mode
+    lda #1
+    sta balls
 
     jsr draw_lifes
 

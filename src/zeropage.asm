@@ -53,7 +53,8 @@ foreground_collision: 0   ; Set if a sprite collision has been detected.
 
 joystick_status:      0
 
-lifes:                0 ; Number of lifes left.
+lifes:                0
+balls:                0
 
 ball_speed:           0
 is_firing:            0 ; Laser interval countdown.
