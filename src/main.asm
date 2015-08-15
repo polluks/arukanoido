@@ -82,6 +82,9 @@ l:  jsr remove_sprite
     sta lifes
 
 retry:
+    ldx #$ff
+    txs
+
     jsr clean_sprites
 
     ; Make player sprite.
