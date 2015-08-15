@@ -60,6 +60,7 @@
                           "init-end.asm"
                           "main.asm"
                           "controllers.asm"
+                          "ball.asm"
                           "bonus.asm"
                           "sprites.asm"
                           "sprites-vic.asm"
