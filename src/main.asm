@@ -118,11 +118,10 @@ retry:
     sta ball_init
     lda #@(- (* 29 8) 5)
     sta @(+ ball_init 1)
-    lda #catched_ball
-    sta @(+ ball_init 2)
     lda #16
     sta @(+ ball_init 7)
     ldx #@(- num_sprites 3)
+    stx caught_ball
     ldy #@(- ball_init sprite_inits)
     jsr replace_sprite 
 

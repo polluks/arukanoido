@@ -27,18 +27,15 @@ n:  sec
     sta tmp2
     jsr sprite_right
 
-    ; Move catched balls relative to Vaus.
-    ; TODO: Unnecessary to loop. There can only be one ball.
+    ; Move caught ball relative to Vaus.
+    lda caught_ball
+    bmi +n
     stx tmp
-    ldx #@(-- num_sprites)
-l:  lda sprites_i,x
-    and #catched_ball
-    beq +n
+    tax
     lda tmp2
     jsr sprite_right
-n:  dex
-    bpl -l
-r:  ldx tmp
+    ldx tmp
+n:
 
 paddle_fire:
     lda joystick_status
@@ -51,13 +48,8 @@ joy:
     and #joy_fire
     bne no_fire
 do_fire:
-    ; XXX only one catched ball
-    ldy #@(- num_sprites 2)
-l:  lda sprites_i,y
-    and #%11111101
-    sta sprites_i,y
-    dey
-    bpl -l
+    lda #255
+    sta caught_ball
 
     lda mode
     cmp #mode_laser
@@ -89,16 +81,14 @@ n:  lda joystick_status
     lda #2
     jsr sprite_left
 
-    ; XXX only one catched ball
+    lda caught_ball
+    bmi +r
     stx tmp
-    ldx #@(-- num_sprites)
-l:  lda sprites_i,x
-    and #catched_ball
+    tax
+    lda #2
     jsr sprite_left
-    dex
-    bpl -l
-r:  ldx tmp
-    rts
+    ldx tmp
+r:  rts
 
     ; Joystick right.
 n:  lda #0          ;Fetch rest of joystick status.
@@ -111,14 +101,14 @@ n:  lda #0          ;Fetch rest of joystick status.
     lda #2
     jsr sprite_right
 
-    ; XXX only one catched ball
+    lda caught_ball
+    bmi +r
     stx tmp
-    ldx #@(-- num_sprites)
-l:  lda sprites_i,x
-    and #catched_ball
+    tax
+    lda #2
     jsr sprite_right
-    dex
-    bpl -l
+    ldx tmp
+r:
 
 ctrl_dummy:
     rts

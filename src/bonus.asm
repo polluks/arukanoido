@@ -76,12 +76,24 @@ apply_bonus_b:
     rts
 
 apply_bonus_d:
+    ; Remove bonuses.
+    stx tmp
+    ldx #@(- num_sprites 2)
+l:  lda sprites_i,x
+    and #is_bonus
+    beq +n
+    jsr remove_sprite
+    dex
+    bpl -l
+n:
+
     ldy #@(- num_sprites 2) ; Find ball.
 l:  lda sprites_l,y
     cmp #<ball
     beq +f
     dey
     bpl -l
+
 f:  lda #0
     sta @(+ ball_init 2)
     lda sprites_x,y

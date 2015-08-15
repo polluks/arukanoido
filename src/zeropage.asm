@@ -72,6 +72,7 @@ mode:                 0
 
 vaus_hit:             0
 side_degrees:         0
+caught_ball:          0
 
 level:                0
 current_level:        0 0

@@ -22,11 +22,9 @@ n:  lda #1
     rts
 
 ctrl_ball:
-    ; TODO: Won't need this in sprite info since the ball
-    ; can only be caught if not in disruption mode.
-    lda sprites_i,x
-    and #catched_ball
-    bne -r
+    lda caught_ball
+    bpl -r
+
     ldy ball_speed
 l:  tya
     pha
@@ -77,10 +75,9 @@ reflect_from_vaus:
     bne +n
 
     ; Catch ball.
-    lda sprites_i,x
-    ora #catched_ball
-    sta sprites_i,x
+    stx caught_ball
     jmp reflect
+
 n:  lda vaus_hit
     bne no_hit
     inc vaus_hit
