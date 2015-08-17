@@ -92,17 +92,17 @@ l:  pha
 done:
     pla
 
-    ; Empty sprite slots.
-    ldx #@(- num_sprites 3)
-l:  jsr remove_sprite
-    dex
-    bpl -l
-
 retry:
     ldx #$ff
     txs
 
     jsr clean_sprites
+
+    ; Empty sprite slots.
+    ldx #@(- num_sprites 3)
+l:  jsr remove_sprite
+    dex
+    bpl -l
 
     ; Make player sprite.
     ldx #@(- num_sprites 1)
