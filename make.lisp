@@ -206,7 +206,7 @@
 " www yyy www ")
 
 ; Round 14
-(5
+(4
 "bbbbbbbbbbbbb"
 "x           x"
 "bbbbbbbbbbbbb"
@@ -238,7 +238,7 @@
 "cccccswsccccc")
 
 ; Round 16
-(5
+(4
 "      x      "
 "    ww ww    "
 "  ww  x  ww  "
@@ -400,7 +400,7 @@
 "  xxxxx      ")
 
 ; Round 27
-(10
+(11
 "sssssssssssss"
 "yyyyyyyyyyyyy"
 "sssssssssssss"
