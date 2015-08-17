@@ -1,5 +1,5 @@
-ball_directions_y:  @(ball-directions)
-ball_directions_x = @(+ ball_directions_y (/ +degrees+ 4))
+ball_directions_x:  @(ball-directions-x)
+ball_directions_y:  @(ball-directions-y)
 
 get_soft_collision:
     lsr

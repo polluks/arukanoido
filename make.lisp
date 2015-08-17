@@ -497,11 +497,17 @@
 (defun negate (x)
   (@ [- _] x))
 
-(defun full-wave (x)
+(defun full-sin-wave (x)
   (+ x
      (reverse x)
      (negate x)
      (reverse (negate x))))
+
+(defun full-cos-wave (x)
+  (+ x
+     (reverse (negate x))
+     (negate x)
+     (reverse x)))
 
 (defun integer-to-byte (x)
   (? (< x 0)
@@ -512,12 +518,11 @@
 
 (defun ball-directions-x ()
   (let m (/ 360 +degrees+)
-    (integers-to-bytes (full-wave (maptimes [integer (* smax (degree-sin (* m _)))] (/ +degrees+ 4))))))
+    (integers-to-bytes (full-sin-wave (maptimes [integer (* smax (degree-sin (* m _)))] (/ +degrees+ 4))))))
 
-(defun ball-directions ()
-  (alet (* (/ +degrees+ 4) 3)
-    (+ (subseq (ball-directions-x) ! +degrees+)
-       (ball-directions-x))))
+(defun ball-directions-y ()
+  (let m (/ 360 +degrees+)
+    (integers-to-bytes (full-cos-wave (maptimes [integer (* smax (degree-cos (* m _)))] (/ +degrees+ 4))))))
 
 (defun make (to files cmds)
   (apply #'assemble-files to files)
@@ -569,16 +574,5 @@
 (= *model* :vic-20+xk)
 
 (make-game :prg "arukanuido.prg" "arukanuido.vice.txt")
-
-(print (length (ball-directions)))
-(print (ball-directions))
-
-(alet (elt (ball-directions) (/ +degrees+ 4))
-  (unless (zero? !)
-    (error "Sine of 0 should be 0 instead of ~A.~%" !)))
-
-(alet (elt (ball-directions) (+ (/ +degrees+ 4) (/ +degrees+ 2)))
-  (unless (zero? !)
-    (error "Sine of 180 should be 0 instead of ~A.~%" !)))
 
 (quit)
