@@ -1,3 +1,5 @@
+(defconstant *bricks*
+    '(#\  #\w #\o #\c #\g #\r #\b #\p #\y #\s #\x))
 
 (defconstant *levels* '(
 ; Round 01
@@ -528,8 +530,8 @@
                           "../bender/vic-20/basic-loader.asm"
                           "init.asm"
                           "gfx-background.asm"
-                          "brick-info.asm"
                           "gfx-sprites.asm"
+                          "brick-info.asm"
                           "sprite-inits.asm"
                           "chars.asm"
                           "screen.asm"
@@ -546,9 +548,24 @@
                           "sprites-vic.asm"
                           "draw-level.asm"
                           "level-data.asm"
+                          "end.asm"
                           ))
         cmds))
 
+(defun make-level-data ()
+  (with-output-file o "src/level-data.asm"
+    (format o "level_data:~%")
+    (dolist (level *levels*)
+      (format o "~A~%" (+ 3 level.))
+      (dolist (line .level)
+        (dolist (brick (string-list line))
+          (alet (position brick *bricks* :test #'==)
+            (format o " ~A" !)))
+        (format o " 0 0~%"))
+      (format o " 255~%~%"))))
+
+(make-level-data)
+  
 (= *model* :vic-20+xk)
 
 (make-game :prg "arukanuido.prg" "arukanuido.vice.txt")

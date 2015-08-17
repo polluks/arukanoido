@@ -5,9 +5,9 @@ screen_rows = 32
 screen_width = @(* screen_columns 8)
 screen_height = @(* screen_rows 8)
 
-charset      = $1000
-screen       = $1e00
-colors       = $9600
+screen       = $1000
+charset      = $1400
+colors       = $9400
 
 charsetsize         = @(* num_chars 8)
 charsetmask         = @(-- num_chars)
@@ -15,6 +15,7 @@ framesize           = @(half charsetsize)
 framemask           = @(half num_chars)
 framechars          = @(half num_chars)
 
+default_ball_speed = 5
 num_score_digits = 8
 
 first_sprite_char   = 1

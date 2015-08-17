@@ -1,3 +1,16 @@
+wait:
+l:  lda #0
+    sta $9113
+    lda $9111
+    and #joy_fire
+    bne -l
+l:  lda #0
+    sta $9113
+    lda $9111
+    and #joy_fire
+    beq -l
+    rts
+
 ctrl_vaus_left:
     lda #0              ; Fetch joystick status.
     sta $9113

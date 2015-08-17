@@ -1,30 +1,23 @@
 draw_level:
     lda #0
+    sta bricks_left
     sta scrx
-    inc scrx
-    tay
-    lda (current_level),y
-    iny
-    sty tmp
+    jsr fetch_brick
     sta scry
     jsr scrcoladdr
+    jsr brick_inc
 
-l:  tya
-    pha
-    ldy tmp
-    lda (current_level),y
+l:  jsr fetch_brick
+    cmp #255
     beq +done
-    inc tmp
-    pha
-    and #15
     tax
     lda @(-- brick_colors),x
     sta curcol
-    lda #bg_brick
-    cpx #0
-    bne +n
     txa
-n:  cpx #b_silver
+    cpx #0
+    beq +n
+    lda #bg_brick
+    cpx #b_silver
     bcc +n
     cpx #b_golden
     bne +m
@@ -32,39 +25,33 @@ n:  cpx #b_silver
     lda #bg_brick_special1
     jmp +n
 m:  lda #bg_brick_special2
-n:  sta @(++ +l2)
-    pla
-    lsr
-    lsr
-    lsr
-    lsr
-    tax
-    pla
-    tay
-l2: lda #bg_brick
-    jsr plot_brick
-    dex
-    bne -l2
-    beq -l
+n:  jsr plot_brick
+    jmp -l
     
 done:
-    pla
-    lda current_level
-    sec     ; (Missing increment.)
-    adc tmp
-    sta current_level
-    bcc +n
-    inc @(++ current_level)
-n:
-
     rts
+
+fetch_brick:
+    ldy #0
+    lda (current_level),y
+    ldx #current_level
+
+inc_zp:
+    inc 0,x
+    bne +n
+    inc 1,x
+n:  rts
 
 plot_brick:
     cmp #0
-    beq +n
+    beq brick_inc
+    ldy #0
     sta (scr),y
     lda curcol
     sta (col),y
     inc bricks_left
-n:  iny
-    rts
+brick_inc:
+    ldx #scr
+    jsr inc_zp
+    ldx #col
+    jmp inc_zp

@@ -1,4 +1,4 @@
-    fill @(- #x1380 *pc*)
+fill @(- 256 (low *pc*))
 
 bg_start = @(+ 64 48)
 gfx_background:
@@ -160,3 +160,5 @@ bg_minivaus = @(+ bg_start 15)
 %00000000
 %00000000
 %00000000
+
+gfx_background_end:

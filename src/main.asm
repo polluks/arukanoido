@@ -1,5 +1,3 @@
-default_ball_speed = 5
-
 start:
     ldx #0
     nop
@@ -17,7 +15,7 @@ n:  dex
     lda $9008
     sta old_paddle_value
 
-    lda #3
+    lda #13
     sta lifes
     lda #0
     sta level
@@ -31,7 +29,7 @@ n:  dex
 next_level:
     inc level
     lda level
-    cmp #4
+    cmp #33
     beq start
 
     ; Clear screen.
