@@ -7,6 +7,7 @@ main:
     sta $912d
     sta $911e       ; Disable restore key NMIs.
 
+if 0
     ; Copy code to $200-3ff.
     ldx #0
 l:  lda lowmem,x
@@ -22,8 +23,7 @@ l:  lda stackmem,x
     sta $180,x
     dex
     bpl -l
-
-    txs
+end
 
     ; Clear character 0.
     ldx #7
