@@ -1,5 +1,4 @@
 decorative   = 128
-deadly       = 64
 fg_collision = 32
 is_bonus     = 2
 is_vaus      = 1
@@ -15,7 +14,7 @@ vaus_right_init:
 72 vaus_y    is_vaus @(+ multicolor white) <vaus_right <ctrl_vaus_right >ctrl_vaus_right 0
 
 ball_init:
-70 0         0 white <ball <ctrl_ball >ctrl_ball 32
+70 0         0 white <ball <ctrl_ball >ctrl_ball 0
 
 laser_init:
 0 vaus_y     0 white <laser <ctrl_laser >ctrl_laser 0
