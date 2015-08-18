@@ -25,7 +25,7 @@ ctrl_ball:
     lda caught_ball
     bpl -r
 
-    ; Correct X position if too far of to the left.
+    ; Correct X position if too far off to the left.
     lda sprites_x,x
     cmp #8
     bcs +n
@@ -33,7 +33,7 @@ ctrl_ball:
     sta sprites_x,x
 n:
 
-    ; Correct X position if too far of to the right.
+    ; Correct X position if too far off to the right.
     lda sprites_x,x
     cmp #@(- (* 14 8) ball_width)
     bcc +n
@@ -68,6 +68,8 @@ c:
     bcs reset_vaus_hit
 
     lda @(+ sprites_x (-- num_sprites))
+    sec
+    sbc #@(-- ball_width)
     sta tmp
     lda sprites_x,x
     cmp tmp
@@ -75,7 +77,7 @@ c:
 
     lda tmp
     clc
-    adc #16
+    adc #@(+ 16 (* 2 (-- ball_width)))
     sta tmp
     lda sprites_x,x
     cmp tmp
@@ -83,13 +85,12 @@ c:
     
     lda tmp
     sec
-    sbc #8
+    sbc #@(half (+ 16 (* 2 (-- ball_width))))
     sec
     sbc sprites_x,x
-    jsr neg
     asl
     clc
-    adc #@(+ 128 ball_width)
+    adc #@128
 
     sta side_degrees
     jmp reflect_from_vaus
