@@ -15,7 +15,7 @@ framesize           = @(half charsetsize)
 framemask           = @(half num_chars)
 framechars          = @(half num_chars)
 
-default_ball_speed = 5
+default_ball_speed = 6
 num_score_digits = 8
 
 first_sprite_char   = 1
