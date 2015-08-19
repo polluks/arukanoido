@@ -577,4 +577,13 @@
 
 (make-game :prg "arukanuido.prg" "arukanuido.vice.txt")
 
+(with-output-file o "POKES"
+  (with (addr (- (get-label 'poke_unlimited)
+                 (get-label 'relocation_offset))
+         jmp #x4c
+         lo (low (get-label 'retry))
+         hi (high (get-label 'retry)))
+    (format o "Unlimited lifes: POKE~A,~A:POKE~A,~A:POKE~A,~A~%"
+            addr jmp (++ addr) lo (+ 2 addr) hi)))
+
 (quit)

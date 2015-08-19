@@ -287,6 +287,7 @@ n:  sta sprites_dy,x
     bne +n
     dec balls
     bne +c
+poke_unlimited:
     dec lifes
     beq +o
     jmp retry
