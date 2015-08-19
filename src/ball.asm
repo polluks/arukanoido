@@ -137,22 +137,6 @@ no_hit:
     jmp +h
 n:
 
-    ; Bounce back left.
-    lda #64
-    sta side_degrees
-    lda sprites_x,x
-    clc
-    adc #ball_width
-    ldy sprites_y,x
-    iny
-    iny
-    iny
-    jsr get_soft_collision
-    bne +n
-    dec sprites_x,x
-    jmp +h
-n:
-    
     ; Bounce back upwards.
     lda #128
     sta side_degrees
@@ -170,7 +154,23 @@ n:
     dec sprites_y,x
     jmp +h
 n:
-    
+
+    ; Bounce back left.
+    lda #64
+    sta side_degrees
+    lda sprites_x,x
+    clc
+    adc #ball_width
+    ldy sprites_y,x
+    iny
+    iny
+    iny
+    jsr get_soft_collision
+    bne +n
+    dec sprites_x,x
+    jmp +h
+n:
+
     ; Bounce back right.
     lda #192
     sta side_degrees
@@ -235,6 +235,10 @@ reflect:
     clc
     adc #128            ; Rotate to opposite direction.
     sta sprites_d,x
+    and #127
+    bne +n
+    inc sprites_d,x
+n:
 
 traject_ball:
     ; Traject on X axis.
