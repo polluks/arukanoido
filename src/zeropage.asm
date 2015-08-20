@@ -14,22 +14,22 @@ charsetmask         = @(-- num_chars)
 framesize           = @(half charsetsize)
 framemask           = @(half num_chars)
 framechars          = @(half num_chars)
-
-default_ball_speed = 7
-num_score_digits = 8
-
 first_sprite_char   = 1
-
-; First char of everything that is not a sprite.
 foreground          = @(+ (half framechars) (quarter framechars))
 
-; First char of score digits.
+default_num_lifes = 3
+default_ball_speed = 6
+ball_width      = 3
+ball_height     = 5
+
+; Score counters
+num_score_digits = 7
 score_char0         = foreground
+score_on_screen     = @(+ screen screen_columns)
+hiscore_on_screen   = @(+ score_on_screen num_score_digits 1)
 
 bonus_probability = %11
 vaus_edge_distraction = 16
-ball_width      = 3
-ball_height     = 5
 
     org 0
     data
@@ -114,10 +114,6 @@ sprites_dx: fill num_sprites ; Whatever the controllers want.
 sprites_dy: fill num_sprites ; Whatever the controllers want.
 sprites_ox: fill num_sprites  ; Former X positions for cleaning up.
 sprites_oy: fill num_sprites  ; Former Y positions for cleaning up.
-
-    org $f8
-
-hiscore:    fill num_score_digits
 
 @(check-zeropage-size)
 

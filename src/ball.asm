@@ -291,7 +291,7 @@ poke_unlimited:
     dec lifes
     beq +o
     jmp retry
-o:  jmp start
+o:  jmp game_over
 n:  rts
 c:  lda balls
     cmp #1
@@ -323,9 +323,29 @@ check_golden_brick:
     and #$0f
     cmp #yellow
     beq +r
+
+    ; Silver brick's score is 50 by round number.
+    txa
+    pha
+    ldx level
+l:  ldy #@(- score_50 scores)
+    jsr add_to_score
+    dex
+    bne -l
+    pla
+    tax
+    jmp +o
+
 remove_brick:
-    dec bricks_left
+    lda (col),y
+    and #$0f
+    tay
+    lda color_scores,y
+    tay
+    jsr add_to_score
+o:  dec bricks_left
     lda #0
+    ldy scrx
 modify_brick:
     sta (scr),y
     clc

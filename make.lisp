@@ -520,7 +520,7 @@
 (defun ball-directions-x ()
   (let m (/ 360 +degrees+)
     (integers-to-bytes (full-sin-wave (maptimes [integer (* smax (degree-sin (* m _)))] (/ +degrees+ 4))))))
-;    (integers-to-bytes (full-sin-wave (maptimes [integer (* (* 3 (/ smax 5)) (degree-sin (* m _)))] (/ +degrees+ 4))))))
+;    (integers-to-bytes (full-sin-wave (maptimes [integer (/ (* 3 smax (degree-sin (* m _))) 5)] (/ +degrees+ 4))))))
 
 (defun ball-directions-y ()
   (let m (/ 360 +degrees+)
@@ -554,6 +554,7 @@
                           "sprites.asm"
                           "sprites-vic.asm"
                           "draw-level.asm"
+                          "score.asm"
                           "level-data.asm"
                           "end.asm"
                           ))
@@ -589,4 +590,12 @@
     (format o "Unlimited lifes: POKE~A,~A:POKE~A,~A:POKE~A,~A~%"
             addr jmp (++ addr) lo (+ 2 addr) hi)))
 
+(format t "Ball directions X:~%")
+(print (ball-directions-x))
+(print (elt (ball-directions-x) 0))
+(print (elt (ball-directions-y) 0))
+(print (elt (ball-directions-x) 128))
+(print (elt (ball-directions-y) 128))
+(format t "Ball directions Y:~%")
+(print (ball-directions-y))
 (quit)

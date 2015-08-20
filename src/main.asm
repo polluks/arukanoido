@@ -1,4 +1,7 @@
 start:
+    jsr init_hiscore
+
+game_over:
     ldx #0
     nop
 l:  lda #0
@@ -15,10 +18,11 @@ n:  dex
     lda $9008
     sta old_paddle_value
 
-    lda #13
+    lda #default_num_lifes
     sta lifes
     lda #0
     sta level
+    jsr init_score
 
     ; Set pointer to first level data.
     lda #<level_data
@@ -30,7 +34,7 @@ next_level:
     inc level
     lda level
     cmp #33
-    beq start
+    beq game_over
 
     ; Clear screen.
     ldx #0
@@ -44,6 +48,7 @@ l:  lda #0
     bne -l
 
     jsr draw_level
+    jsr display_score
 
     ; Draw top border without connectors.
     ldx #13
