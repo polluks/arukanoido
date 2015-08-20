@@ -45,10 +45,15 @@ n:
 l:  tya
     pha
     jsr +c
+    lda sprites_fl,x
+    cmp #<ctrl_ball
+    bne +e
     pla
     tay
     dey
     bne -l
+    rts
+e:  pla
     rts
 
 c:
