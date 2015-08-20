@@ -1,3 +1,5 @@
+paddle_xlat: @(paddle-xlat)
+
 wait:
 l:  lda #0
     sta $9113
@@ -27,7 +29,8 @@ ctrl_vaus_left:
 paddle_change:
     sta is_using_paddle ; Block the joystick.
     jsr neg
-    lsr
+    tay
+    lda paddle_xlat,y
     and #%11111110
     cmp #8
     bcs +n

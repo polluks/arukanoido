@@ -573,6 +573,9 @@
 
 (make-level-data)
   
+(defun paddle-xlat ()
+  (maptimes [integer (/ _ 2.5)] 256))
+
 (= *model* :vic-20+xk)
 
 (make-game :prg "arukanuido.prg" "arukanuido.vice.txt")
