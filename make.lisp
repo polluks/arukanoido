@@ -493,7 +493,7 @@
     (error "Zero page overflow by ~A bytes." (- *pc* #x100))))
 
 (defconstant +degrees+ 256)
-(defconstant smax 128)
+(defconstant smax 127)
 
 (defun negate (x)
   (@ [- _] x))
