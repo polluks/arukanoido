@@ -18,7 +18,7 @@ first_sprite_char   = 1
 foreground          = @(+ (half framechars) (quarter framechars))
 
 default_num_lifes = 3
-default_ball_speed = 6
+default_ball_speed = 7
 ball_width      = 3
 ball_height     = 5
 
