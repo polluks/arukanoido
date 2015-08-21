@@ -234,12 +234,13 @@ reflect:
     lda sprites_d,x     ; Get degrees.
     sec
     sbc side_degrees    ; Rotate back to zero degrees.
-    jsr neg             ; Get absolute deviation.
+    jsr neg             ; Get opposite deviation from general direction.
     clc
     adc side_degrees    ; Rotate back to original axis.
     clc
     adc #128            ; Rotate to opposite direction.
     sta sprites_d,x
+
     and #127
     bne +n
     inc sprites_d,x
@@ -329,7 +330,7 @@ check_golden_brick:
     cmp #yellow
     beq +r
 
-    ; Silver brick's score is 50 by round number.
+    ; Silver brick's score is 50 multiplied by round number.
     txa
     pha
     ldx level
