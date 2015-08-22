@@ -28,17 +28,9 @@ ctrl_vaus_left:
 
 paddle_change:
     sta is_using_paddle ; Block the joystick.
-    jsr neg
     tay
     lda paddle_xlat,y
-    and #%11111110
-    cmp #8
-    bcs +n
-    lda #8
-n:  cmp #@(- (* 14 8) 16)
-    bcc +n
-    lda #@(- (* 14 8) 16)
-n:  sec
+    sec
     sbc sprites_x,x
     sta tmp2
     jsr sprite_right

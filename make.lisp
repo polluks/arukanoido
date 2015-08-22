@@ -575,7 +575,7 @@
 (make-level-data)
   
 (defun paddle-xlat ()
-  (maptimes [integer (/ _ 2.5)] 256))
+  (maptimes [bit-and (integer (+ 8 (/ (- 255 _) (/ 256 (* 8 11))))) #xfe] 256))
 
 (= *model* :vic-20+xk)
 
