@@ -79,6 +79,9 @@ fire:
     jsr add_sprite
 
 no_fire:
+    lda is_using_paddle
+    bne ctrl_dummy
+
     ; Joystick left.
 n:  lda joystick_status
     and #joy_left
