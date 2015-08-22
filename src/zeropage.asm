@@ -29,7 +29,7 @@ score_on_screen     = @(+ screen screen_columns)
 hiscore_on_screen   = @(+ score_on_screen num_score_digits 1)
 
 bonus_probability = %11
-vaus_edge_distraction = 16
+vaus_edge_distraction = 8
 
     org 0
     data
