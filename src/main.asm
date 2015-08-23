@@ -137,6 +137,68 @@ l:  jsr remove_sprite
 
     jsr draw_lifes
 
+    ; Initialize sprite frame.
+    lda #0
+    sta spriteframe
+    ora #first_sprite_char
+    sta next_sprite_char
+    jsr draw_sprites
+
+    ldx #@(* 26 8)
+l:  lda @(-- (+ charset_upcase 8)),x
+    sta $15ff,x
+    dex
+    bne -l
+
+    lda #48
+    sta @(+ txt_round 6)
+    lda level
+l:  sec
+    sbc #10
+    bcc +n
+    inc @(+ txt_round 6)
+    jmp -l
+n:  clc
+    adc #@(+ 10 #\0)
+    sta @(+ txt_round 7)
+
+    ldx #0
+l:  lda txt_round,x
+    beq +n
+    bmi +k
+    sta @(+ screen (* 25 15) 4),x
+    lda #white
+    sta @(+ colors (* 25 15) 4),x
+k:  inx
+    jmp -l
+n:
+
+    ldx #0
+l:  lda txt_ready,x
+    beq +n
+    bmi +k
+    sta @(+ screen (* 26 15) 5),x
+    lda #white
+    sta @(+ colors (* 26 15) 5),x
+k:  inx
+    jmp -l
+n:
+
+    ldx #150
+l:  lda $9004
+    bne -l
+m:  lda $9004
+    beq -m
+    dex
+    bne -l
+
+    ldx #8
+    lda #0
+l:  sta @(-- (+ screen (* 25 15) 4)),x
+    sta @(-- (+ screen (* 26 15) 5)),x
+    dex
+    bne -l
+
 mainloop:
     lda bricks_left
     bne +n
@@ -152,7 +214,7 @@ l:  lda $9004
     bne -l
 n:
 
-    ; Initialize sprite frame.
+    ; Toggle sprite frame.
     lda spriteframe
     eor #framemask
     sta spriteframe
@@ -198,3 +260,8 @@ n:  jsr scrcoladdr
     lda #0
     sta (scr),y
     rts
+
+txt_round:
+    @(ascii2pixcii "ROUND XX") 0
+txt_ready:
+    @(ascii2pixcii "READY") 0

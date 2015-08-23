@@ -1,3 +1,10 @@
+(defun ascii2pixcii (x)
+  (@ [?
+       (== 32 _) 255
+       (alpha-char? _) (+ (- _ #\A) 64)
+       _]
+     (string-list x)))
+
 (defconstant *bricks*
     '(#\  #\w #\o #\c #\g #\r #\b #\p #\y #\s #\x))
 
