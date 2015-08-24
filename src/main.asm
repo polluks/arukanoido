@@ -103,6 +103,9 @@ retry:
 
     jsr clean_sprites
 
+    lda #0
+    sta reflections_since_last_vaus_hit
+
     ; Empty sprite slots.
     ldx #@(- num_sprites 3)
 l:  jsr remove_sprite

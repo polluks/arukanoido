@@ -106,6 +106,8 @@ reset_vaus_hit:
     jmp no_hit
 
 reflect_from_vaus:
+    lda #0
+    sta reflections_since_last_vaus_hit
     lda mode
     cmp #mode_catching
     bne +n
@@ -190,7 +192,8 @@ n:
     bne traject_ball
     inc sprites_x,x
 
-h:  jsr hit_brick
+h:  jsr correct_trajectory
+    jsr hit_brick
     bcs reflect         ; Not a brick.
 
     ; Make bonus.
@@ -240,11 +243,6 @@ reflect:
     clc
     adc #128            ; Rotate to opposite direction.
     sta sprites_d,x
-
-    and #127
-    bne +n
-    inc sprites_d,x
-n:
 
 traject_ball:
     ; Traject on X axis.
@@ -358,3 +356,22 @@ modify_brick:
     rts
 r:  sec
     rts
+
+correct_trajectory:
+    inc reflections_since_last_vaus_hit
+    lda reflections_since_last_vaus_hit
+    and #%11
+    bne +r
+    lda sprites_d,x
+    and #%00100000
+    bne +n
+    lda sprites_d,x
+    clc
+    adc #8
+    sta sprites_d,x
+    rts
+n:  lda sprites_d,x
+    sec
+    sbc #8
+    sta sprites_d,x
+r:  rts
