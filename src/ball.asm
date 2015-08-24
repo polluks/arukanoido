@@ -114,15 +114,11 @@ reflect_from_vaus:
 
     ; Catch ball.
     stx caught_ball
-    lda sprites_d,x
-    clc
-    adc #64
-    and #127
-    ora #128
-    sec
-    sbc #64
+    lda #default_ball_direction
     sta sprites_d,x
-    jmp reflect
+    lda #@(- (* 29 8) 5)
+    sta sprites_y,x
+    rts
 
 n:  lda vaus_hit
     bne no_hit

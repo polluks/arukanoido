@@ -19,6 +19,7 @@ foreground          = @(+ (half framechars) (quarter framechars))
 
 default_num_lifes = 3
 default_ball_speed = 7
+default_ball_direction = 16
 ball_width      = 3
 ball_height     = 5
 

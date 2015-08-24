@@ -125,7 +125,7 @@ l:  jsr remove_sprite
     sta ball_init
     lda #@(- (* 29 8) 5)
     sta @(+ ball_init 1)
-    lda #16
+    lda #default_ball_direction
     sta @(+ ball_init 7)
     ldx #@(- num_sprites 3)
     stx caught_ball
