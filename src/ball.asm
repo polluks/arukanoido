@@ -234,6 +234,15 @@ a:  jsr random
     jsr add_sprite
 
 reflect:
+    lda sprites_y,x
+    cmp #@(+ 2 (* 3 8))
+    bcs +n
+    inc reflections_on_top
+    lda reflections_on_top
+    and #%111
+    bne +n
+    inc ball_speed
+n:
     lda sprites_d,x     ; Get degrees.
     sec
     sbc side_degrees    ; Rotate back to zero degrees.

@@ -104,6 +104,7 @@ retry:
     jsr clean_sprites
 
     lda #0
+    sta reflections_on_top
     sta reflections_since_last_vaus_hit
 
     ; Empty sprite slots.
