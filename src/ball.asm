@@ -41,6 +41,7 @@ n:
     sta sprites_x,x
 n:
 
+    ; Call the ball controller ball_speed times.
     ldy ball_speed
 l:  tya
     pha
@@ -69,7 +70,7 @@ c:
     lda sprites_y,x
     cmp #@(- vaus_y (-- ball_height))
     bcc reset_vaus_hit
-    cmp #@(+ vaus_y (- 8 (-- ball_height)))
+    cmp #@(+ vaus_y 8)
     bcs reset_vaus_hit
 
     lda @(+ sprites_x (-- num_sprites))
@@ -101,8 +102,9 @@ c:
     jmp reflect_from_vaus
 
 reset_vaus_hit:
-    lda #0
-    sta vaus_hit
+    lda sprites_i,x
+    and #@(bit-xor #xff still_touches_vaus)
+    sta sprites_i,x
     jmp no_hit
 
 reflect_from_vaus:
@@ -116,13 +118,15 @@ reflect_from_vaus:
     stx caught_ball
     lda #default_ball_direction
     sta sprites_d,x
-    lda #@(- (* 29 8) 5)
+    lda #@(- vaus_y 5)
     sta sprites_y,x
     rts
 
-n:  lda vaus_hit
+n:  lda sprites_i,x
+    and #still_touches_vaus
     bne no_hit
-    inc vaus_hit
+    ora #still_touches_vaus
+    sta sprites_i,x
     jmp reflect
 
 no_hit:

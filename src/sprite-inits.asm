@@ -1,5 +1,6 @@
 decorative   = 128
 fg_collision = 32
+still_touches_vaus = 16
 is_bonus     = 2
 is_vaus      = 1
 
