@@ -62,6 +62,7 @@ apply_bonus_e:
     rts
 
 apply_bonus_c:
+    rts
     lda #mode_catching
     sta mode
     rts
