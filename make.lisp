@@ -590,7 +590,7 @@
 
 (make-game :prg "arukanoido.prg" "arukanoido.vice.txt")
 (with-temporary *coinop?* t
-  (make-game :prg "arukanoido-coinop.prg" "arukanoido-coinop.vice.txt"))
+  (make-game :prg "arukanoido-coinop.bin" "arukanoido-coinop.vice.txt"))
 
 (with-output-file o "POKES"
   (with (addr (- (get-label 'poke_unlimited)
