@@ -1,3 +1,5 @@
+(defvar *coinop?* nil)
+
 (defun ascii2pixcii (x)
   (@ [?
        (== 32 _) 255
@@ -539,9 +541,10 @@
 
 (defun make-game (version file cmds)
   (make file
-        (@ [+ "src/" _] '("../bender/vic-20/vic.asm"
+        (@ [+ "src/" _] `("../bender/vic-20/vic.asm"
                           "zeropage.asm"
-                          "../bender/vic-20/basic-loader.asm"
+                          ,@(unless *coinop?*
+                              '("../bender/vic-20/basic-loader.asm"))
                           "init.asm"
                           "gfx-background.asm"
                           "gfx-sprites.asm"
@@ -586,6 +589,8 @@
 (= *model* :vic-20+xk)
 
 (make-game :prg "arukanoido.prg" "arukanoido.vice.txt")
+(with-temporary *coinop?* t
+  (make-game :prg "arukanoido-coinop.prg" "arukanoido-coinop.vice.txt"))
 
 (with-output-file o "POKES"
   (with (addr (- (get-label 'poke_unlimited)

@@ -1,9 +1,17 @@
+if @*coinop?*
+    org $2000
+end
+
 relocated_start = $1800
 
 relocation_offset = @(- relocated_start loaded_start)
 loaded_end = @(- relocated_end relocation_offset)
 
 main:
+if @*coinop?*
+    jmp loaded_start
+end
+
     lda #<loaded_end
     sta s
     lda #>loaded_end
@@ -38,7 +46,9 @@ n:  pla
     rts
 
 loaded_start:
+if @(not *coinop?*)
     org relocated_start
+end
 
     sei
     lda #$7f
