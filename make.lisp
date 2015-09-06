@@ -563,8 +563,7 @@
                           "draw-level.asm"
                           "score.asm"
                           "level-data.asm"
-                          "end.asm"
-                          ))
+                          "end.asm"))
         cmds))
 
 (defun make-level-data ()
@@ -586,7 +585,7 @@
 
 (= *model* :vic-20+xk)
 
-(make-game :prg "arukanuido.prg" "arukanuido.vice.txt")
+(make-game :prg "arukanoido.prg" "arukanoido.vice.txt")
 
 (with-output-file o "POKES"
   (with (addr (- (get-label 'poke_unlimited)
