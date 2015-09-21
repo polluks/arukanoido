@@ -22,6 +22,8 @@ automatically.
 
 # Contributions
 
+This project has been initiated by Sabine Kuhn.
+
 Arukanoido is being developed by Sven Michael Klose and discussed on the
 VIC–20 Denial forum:
 http://sleepingelephant.com/denial/
