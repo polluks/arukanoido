@@ -1,5 +1,7 @@
 # Arukanoido
 
+https://en.wikipedia.org/wiki/Arkanoid
+
 This is an Arkanoid clone for the Commodore VIC–20 with at least 16K
 memory expansion.  It should be played with paddles which are detected
 automatically.
@@ -15,6 +17,7 @@ automatically.
 * No animated sprites.
 * No distractions floating down.
 * No B, C, E or S bonuses although they show.
+* No title screen nor intro.
 
 
 # Contributions
@@ -25,7 +28,7 @@ http://sleepingelephant.com/denial/
 
 src-media/character.txt has been created with beamrider's VIC—20 Screen
 Designer:
-http://87.81.155.196/vic20sdd/Vic20SDD.htm
+http://sleepingelephant.com/ipw-web/bulletin/bb/viewtopic.php?f=14&t=7133
 
 src-media/doh.prg has been contributed by Michael Kirchner which he created
 with his VIC–20 editor MINIPAINT (there must be no ,1 in the LOAD command):
