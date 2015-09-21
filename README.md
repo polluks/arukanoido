@@ -1,7 +1,7 @@
 # Arukanoido
 
-This is an Arkanoid clone for the Commodore VIC-20 with at least 16K
-memory expansion.  It should be played with paddles for which are detected
+This is an Arkanoid clone for the Commodore VIC–20 with at least 16K
+memory expansion.  It should be played with paddles which are detected
 automatically.
 
 
@@ -20,7 +20,7 @@ automatically.
 # Contributions
 
 Arukanoido is being developed by Sven Michael Klose and discussed on the
-VIC-20 Denial forum:
+VIC–20 Denial forum:
 http://sleepingelephant.com/denial/
 
 src-media/character.txt has been created with beamrider's VIC—20 Screen
