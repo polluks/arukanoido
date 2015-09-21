@@ -1,7 +1,8 @@
 # Arukanoido
 
 This is an Arkanoid clone for the Commodore VIC-20 with at least 16K
-memory expansion.
+memory expansion.  It should be played with paddles for which are detected
+automatically.
 
 
 # Things missing:
