@@ -32,6 +32,6 @@ src-media/character.txt has been created with beamrider's VIC—20 Screen
 Designer:
 http://sleepingelephant.com/ipw-web/bulletin/bb/viewtopic.php?f=14&t=7133
 
-src-media/doh.prg has been contributed by Michael Kirchner which he created
+src-media/doh.prg has been contributed by Michael Kircher which he created
 with his VIC–20 editor MINIPAINT (there must be no ,1 in the LOAD command):
 http://sleepingelephant.com/ipw-web/bulletin/bb/viewtopic.php?t=3752
