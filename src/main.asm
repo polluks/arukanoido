@@ -189,10 +189,16 @@ k:  inx
 n:
 
     ldx #150
-l:  lda $9004
+l:
+if @(not *coinop?*)
+    lda $9004
     bne -l
 m:  lda $9004
     beq -m
+end
+if @*coinop?*
+    $22 2
+end
     dex
     bne -l
 
@@ -211,12 +217,17 @@ n:
 
     jsr random      ; Improve randomness.
 
+if @(not *coinop?*)
     lda mode
     cmp #mode_disruption
     beq +n
 l:  lda $9004
     bne -l
 n:
+end
+if @*coinop?*
+   $22 2
+end
 
     ; Toggle sprite frame.
     lda spriteframe

@@ -304,7 +304,13 @@ poke_unlimited:
     dec lifes
     beq +o
     jmp retry
-o:  jmp game_over
+o:
+if @(not *coinop?*)
+    jmp game_over
+end
+if @*coinop?*
+    $22 1               ; Exit emulator.
+end
 n:  rts
 c:  lda balls
     cmp #1
