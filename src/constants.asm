@@ -4,7 +4,7 @@ screen       = $1000
 charset      = $1400
 colors       = $9400
 
-; Screen/char settings
+; Screen settings
 
 screen_columns  = 15
 screen_rows     = 32
