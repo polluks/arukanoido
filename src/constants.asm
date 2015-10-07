@@ -13,7 +13,7 @@ screen_height   = @(* screen_rows 8)
 
 ; Charset settings
 
-num_chars           = 128
+num_chars           = 256
 charsetsize         = @(* num_chars 8)
 
 ; Sprite/frame settings

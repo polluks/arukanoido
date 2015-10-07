@@ -11,6 +11,11 @@ get_char_addr:
     asl
     asl
     asl
+if @*add-charset-base?*
+    clc
+    adc #<charset
+    php
+end
     sta d
     lda tmp
     lsr
@@ -18,7 +23,13 @@ get_char_addr:
     lsr
     lsr
     lsr
+if @*add-charset-base?*
+    plp
+    adc #>charset
+end
+if @(not *add-charset-base?*)
     ora #>charset
+end
     sta @(++ d)
     rts
 

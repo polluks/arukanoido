@@ -1,4 +1,5 @@
 (defvar *coinop?* nil)
+(defvar *add-charset-base?* t)
 
 (defun ascii2pixcii (x)
   (@ [?
@@ -602,12 +603,8 @@
     (format o "Unlimited lifes: POKE~A,~A:POKE~A,~A:POKE~A,~A~%"
             addr jmp (++ addr) lo (+ 2 addr) hi)))
 
-(format t "Ball directions X:~%")
-(print (ball-directions-x))
-(print (elt (ball-directions-x) 0))
-(print (elt (ball-directions-y) 0))
-(print (elt (ball-directions-x) 128))
-(print (elt (ball-directions-y) 128))
-(format t "Ball directions Y:~%")
-(print (ball-directions-y))
+(format t "foreground: ~A~%" (get-label 'foreground))
+(format t "framemask: ~A~%" (get-label 'framemask))
+(format t "charsetmask: ~A~%" (get-label 'charsetmask))
+
 (quit)
