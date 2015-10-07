@@ -173,7 +173,13 @@ n:  clc
     ldx #0
 l:  lda txt_round,x
     beq +n
+if @(== num_chars 256)
+    cmp #255
+    beq +k
+end
+if @(== num_chars 128)
     bmi +k
+end
     sta @(+ screen (* 25 15) 4),x
     lda #white
     sta @(+ colors (* 25 15) 4),x
@@ -185,7 +191,13 @@ n:
     ldx #0
 l:  lda txt_ready,x
     beq +n
+if @(== num_chars 256)
+    cmp #255
+    beq +k
+end
+if @(== num_chars 128)
     bmi +k
+end
     sta @(+ screen (* 26 15) 5),x
     lda #white
     sta @(+ colors (* 26 15) 5),x
