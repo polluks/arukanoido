@@ -161,12 +161,12 @@ l:  lda @(-- (+ charset_upcase 8)),x
     sta @(+ txt_round 6)
     lda level
 l:  sec
-    sbc #@(+ 10 (- score_char0 #\0))
+    sbc #10
     bcc +n
     inc @(+ txt_round 6)
     jmp -l
 n:  clc
-    adc #@(- (+ 10 #\0) (- score_char0 #\0))
+    adc #@(+ 10 #\0 (- score_char0 #\0))
     sta @(+ txt_round 7)
 
     ; Print "ROUND XX".
