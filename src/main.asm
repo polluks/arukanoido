@@ -148,12 +148,15 @@ l:  jsr remove_sprite
     sta next_sprite_char
     jsr draw_sprites
 
+    ; Temporarily copy the upcase alphabet into the unused
+    ; sprite frame.
     ldx #@(* 26 8)
 l:  lda @(-- (+ charset_upcase 8)),x
-    sta $15ff,x
+    sta @(-- (+ charset (* framechars 8))),x
     dex
     bne -l
 
+    ; Copy round number digits into round message.
     lda #48
     sta @(+ txt_round 6)
     lda level
@@ -166,6 +169,7 @@ n:  clc
     adc #@(+ 10 #\0)
     sta @(+ txt_round 7)
 
+    ; Print "ROUND XX".
     ldx #0
 l:  lda txt_round,x
     beq +n
@@ -177,6 +181,7 @@ k:  inx
     jmp -l
 n:
 
+    ; Print "READY".
     ldx #0
 l:  lda txt_ready,x
     beq +n
@@ -188,6 +193,7 @@ k:  inx
     jmp -l
 n:
 
+    ; Wait for three seconds.
     ldx #150
 l:
 if @(not *coinop?*)

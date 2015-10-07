@@ -100,13 +100,6 @@ call_controllers_x:   0
 sprites_x:  fill num_sprites  ; X positions.
 sprites_y:  fill num_sprites  ; Y positions.
 sprites_i:  fill num_sprites  ; Flags.
-                              ; 7 = decorative
-                              ; 6 = deadly
-                              ; 5 = foreground collision
-                              ; 4 = bullet Y step
-                              ; 3 = bullet increment X
-                              ; 2 = bullet increment Y
-                              ; 1-0 = 01 sniper 10 scout
 sprites_c:  fill num_sprites  ; Colors.
 sprites_l:  fill num_sprites  ; Low character addresses.
 sprites_fl: fill num_sprites  ; Function controlling the sprite (low).
@@ -116,6 +109,10 @@ sprites_dx: fill num_sprites ; Whatever the controllers want.
 sprites_dy: fill num_sprites ; Whatever the controllers want.
 sprites_ox: fill num_sprites  ; Former X positions for cleaning up.
 sprites_oy: fill num_sprites  ; Former Y positions for cleaning up.
+
+    org $f8
+
+hiscore:    fill num_score_digits
 
 @(check-zeropage-size)
 

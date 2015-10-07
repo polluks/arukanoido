@@ -1,6 +1,6 @@
 fill @(- 256 (low *pc*))
 
-bg_start = @(+ 64 48)
+bg_start = @(* (/ num_chars 8) 7)
 gfx_background:
 
 bg_brick = @(+ bg_start 0)

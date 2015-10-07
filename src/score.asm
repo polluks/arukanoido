@@ -28,7 +28,6 @@ color_scores:
     @(- score_60 scores)
 
 score: @(maptimes [identity 0] num_score_digits)
-hiscore: @(maptimes [identity 0] num_score_digits)
 
 init_score:
     ldx #@(-- num_score_digits)

@@ -2,7 +2,7 @@ if @*coinop?*
     org $2000
 end
 
-relocated_start = $1800
+relocated_start = @(+ charset (* num_chars 8))
 
 relocation_offset = @(- relocated_start loaded_start)
 loaded_end = @(- relocated_end relocation_offset)
