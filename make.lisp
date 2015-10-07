@@ -542,6 +542,7 @@
 (defun make-game (version file cmds)
   (make file
         (@ [+ "src/" _] `("../bender/vic-20/vic.asm"
+                          "constants.asm"
                           "zeropage.asm"
                           ,@(unless *coinop?*
                               '("../bender/vic-20/basic-loader.asm"))
