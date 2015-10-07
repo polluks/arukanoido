@@ -25,6 +25,8 @@ framemask           = @(half num_chars)
 framechars          = @(half num_chars)
 first_sprite_char   = 1
 foreground          = @(+ (half framechars) (quarter framechars))
+frame_a             = charset
+frame_b             = @(+ charset framesize)
 
 ; Game settings
 
@@ -40,5 +42,6 @@ vaus_edge_distraction   = 8
 
 num_score_digits    = 7
 score_char0         = foreground
+scorechars          = @(+ charset (* 8 score_char0))
 score_on_screen     = @(+ screen screen_columns)
 hiscore_on_screen   = @(+ score_on_screen num_score_digits 1)

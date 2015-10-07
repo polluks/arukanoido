@@ -10,7 +10,7 @@ l:  lda #0
     bcs +n
     ; Copy digits from character ROM.
     lda @(-- (+ charset_locase (* 8 #x30))),x
-    sta @(-- (+ charset (* 8 score_char0))),x
+    sta @(-- scorechars),x
 n:  dex
     bne -l
 
@@ -152,7 +152,7 @@ l:  jsr remove_sprite
     ; sprite frame.
     ldx #@(* 26 8)
 l:  lda @(-- (+ charset_upcase 8)),x
-    sta @(-- (+ charset (* framechars 8))),x
+    sta @(-- frame_b),x
     dex
     bne -l
 
