@@ -1,5 +1,4 @@
 draw_sprites:
-    ; Draw other sprites.
     ldx #@(-- num_sprites)
 l:  lda sprites_i,x
     bmi +n
