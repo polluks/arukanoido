@@ -250,7 +250,9 @@ if @*coinop?*
    $22 2
 end
 
-;    inc $900f
+if @*show-cpu?*
+    inc $900f
+end
 
     ; Toggle sprite frame.
     lda spriteframe
@@ -274,8 +276,16 @@ m1: jsr $1234
 n1: dex
     bpl -l1
 
+if @*show-cpu?*
+    inc $900f
+end
+
     jsr draw_sprites
-;    dec $900f
+
+if @*show-cpu?*
+    dec $900f
+    dec $900f
+end
 
     jmp mainloop
 

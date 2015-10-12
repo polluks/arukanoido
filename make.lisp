@@ -1,6 +1,7 @@
 (defvar *coinop?* nil)
 (defvar *add-charset-base?* t)
 (defvar *preshifted-sprites?* t)
+(defvar *show-cpu?* nil)
 
 (defun ascii2pixcii (x)
   (@ [?
