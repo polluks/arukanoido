@@ -25,3 +25,4 @@ bonus_init:
 
 dummy_init:
 0 0          decorative black        0 <ctrl_dummy >ctrl_dummy 0
+sprite_inits_end:

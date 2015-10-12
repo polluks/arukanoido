@@ -17,12 +17,19 @@ ctrl_bonus:
     beq +m
     lda #0
     sta mode
+if @(not *preshifted-sprites?*)
     lda sprites_l,x
     sec
     sbc #bonus_l
     lsr
     lsr
     lsr
+end
+if @*preshifted-sprites?*
+    lda sprites_l,x
+    sec
+    sbc #@(/ (- bonus_l sprite_gfx) 8)
+end
     tay
     lda bonus_funs_l,y
     sta @(+ +selfmod 1)
@@ -90,7 +97,12 @@ n:  dex
 
     ldy #@(- num_sprites 2) ; Find ball.
 l:  lda sprites_l,y
+if @*preshifted-sprites?*
+    cmp #@(/ (- ball sprite_gfx) 8)
+end
+if @(not *preshifted-sprites?*)
     cmp #<ball
+end
     beq +f
     dey
     bpl -l

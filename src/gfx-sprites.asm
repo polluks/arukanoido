@@ -4,6 +4,8 @@ ball =          4
 laser =         5
 bonus_laser =   6
 
+    fill @(- 256 (low *pc*))
+
 sprite_gfx:
 vaus_left:
     %00011111
@@ -124,3 +126,5 @@ bonus_p:
     %10011010
     %10011010
     %00101000
+
+sprite_gfx_end:

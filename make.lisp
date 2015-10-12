@@ -1,5 +1,6 @@
 (defvar *coinop?* nil)
 (defvar *add-charset-base?* t)
+(defvar *preshifted-sprites?* t)
 
 (defun ascii2pixcii (x)
   (@ [?
@@ -564,7 +565,10 @@
                           "ball.asm"
                           "bonus.asm"
                           "sprites.asm"
-                          "sprites-vic.asm"
+                          "sprites-vic-common.asm"
+                          ,(? *preshifted-sprites?*
+                              "sprites-vic-3k.asm"
+                              "sprites-vic.asm")
                           "draw-level.asm"
                           "score.asm"
                           "level-data.asm"
@@ -591,8 +595,6 @@
 (= *model* :vic-20+xk)
 
 (make-game :prg "arukanoido.prg" "arukanoido.vice.txt")
-(with-temporary *coinop?* t
-  (make-game :prg "arukanoido-coinop.bin" "arukanoido-coinop.vice.txt"))
 
 (with-output-file o "POKES"
   (with (addr (- (get-label 'poke_unlimited)
@@ -603,8 +605,7 @@
     (format o "Unlimited lifes: POKE~A,~A:POKE~A,~A:POKE~A,~A~%"
             addr jmp (++ addr) lo (+ 2 addr) hi)))
 
-(format t "foreground: ~A~%" (get-label 'foreground))
-(format t "framemask: ~A~%" (get-label 'framemask))
-(format t "charsetmask: ~A~%" (get-label 'charsetmask))
+;(with-temporary *coinop?* t
+;  (make-game :prg "arukanoido-coinop.bin" "arukanoido-coinop.vice.txt"))
 
 (quit)

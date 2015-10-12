@@ -1,9 +1,13 @@
     org 0
     data
 
+sl:
 s:                    0 0 ; Source pointer.
+dl:
 d:                    0 0 ; Destination pointer.
+sr:
 scr:                  0 0 ; Screen pointer.
+dr:
 col:                  0 0 ; Colour RAM pointer.
 scrx:                 8   ; X position.
 scry:                 0   ; Y position.

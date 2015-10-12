@@ -27,6 +27,7 @@ first_sprite_char   = 1
 foreground          = @(+ (half framechars) (quarter framechars))
 frame_a             = charset
 frame_b             = @(+ charset framesize)
+preshifted_sprites  = $5000
 
 ; Game settings
 

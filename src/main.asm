@@ -1,5 +1,8 @@
 start:
     jsr init_hiscore
+if @*preshifted-sprites?*
+    jsr preshift_sprites
+end
 
 game_over:
     ldx #0
@@ -247,6 +250,8 @@ if @*coinop?*
    $22 2
 end
 
+;    inc $900f
+
     ; Toggle sprite frame.
     lda spriteframe
     eor #framemask
@@ -270,6 +275,7 @@ n1: dex
     bpl -l1
 
     jsr draw_sprites
+;    dec $900f
 
     jmp mainloop
 
