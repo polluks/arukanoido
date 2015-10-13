@@ -6,7 +6,7 @@ end
 
 game_over:
     ldx #0
-    nop
+    stx current_half    ; Init draw_level.
 l:  lda #0
     sta 0,x
     cpx #81

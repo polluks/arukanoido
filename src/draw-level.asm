@@ -1,4 +1,9 @@
+current_half:   0
+bricks_in_line: 0
+
 draw_level:
+    lda #16
+    sta bricks_in_line
     lda #0
     sta bricks_left
     sta scrx
@@ -8,7 +13,7 @@ draw_level:
     jsr brick_inc
 
 l:  jsr fetch_brick
-    cmp #255
+    cmp #15
     beq +done
     tax
     lda @(-- brick_colors),x
@@ -32,15 +37,36 @@ done:
     rts
 
 fetch_brick:
-    ldy #0
+    dec bricks_in_line
+    lda bricks_in_line
+    and #%11111110
+    bne +n
+    lda #0
+    ldx bricks_in_line
+    bne -done
+    ldx #15
+    stx bricks_in_line
+    jmp -done
+n:  ldy #0
     lda (current_level),y
+    ldx current_half
+    bne +n
+    lsr
+    lsr
+    lsr
+    lsr
+    inc current_half
+    jmp +r
+n:  and #$0f
+    dec current_half
+done:
     ldx #current_level
 
 inc_zp:
     inc 0,x
-    bne +n
+    bne +r
     inc 1,x
-n:  rts
+r:  rts
 
 plot_brick:
     cmp #0
