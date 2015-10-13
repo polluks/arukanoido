@@ -9,7 +9,7 @@ automatically.
 Arukanoido is discussed and developed on the VIC–20 Denial forum:
 http://sleepingelephant.com/ipw-web/bulletin/bb/viewtopic.php?t=3752
 
-You've probably found these source files here:
+You've probably found these files here:
 https://github.com/SvenMichaelKlose/arukanoido/
 
 
@@ -27,8 +27,6 @@ https://github.com/SvenMichaelKlose/arukanoido/
 
 
 # Applications used
-
-Applications are listed in alphabetical order.
 
 ## beamrider's "VIC–20 Screen and Character Designer"
 
@@ -49,10 +47,17 @@ URL: https://github.com/SvenMichaelKlose/bender/
 Discussion: http://sleepingelephant.com/ipw-web/bulletin/bb/viewtopic.php?f=2&t=7072
 
 
+# Other applications
+
+## VICE – the Versatile Commodore Emulator
+
+URL: http://vice-emu.sourceforge.net/
+
+
 # Contributions
 
 This project has been initiated by Sabine Kuhn <eimer@devcon.net>.
-Contributions are sorted by time.
+Contributions are listed by time.
 
 Code has been contributed by Sven Michael Klose <pixel@hugbox.org>.
 
