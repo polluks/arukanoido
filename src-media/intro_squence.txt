@@ -1,0 +1,659 @@
+;settings
+;background-colour=0
+;border-colour=3
+;aux-colour=14
+;char-height=8
+;row-count=23
+;col-count=22
+
+;char data
+seq_0: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_1: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_2: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_3: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_4: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_5: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_6: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_7: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_8: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_9: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_10: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_11: .byte  $00,$00,$00,$00,$00,$00,$03,$0E
+seq_12: .byte  $3B,$00,$00,$3C,$28,$AF,$AC,$A0
+seq_13: .byte  $E0,$00,$00,$38,$FB,$AF,$AC,$A0
+seq_14: .byte  $F0,$00,$00,$00,$00,$00,$00,$00
+seq_15: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_16: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_17: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_18: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_19: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_20: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_21: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_22: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_23: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_24: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_25: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_26: .byte  $00,$00,$00,$00,$00,$00,$00,$03
+seq_27: .byte  $0F,$0F,$3F,$0F,$00,$EF,$BB,$EF
+seq_28: .byte  $B0,$C0,$3F,$33,$0C,$30,$00,$03
+seq_29: .byte  $00,$00,$3F,$33,$3C,$30,$0F,$00
+seq_30: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_31: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_32: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_33: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_34: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_35: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_36: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_37: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_38: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_39: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_40: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_41: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_42: .byte  $00,$00,$00,$00,$00,$3C,$FF,$FF
+seq_43: .byte  $CC,$30,$F0,$C0,$C0,$03,$30,$00
+seq_44: .byte  $00,$00,$00,$00,$00,$0C,$0C,$00
+seq_45: .byte  $00,$0C,$03,$0C,$30,$C0,$00,$00
+seq_46: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_47: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_48: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_49: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_50: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_51: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_52: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_53: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_54: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_55: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_56: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_57: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_58: .byte  $00,$00,$00,$00,$00,$00,$C0,$3C
+seq_59: .byte  $0F,$0F,$3D,$FF,$FE,$3E,$02,$00
+seq_60: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_61: .byte  $00,$00,$C0,$00,$00,$00,$00,$00
+seq_62: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_63: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_64: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_65: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_66: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_67: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_68: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_69: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_70: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_71: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_72: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_73: .byte  $00,$00,$00,$00,$00,$0C,$0F,$30
+seq_74: .byte  $C0,$00,$00,$00,$03,$0F,$3F,$0C
+seq_75: .byte  $03,$00,$00,$C0,$80,$C0,$00,$00
+seq_76: .byte  $00,$0F,$33,$FC,$0F,$00,$00,$00
+seq_77: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_78: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_79: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_80: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_81: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_82: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_83: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_84: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_85: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_86: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_87: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_88: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_89: .byte  $00,$00,$00,$03,$0C,$00,$00,$F0
+seq_90: .byte  $30,$0C,$3F,$FF,$FF,$CF,$FC,$FF
+seq_91: .byte  $FF,$FF,$3F,$03,$00,$00,$00,$00
+seq_92: .byte  $00,$00,$F0,$F0,$0C,$F0,$00,$00
+seq_93: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_94: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_95: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_96: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_97: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_98: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_99: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_100: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_101: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_102: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_103: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_104: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_105: .byte  $00,$03,$03,$FC,$CC,$00,$03,$0C
+seq_106: .byte  $30,$C0,$C3,$FF,$F1,$F1,$CD,$CD
+seq_107: .byte  $F3,$FC,$FF,$FF,$0F,$0C,$30,$0B
+seq_108: .byte  $0B,$00,$00,$00,$00,$00,$00,$00
+seq_109: .byte  $00,$00,$00,$00,$00,$00,$C0,$0F
+seq_110: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_111: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_112: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_113: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_114: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_115: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_116: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_117: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_118: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_119: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_120: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_121: .byte  $0F,$EB,$FF,$0F,$30,$C0,$01,$0D
+seq_122: .byte  $15,$55,$77,$55,$55,$55,$55,$D5
+seq_123: .byte  $D5,$5F,$D5,$FD,$FC,$FF,$03,$00
+seq_124: .byte  $00,$00,$00,$03,$00,$00,$00,$00
+seq_125: .byte  $00,$06,$00,$00,$0C,$3B,$6F,$A8
+seq_126: .byte  $E8,$20,$30,$00,$0B,$2B,$AF,$A8
+seq_127: .byte  $28,$F0,$30,$00,$00,$00,$00,$00
+seq_128: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_129: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_130: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_131: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_132: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_133: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_134: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_135: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_136: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_137: .byte  $01,$01,$03,$D4,$5C,$70,$70,$7F
+seq_138: .byte  $C0,$FC,$7F,$D0,$70,$5C,$50,$D0
+seq_139: .byte  $5F,$7F,$F3,$FC,$33,$CF,$3F,$FF
+seq_140: .byte  $33,$FF,$FF,$FF,$C3,$00,$2C,$1A
+seq_141: .byte  $D8,$A0,$C0,$08,$33,$0C,$30,$00
+seq_142: .byte  $03,$00,$0C,$3C,$33,$0C,$30,$03
+seq_143: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_144: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_145: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_146: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_147: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_148: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_149: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_150: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_151: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_152: .byte  $01,$01,$0C,$04,$14,$D0,$70,$40
+seq_153: .byte  $00,$00,$FF,$01,$01,$05,$04,$14
+seq_154: .byte  $DF,$53,$50,$40,$00,$00,$00,$C0
+seq_155: .byte  $FC,$FF,$FF,$FF,$33,$CC,$FF,$FF
+seq_156: .byte  $FF,$FC,$C0,$C0,$C0,$00,$30,$00
+seq_157: .byte  $00,$00,$00,$C0,$00,$00,$00,$00
+seq_158: .byte  $00,$00,$00,$C3,$00,$30,$C0,$00
+seq_159: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_160: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_161: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_162: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_163: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_164: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_165: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_166: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_167: .byte  $00,$00,$03,$0C,$04,$14,$10,$70
+seq_168: .byte  $40,$00,$03,$01,$05,$04,$14,$1F
+seq_169: .byte  $DC,$F0,$FC,$FF,$00,$00,$00,$00
+seq_170: .byte  $03,$FF,$3C,$00,$00,$00,$00,$00
+seq_171: .byte  $00,$F0,$FF,$CC,$30,$C0,$00,$C0
+seq_172: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_173: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_174: .byte  $30,$00,$00,$00,$00,$00,$00,$00
+seq_175: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_176: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_177: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_178: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_179: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_180: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_181: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_182: .byte  $00,$00,$00,$00,$00,$04,$14,$10
+seq_183: .byte  $40,$41,$01,$04,$04,$14,$10,$50
+seq_184: .byte  $40,$40,$00,$00,$00,$00,$00,$FC
+seq_185: .byte  $03,$00,$00,$C0,$30,$0C,$03,$00
+seq_186: .byte  $FF,$00,$00,$03,$0F,$0C,$30,$00
+seq_187: .byte  $C0,$00,$00,$00,$00,$00,$00,$00
+seq_188: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_189: .byte  $00,$03,$00,$00,$00,$00,$00,$00
+seq_190: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_191: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_192: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_193: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_194: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_195: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_196: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_197: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_198: .byte  $00,$00,$00,$00,$00,$10,$10,$40
+seq_199: .byte  $40,$00,$00,$00,$00,$00,$00,$00
+seq_200: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_201: .byte  $00,$00,$C0,$00,$00,$C0,$00,$C0
+seq_202: .byte  $30,$FF,$3F,$0C,$03,$00,$00,$00
+seq_203: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_204: .byte  $00,$00,$00,$00,$00,$00,$03,$0C
+seq_205: .byte  $30,$00,$00,$00,$00,$00,$00,$00
+seq_206: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_207: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_208: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_209: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_210: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_211: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_212: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_213: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_214: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_215: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_216: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_217: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_218: .byte  $0E,$3B,$AF,$AF,$BC,$F0,$C0,$00
+seq_219: .byte  $00,$00,$3D,$FB,$AF,$EC,$FC,$30
+seq_220: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_221: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_222: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_223: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_224: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_225: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_226: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_227: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_228: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_229: .byte  $00,$00,$00,$00,$00,$00,$00,$03
+seq_230: .byte  $0E,$00,$00,$00,$00,$00,$00,$00
+seq_231: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_232: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_233: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_234: .byte  $C0,$C0,$00,$00,$00,$00,$00,$00
+seq_235: .byte  $00,$00,$C0,$C0,$00,$00,$00,$00
+seq_236: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_237: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_238: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_239: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_240: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_241: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_242: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_243: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_244: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_245: .byte  $00,$00,$00,$00,$00,$00,$C0,$00
+seq_246: .byte  $F0,$00,$00,$00,$00,$00,$00,$00
+seq_247: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_248: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_249: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_250: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_251: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_252: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_253: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_254: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+seq_255: .byte  $00,$00,$00,$00,$00,$00,$00,$00
+
+;screen data0
+
+.byte  $00,$10,$20,$30,$40,$50,$60,$70
+.byte  $80,$90,$A0,$B0,$C0,$D0,$E0,$F0
+.byte  $20,$20,$20,$20,$20,$20,$01,$11
+.byte  $21,$31,$41,$51,$61,$71,$81,$91
+.byte  $A1,$B1,$C1,$D1,$E1,$F1,$20,$20
+.byte  $20,$20,$20,$20,$02,$12,$22,$32
+.byte  $42,$52,$62,$72,$82,$92,$A2,$B2
+.byte  $C2,$D2,$E2,$F2,$20,$20,$20,$20
+.byte  $20,$20,$03,$13,$23,$33,$43,$53
+.byte  $63,$73,$83,$93,$A3,$B3,$C3,$D3
+.byte  $E3,$F3,$20,$20,$20,$20,$20,$20
+.byte  $04,$14,$24,$34,$44,$54,$64,$74
+.byte  $84,$94,$A4,$B4,$C4,$D4,$E4,$F4
+.byte  $20,$20,$20,$20,$20,$20,$05,$15
+.byte  $25,$35,$45,$55,$65,$75,$85,$95
+.byte  $A5,$B5,$C5,$D5,$E5,$F5,$20,$20
+.byte  $20,$20,$20,$20,$06,$16,$26,$36
+.byte  $46,$56,$66,$76,$86,$96,$A6,$B6
+.byte  $C6,$D6,$E6,$F6,$20,$20,$20,$20
+.byte  $20,$20,$07,$17,$27,$37,$47,$57
+.byte  $67,$77,$87,$97,$A7,$B7,$C7,$D7
+.byte  $E7,$F7,$20,$20,$20,$20,$20,$20
+.byte  $08,$18,$28,$38,$48,$58,$68,$78
+.byte  $88,$98,$A8,$B8,$C8,$D8,$E8,$F8
+.byte  $20,$20,$20,$20,$20,$20,$09,$19
+.byte  $29,$39,$49,$59,$69,$79,$89,$99
+.byte  $A9,$B9,$C9,$D9,$E9,$F9,$20,$20
+.byte  $20,$20,$20,$20,$0A,$1A,$2A,$3A
+.byte  $4A,$5A,$6A,$7A,$8A,$9A,$AA,$BA
+.byte  $CA,$DA,$EA,$FA,$20,$20,$20,$20
+.byte  $20,$20,$0B,$1B,$2B,$3B,$4B,$5B
+.byte  $6B,$7B,$8B,$9B,$AB,$BB,$CB,$DB
+.byte  $EB,$FB,$20,$20,$20,$20,$20,$20
+.byte  $0C,$1C,$2C,$3C,$4C,$5C,$6C,$7C
+.byte  $8C,$9C,$AC,$BC,$CC,$DC,$EC,$FC
+.byte  $20,$20,$20,$20,$20,$20,$0D,$1D
+.byte  $2D,$3D,$4D,$5D,$6D,$7D,$8D,$9D
+.byte  $AD,$BD,$CD,$DD,$ED,$FD,$20,$20
+.byte  $20,$20,$20,$20,$0E,$1E,$2E,$3E
+.byte  $4E,$5E,$6E,$7E,$8E,$9E,$AE,$BE
+.byte  $CE,$DE,$EE,$FE,$20,$20,$20,$20
+.byte  $20,$20,$0F,$1F,$2F,$3F,$4F,$5F
+.byte  $6F,$7F,$8F,$9F,$AF,$BF,$CF,$DF
+.byte  $EF,$FF,$20,$20,$20,$20,$20,$20
+.byte  $20,$20,$20,$20,$20,$20,$20,$20
+.byte  $20,$20,$20,$20,$20,$20,$20,$20
+.byte  $20,$20,$20,$20,$20,$20,$20,$20
+.byte  $20,$20,$20,$20,$20,$20,$20,$20
+.byte  $20,$20,$20,$20,$20,$20,$20,$20
+.byte  $20,$20,$20,$20,$20,$20,$20,$20
+.byte  $20,$20,$20,$20,$20,$20,$20,$20
+.byte  $20,$20,$20,$20,$20,$20,$20,$20
+.byte  $20,$20,$20,$20,$20,$20,$20,$20
+.byte  $20,$20,$20,$20,$20,$20,$20,$20
+.byte  $20,$20,$20,$20,$20,$20,$20,$20
+.byte  $20,$20,$20,$20,$20,$20,$20,$20
+.byte  $20,$20,$20,$20,$20,$20,$20,$20
+.byte  $20,$20,$20,$20,$20,$20,$20,$20
+.byte  $20,$20,$20,$20,$20,$20,$20,$20
+.byte  $20,$20,$20,$20,$20,$20,$20,$20
+.byte  $20,$20,$20,$20,$20,$20,$20,$20
+.byte  $20,$20,$20,$20,$20,$20,$20,$20
+.byte  $20,$20,$20,$20,$20,$20,$20,$20
+.byte  $20,$20
+
+;colour data0
+
+.byte  $09,$09,$09,$09,$09,$09,$09,$09
+.byte  $09,$09,$09,$09,$09,$09,$09,$09
+.byte  $00,$00,$00,$00,$00,$00,$09,$09
+.byte  $09,$09,$09,$09,$09,$09,$09,$09
+.byte  $09,$09,$09,$09,$09,$09,$00,$00
+.byte  $00,$00,$00,$00,$09,$09,$09,$09
+.byte  $09,$09,$09,$09,$09,$09,$09,$09
+.byte  $09,$09,$09,$09,$00,$00,$00,$00
+.byte  $00,$00,$09,$09,$09,$09,$09,$09
+.byte  $09,$09,$09,$09,$09,$09,$09,$09
+.byte  $09,$09,$00,$00,$00,$00,$00,$00
+.byte  $09,$09,$09,$09,$09,$09,$09,$09
+.byte  $09,$09,$09,$09,$09,$09,$09,$09
+.byte  $00,$00,$00,$00,$00,$00,$09,$09
+.byte  $09,$09,$09,$09,$09,$09,$09,$09
+.byte  $09,$09,$09,$09,$09,$09,$00,$00
+.byte  $00,$00,$00,$00,$09,$09,$09,$09
+.byte  $09,$09,$09,$09,$09,$09,$09,$09
+.byte  $09,$09,$09,$09,$00,$00,$00,$00
+.byte  $00,$00,$09,$09,$09,$09,$09,$09
+.byte  $09,$09,$09,$09,$09,$09,$09,$09
+.byte  $09,$09,$00,$00,$00,$00,$00,$00
+.byte  $09,$09,$09,$09,$09,$09,$09,$09
+.byte  $09,$09,$09,$09,$09,$09,$09,$09
+.byte  $00,$00,$00,$00,$00,$00,$09,$09
+.byte  $09,$09,$09,$09,$09,$09,$09,$09
+.byte  $09,$09,$09,$09,$09,$09,$00,$00
+.byte  $00,$00,$00,$00,$09,$09,$09,$09
+.byte  $09,$09,$09,$09,$09,$09,$09,$09
+.byte  $09,$09,$09,$09,$00,$00,$00,$00
+.byte  $00,$00,$09,$09,$09,$09,$09,$09
+.byte  $09,$09,$09,$09,$09,$09,$09,$09
+.byte  $09,$09,$00,$00,$00,$00,$00,$00
+.byte  $09,$09,$09,$09,$09,$09,$09,$09
+.byte  $09,$09,$09,$09,$09,$09,$09,$09
+.byte  $00,$00,$00,$00,$00,$00,$09,$09
+.byte  $09,$09,$09,$09,$09,$09,$09,$09
+.byte  $09,$09,$09,$09,$09,$09,$00,$00
+.byte  $00,$00,$00,$00,$09,$09,$09,$09
+.byte  $09,$09,$09,$09,$09,$09,$09,$09
+.byte  $09,$09,$09,$09,$00,$00,$00,$00
+.byte  $00,$00,$09,$09,$09,$09,$09,$09
+.byte  $09,$09,$09,$09,$09,$09,$09,$09
+.byte  $09,$09,$00,$00,$00,$00,$00,$00
+.byte  $00,$00,$00,$00,$00,$00,$00,$00
+.byte  $00,$00,$00,$00,$00,$00,$00,$00
+.byte  $00,$00,$00,$00,$00,$00,$00,$00
+.byte  $00,$00,$00,$00,$00,$00,$00,$00
+.byte  $00,$00,$00,$00,$00,$00,$00,$00
+.byte  $00,$00,$00,$00,$00,$00,$00,$00
+.byte  $00,$00,$00,$00,$00,$00,$00,$00
+.byte  $00,$00,$00,$00,$00,$00,$00,$00
+.byte  $00,$00,$00,$00,$00,$00,$00,$00
+.byte  $00,$00,$00,$00,$00,$00,$00,$00
+.byte  $00,$00,$00,$00,$00,$00,$00,$00
+.byte  $00,$00,$00,$00,$00,$00,$00,$00
+.byte  $00,$00,$00,$00,$00,$00,$00,$00
+.byte  $00,$00,$00,$00,$00,$00,$00,$00
+.byte  $00,$00,$00,$00,$00,$00,$00,$00
+.byte  $00,$00,$00,$00,$00,$00,$00,$00
+.byte  $00,$00,$00,$00,$00,$00,$00,$00
+.byte  $00,$00,$00,$00,$00,$00,$00,$00
+.byte  $00,$00,$00,$00,$00,$00,$00,$00
+.byte  $00,$00
+
+
+; Char Usage Report
+;  =================                                      00 01 02 03 04
+; Char Index (00) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (01) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (02) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (03) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (04) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (05) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (06) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (07) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (08) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (09) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (10) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (11) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (12) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (13) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (14) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (15) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (16) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (17) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (18) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (19) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (20) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (21) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (22) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (23) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (24) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (25) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (26) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (27) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (28) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (29) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (30) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (31) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (32) TotalScreenCount:05 ScreenUsage [0-4]: 51,06,06,06,06,
+; Char Index (33) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (34) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (35) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (36) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (37) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (38) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (39) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (40) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (41) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (42) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (43) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (44) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (45) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (46) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (47) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (48) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (49) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (50) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (51) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (52) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (53) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (54) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (55) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (56) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (57) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (58) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (59) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (60) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (61) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (62) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (63) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (64) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (65) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (66) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (67) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (68) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (69) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (70) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (71) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (72) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (73) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (74) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (75) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (76) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (77) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (78) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (79) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (80) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (81) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (82) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (83) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (84) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (85) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (86) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (87) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (88) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (89) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (90) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (91) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (92) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (93) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (94) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (95) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (96) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (97) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (98) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (99) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (00) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (01) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (02) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (03) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (04) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (05) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (06) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (07) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (08) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (09) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (10) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (11) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (12) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (13) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (14) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (15) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (16) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (17) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (18) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (19) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (20) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (21) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (22) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (23) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (24) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (25) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (26) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (27) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (28) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (29) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (30) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (31) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (32) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (33) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (34) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (35) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (36) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (37) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (38) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (39) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (40) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (41) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (42) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (43) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (44) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (45) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (46) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (47) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (48) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (49) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (50) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (51) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (52) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (53) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (54) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (55) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (56) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (57) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (58) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (59) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (60) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (61) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (62) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (63) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (64) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (65) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (66) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (67) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (68) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (69) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (70) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (71) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (72) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (73) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (74) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (75) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (76) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (77) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (78) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (79) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (80) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (81) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (82) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (83) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (84) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (85) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (86) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (87) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (88) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (89) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (90) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (91) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (92) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (93) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (94) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (95) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (96) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (97) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (98) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (99) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (00) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (01) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (02) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (03) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (04) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (05) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (06) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (07) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (08) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (09) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (10) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (11) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (12) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (13) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (14) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (15) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (16) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (17) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (18) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (19) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (20) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (21) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (22) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (23) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (24) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (25) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (26) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (27) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (28) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (29) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (30) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (31) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (32) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (33) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (34) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (35) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (36) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (37) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (38) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (39) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (40) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (41) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (42) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (43) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (44) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (45) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (46) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (47) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (48) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (49) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (50) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (51) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (52) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (53) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (54) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
+; Char Index (55) TotalScreenCount:01 ScreenUsage [0-4]: 01,--,--,--,--,
