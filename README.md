@@ -33,16 +33,19 @@ Applications are listed in alphabetical order.
 ## beamrider's "VIC–20 Screen and Character Designer"
 
 URL: http://87.81.155.196/vic20sdd/Vic20SDD.htm
+
 Discussion: http://sleepingelephant.com/ipw-web/bulletin/bb/viewtopic.php?f=14&t=7133
 
 ## Mike's "MINIPAINT" and "MINIGRAFIK"
 
 URL: https://cid-05ef0a8eae2a4f4a.onedrive.live.com/self.aspx/.Public/denial/minigrafik/
+
 Discussion: http://sleepingelephant.com/ipw-web/bulletin/bb/viewtopic.php?f=2&t=3752
 
 ## pixel's assembler "bender"
 
 URL: https://github.com/SvenMichaelKlose/bender/
+
 Discussion: http://sleepingelephant.com/ipw-web/bulletin/bb/viewtopic.php?f=2&t=7072
 
 
