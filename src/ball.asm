@@ -98,7 +98,10 @@ c:
     sbc @(+ sprites_x (-- num_sprites))
     sbc tmp
     jsr neg
-    asl
+    sta tmp
+    asl         ; *= 3
+    clc
+    adc tmp
     clc
     adc #128    ; Bounce back upwards.
     sta side_degrees
