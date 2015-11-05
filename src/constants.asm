@@ -33,8 +33,9 @@ preshifted_sprites  = $5000
 
 default_num_lifes       = 3
 default_ball_speed      = 7
-default_ball_direction  = 16
+default_ball_direction  = 132
 ball_width              = 3
+double_ball_width       = @(* 2 ball_width)
 ball_height             = 5
 bonus_probability       = %11
 vaus_edge_distraction   = 8

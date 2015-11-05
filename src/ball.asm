@@ -75,7 +75,7 @@ c:
 
     lda @(+ sprites_x (-- num_sprites))
     sec
-    sbc #@(-- ball_width)
+    sbc #ball_width
     sta tmp
     lda sprites_x,x
     cmp tmp
@@ -83,21 +83,24 @@ c:
 
     lda tmp
     clc
-    adc #@(+ 16 (* 2 (-- ball_width)))
+    adc #ball_width
+    adc vaus_width
+    cmp sprites_x,x
+    bcc reset_vaus_hit
+    
+    lda vaus_width
+    clc
+    adc #@(half ball_width)
+    lsr
     sta tmp
     lda sprites_x,x
-    cmp tmp
-    bcs reset_vaus_hit
-    
-    lda tmp
     sec
-    sbc #@(half (+ 16 (* 2 (-- ball_width))))
-    sec
-    sbc sprites_x,x
+    sbc @(+ sprites_x (-- num_sprites))
+    sbc tmp
+    jsr neg
     asl
     clc
-    adc #@128
-
+    adc #128    ; Bounce back upwards.
     sta side_degrees
     jmp reflect_from_vaus
 

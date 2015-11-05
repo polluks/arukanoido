@@ -46,6 +46,7 @@ side_degrees:         0
 caught_ball:          0
 reflections_on_top:   0
 reflections_since_last_vaus_hit: 0
+vaus_width:           0
 
 level:                0
 current_level:        0 0

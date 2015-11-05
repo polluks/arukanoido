@@ -134,6 +134,8 @@ l:  jsr remove_sprite
     stx caught_ball
     ldy #@(- ball_init sprite_inits)
     jsr replace_sprite 
+    lda #16
+    sta vaus_width
 
     lda #default_ball_speed
     sta ball_speed
