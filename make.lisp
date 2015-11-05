@@ -2,6 +2,7 @@
 (defvar *add-charset-base?* t)
 (defvar *preshifted-sprites?* t)
 (defvar *show-cpu?* nil)
+(defvar *make-only-vic?* nil)
 
 (defun ascii2pixcii (x)
   (@ [?
@@ -615,7 +616,8 @@
     (format o "Unlimited lifes: POKE~A,~A:POKE~A,~A:POKE~A,~A~%"
             addr jmp (++ addr) lo (+ 2 addr) hi)))
 
-(with-temporary *coinop?* t
-  (make-game :prg "arukanoido-coinop.bin" "arukanoido-coinop.vice.txt"))
+(unless *make-only-vic?*
+  (with-temporary *coinop?* t
+    (make-game :prg "arukanoido-coinop.bin" "arukanoido-coinop.vice.txt")))
 
 (quit)
