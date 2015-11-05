@@ -40,22 +40,22 @@
 "ssssssssssssr")
 
 ; Round 03
-;(3
-;"ggggggggggggg"
-;"             "
-;"wwwxxxxxxxxxx"
-;"             "
-;"rrrrrrrrrrrrr"
-;"             "
-;"xxxxxxxxxxwww"
-;"             "
-;"ppppppppppppp"
-;"             "
-;"bbbxxxxxxxxxx"
-;"             "
-;"ccccccccccccc"
-;"             "
-;"xxxxxxxxxxccc")
+(3
+"ggggggggggggg"
+"             "
+"wwwxxxxxxxxxx"
+"             "
+"rrrrrrrrrrrrr"
+"             "
+"xxxxxxxxxxwww"
+"             "
+"ppppppppppppp"
+"             "
+"bbbxxxxxxxxxx"
+"             "
+"ccccccccccccc"
+"             "
+"xxxxxxxxxxccc")
 
 ; Round 04
 (4
