@@ -16,10 +16,11 @@ l:  lda #0              ; Fetch joystick status.
     lda $9111
     tax
     and #joy_fire
-    beq game_over
+    beq +n
     txa
     and #joy_left
     bne -l
+n:
 
     jsr init_game_mode
 
