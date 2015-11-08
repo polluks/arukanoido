@@ -13,6 +13,14 @@ You've probably found these files here:
 https://github.com/SvenMichaelKlose/arukanoido/
 
 
+# Rolling your own
+
+You can find the latest binary 'arukanoido.prg' in this directory.
+You need a Linux machine to build your own Arukanoido.  Steel Bank
+Common Lisp AKA 'sbcl' is required.  Launch 'download-and-install.sh'
+in an empty directory and it'll clone everything and build it.
+
+
 # Things missing:
 
 * No sound.
