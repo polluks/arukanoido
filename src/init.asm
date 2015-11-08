@@ -56,7 +56,7 @@ end
     sta $912d
     sta $911e       ; Disable restore key NMIs.
 
-if 0
+if @nil
     ; Copy code to $200-3ff.
     ldx #0
 l:  lda lowmem,x
