@@ -18,11 +18,10 @@ https://github.com/SvenMichaelKlose/arukanoido/
 * No sound.
 * No two-player mode.
 * No intro or extra graphics.
-* Round 3 is missing due to the ball's unfinished trajectory calculation.
 * Round 33 is missing.
 * No animated sprites.
 * No distractions floating down.
-* No B, C, E or S bonuses although they show.
+* No B or E bonuses although they show.
 * No title screen nor intro.
 
 
