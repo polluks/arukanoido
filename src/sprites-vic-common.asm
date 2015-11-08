@@ -37,14 +37,14 @@ j:  lda sprites_ox,x
     and #decorative
     beq +m
     lda #$ff
-    bne +c
+    bne +k
 
     ; Save current position as old one.
 m:  jsr xpixel_to_char
     sta sprites_ox,x
     lda sprites_y,x
     jsr pixel_to_char
-c:  sta sprites_oy,x
+k:  sta sprites_oy,x
 
 n:  dex
     bpl -l

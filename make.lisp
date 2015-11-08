@@ -2,7 +2,7 @@
 (defvar *add-charset-base?* t)
 (defvar *preshifted-sprites?* t)
 (defvar *show-cpu?* nil)
-(defvar *make-only-vic?* nil)
+(defvar *make-only-vic?* t)
 
 (defun ascii2pixcii (x)
   (@ [?
@@ -573,8 +573,10 @@
                               "sprites-vic.asm")
                           "draw-level.asm"
                           "score.asm"
+                          "minigrafik-display.asm"
                           "level-data.asm"
                           "gfx-doh.asm"
+                          "gfx-title.asm"
                           "end.asm"))
         cmds))
 

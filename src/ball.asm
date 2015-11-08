@@ -45,7 +45,7 @@ n:
     ldy ball_speed
 l:  tya
     pha
-    jsr +c
+    jsr test_distractor_collision
     lda sprites_fl,x
     cmp #<ctrl_ball
     bne +e
@@ -57,7 +57,7 @@ l:  tya
 e:  pla
     rts
 
-c:
+test_distractor_collision:
     ; Test on collision with sprites.
 ;    lda #8 ;ball_width
 ;    sta collision_x_distance
@@ -311,7 +311,7 @@ n:  sta sprites_dy,x
     lda sprites_y,x
     bne +n
     dec balls
-    bne +c
+    bne still_balls_left
 poke_unlimited:
     dec lifes
     beq +o
@@ -324,7 +324,8 @@ if @*coinop?*
     $22 1               ; Exit emulator.
 end
 n:  rts
-c:  lda balls
+still_balls_left:
+    lda balls
     cmp #1
     bne +r
     lda #0              ; Reset from disruption bonus.

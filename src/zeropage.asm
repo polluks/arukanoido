@@ -88,3 +88,8 @@ hiscore:    fill num_score_digits
 @(check-zeropage-size)
 
     end
+
+; Minigrafik viewer
+mg_s    = s
+mg_d    = d
+mg_c    = scr

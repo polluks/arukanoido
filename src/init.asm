@@ -2,7 +2,7 @@ if @*coinop?*
     org $2000
 end
 
-relocated_start = @(+ charset (* num_chars 8))
+relocated_start = @(+ charset 3840) ;(* num_chars 8))
 
 relocation_offset = @(- relocated_start loaded_start)
 loaded_end = @(- relocated_end relocation_offset)
@@ -73,35 +73,5 @@ l:  lda stackmem,x
     dex
     bpl -l
 end
-
-    ; Clear character 0.
-    ldx #7
-    lda #0
-l:  sta charset,x
-    dex
-    bpl -l
-
-    ; Copy background characters to charset.
-    ldx #@(- gfx_background_end gfx_background)
-l:  lda @(-- gfx_background),x
-    sta @(-- (+ charset (* bg_start 8))),x
-    dex
-    bne -l
-
-    lda #20     ; Horizontal screen origin.
-    sta $9000
-    lda #21     ; Vertical screen origin.
-    sta $9001
-;    lda #@(+ 128 15) ; Number of columns.
-    lda #15     ; Number of columns.
-    sta $9002
-    lda #@(* 32 2) ; Number of rows.
-    sta $9003
-    lda #@(+ vic_screen_1000 vic_charset_1400)
-    sta $9005
-    lda #@(* light_cyan 16) ; Auxiliary color.
-    sta $900e
-    lda #@(+ reverse red)   ; Screen and border color.
-    sta $900f
 
     jmp start
