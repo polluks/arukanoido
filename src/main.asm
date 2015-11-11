@@ -5,11 +5,13 @@ if @*preshifted-sprites?*
 end
 
 game_over:
+if @(not *shadowvic?*)
     lda #<gfx_title
     sta s
     lda #>gfx_title
     sta @(++ s)
     jsr mg_display
+
 
 l:  lda #0              ; Fetch joystick status.
     sta $9113
@@ -21,6 +23,7 @@ l:  lda #0              ; Fetch joystick status.
     and #joy_left
     bne -l
 n:
+end
 
     jsr init_game_mode
 
@@ -224,14 +227,14 @@ n:
     ; Wait for three seconds.
     ldx #150
 l:
-if @(not *coinop?*)
+if @(not *shadowvic?*)
     lda $9004
     bne -l
 m:  lda $9004
     beq -m
 end
-if @*coinop?*
-    $22 2
+if @*shadowvic?*
+    $22 $02
 end
     dex
     bne -l
@@ -251,7 +254,7 @@ n:
 
     jsr random      ; Improve randomness.
 
-if @(not *coinop?*)
+if @(not *shadowvic?*)
     lda mode
     cmp #mode_disruption
     beq +n
@@ -259,8 +262,8 @@ l:  lda $9004
     bne -l
 n:
 end
-if @*coinop?*
-   $22 2
+if @*shadowvic?*
+   $22 $02
 end
 
 if @*show-cpu?*

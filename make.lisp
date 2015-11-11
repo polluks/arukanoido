@@ -1,4 +1,4 @@
-(defvar *coinop?* nil)
+(defvar *shadowvic?* nil)
 (defvar *add-charset-base?* t)
 (defvar *preshifted-sprites?* t)
 (defvar *show-cpu?* nil)
@@ -548,7 +548,7 @@
         (@ [+ "src/" _] `("../bender/vic-20/vic.asm"
                           "constants.asm"
                           "zeropage.asm"
-                          ,@(unless *coinop?*
+                          ,@(unless *shadowvic?*
                               '("../bender/vic-20/basic-loader.asm"))
                           "init.asm"
                           "gfx-background.asm"
@@ -619,7 +619,7 @@
             addr jmp (++ addr) lo (+ 2 addr) hi)))
 
 (unless *make-only-vic?*
-  (with-temporary *coinop?* t
-    (make-game :prg "arukanoido-coinop.bin" "arukanoido-coinop.vice.txt")))
+  (with-temporary *shadowvic?* t
+    (make-game :prg "arukanoido-shadowvic.bin" "arukanoido-shadowvic.vice.txt")))
 
 (quit)

@@ -1,4 +1,4 @@
-if @*coinop?*
+if @*shadowvic?*
     org $2000
 end
 
@@ -8,7 +8,7 @@ relocation_offset = @(- relocated_start loaded_start)
 loaded_end = @(- relocated_end relocation_offset)
 
 main:
-if @*coinop?*
+if @*shadowvic?*
     jmp loaded_start
 end
 
@@ -46,7 +46,7 @@ n:  pla
     rts
 
 loaded_start:
-if @(not *coinop?*)
+if @(not *shadowvic?*)
     org relocated_start
 end
 

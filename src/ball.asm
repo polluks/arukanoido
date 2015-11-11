@@ -317,10 +317,10 @@ poke_unlimited:
     beq +o
     jmp retry
 o:
-if @(not *coinop?*)
+if @(not *shadowvic?*)
     jmp game_over
 end
-if @*coinop?*
+if @*shadowvic?*
     $22 1               ; Exit emulator.
 end
 n:  rts
