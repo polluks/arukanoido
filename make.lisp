@@ -573,7 +573,8 @@
                               "sprites-vic.asm")
                           "draw-level.asm"
                           "score.asm"
-                          "minigrafik-display.asm"
+                          ,@(unless *shadowvic?*
+                              '("../bender/vic-20/minigrafik-display.asm"))
                           "level-data.asm"
                           "gfx-doh.asm"
                           "gfx-title.asm"
