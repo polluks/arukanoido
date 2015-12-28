@@ -523,21 +523,16 @@
      (negate x)
      (reverse x)))
 
-(defun integer-to-byte (x)
-  (? (< x 0)
-     (+ 256 x)
-     x))
-
-(define-filter integers-to-bytes #'byte)
+(define-filter bytes #'byte)
 
 (defun ball-directions-x ()
   (let m (/ 360 +degrees+)
-;    (integers-to-bytes (full-sin-wave (maptimes [integer (* smax (degree-sin (* m _)))] (/ +degrees+ 4))))))
-    (integers-to-bytes (full-sin-wave (maptimes [integer (/ (* 3 smax (degree-sin (* m _))) 5)] (/ +degrees+ 4))))))
+;    (bytes (full-sin-wave (maptimes [integer (* smax (degree-sin (* m _)))] (/ +degrees+ 4))))))
+    (bytes (full-sin-wave (maptimes [integer (/ (* 3 smax (degree-sin (* m _))) 5)] (/ +degrees+ 4))))))
 
 (defun ball-directions-y ()
   (let m (/ 360 +degrees+)
-    (integers-to-bytes (full-cos-wave (maptimes [integer (* smax (degree-cos (* m _)))] (/ +degrees+ 4))))))
+    (bytes (full-cos-wave (maptimes [integer (* smax (degree-cos (* m _)))] (/ +degrees+ 4))))))
 
 (defun make (to files cmds)
   (apply #'assemble-files to files)
@@ -575,7 +570,6 @@
                           "score.asm"
                           ,@(unless *shadowvic?*
                               '("../bender/vic-20/minigrafik-display.asm"))
-                          "level-data.asm"
                           "gfx-doh.asm"
                           "gfx-title.asm"
                           "end.asm"))
