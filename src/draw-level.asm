@@ -81,3 +81,5 @@ brick_inc:
     jsr inc_zp
     ldx #col
     jmp inc_zp
+
+level_data: @+level-data+
