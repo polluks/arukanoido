@@ -6,8 +6,8 @@
 
 (defun ascii2pixcii (x)
   (@ [?
-       (== 32 _)        255
-       (alpha-char? _)  (+ (- _ #\A) (get-label 'framechars))
+       (== 32 (char-code _))  (code-char 255)
+       (alpha-char? _)        (character+ (character- _ #\A) (code-char (get-label 'framechars)))
        _]
      (string-list x)))
 

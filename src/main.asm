@@ -185,7 +185,7 @@ l:  sec
     inc @(+ txt_round 6)
     jmp -l
 n:  clc
-    adc #@(+ 10 #\0 (- score_char0 #\0))
+    adc #@(+ 10 (char-code #\0) (- score_char0 (char-code #\0)))
     sta @(+ txt_round 7)
 
     ; Print "ROUND XX".
