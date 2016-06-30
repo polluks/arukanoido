@@ -1,0 +1,62 @@
+
+
+Track_08_VoicePattern2:
+.scope
+chanstart:
+loop:
+volset 8
+dur 2
+g2
+s
+volset 7
+dur 2
+g2
+s
+volset 6
+dur 2
+g2
+s
+volset 5
+dur 2
+g2
+s
+volset 4
+dur 2
+g2
+s
+volset 3
+dur 2
+g2
+s
+volset 2
+dur 2
+g2
+s
+volset 1
+dur 2
+g2
+s
+volset 0
+dur 2
+g2
+s
+dur 34
+s
+stop
+
+.endscope
+
+.macro Declare_Track_08
+Track_08Music:
+Track_08LO:
+.byte <0,<0,<Track_08_VoicePattern2,<0
+
+Track_08HI:
+.byte >0,>0,>Track_08_VoicePattern2,>0
+.endmacro
+
+
+.macro Declare_Track_08_ActiveVoices
+.byte %0100
+.endmacro
+

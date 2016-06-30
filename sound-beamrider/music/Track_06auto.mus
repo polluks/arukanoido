@@ -1,0 +1,631 @@
+
+
+
+
+Track_06auto_VoicePattern0:
+.scope
+chanstart:
+volset 8
+loop:
+dur 4
+b1
+s
+b1
+s
+b2
+s
+b2
+s
+b1
+s
+b1
+s
+b2
+s
+b2
+s
+a1
+s
+a1
+s
+a2
+s
+a2
+s
+a1
+s
+a1
+s
+a2
+s
+a2
+s
+g1
+s
+g1
+s
+g2
+s
+g2
+s
+g1
+s
+g1
+s
+g2
+s
+g2
+s
+fSh1
+s
+fSh1
+s
+fSh2
+s
+fSh2
+s
+fSh1
+s
+fSh1
+s
+fSh2
+s
+fSh2
+dur 3
+s
+dur 4
+b1
+s
+b1
+s
+b2
+s
+b2
+s
+b1
+s
+b1
+s
+b2
+s
+b2
+s
+a1
+s
+a1
+s
+a2
+s
+a2
+s
+a1
+s
+a1
+s
+a2
+s
+a2
+s
+g1
+s
+g1
+s
+g2
+s
+g2
+s
+g1
+s
+g1
+s
+g2
+s
+g2
+s
+a1
+s
+a1
+s
+a2
+s
+a2
+s
+a1
+s
+a1
+s
+a2
+s
+a2
+dur 3
+s
+dur 4
+b1
+s
+b1
+s
+b2
+s
+b2
+s
+b1
+s
+b1
+s
+b2
+s
+b2
+s
+a1
+s
+a1
+s
+a2
+s
+a2
+s
+a1
+s
+a1
+s
+a2
+s
+a2
+s
+g1
+s
+g1
+s
+g2
+s
+g2
+s
+g1
+s
+g1
+s
+g2
+s
+g2
+s
+fSh1
+s
+fSh1
+s
+fSh2
+s
+fSh2
+s
+fSh1
+s
+fSh1
+s
+fSh2
+s
+fSh2
+dur 3
+s
+dur 4
+b1
+s
+b1
+s
+b2
+s
+b2
+s
+b1
+s
+b1
+s
+b2
+s
+b2
+s
+a1
+s
+a1
+s
+a2
+s
+a2
+s
+a1
+s
+a1
+s
+a2
+s
+a2
+s
+g1
+s
+g1
+s
+g2
+s
+g2
+s
+g1
+s
+g1
+s
+g2
+s
+g2
+s
+fSh1
+s
+fSh1
+s
+fSh2
+s
+fSh2
+s
+fSh1
+s
+fSh1
+s
+fSh2
+s
+fSh2
+dur 3
+s
+go loop
+
+.endscope
+
+
+
+Track_06auto_VoicePattern1:
+.scope
+chanstart:
+volset 8
+loop:
+dur 16
+fSh0
+dur 8
+a0
+b0
+dur 5
+a0
+dur 11
+s
+dur 5
+fSh0
+dur 11
+s
+dur 5
+a0
+dur 11
+s
+dur 5
+cSh1
+dur 11
+s
+dur 32
+a0
+dur 16
+g0
+dur 8
+a0
+b0
+dur 5
+a0
+dur 11
+s
+dur 5
+g0
+dur 11
+s
+dur 5
+fSh0
+dur 13
+s
+dur 3
+fSh0
+dur 13
+s
+dur 14
+fSh0
+dur 15
+a0
+dur 16
+fSh0
+dur 8
+a0
+b0
+dur 5
+a0
+dur 11
+s
+dur 5
+fSh0
+dur 11
+s
+dur 5
+a0
+dur 11
+s
+dur 5
+cSh1
+dur 11
+s
+dur 32
+a0
+dur 16
+b0
+dur 8
+cSh1
+d1
+dur 5
+cSh1
+dur 11
+s
+dur 5
+b0
+dur 11
+s
+dur 5
+cSh1
+dur 11
+s
+dur 5
+e1
+dur 11
+s
+dur 31
+cSh1
+dur 2
+cSh2
+dur 6
+s
+dur 2
+cSh2
+dur 22
+s
+dur 2
+cSh2
+dur 6
+s
+dur 2
+cSh2
+dur 22
+s
+dur 2
+cSh2
+dur 6
+s
+dur 2
+cSh2
+dur 22
+s
+dur 2
+cSh2
+dur 6
+s
+dur 8
+fSh1
+e1
+cSh1
+dur 64
+d1
+dur 63
+cSh1
+dur 2
+cSh2
+dur 6
+s
+dur 2
+cSh2
+dur 22
+s
+dur 2
+cSh2
+dur 6
+s
+dur 2
+cSh2
+dur 22
+s
+dur 2
+cSh2
+dur 6
+s
+dur 2
+cSh2
+dur 22
+s
+dur 2
+cSh2
+dur 6
+s
+dur 8
+fSh1
+e1
+cSh1
+dur 64
+d1
+dur 63
+cSh1
+go loop
+
+.endscope
+
+
+
+Track_06auto_VoicePattern2:
+.scope
+chanstart:
+volset 8
+loop:
+dur 16
+b0
+dur 8
+cSh1
+d1
+dur 7
+cSh1
+dur 9
+s
+dur 7
+b0
+dur 9
+s
+dur 7
+cSh1
+dur 9
+s
+dur 7
+fSh1
+dur 9
+s
+dur 32
+cSh1
+dur 16
+b0
+dur 8
+cSh1
+d1
+dur 7
+cSh1
+dur 9
+s
+dur 7
+b0
+dur 9
+s
+dur 7
+b0
+dur 9
+s
+dur 7
+aSh0
+dur 9
+s
+dur 16
+b0
+dur 15
+cSh1
+dur 16
+b0
+dur 8
+cSh1
+d1
+dur 7
+cSh1
+dur 9
+s
+dur 7
+b0
+dur 9
+s
+dur 7
+cSh1
+dur 9
+s
+dur 7
+fSh1
+dur 9
+s
+dur 32
+cSh1
+dur 16
+d1
+dur 8
+e1
+fSh1
+dur 7
+e1
+dur 9
+s
+dur 7
+d1
+dur 9
+s
+dur 7
+e1
+dur 9
+s
+dur 7
+a1
+dur 9
+s
+dur 31
+e1
+dur 4
+cSh2
+s
+cSh2
+dur 20
+s
+dur 4
+cSh2
+s
+cSh2
+dur 20
+s
+dur 4
+cSh2
+s
+cSh2
+dur 20
+s
+dur 4
+cSh2
+s
+dur 8
+b1
+a1
+e1
+dur 116
+fSh1
+dur 11
+null
+dur 4
+cSh2
+s
+cSh2
+dur 20
+s
+dur 4
+cSh2
+s
+cSh2
+dur 20
+s
+dur 4
+cSh2
+s
+cSh2
+dur 20
+s
+dur 4
+cSh2
+s
+dur 8
+b1
+a1
+e1
+dur 116
+fSh1
+dur 11
+null
+go loop
+
+.endscope
+
+.macro Declare_Track_06auto
+Track_06autoMusic:
+Track_06autoLO:
+.byte <Track_06auto_VoicePattern0,<Track_06auto_VoicePattern1,<Track_06auto_VoicePattern2,<0
+
+Track_06autoHI:
+.byte >Track_06auto_VoicePattern0,>Track_06auto_VoicePattern1,>Track_06auto_VoicePattern2,>0
+.endmacro
+
+
+.macro Declare_Track_06auto_ActiveVoices
+.byte %0111
+.endmacro
+

@@ -1,0 +1,300 @@
+
+
+
+
+Track_05_VoicePattern0:
+.scope
+chanstart:
+volset 8
+loop:
+dur 5
+c2
+s
+c2
+s
+c2
+s
+c2
+s
+g1
+s
+g2
+s
+g1
+s
+g2
+s
+g1
+s
+g2
+s
+g1
+s
+g2
+dur 95
+s
+dur 2
+g1
+s
+dur 1
+g1
+dur 39
+s
+stop
+
+.endscope
+
+
+
+Track_05_VoicePattern1:
+.scope
+chanstart:
+volset 8
+loop:
+dur 3
+b1
+dur 7
+s
+dur 3
+b1
+dur 7
+s
+dur 3
+b1
+dur 7
+s
+dur 3
+b1
+dur 17
+s
+dur 3
+b1
+dur 7
+s
+dur 3
+b1
+dur 17
+s
+dur 3
+b1
+dur 7
+s
+dur 3
+b1
+dur 17
+s
+dur 3
+b1
+dur 7
+s
+dur 3
+b1
+dur 17
+s
+dur 3
+b1
+dur 7
+s
+dur 3
+b1
+dur 22
+s
+dur 17
+a2
+dur 3
+s
+dur 2
+fSh2
+dur 3
+s
+dur 2
+dSh2
+dur 3
+s
+dur 2
+c2
+dur 3
+s
+dur 2
+a1
+dur 3
+s
+dur 2
+fSh1
+dur 3
+s
+dur 2
+a1
+dur 3
+s
+dur 2
+c2
+dur 3
+s
+dur 2
+dSh2
+dur 3
+s
+dur 2
+fSh2
+dur 3
+s
+dur 2
+a2
+dur 3
+s
+dur 5
+b1
+dur 2
+s
+b1
+dur 39
+s
+stop
+
+.endscope
+
+
+
+Track_05_VoicePattern2:
+.scope
+chanstart:
+volset 8
+loop:
+dur 3
+g1
+dur 7
+s
+dur 3
+fSh1
+dur 7
+s
+dur 3
+dSh1
+dur 7
+s
+dur 3
+f1
+dur 17
+s
+dur 3
+fSh1
+dur 7
+s
+dur 3
+g1
+dur 17
+s
+dur 3
+fSh1
+dur 7
+s
+dur 3
+fSh1
+dur 17
+s
+dur 3
+fSh1
+dur 7
+s
+dur 3
+fSh1
+dur 17
+s
+dur 3
+fSh1
+dur 7
+s
+dur 3
+fSh1
+dur 17
+s
+dur 3
+fSh2
+dur 2
+s
+dur 3
+dSh2
+dur 2
+s
+dur 3
+c2
+dur 2
+s
+dur 3
+a1
+dur 2
+s
+dur 3
+fSh1
+dur 2
+s
+dur 3
+dSh1
+dur 2
+s
+dur 3
+c1
+dur 2
+s
+dur 3
+a0
+dur 2
+s
+dur 3
+fSh0
+dur 2
+s
+dur 3
+a0
+dur 2
+s
+dur 3
+c1
+dur 2
+s
+dur 3
+dSh1
+dur 2
+s
+dur 3
+fSh1
+dur 2
+s
+dur 3
+a1
+dur 2
+s
+dur 3
+c2
+dur 2
+s
+dur 3
+dSh2
+dur 2
+s
+dur 3
+fSh1
+dur 2
+s
+fSh1
+dur 39
+s
+stop
+
+.endscope
+
+.macro Declare_Track_05
+Track_05Music:
+Track_05LO:
+.byte <Track_05_VoicePattern0,<Track_05_VoicePattern1,<Track_05_VoicePattern2,<0
+
+Track_05HI:
+.byte >Track_05_VoicePattern0,>Track_05_VoicePattern1,>Track_05_VoicePattern2,>0
+.endmacro
+
+
+.macro Declare_Track_05_ActiveVoices
+.byte %0111
+.endmacro
+

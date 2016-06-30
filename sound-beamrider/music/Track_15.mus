@@ -1,0 +1,51 @@
+
+
+
+
+Track_15_VoicePattern0:
+.scope
+chanstart:
+volset 8
+loop:
+dur 8
+s
+stop
+
+.endscope
+
+
+
+Track_15_VoicePattern1:
+.scope
+chanstart:
+volset 8
+loop:
+dur 1
+aSh0
+gSh0
+e0
+d0
+s
+s
+s
+s
+dur 0
+s
+stop
+
+.endscope
+
+.macro Declare_Track_15
+Track_15Music:
+Track_15LO:
+.byte <Track_15_VoicePattern0,<Track_15_VoicePattern1,<0,<0
+
+Track_15HI:
+.byte >Track_15_VoicePattern0,>Track_15_VoicePattern1,>0,>0
+.endmacro
+
+
+.macro Declare_Track_15_ActiveVoices
+.byte %0011
+.endmacro
+

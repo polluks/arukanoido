@@ -1,0 +1,174 @@
+
+
+
+
+Track_13_VoicePattern1:
+.scope
+chanstart:
+volset 8
+loop:
+dur 116
+s
+dur 116
+null
+stop
+
+.endscope
+
+
+
+Track_13_VoicePattern2:
+.scope
+chanstart:
+volset 2
+loop:
+dur 2
+c2
+cSh2
+c2
+cSh2
+c2
+cSh2
+c2
+cSh2
+volset 3
+c2
+cSh2
+c2
+cSh2
+c2
+cSh2
+c2
+cSh2
+c2
+cSh2
+volset 4
+c2
+cSh2
+c2
+cSh2
+c2
+cSh2
+c2
+cSh2
+volset 5
+c2
+cSh2
+c2
+cSh2
+c2
+cSh2
+c2
+cSh2
+volset 6
+c2
+cSh2
+c2
+cSh2
+c2
+cSh2
+c2
+cSh2
+volset 7
+c2
+cSh2
+c2
+cSh2
+c2
+cSh2
+c2
+cSh2
+c2
+cSh2
+volset 8
+c2
+cSh2
+c2
+cSh2
+c2
+cSh2
+c2
+cSh2
+volset 7
+c2
+cSh2
+c2
+cSh2
+c2
+cSh2
+c2
+cSh2
+volset 6
+c2
+cSh2
+c2
+cSh2
+c2
+cSh2
+c2
+cSh2
+c2
+cSh2
+volset 5
+c2
+cSh2
+c2
+cSh2
+c2
+cSh2
+c2
+cSh2
+c2
+cSh2
+c2
+cSh2
+c2
+cSh2
+c2
+cSh2
+volset 4
+c2
+cSh2
+c2
+cSh2
+c2
+cSh2
+volset 3
+c2
+cSh2
+c2
+cSh2
+volset 2
+c2
+cSh2
+c2
+cSh2
+volset 1
+c2
+cSh2
+c2
+cSh2
+c2
+cSh2
+c2
+cSh2
+dur 0
+s
+stop
+
+.endscope
+
+.macro Declare_Track_13
+Track_13Music:
+Track_13LO:
+.byte <0,<Track_13_VoicePattern1,<Track_13_VoicePattern2,<0
+
+Track_13HI:
+.byte >0,>Track_13_VoicePattern1,>Track_13_VoicePattern2,>0
+.endmacro
+
+
+.macro Declare_Track_13_ActiveVoices
+.byte %0110
+.endmacro
+

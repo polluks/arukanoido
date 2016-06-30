@@ -1,0 +1,89 @@
+
+
+
+
+Track_11_VoicePattern3:
+.scope
+chanstart:
+volset 8
+loop:
+dur 1
+cSh1
+a0
+d0
+s
+s
+dur 4
+s
+volset 7
+dur 1
+f1
+a0
+fSh0
+s
+s
+dur 4
+s
+volset 6
+dur 1
+f1
+a0
+d0
+s
+s
+dur 4
+s
+volset 5
+dur 1
+f1
+cSh1
+fSh0
+s
+s
+dur 4
+s
+volset 3
+dur 1
+f1
+a0
+fSh0
+s
+s
+dur 4
+s
+volset 2
+dur 1
+cSh1
+a0
+d0
+s
+s
+dur 4
+s
+volset 1
+dur 1
+cSh1
+fSh0
+d0
+s
+s
+dur 2
+s
+stop
+
+.endscope
+
+.macro Declare_Track_11
+Track_11Music:
+Track_11LO:
+.byte <0,<0,<0,<Track_11_VoicePattern3
+
+Track_11HI:
+.byte >0,>0,>0,>Track_11_VoicePattern3
+.endmacro
+
+
+.macro Declare_Track_11_ActiveVoices
+.byte %1000
+.endmacro
+

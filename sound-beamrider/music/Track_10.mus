@@ -1,0 +1,31 @@
+
+
+
+
+Track_10_VoicePattern2:
+.scope
+chanstart:
+volset 8
+loop:
+dur 2
+c2
+dur 0
+s
+stop
+
+.endscope
+
+.macro Declare_Track_10
+Track_10Music:
+Track_10LO:
+.byte <0,<0,<Track_10_VoicePattern2,<0
+
+Track_10HI:
+.byte >0,>0,>Track_10_VoicePattern2,>0
+.endmacro
+
+
+.macro Declare_Track_10_ActiveVoices
+.byte %0100
+.endmacro
+

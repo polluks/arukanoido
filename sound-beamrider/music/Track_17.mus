@@ -1,0 +1,257 @@
+
+
+
+
+Track_17_VoicePattern1:
+.scope
+chanstart:
+volset 8
+loop:
+dur 4
+dSh2
+dur 2
+d2
+dur 3
+cSh2
+dur 2
+c2
+dur 3
+b1
+dur 2
+aSh1
+dur 3
+a1
+dur 2
+gSh1
+volset 7
+dur 3
+g1
+dur 1
+fSh1
+dur 3
+f1
+dur 2
+e1
+dur 3
+dSh1
+dur 2
+d1
+dur 3
+cSh1
+dur 2
+c1
+volset 6
+dur 3
+b0
+dur 2
+aSh0
+a0
+dur 3
+gSh0
+dur 2
+g0
+dur 3
+fSh0
+dur 2
+f0
+dur 3
+e0
+dur 2
+volset 5
+dSh0
+d0
+dur 3
+cSh0
+dur 2
+c0
+dur 3
+s
+dur 2
+f0
+dur 5
+fSh0
+g0
+gSh0
+a0
+aSh0
+volset 4
+dur 4
+b0
+dur 5
+c1
+dur 4
+cSh1
+dur 5
+d1
+dur 5
+dSh1
+e1
+f1
+fSh1
+g1
+gSh1
+volset 3
+dur 5
+a1
+aSh1
+dur 5
+b1
+c2
+cSh2
+dur 5
+d2
+dSh2
+volset 2
+e2
+dur 6
+f2
+dur 5
+fSh2
+g2
+gSh2
+dur 6
+a2
+volset 1
+dur 8
+aSh2
+dur 7
+b2
+s
+stop
+
+.endscope
+
+
+
+Track_17_VoicePattern2:
+.scope
+chanstart:
+volset 8
+loop:
+dur 4
+d2
+dur 1
+cSh2
+dur 4
+c2
+dur 2
+b1
+aSh1
+dur 3
+a1
+dur 2
+gSh1
+g1
+dur 3
+fSh1
+dur 2
+f1
+dur 3
+e1
+dur 2
+dSh1
+dur 3
+d1
+dur 2
+cSh1
+dur 3
+c1
+dur 2
+b0
+dur 3
+aSh0
+dur 2
+a0
+gSh0
+dur 3
+g0
+dur 2
+fSh0
+dur 3
+f0
+dur 2
+e0
+dSh0
+dur 3
+d0
+dur 2
+cSh0
+dur 3
+c0
+dur 2
+s
+dur 3
+e0
+dur 4
+f0
+fSh0
+dur 5
+g0
+dur 4
+gSh0
+a0
+dur 5
+aSh0
+dur 4
+b0
+dur 5
+c1
+dur 3
+cSh1
+dur 5
+d1
+dur 4
+dSh1
+e1
+f1
+dur 5
+fSh1
+dur 4
+g1
+gSh1
+a1
+dur 5
+aSh1
+dur 3
+b1
+dur 5
+c2
+dur 3
+cSh2
+dur 4
+d2
+dur 5
+dSh2
+dur 4
+e2
+f2
+fSh2
+dur 3
+g2
+gSh2
+dur 4
+a2
+dur 5
+aSh2
+dur 3
+b2
+dur 4
+s
+stop
+
+.endscope
+
+.macro Declare_Track_17
+Track_17Music:
+Track_17LO:
+.byte <0,<Track_17_VoicePattern1,<Track_17_VoicePattern2,<0
+
+Track_17HI:
+.byte >0,>Track_17_VoicePattern1,>Track_17_VoicePattern2,>0
+.endmacro
+
+
+.macro Declare_Track_17_ActiveVoices
+.byte %0110
+.endmacro
+
