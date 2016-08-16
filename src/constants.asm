@@ -47,3 +47,7 @@ score_char0         = foreground
 scorechars          = @(+ charset (* 8 score_char0))
 score_on_screen     = @(+ screen screen_columns)
 hiscore_on_screen   = @(+ score_on_screen num_score_digits 1)
+
+; Music settings
+
+music_player        = $7000

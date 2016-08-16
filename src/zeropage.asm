@@ -5,6 +5,7 @@ sl:
 s:                    0 0 ; Source pointer.
 dl:
 d:                    0 0 ; Destination pointer.
+c:                    0 0 ; Counter.
 sr:
 scr:                  0 0 ; Screen pointer.
 dr:

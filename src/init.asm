@@ -74,4 +74,45 @@ l:  lda stackmem,x
     bpl -l
 end
 
+music_player_size = @(length (fetch-file "sound-beamrider/MusicTester.prg"))
+loaded_music_player_end = @(+ loaded_music_player (-- music_player_size))
+music_player_end = @(+ music_player (-- music_player_size))
+
+    lda #@(low loaded_music_player_end)
+    sta s
+    lda #@(high loaded_music_player_end)
+    sta @(++ s)
+    lda #@(low music_player_end)
+    sta d
+    lda #@(high music_player_end)
+    sta @(++ d)
+    ldx #@(low music_player_size)
+    lda #@(++ (high music_player_size))
+    sta @(++ c)
+
+copy_backwards:
+    ldy #0
+l2: lda (s),y
+    sta (d),y
+    dec s
+    lda s
+    cmp #$ff
+    beq m2
+n2: dec d
+    lda d
+    cmp #$ff
+    beq j2
+q2: dex
+    bne l2
+    dec @(++ c)
+    bne l2
+
+stop:
+    jsr music_player
     jmp start
+
+m2: dec @(++ s)
+    jmp n2
+
+j2: dec @(++ d)
+    jmp q2

@@ -572,6 +572,7 @@
                               '("../bender/vic-20/minigrafik-display.asm"))
                           "gfx-doh.asm"
                           "gfx-title.asm"
+                          "music.asm"
                           "end.asm"))
         cmds))
 
@@ -580,7 +581,7 @@
 
 (defconstant +level-data+ (with-queue q
                             (dolist (level *levels*)
-                              (enqueue q (+ 3 level.))
+                              (enqueue q (+ 3 level.)) ; Y offset of bricks.
                               (dolist (line .level)
                                 (dolist (brick (string-list line))
                                   (enqueue q (get-brick brick))))
@@ -597,6 +598,7 @@
 
 (make-game :prg "arukanoido.prg" "arukanoido.vice.txt")
 
+(format t "Updating POKEs…~%")
 (with-output-file o "POKES"
   (with (addr (- (get-label 'poke_unlimited)
                  (get-label 'relocation_offset))
@@ -608,6 +610,8 @@
 
 (unless *make-only-vic?*
   (with-temporary *shadowvic?* t
+    (format t "Making shadowVIC version…~%")
     (make-game :prg "arukanoido-shadowvic.bin" "arukanoido-shadowvic.vice.txt")))
 
+(format t "Level data: ~A B~%" (length +level-data+))
 (quit)

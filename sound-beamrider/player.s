@@ -63,8 +63,8 @@ activeSong: 		.byte 0
 curVoiceMask: 		.byte 0
 
 ; zero page usage
-zp =  $AA
-zp2 = $B4
+zp =  $FD
+zp2 = $FF
 
 domusic:	
 	
