@@ -64,7 +64,7 @@ curVoiceMask: 		.byte 0
 
 ; zero page usage
 zp =  $FD
-zp2 = $FF
+zp2 = $FE
 
 domusic:	
 	
