@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Launch this file in an empty directory to download, build and
-# install tré, Bender and Arukanoide.  You must have sbcl instaled.
+# install tré, Bender and Arukanoido.  You must have sbcl instaled.
 
 set -e
 
