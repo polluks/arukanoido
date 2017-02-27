@@ -577,7 +577,7 @@
         cmds))
 
 (defun get-brick (x)
-  (position x *bricks* :test #'==))
+  (position x *bricks*))
 
 (defconstant +level-data+ (with-queue q
                             (dolist (level *levels*)
