@@ -56,24 +56,6 @@ end
     sta $912d
     sta $911e       ; Disable restore key NMIs.
 
-if @nil
-    ; Copy code to $200-3ff.
-    ldx #0
-l:  lda lowmem,x
-    sta $200,x
-    lda @(+ lowmem #x100),x
-    sta $300,x
-    dex
-    bne -l
-
-    ; Copy code to stack.
-    ldx #$5f
-l:  lda stackmem,x
-    sta $180,x
-    dex
-    bpl -l
-end
-
 music_player_size = @(length (fetch-file "sound-beamrider/MusicTester.prg"))
 loaded_music_player_end = @(+ loaded_music_player (-- music_player_size))
 music_player_end = @(+ music_player (-- music_player_size))
