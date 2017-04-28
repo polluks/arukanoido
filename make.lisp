@@ -557,6 +557,7 @@
                           "math.asm"
                           "bits.asm"
                           "line-addresses.asm"
+                          "irq.asm"
                           "main.asm"
                           "controllers.asm"
                           "ball.asm"

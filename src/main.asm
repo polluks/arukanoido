@@ -3,8 +3,22 @@ start:
 if @*preshifted-sprites?*
     jsr preshift_sprites
 end
+    jmp +n
 
 game_over:
+    ; Play "game over" tune.
+    lda #4
+    sta $702d
+    lda #0
+    sta $702e
+    jmp +m
+
+n:  jsr $799a
+    jsr start_irq
+    lda #1
+    sta $702d
+m:
+
 if @(not *shadowvic?*)
     lda #<gfx_title
     sta s
@@ -225,6 +239,12 @@ k:  inx
     jmp -l
 n:
 
+    ; Play "get ready" tune.
+    lda #2
+    sta $702d
+    lda #0
+    sta $702e
+
     ; Wait for three seconds.
     ldx #150
 l:
@@ -248,7 +268,6 @@ l:  sta @(-- (+ screen (* 25 15) 4)),x
     bne -l
 
 mainloop:
-    jsr $7053
     lda bricks_left
     bne +n
     jmp next_level

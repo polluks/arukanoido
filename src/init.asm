@@ -107,8 +107,6 @@ q2: dex
     dec @(++ c)
     bne l2
 
-stop:
-    jsr $799a
     jmp start
 
 m2: dec @(++ s)
