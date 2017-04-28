@@ -33,6 +33,8 @@ joystick_status:      0
 lifes:                0
 balls:                0
 
+is_running_game:      0
+
 ball_speed:           0
 is_firing:            0 ; Laser interval countdown.
 old_paddle_value:     0

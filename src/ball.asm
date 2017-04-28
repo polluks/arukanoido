@@ -303,17 +303,8 @@ n:  sta sprites_dy,x
     bne +n
     dec balls
     bne still_balls_left
-poke_unlimited:
-    dec lifes
-    beq +o
-    jmp retry
-o:
-if @(not *shadowvic?*)
-    jmp game_over
-end
-if @*shadowvic?*
-    $22 1               ; Exit emulator.
-end
+    lda #0
+    sta is_running_game
 n:  rts
 still_balls_left:
     lda balls

@@ -1,4 +1,14 @@
 start:
+    lda #0
+    tax
+l:  sta sprites_d,x
+    sta sprites_dx,x
+    sta sprites_dy,x
+    sta sprites_ox,x
+    sta sprites_oy,x
+    dex
+    bne -l
+
     jsr init_hiscore
 if @*preshifted-sprites?*
     jsr preshift_sprites
@@ -6,6 +16,9 @@ end
     jmp +n
 
 game_over:
+    lda #0
+    sta is_running_game
+
     ; Play "game over" tune.
     lda #4
     sta $702d
@@ -62,6 +75,8 @@ end
     sta current_half
 
 next_level:
+    lda #0
+    sta is_running_game
     inc level
     lda level
     cmp #33
@@ -132,9 +147,8 @@ retry:
     ldx #$ff
     txs
 
-    jsr clean_sprites
-
     lda #0
+    sta is_running_game
     sta reflections_on_top
     sta reflections_since_last_vaus_hit
     sta sfx_reflection
@@ -267,28 +281,26 @@ l:  sta @(-- (+ screen (* 25 15) 4)),x
     dex
     bne -l
 
+    lda #1
+    sta is_running_game
+
 mainloop:
     lda bricks_left
     bne +n
     jmp next_level
+n:  lda is_running_game
+    bne +n
+poke_unlimited:
+    dec lifes
+    beq +o
+    jmp retry                                                                                                
+o:  jmp game_over
 n:
 
     jsr random      ; Improve randomness.
 
-if @(not *shadowvic?*)
-    lda mode
-    cmp #mode_disruption
-    beq +n
-l:  lda $9004
-    bne -l
-n:
-end
 if @*shadowvic?*
    $22 $02
-end
-
-if @*show-cpu?*
-    inc $900f
 end
 
     ; Toggle sprite frame.
@@ -298,8 +310,12 @@ end
     ora #first_sprite_char
     sta next_sprite_char
 
+    jsr draw_sprites
+    jmp mainloop
+
+call_sprite_controllers:
     ; Call the functions that control sprite behaviour.
-n:  ldx #@(-- num_sprites)
+    ldx #@(-- num_sprites)
 l1: lda sprites_fh,x
     sta @(+ +m1 2)
     lda sprites_fl,x
@@ -312,19 +328,7 @@ m1: jsr $1234
     ldx call_controllers_x
 n1: dex
     bpl -l1
-
-if @*show-cpu?*
-    inc $900f
-end
-
-    jsr draw_sprites
-
-if @*show-cpu?*
-    dec $900f
-    dec $900f
-end
-
-    jmp mainloop
+    rts
 
 draw_lifes:
     lda #1

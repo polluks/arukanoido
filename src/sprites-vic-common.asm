@@ -1,21 +1,18 @@
 draw_sprites:
     ldx #@(-- num_sprites)
-l:  lda sprites_i,x
+l:  sei
+    lda sprites_i,x
     bmi +n
+
     lda #0
     sta foreground_collision
     jsr draw_sprite
     lda foreground_collision
     ora sprites_i,x
     sta sprites_i,x
-n:  dex
-    bpl -l
 
     ; Remove remaining chars of sprites in old frame.
-clean_sprites:
-    ldx #@(-- num_sprites)
-l:  ; Remove old chars.
-    lda sprites_i,x
+n:  lda sprites_i,x
     and #decorative
     beq +j
     cmp #$ff
@@ -46,7 +43,9 @@ m:  jsr xpixel_to_char
     jsr pixel_to_char
 k:  sta sprites_oy,x
 
-n:  dex
+    cli
+
+    dex
     bpl -l
     rts
 
