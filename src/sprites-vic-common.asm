@@ -56,3 +56,19 @@ pixel_to_char:
     lsr
     lsr
     rts
+
+clear_sprites:
+    ldx #0
+l:  lda screen,x
+    and #foreground
+    bne +n
+    lda #0
+    sta screen,x
+n:  lda @(+ 258 screen),x
+    and #foreground
+    bne +n
+    lda #0
+    sta @(+ 258 screen),x
+n:  dex
+    bne -l
+    rts
