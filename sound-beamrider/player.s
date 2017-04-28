@@ -3,7 +3,7 @@
 ; the Free Software Foundation; either version 2 of the License, or
 ; (at your option) any later version.
 
-.include "music.h"
+.include "Music.h"
 .segment "CODE"
 
 ;-----------------------
@@ -63,8 +63,8 @@ activeSong: 		.byte 0
 curVoiceMask: 		.byte 0
 
 ; zero page usage
-zp =  $FD
-zp2 = $FE
+zp =  $AA
+zp2 = $B4
 
 domusic:	
 	
@@ -161,7 +161,7 @@ ProcessPlayer:
 	  bne nofade
 	  dec volumereg
 	  lda volumereg
-	  and #15   ;(~volumeregmask)
+	  and #(~volumeregmask)
 	  beq fadedone
 	  lda volfadespd
 

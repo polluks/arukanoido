@@ -246,6 +246,13 @@ end
     jsr add_sprite
 
 reflect:
+    lda sfx_reflection
+    and #1
+    clc
+    adc #7
+    sta $702e
+    inc sfx_reflection
+
     lda sprites_y,x
     cmp #@(+ 2 (* 3 8))
     bcs +n

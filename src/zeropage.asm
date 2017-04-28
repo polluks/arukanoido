@@ -37,6 +37,7 @@ ball_speed:           0
 is_firing:            0 ; Laser interval countdown.
 old_paddle_value:     0
 is_using_paddle:      0
+sfx_reflection:       0
 
 mode_laser = 1
 mode_catching = 2

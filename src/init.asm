@@ -108,7 +108,7 @@ q2: dex
     bne l2
 
 stop:
-    jsr music_player
+    jsr $799a
     jmp start
 
 m2: dec @(++ s)
