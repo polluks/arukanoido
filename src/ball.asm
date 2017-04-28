@@ -1,6 +1,11 @@
 ball_directions_x:  @(ball-directions-x)
 ball_directions_y:  @(ball-directions-y)
 
+; Test on collision with foreground char.
+;
+; A: X position
+; Y: Y position
+; Returns: A
 get_soft_collision:
     lsr
     lsr
@@ -59,15 +64,12 @@ test_distractor_collision:
 
     lda @(+ sprites_x (-- num_sprites))
     sec
-    sbc #ball_width
-    sta tmp
-    lda sprites_x,x
-    cmp tmp
-    bcc reset_vaus_hit
+    sbc #@(-- ball_width)   ; TODO: ?
+    cmp sprites_x,x
+    bcs reset_vaus_hit
 
-    lda tmp
+    lda @(+ sprites_x (-- num_sprites))
     clc
-    adc #ball_width
     adc vaus_width
     cmp sprites_x,x
     bcc reset_vaus_hit
@@ -120,20 +122,6 @@ n:  lda sprites_i,x
     jmp reflect
 
 no_hit:
-    ; Bounce back downwards.
-    lda #0
-    sta side_degrees
-    ldy sprites_x,x
-    iny
-    tya
-    ldy sprites_y,x
-    dey
-    jsr get_soft_collision
-    bne +n
-    inc sprites_y,x
-    jmp +h
-n:
-
     ; Bounce back upwards.
     lda #128
     sta side_degrees
@@ -149,6 +137,20 @@ n:
     jsr get_soft_collision
     bne +n
     dec sprites_y,x
+    jmp +h
+n:
+
+    ; Bounce back downwards.
+    lda #0
+    sta side_degrees
+    ldy sprites_x,x
+    iny
+    tya
+    ldy sprites_y,x
+    dey
+    jsr get_soft_collision
+    bne +n
+    inc sprites_y,x
     jmp +h
 n:
 
@@ -230,6 +232,7 @@ end
     jsr add_sprite
 
 reflect:
+    ; Play reflection sound.
     lda sfx_reflection
     and #1
     clc
@@ -237,6 +240,7 @@ reflect:
     sta $702e
     inc sfx_reflection
 
+    ; Increase ball speed every 8th time it hit the top border.
     lda sprites_y,x
     cmp #@(+ 2 (* 3 8))
     bcs +n
