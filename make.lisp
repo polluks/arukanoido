@@ -571,7 +571,7 @@
                           "score.asm"
                           ,@(unless *shadowvic?*
                               '("../bender/vic-20/minigrafik-display.asm"))
-                          "gfx-doh.asm"
+;                          "gfx-doh.asm"
                           "gfx-title.asm"
                           "music.asm"
                           "end.asm"))
