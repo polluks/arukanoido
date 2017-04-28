@@ -312,6 +312,10 @@ end
     ora #first_sprite_char
     sta next_sprite_char
 
+n:  lda has_moved_sprites
+    beq -n
+    lda #0
+    sta has_moved_sprites
     jsr draw_sprites
     jmp mainloop
 

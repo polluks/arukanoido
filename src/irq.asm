@@ -28,6 +28,8 @@ irq:jsr $7053
     lda is_running_game
     beq +n
     jsr call_sprite_controllers
+    lda #1
+    sta has_moved_sprites
 n:  lda #$7f
     sta $912d
     jmp $eb18
