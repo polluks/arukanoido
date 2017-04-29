@@ -19,16 +19,17 @@ ctrl_vaus_left:
     lda $9111
     sta joystick_status
 
+    lda is_using_paddle
+    bne +p
+
+    ; Check if paddle is being used.
     lda $9008
     cmp old_paddle_value
-    bne paddle_change   ; The paddle did something…
-    lda is_using_paddle
-    bne paddle_fire     ; Joystick is blocked…
-    beq joy             ; The paddle never moved…
+    beq joy             ; Nope…
+    lda #1              ; Yes, lock the joystick.
+    sta is_using_paddle
 
-paddle_change:
-    sta is_using_paddle ; Block the joystick.
-    tay
+p:  ldy $9008
     lda paddle_xlat,y
     sec
     sbc sprites_x,x
