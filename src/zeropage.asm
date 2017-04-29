@@ -14,11 +14,6 @@ scrx:                 8   ; X position.
 scry:                 0   ; Y position.
 curcol:               0   ; Character colour.
 
-last_random_value:    0   ; Random number generator's last returned value.
-
-framecounter:         0   ; Current frame number relative to start of game.
-framecounter_high:    0
-
 next_sprite_char:     0   ; Next free character for sprites.
 sprite_shift_y:       0   ; Number of character line where sprite starts.
 sprite_data_top:      0   ; Start of sprite data in upper chars.
@@ -27,20 +22,6 @@ sprite_height_top:    0   ; Number of sprite lines in upper chars.
 spriteframe:          0   ; Character offset into lower or upper half of charset.
 sprite_rr:            0   ; Round-robin sprite allocation index.
 foreground_collision: 0   ; Set if a sprite collision has been detected.
-
-joystick_status:      0
-
-lifes:                0
-balls:                0
-
-is_running_game:      0
-has_moved_sprites:    0
-
-ball_speed:           0
-is_firing:            0 ; Laser interval countdown.
-old_paddle_value:     0
-is_using_paddle:      0
-sfx_reflection:       0
 
 mode_laser = 1
 mode_catching = 2
@@ -81,16 +62,36 @@ sprites_l:  fill num_sprites  ; Low character addresses.
 sprites_fl: fill num_sprites  ; Function controlling the sprite (low).
 sprites_fh: fill num_sprites  ; Function controlling the sprite (high).
 sprites_d:  fill num_sprites  ; Whatever the controllers want.
-sprites_dx: fill num_sprites ; Whatever the controllers want.
-sprites_dy: fill num_sprites ; Whatever the controllers want.
-sprites_ox: fill num_sprites  ; Former X positions for cleaning up.
-sprites_oy: fill num_sprites  ; Former Y positions for cleaning up.
 
     org $f8
 
 hiscore:    fill num_score_digits
 
 @(check-zeropage-size)
+
+    org $200
+
+joystick_status:      0
+
+last_random_value:    0   ; Random number generator's last returned value.
+framecounter:         0   ; Current frame number relative to start of game.
+framecounter_high:    0
+lifes:                0
+balls:                0
+
+is_running_game:      0
+has_moved_sprites:    0
+
+ball_speed:           0
+is_firing:            0 ; Laser interval countdown.
+old_paddle_value:     0
+is_using_paddle:      0
+sfx_reflection:       0
+
+sprites_dx: fill num_sprites ; Whatever the controllers want.
+sprites_dy: fill num_sprites ; Whatever the controllers want.
+sprites_ox: fill num_sprites  ; Former X positions for cleaning up.
+sprites_oy: fill num_sprites  ; Former Y positions for cleaning up.
 
     end
 

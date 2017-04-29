@@ -1,14 +1,4 @@
 start:
-    lda #0
-    tax
-l:  sta sprites_d,x
-    sta sprites_dx,x
-    sta sprites_dy,x
-    sta sprites_ox,x
-    sta sprites_oy,x
-    dex
-    bne -l
-
     jsr init_hiscore
 if @*preshifted-sprites?*
     jsr preshift_sprites
