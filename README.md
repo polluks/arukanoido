@@ -80,3 +80,5 @@ VIC–20 Screen and Character Designer.
 
 src-media/ark-title.prg has been contributed by tokra with help of
 Mike's MINIGRAFIK. Also no ,1 in the LOAD command.
+
+sound.bin and sound-beamrider have been contributed by beamrider.
