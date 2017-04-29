@@ -1,3 +1,8 @@
+; Fixed addresses
+
+preshifted_sprites  = $5000
+music_player        = $7000
+
 ; VIC settings
 
 screen       = $1000
@@ -27,7 +32,6 @@ first_sprite_char   = 1
 foreground          = @(+ (half framechars) (quarter framechars))
 frame_a             = charset
 frame_b             = @(+ charset framesize)
-preshifted_sprites  = $5000
 
 ; Game settings
 
@@ -47,7 +51,3 @@ score_char0         = foreground
 scorechars          = @(+ charset (* 8 score_char0))
 score_on_screen     = @(+ screen screen_columns)
 hiscore_on_screen   = @(+ score_on_screen num_score_digits 1)
-
-; Music settings
-
-music_player        = $7000

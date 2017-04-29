@@ -2,7 +2,7 @@ if @*shadowvic?*
     org $2000
 end
 
-relocated_start = @(+ charset 3840) ;(* num_chars 8))
+relocated_start = @(+ charset 3840)
 
 relocation_offset = @(- relocated_start loaded_start)
 loaded_end = @(- relocated_end relocation_offset)
@@ -60,15 +60,15 @@ music_player_size = @(length (fetch-file "sound-beamrider/MusicTester.prg"))
 loaded_music_player_end = @(+ loaded_music_player (-- music_player_size))
 music_player_end = @(+ music_player (-- music_player_size))
 
-    lda #@(low loaded_music_player_end)
+    lda #<loaded_music_player_end
     sta s
-    lda #@(high loaded_music_player_end)
+    lda #>loaded_music_player_end
     sta @(++ s)
-    lda #@(low music_player_end)
+    lda #<music_player_end
     sta d
-    lda #@(high music_player_end)
+    lda #>music_player_end
     sta @(++ d)
-    ldx #@(low music_player_size)
+    ldx #<music_player_size
     lda #@(++ (high music_player_size))
     sta @(++ c)
 
