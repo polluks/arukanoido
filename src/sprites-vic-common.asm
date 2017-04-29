@@ -1,6 +1,10 @@
 draw_sprites:
     ldx #@(-- num_sprites)
 l:  sei
+if @*show-cpu?*
+    lda #@(+ 8 4)
+    sta $900f
+end
     lda sprites_i,x
     bmi +n
 
@@ -43,6 +47,11 @@ m:  jsr xpixel_to_char
     jsr pixel_to_char
 k:  sta sprites_oy,x
 
+n:
+if @*show-cpu?*
+    lda #@(+ 8 2)
+    sta $900f
+end
     cli
 
     dex

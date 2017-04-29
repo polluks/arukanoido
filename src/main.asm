@@ -367,11 +367,19 @@ l:  lda @(-- gfx_background),x
     dex
     bne -l
 
-    lda #20     ; Horizontal screen origin.                                                                                                                   
+    lda $ede4
+    cmp #$0c
+    beq +p
+    lda #12     ; Horizontal screen origin.
+    sta $9000
+    lda #5      ; Vertical screen origin.
+    sta $9001
+    jmp +n
+p:  lda #20     ; Horizontal screen origin.
     sta $9000
     lda #21     ; Vertical screen origin.
     sta $9001
-    lda #15     ; Number of columns.
+n:  lda #15     ; Number of columns.
     sta $9002
     lda #@(* 32 2) ; Number of rows.
     sta $9003

@@ -1,4 +1,5 @@
-frame_timer = @(- (/ 1108404 50) 18)
+frame_timer_pal = @(- (/ (cpu-cycles :pal) 50) 18)
+frame_timer_ntsc = @(- (/ (cpu-cycles :ntsc) 50) 158)
 
 start_irq:
     lda #0
@@ -13,10 +14,15 @@ l:  lda $9004
     sta $315
 
     ; Initialise VIA2 Timer 1.
-    lda #<frame_timer
-    sta $9124
-    lda #>frame_timer
-    sta $9125
+    ldx #<frame_timer_pal
+    ldy #>frame_timer_pal
+    lda $ede4
+    cmp #$0c
+    beq +p
+    ldx #<frame_timer_ntsc
+    ldy #>frame_timer_ntsc
+p:  stx $9124
+    sty $9125
     lda #%01000000  : free-running
     sta $912b
     lda #%11000000  ; IRQ enable
@@ -24,7 +30,12 @@ l:  lda $9004
     cli
     rts
 
-irq:jsr $7053
+irq:
+if @*show-cpu?*
+    lda #@(+ 8 3)
+    sta $900f
+end
+    jsr $7053
     lda is_running_game
     beq +n
     jsr call_sprite_controllers
@@ -32,4 +43,8 @@ irq:jsr $7053
     sta has_moved_sprites
 n:  lda #$7f
     sta $912d
+if @*show-cpu?*
+    lda #@(+ 8 2)
+    sta $900f
+end
     jmp $eb18
