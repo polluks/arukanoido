@@ -24,7 +24,10 @@ ctrl_vaus_left:
 
     ; Check if paddle is being used.
     lda $9008
-    cmp old_paddle_value
+    sec
+    sbc old_paddle_value
+    jsr abs
+    and #%11111000
     beq joy             ; Nope…
     lda #1              ; Yes, lock the joystick.
     sta is_using_paddle
