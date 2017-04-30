@@ -43,6 +43,8 @@ end
     jsr init_game_mode
 
     ; Prepare paddle auto–detection.
+    lda #0
+    sta is_using_paddle
     lda $9008
     sta old_paddle_value
 
