@@ -50,12 +50,6 @@ if @(not *shadowvic?*)
     org relocated_start
 end
 
-    sei
-    lda #$7f
-    sta $912e       ; Disable and acknowledge interrupts.
-    sta $912d
-    sta $911e       ; Disable restore key NMIs.
-
 music_player_size = @(length (fetch-file "sound-beamrider/MusicTester.prg"))
 loaded_music_player_end = @(+ loaded_music_player (-- music_player_size))
 music_player_end = @(+ music_player (-- music_player_size))
