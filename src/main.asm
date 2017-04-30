@@ -11,6 +11,7 @@ game_over:
 
     lda #snd_game_over
     jsr play_sound
+    jsr wait_sound
     jmp +m
 
 n:  jsr init_music
@@ -244,21 +245,7 @@ n:
 
     lda #snd_round
     jsr play_sound
-
-    ; Wait for three seconds.
-    ldx #150
-l:
-if @(not *shadowvic?*)
-    lda $9004
-    bne -l
-m:  lda $9004
-    beq -m
-end
-if @*shadowvic?*
-    $22 $02
-end
-    dex
-    bne -l
+    jsr wait_sound
 
     ldx #8
     lda #0

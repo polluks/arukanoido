@@ -52,5 +52,10 @@ n:  pla
     tax
     rts
 
+wait_sound:
+    lda requested_song
+    bne wait_sound
+    rts
+
 loaded_music_player:
     @(fetch-file "sound.bin")
