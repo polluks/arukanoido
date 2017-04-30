@@ -44,45 +44,13 @@ p:  ldy $9008
     lda tmp2
     jsr sprite_right
     ldx tmp
-n:
 
-paddle_fire:
-    lda joystick_status
+n:  lda joystick_status
     and #joy_left
     beq do_fire
+    bne no_fire
 
 joy:
-    lda joystick_status
-
-    and #joy_fire
-    bne no_fire
-do_fire:
-    lda #255
-    sta caught_ball
-
-    lda mode
-    cmp #mode_laser
-    bne no_fire
-
-    lda is_firing
-    beq fire
-    dec is_firing
-    bne no_fire
-
-fire:
-    lda #9
-    sta is_firing
-    lda sprites_x,x
-    clc
-    adc #4
-    sta laser_init
-    ldy #@(- laser_init sprite_inits)
-    jsr add_sprite
-
-no_fire:
-    lda is_using_paddle
-    bne ctrl_dummy
-
     ; Joystick left.
 n:  lda joystick_status
     and #joy_left
@@ -122,6 +90,34 @@ n:  lda #0          ;Fetch rest of joystick status.
     ldx tmp
 r:
 
+    lda joystick_status
+    and #joy_fire
+    bne no_fire
+
+do_fire:
+    lda #255
+    sta caught_ball
+
+    lda mode
+    cmp #mode_laser
+    bne no_fire
+
+    lda is_firing
+    beq fire
+    dec is_firing
+    bne no_fire
+
+fire:
+    lda #9
+    sta is_firing
+    lda sprites_x,x
+    clc
+    adc #4
+    sta laser_init
+    ldy #@(- laser_init sprite_inits)
+    jsr add_sprite
+
+no_fire:
 ctrl_dummy:
     rts
 
