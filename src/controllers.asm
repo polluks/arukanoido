@@ -68,13 +68,13 @@ n:  lda joystick_status
     lda #2
     jsr sprite_left
     ldx tmp
-r:  rts
+    jmp +r
 
     ; Joystick right.
 n:  lda #0          ;Fetch rest of joystick status.
     sta $9122
     lda $9120
-    bmi ctrl_dummy
+    bmi +r
     lda sprites_x,x
     cmp #@(* (- screen_columns 3) 8)
     bcs ctrl_dummy
@@ -88,9 +88,8 @@ n:  lda #0          ;Fetch rest of joystick status.
     lda #2
     jsr sprite_right
     ldx tmp
-r:
 
-    lda joystick_status
+r:  lda joystick_status
     and #joy_fire
     bne no_fire
 
