@@ -11,17 +11,15 @@ end
     lda #0
     sta foreground_collision
     jsr draw_sprite
-    lda foreground_collision
-    ora sprites_i,x
+    lda sprites_i,x
+    ora foreground_collision
     sta sprites_i,x
 
-    ; Remove remaining chars of sprites in old frame.
-n:  lda sprites_i,x
-    and #decorative
-    beq +j
-    cmp #$ff
+n:  cmp #@(+ is_inactive was_cleared)
     beq +n
-j:  lda sprites_ox,x
+
+    ; Remove remaining chars of sprites in old frame.
+    lda sprites_ox,x
     sta scrx                ; (upper left)
     lda sprites_oy,x
     sta scry
@@ -34,18 +32,16 @@ j:  lda sprites_ox,x
     inc scrx                ; (bottom right)
     jsr clear_char
 
-    lda sprites_i,x
-    and #decorative
-    beq +m
-    lda #$ff
-    bne +k
-
     ; Save current position as old one.
-m:  jsr xpixel_to_char
+    jsr xpixel_to_char
     sta sprites_ox,x
     lda sprites_y,x
     jsr pixel_to_char
-k:  sta sprites_oy,x
+    sta sprites_oy,x
+
+    lda sprites_i,x
+    ora #was_cleared
+    sta sprites_i,x
 
 n:
 if @*show-cpu?*
