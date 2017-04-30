@@ -64,7 +64,7 @@ test_distractor_collision:
 
     lda @(+ sprites_x (-- num_sprites))
     sec
-    sbc #@(-- ball_width)   ; TODO: ?
+    sbc #ball_width
     cmp sprites_x,x
     bcs reset_vaus_hit
 
