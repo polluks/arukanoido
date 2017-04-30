@@ -593,7 +593,9 @@
                                   (enqueue qo (+ (* i. 16) (| .i. 0))))))))
 
 (defun paddle-xlat ()
-  (maptimes [bit-and (integer (+ 8 (/ (- 255 _) (/ 256 (* 8 11))))) #xfe] 256))
+  (maptimes [bit-and (integer (+ 8 (/ (- 255 _) ; TODO: Häh?
+                                      (/ 256 (* 8 11)))))
+                     #xfe] 256))
 
 (= *model* :vic-20+xk)
 
