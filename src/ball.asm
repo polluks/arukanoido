@@ -236,8 +236,8 @@ reflect:
     lda sfx_reflection
     and #1
     clc
-    adc #7
-    sta $702e
+    adc #snd_reflection_low
+    jsr play_sound
     inc sfx_reflection
 
     ; Increase ball speed every 8th time it hit the top border.

@@ -107,6 +107,8 @@ do_fire:
     bne no_fire
 
 fire:
+    lda #snd_laser
+    jsr play_sound
     lda #9
     sta is_firing
     lda sprites_x,x

@@ -35,7 +35,7 @@ if @*show-cpu?*
     lda #@(+ 8 3)
     sta $900f
 end
-    jsr $7053
+    jsr play_music
     lda is_running_game
     beq +n
     jsr call_sprite_controllers

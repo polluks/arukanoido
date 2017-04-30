@@ -37,9 +37,9 @@ end
     sta @(+ +selfmod 2)
 selfmod:
     jsr $1234
-r:  lda #3
-    sta $702d
-    jmp remove_sprite
+    lda #3
+    jsr play_sound
+r:  jmp remove_sprite
     
 m:  lda #1
     jmp sprite_down

@@ -9,17 +9,14 @@ game_over:
     lda #0
     sta is_running_game
 
-    ; Play "game over" tune.
-    lda #4
-    sta $702d
-    lda #0
-    sta $702e
+    lda #snd_game_over
+    jsr play_sound
     jmp +m
 
-n:  jsr $799a
+n:  jsr init_music
     jsr start_irq
-    lda #1
-    sta $702d
+    lda #snd_theme
+    jsr play_sound
 m:
 
 if @(not *shadowvic?*)
@@ -245,11 +242,8 @@ k:  inx
     jmp -l
 n:
 
-    ; Play "get ready" tune.
-    lda #2
-    sta $702d
-    lda #0
-    sta $702e
+    lda #snd_round
+    jsr play_sound
 
     ; Wait for three seconds.
     ldx #150
