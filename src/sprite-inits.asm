@@ -1,7 +1,6 @@
 is_inactive  = 128
 was_cleared  = 64
 fg_collision = 32
-still_touches_vaus = 16
 is_bonus     = 2
 is_vaus      = 1
 

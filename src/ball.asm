@@ -53,54 +53,46 @@ test_distractor_collision:
 ;    lda #ball_height
 ;    sta collision_y_distance
 ;    jsr find_hit
-;    bcs reset_vaus_hit
+;    bcs no_hit
 
     ; Test on collision with Vaus.
     lda sprites_y,x
     cmp #@(- vaus_y (-- ball_height))
-    bcc reset_vaus_hit
+    bcc no_hit
     cmp #@(+ vaus_y 8)
-    bcs reset_vaus_hit
+    bcs no_hit
 
     lda @(+ sprites_x (-- num_sprites))
     sec
     sbc #ball_width
     cmp sprites_x,x
-    bcs reset_vaus_hit
+    bcs no_hit
 
     lda @(+ sprites_x (-- num_sprites))
     clc
     adc vaus_width
     cmp sprites_x,x
-    bcc reset_vaus_hit
+    bcc no_hit
     
     ; Calculate reflection from Vaus.
     lda vaus_width
     clc
-    adc #@(half ball_width)
+    adc #ball_width
     lsr
     sta tmp
     lda sprites_x,x
     sec
     sbc @(+ sprites_x (-- num_sprites))
+    adc #ball_width
     sbc tmp
     jsr neg
-    sta tmp
-    asl         ; *= 3
-    clc
-    adc tmp
-    clc
-    adc #128    ; Bounce back upwards.
+    asl
     sta side_degrees
-    jmp reflect_from_vaus
+    lda #0
+    sta sprites_d,x
+    lda #@(- vaus_y ball_height)
+    sta sprites_y,x
 
-reset_vaus_hit:
-    lda sprites_i,x
-    and #@(bit-xor #xff still_touches_vaus)
-    sta sprites_i,x
-    jmp no_hit
-
-reflect_from_vaus:
     lda #0
     sta reflections_since_last_vaus_hit
     lda mode
@@ -116,12 +108,7 @@ reflect_from_vaus:
     lda #snd_catched_ball
     jmp play_sound
 
-n:  lda sprites_i,x
-    and #still_touches_vaus
-    bne no_hit
-    ora #still_touches_vaus
-    sta sprites_i,x
-    jmp reflect
+n:  jmp reflect
 
 no_hit:
     ; Bounce back upwards.
