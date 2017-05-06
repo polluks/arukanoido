@@ -3,7 +3,12 @@ start:
 if @*preshifted-sprites?*
     jsr preshift_sprites
 end
-    jmp +n
+    jsr init_music
+    jsr start_irq
+    lda #snd_test
+    jsr play_sound
+    jsr wait_sound
+    jmp restart
 
 game_over:
     lda #0
@@ -14,12 +19,8 @@ game_over:
     jsr wait_sound
     lda #snd_hiscore
     jsr play_sound
-    jmp +m
 
-n:  jsr init_music
-    jsr start_irq
-m:
-
+restart:
 if @(not *shadowvic?*)
     lda #<gfx_title
     sta s
