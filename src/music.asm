@@ -14,12 +14,13 @@ snd_reflection_low    = 7
 snd_reflection_high   = 8
 snd_reflection_silver = 9
 snd_catched_ball      = 10
+snd_miss              = 11
 snd_coin              = 11
-snd_laser             = 12
+snd_twelve            = 12
 snd_thirteen          = 13
 snd_growing_vaus      = 14
 snd_hit_distractor    = 15
-snd_miss              = 16
+snd_laser             = 16
 snd_seventeen         = 17
 
 sound_priorities:
