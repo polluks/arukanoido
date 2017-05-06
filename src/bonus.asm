@@ -37,8 +37,6 @@ end
     sta @(+ +selfmod 2)
 selfmod:
     jsr $1234
-    lda #3
-    jsr play_sound
 r:  jmp remove_sprite
     
 m:  lda #1
@@ -68,7 +66,7 @@ apply_bonus_l:
     rts
 
 apply_bonus_e:
-    lda snd_extend
+    lda #snd_extend
     jsr play_sound
     rts
 
