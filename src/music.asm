@@ -12,7 +12,7 @@ snd_hiscore           = 6
 snd_reflection_low    = 7
 snd_reflection_high   = 8
 snd_reflection_silver = 9
-snd_catched_ball      = 11
+snd_catched_ball      = 10
 snd_coin              = 11
 snd_growing_vaus      = 14
 snd_hit_distractor    = 15
@@ -29,7 +29,7 @@ sound_priorities:
     0 ; 7: bing
     0 ; 8: bing
     0 ; 9: bing
-    1 ; 10: blip
+    0 ; 10: catched ball
     2 ; 11: coin drop
     1 ; 12: ring
     1 ; 13: ring passing by
