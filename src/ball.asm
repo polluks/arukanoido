@@ -324,6 +324,9 @@ n:  rts
 
 
 hit_brick:
+    lda #0
+    sta reflections_since_last_vaus_hit
+
     ; Check brick type.
     ldy scrx
     lda (scr),y
@@ -386,8 +389,8 @@ r:  sec
 correct_trajectory:
     inc reflections_since_last_vaus_hit
     lda reflections_since_last_vaus_hit
-    and #%11
-    bne +r
+    cmp #16
+    bcc +r
     lda sprites_d,x
     and #%00100000
     bne +n
