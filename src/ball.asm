@@ -87,7 +87,20 @@ test_distractor_collision:
     sbc tmp
     jsr neg
     asl
-    sta side_degrees
+    php
+    bpl +n
+    jsr neg
+n:  clc
+    adc #8
+    and #%11110000
+    sec
+    sbc #8
+    plp
+    bpl +n
+    jsr neg
+n:  sta side_degrees
+
+
     lda #0
     sta sprites_d,x
     lda #@(- vaus_y ball_height)
