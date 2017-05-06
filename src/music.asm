@@ -3,7 +3,7 @@ play_music = $7053
 current_song = $702b
 requested_song = $702d
 
-snd_test              = 16
+snd_test              = 3
 snd_theme             = 1
 snd_round             = 2
 snd_extend            = 3
