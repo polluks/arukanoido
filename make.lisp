@@ -527,7 +527,6 @@
 
 (defun ball-directions-x ()
   (let m (/ 360 +degrees+)
-;    (bytes (full-sin-wave (maptimes [integer (* smax (degree-sin (* m _)))] (/ +degrees+ 4))))))
     (bytes (full-sin-wave (maptimes [integer (/ (* 3 smax (degree-sin (* m _))) 5)] (/ +degrees+ 4))))))
 
 (defun ball-directions-y ()
