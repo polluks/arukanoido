@@ -348,7 +348,7 @@ check_golden_brick:
     lda (col),y
     and #$0f
     cmp #yellow
-    beq +r
+    beq +golden
 
     ; Silver brick's score is 50 multiplied by round number.
     txa
@@ -376,6 +376,10 @@ modify_brick:
     sta (scr),y
     clc
     rts
+
+golden:
+    lda #snd_reflection_silver
+    sta snd_reflection
 r:  sec
     rts
 
