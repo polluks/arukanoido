@@ -274,6 +274,7 @@ mainloop:
     jmp next_level
 n:  lda is_running_game
     bne +n
+    jsr wait_sound
 poke_unlimited:
     dec lifes
     beq +o

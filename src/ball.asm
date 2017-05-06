@@ -308,12 +308,15 @@ n:  sta sprites_dy,x
 
     ; Deal with lost ball.
     lda sprites_y,x
-    bne +n
+    bne play_reflection_sound
+
     dec balls
     bne still_balls_left
+
     lda #0
     sta is_running_game
-n:  jmp +n
+    lda #snd_miss
+    jmp play_sound
 
 still_balls_left:
     lda balls
@@ -322,7 +325,9 @@ still_balls_left:
     lda #0              ; Reset from disruption bonus.
     sta mode
 r:  jsr remove_sprite
-n:  lda snd_reflection
+
+play_reflection_sound:
+    lda snd_reflection
     beq +n
     ldx #0
     stx snd_reflection
