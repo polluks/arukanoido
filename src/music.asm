@@ -12,6 +12,7 @@ snd_hiscore           = 6
 snd_reflection_low    = 7
 snd_reflection_high   = 8
 snd_reflection_silver = 9
+snd_catched_ball      = 11
 snd_coin              = 11
 snd_growing_vaus      = 14
 snd_hit_distractor    = 15

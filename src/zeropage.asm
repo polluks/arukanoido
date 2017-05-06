@@ -87,6 +87,7 @@ is_firing:            0 ; Laser interval countdown.
 old_paddle_value:     0
 is_using_paddle:      0
 sfx_reflection:       0
+snd_reflection:       0
 
 sprites_dx: fill num_sprites ; Whatever the controllers want.
 sprites_dy: fill num_sprites ; Whatever the controllers want.

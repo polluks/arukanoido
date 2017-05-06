@@ -74,6 +74,7 @@ test_distractor_collision:
     cmp sprites_x,x
     bcc reset_vaus_hit
     
+    ; Calculate reflection from Vaus.
     lda vaus_width
     clc
     adc #@(half ball_width)
@@ -112,7 +113,8 @@ reflect_from_vaus:
     sta sprites_d,x
     lda #@(- vaus_y 5)
     sta sprites_y,x
-    rts
+    lda #snd_catched_ball
+    jmp play_sound
 
 n:  lda sprites_i,x
     and #still_touches_vaus
@@ -233,12 +235,14 @@ end
 
 reflect:
     ; Play reflection sound.
+    lda snd_reflection
+    bne +n
     lda sfx_reflection
     and #1
     clc
     adc #snd_reflection_low
-    jsr play_sound
-    inc sfx_reflection
+    sta snd_reflection
+n:  inc sfx_reflection
 
     ; Increase ball speed every 8th time it hit the top border.
     lda sprites_y,x
@@ -309,14 +313,22 @@ n:  sta sprites_dy,x
     bne still_balls_left
     lda #0
     sta is_running_game
-n:  rts
+n:  jmp +n
+
 still_balls_left:
     lda balls
     cmp #1
     bne +r
     lda #0              ; Reset from disruption bonus.
     sta mode
-r:  jmp remove_sprite
+r:  jsr remove_sprite
+n:  lda snd_reflection
+    beq +n
+    ldx #0
+    stx snd_reflection
+    jmp play_sound
+n:  rts
+
 
 hit_brick:
     ; Check brick type.
@@ -329,6 +341,9 @@ hit_brick:
     cmp #bg_brick
     bcc +r
     beq remove_brick
+
+    lda #snd_reflection_silver
+    sta snd_reflection
 
     ; Degrade silver brick.
     lda (scr),y
