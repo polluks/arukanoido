@@ -68,6 +68,8 @@ apply_bonus_l:
     rts
 
 apply_bonus_e:
+    lda snd_extend
+    jsr play_sound
     rts
 
 apply_bonus_c:

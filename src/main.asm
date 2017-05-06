@@ -12,12 +12,12 @@ game_over:
     lda #snd_game_over
     jsr play_sound
     jsr wait_sound
+    lda #snd_hiscore
+    jsr play_sound
     jmp +m
 
 n:  jsr init_music
     jsr start_irq
-    lda #snd_theme
-    jsr play_sound
 m:
 
 if @(not *shadowvic?*)
@@ -39,6 +39,13 @@ l:  lda #0              ; Fetch joystick status.
     bne -l
 n:
 end
+
+    lda #snd_coin
+    jsr play_sound
+    jsr wait_sound
+    lda #snd_theme
+    jsr play_sound
+    jsr wait_sound
 
     jsr init_game_mode
 

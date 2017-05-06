@@ -5,13 +5,14 @@ requested_song = $702d
 
 snd_theme             = 1
 snd_round             = 2
-snd_power_up          = 3 ; ???
+snd_extend            = 3
 snd_game_over         = 4
-snd_thrill            = 5 ; ???
-snd_theme2            = 6
+snd_doh_round         = 5
+snd_hiscore           = 6
 snd_reflection_low    = 7
 snd_reflection_high   = 8
 snd_reflection_silver = 9
+snd_coin              = 11
 snd_growing_vaus      = 14
 snd_hit_distractor    = 15
 snd_laser             = 16
@@ -28,7 +29,7 @@ sound_priorities:
     0 ; 8: bing
     0 ; 9: bing
     1 ; 10: blip
-    1 ; 11: closing door/thunder
+    2 ; 11: coin drop
     1 ; 12: ring
     1 ; 13: ring passing by
     1 ; 14: growing vaus
