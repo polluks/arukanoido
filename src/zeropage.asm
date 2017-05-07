@@ -89,10 +89,16 @@ is_using_paddle:      0
 sfx_reflection:       0
 snd_reflection:       0
 
-sprites_dx: fill num_sprites ; Whatever the controllers want.
-sprites_dy: fill num_sprites ; Whatever the controllers want.
-sprites_ox: fill num_sprites  ; Former X positions for cleaning up.
-sprites_oy: fill num_sprites  ; Former Y positions for cleaning up.
+sprites_dx:         fill num_sprites ; Whatever the controllers want.
+sprites_dy:         fill num_sprites ; Whatever the controllers want.
+sprites_ox:         fill num_sprites ; Former X positions for cleaning up.
+sprites_oy:         fill num_sprites ; Former Y positions for cleaning up.
+
+r_horizontal    = 1
+r_vertical      = 2
+
+last_reflections:   fill num_sprites
+this_reflections:   0
 
     end
 

@@ -112,9 +112,11 @@ test_distractor_collision:
 n:  jmp reflect
 
 no_hit:
-    ; Bounce back left.
-    lda #64
+    lda #0
     sta side_degrees
+    sta this_reflections
+
+    ; Bounce back left.
     lda sprites_x,x
     clc
     adc #ball_width
@@ -124,13 +126,22 @@ no_hit:
     iny
     jsr get_soft_collision
     bne +n
-    dec sprites_x,x
+    lda this_reflections
+    ora #r_horizontal
+    sta this_reflections
+    lda sprites_d,x
+    bmi +n
+    lda last_reflections,x
+    and #r_horizontal
+    bne +n
+    lda #64
+    clc
+    adc side_degrees
+    sta side_degrees
     jmp +h
 n:
 
     ; Bounce back right.
-    lda #192
-    sta side_degrees
     ldy sprites_x,x
     dey
     tya
@@ -140,13 +151,22 @@ n:
     iny
     jsr get_soft_collision
     bne +n
-    inc sprites_x,x
+    lda this_reflections
+    ora #r_horizontal
+    sta this_reflections
+    lda sprites_d,x
+    bpl +n
+    lda last_reflections,x
+    and #r_horizontal
+    bne +n
+    lda #192
+    clc
+    adc side_degrees
+    sta side_degrees
     jmp +h
 n:
 
     ; Bounce back upwards.
-    lda #128
-    sta side_degrees
     ldy sprites_x,x
     iny
     tya
@@ -158,22 +178,48 @@ n:
     iny
     jsr get_soft_collision
     bne +n
-    dec sprites_y,x
+    lda this_reflections
+    ora #r_vertical
+    sta this_reflections
+    lda sprites_d,x
+    clc
+    adc #64
+    bmi +n
+    lda last_reflections,x
+    and #r_vertical
+    bne +n
+    lda #128
+    clc
+    adc side_degrees
+    sta side_degrees
     jmp +h
 n:
 
     ; Bounce back downwards.
-    lda #0
-    sta side_degrees
     ldy sprites_x,x
     iny
     tya
     ldy sprites_y,x
     dey
     jsr get_soft_collision
-    bne traject_ball
-    inc sprites_y,x
-n:
+    bne +t
+    lda this_reflections
+    ora #r_vertical
+    sta this_reflections
+    lda sprites_d,x
+    clc
+    adc #64
+    bpl +n
+    lda last_reflections,x
+    and #r_vertical
+    bne +n
+    lda #128
+    clc
+    adc side_degrees
+    sta side_degrees
+n:  jmp +h
+
+t:  jmp traject_ball
 
 h:  jsr correct_trajectory
     jsr hit_brick
@@ -254,6 +300,9 @@ n:
     sta sprites_d,x
 
 traject_ball:
+    lda this_reflections
+    sta last_reflections,x
+
     ; Traject on X axis.
     ldy sprites_d,x
     lda ball_directions_x,y
