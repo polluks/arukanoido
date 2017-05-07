@@ -112,38 +112,6 @@ test_distractor_collision:
 n:  jmp reflect
 
 no_hit:
-    ; Bounce back upwards.
-    lda #128
-    sta side_degrees
-    ldy sprites_x,x
-    iny
-    tya
-    ldy sprites_y,x
-    iny
-    iny
-    iny
-    iny
-    iny
-    jsr get_soft_collision
-    bne +n
-    dec sprites_y,x
-    jmp +h
-n:
-
-    ; Bounce back downwards.
-    lda #0
-    sta side_degrees
-    ldy sprites_x,x
-    iny
-    tya
-    ldy sprites_y,x
-    dey
-    jsr get_soft_collision
-    bne +n
-    inc sprites_y,x
-    jmp +h
-n:
-
     ; Bounce back left.
     lda #64
     sta side_degrees
@@ -171,8 +139,41 @@ n:
     iny
     iny
     jsr get_soft_collision
-    bne traject_ball
+    bne +n
     inc sprites_x,x
+    jmp +h
+n:
+
+    ; Bounce back upwards.
+    lda #128
+    sta side_degrees
+    ldy sprites_x,x
+    iny
+    tya
+    ldy sprites_y,x
+    iny
+    iny
+    iny
+    iny
+    iny
+    jsr get_soft_collision
+    bne +n
+    dec sprites_y,x
+    jmp +h
+n:
+
+    ; Bounce back downwards.
+    lda #0
+    sta side_degrees
+    ldy sprites_x,x
+    iny
+    tya
+    ldy sprites_y,x
+    dey
+    jsr get_soft_collision
+    bne traject_ball
+    inc sprites_y,x
+n:
 
 h:  jsr correct_trajectory
     jsr hit_brick
