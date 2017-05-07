@@ -4,9 +4,11 @@ preshift_sprites:
     lda #>preshifted_sprites
     sta @(++ sl)
     ldx #<sprite_gfx
+
 l:  txa
     pha
     jsr preshift_sprite
+
     ; Step to next pair.
     lda sl
     clc
@@ -22,7 +24,7 @@ n:
     cmp #<sprite_gfx_end
     bne -l
 
-    ; Turn sprite gfx address into indices.
+    ; Turn sprite gfx addresses into indices.
     ldx #4
 l:  lda sprite_inits,x
     sec
@@ -35,6 +37,7 @@ l:  lda sprite_inits,x
     clc
     adc #8
     tax
+
     cmp #@(+ 4 (- sprite_inits_end sprite_inits))
     bne -l
 
@@ -62,9 +65,8 @@ l:  sta (sl),y
     lda #7
     sta tmp
 
-m:
     ; Make pointers.
-    lda @(++ sl)
+m:  lda @(++ sl)
     sta @(++ sr)
     sta @(++ dl)
     sta @(++ dr)
