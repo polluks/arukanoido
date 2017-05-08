@@ -117,6 +117,9 @@ no_hit:
     sta this_reflections
 
     ; Bounce back left.
+    lda sprites_d,x
+    bmi +n
+
     lda sprites_x,x
     clc
     adc #ball_width
@@ -129,8 +132,6 @@ no_hit:
     lda this_reflections
     ora #r_horizontal
     sta this_reflections
-    lda sprites_d,x
-    bmi +n
     lda last_reflections,x
     and #r_horizontal
     bne +n
@@ -142,6 +143,8 @@ no_hit:
 n:
 
     ; Bounce back right.
+    lda sprites_d,x
+    bpl +n
     ldy sprites_x,x
     dey
     tya
@@ -154,8 +157,6 @@ n:
     lda this_reflections
     ora #r_horizontal
     sta this_reflections
-    lda sprites_d,x
-    bpl +n
     lda last_reflections,x
     and #r_horizontal
     bne +n
@@ -166,6 +167,7 @@ n:
     jmp +h
 n:
 
+m:
     ; Bounce back upwards.
     ldy sprites_x,x
     iny
