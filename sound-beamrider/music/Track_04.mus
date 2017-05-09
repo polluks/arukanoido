@@ -40,6 +40,8 @@ s
 g1
 dur 8
 s
+dur 64
+s
 stop
 
 .endscope
@@ -63,6 +65,8 @@ d1
 aSh0
 dur 28
 g0
+dur 64
+s
 stop
 
 .endscope
