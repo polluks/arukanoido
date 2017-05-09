@@ -54,8 +54,7 @@ reflect_h:
     inc scrx                ; Check if there's a char right to it.
     jsr get_hard_collision
     beq +m                  ; Yes. cannot reflect on this axis…
-    lda #64
-    jmp +j
+    bne +j
 n:
 
     ; Bounce back right.
@@ -65,12 +64,8 @@ n:
     dec scrx                ; Check if there's a char left to it.
     jsr get_hard_collision
     beq +m                  ; Yes. cannot reflect on this axis…
-    lda #192
-j:  clc
-    adc side_degrees
-    sta side_degrees
-
-m:  rts
+j:  lda #64
+    jmp +l
 
 reflect_v:
     ; Bounce back from top.
@@ -95,7 +90,7 @@ n:
     jsr get_hard_collision
     beq +m                  ; Yes…
 j:  lda #128
-    clc
+l:  clc
     adc side_degrees
     sta side_degrees
 
