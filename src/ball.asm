@@ -44,6 +44,62 @@ r:  rts
 n:  lda #1
     rts
 
+reflect_h:
+    ; Bounce back left.
+    lda sprites_d,x         ; Moving to the left?
+    bpl +n                  ; No…
+    lda ball_x              ; Are we hitting the right hand side of the char?
+    and #%100
+    beq +m                  ; No…
+    inc scrx                ; Check if there's a char right to it.
+    jsr get_hard_collision
+    beq +m                  ; Yes. cannot reflect on this axis…
+    lda #64
+    jmp +j
+n:
+
+    ; Bounce back right.
+    lda ball_x              ; Are we hitting the left hand side of the char?
+    and #%100
+    bne +m                  ; No…
+    dec scrx                ; Check if there's a char left to it.
+    jsr get_hard_collision
+    beq +m                  ; Yes. cannot reflect on this axis…
+    lda #192
+j:  clc
+    adc side_degrees
+    sta side_degrees
+
+m:  rts
+
+reflect_v:
+    ; Bounce back from top.
+    lda sprites_d,x         ; Are we flying upwards?
+    clc
+    adc #64
+    bpl +n                  ; No…
+    lda ball_y              ; Have we hit the bottom half of the char?
+    and #%100
+    beq +m                  ; No…
+    inc scry                ; Is there a char beneath it?
+    jsr get_hard_collision
+    beq +m
+    bne +j
+n:
+
+    ; Bounce back from bottom.
+    lda ball_y              ; Are we hitting the top half of the char?
+    and #%100
+    bne +m
+    dec scry                ; Is there a char above it?
+    jsr get_hard_collision
+    beq +m                  ; Yes…
+j:  lda #128
+    clc
+    adc side_degrees
+    sta side_degrees
+
+m:  rts
  
 ctrl_ball:
     lda caught_ball
@@ -151,63 +207,28 @@ no_hit:
     jsr get_ball_collision
     bne -t
 
-    ; Bounce back left.
-    lda sprites_d,x         ; Moving to the left?
-    bpl +n                  ; No…
-    lda ball_x              ; Are we hitting the right hand side of the char?
-    and #%100
-    beq +m                  ; No…
-    inc scrx                ; Check if there's a char right to it.
-    jsr get_hard_collision
-    beq +m                  ; Yes. cannot reflect on this axis…
-    lda #64
-    jmp +j
-n:
+    ; Reflect ball from chars.
+    ; Check steepness of ball to pick the axis to check first.
+    lda sprites_d,x
+    cmp #$5f
+    bcc +n
+    cmp #$9f
+    bcc +y
+n:  cmp #$1f
+    bcs +o
+    cmp #$bf
+    bcc +o
 
-    ; Bounce back right.
-    lda ball_x              ; Are we hitting the left hand side of the char?
-    and #%100
-    bne +m                  ; No…
-    dec scrx                ; Check if there's a char left to it.
-    jsr get_hard_collision
-    beq +m                  ; Yes. cannot reflect on this axis…
-    lda #192
-j:  clc
-    adc side_degrees
-    sta side_degrees
-n:
-
-m:  jsr get_ball_position
+y:  jsr reflect_v
+    jsr get_ball_position
     jsr get_ball_collision
+    jsr reflect_h
+    jmp +h
 
-    ; Bounce back from top.
-    lda sprites_d,x         ; Are we flying upwards?
-    clc
-    adc #64
-    bpl +n                  ; No…
-    lda ball_y              ; Have we hit the bottom half of the char?
-    and #%100
-    beq +m                  ; No…
-    inc scry                ; Is there a char beneath it?
-    jsr get_hard_collision
-    beq +m
-    lda #128
-    jmp +j
-n:
-
-    ; Bounce back from bottom.
-    lda ball_y              ; Are we hitting the top half of the char?
-    and #%100
-    bne +m
-    dec scry                ; Is there a char above it?
-    jsr get_hard_collision
-    beq +m                  ; Yes…
-    lda #128
-j:  clc
-    adc side_degrees
-    sta side_degrees
-n:
-m:
+o:  jsr reflect_h
+    jsr get_ball_position
+    jsr get_ball_collision
+    jsr reflect_v
 
 h:  jsr correct_trajectory
     jsr get_ball_position
