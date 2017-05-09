@@ -191,7 +191,7 @@ n:
     lda #snd_catched_ball
     jmp play_sound
 
-n:  jmp reflect
+n:  jmp apply_reflection
 t:  jmp move_ball
 
 no_hit:
@@ -202,7 +202,7 @@ no_hit:
     jsr get_ball_collision
     bne -t
 
-y:  jsr reflect_v
+    jsr reflect_v
     jsr get_ball_position
     jsr get_ball_collision
     jsr reflect_h
@@ -211,16 +211,16 @@ y:  jsr reflect_v
     jsr get_ball_position
     jsr get_ball_collision
     jsr hit_brick
-    bcs reflect         ; Not a brick.
+    bcs apply_reflection
 
     ; Make bonus.
     lda mode
     cmp #mode_disruption    ; No bonuses in disruption mode.
-    beq reflect
+    beq apply_reflection
 
     jsr random
     and #bonus_probability
-    bne reflect
+    bne apply_reflection
 
     lda scrx
     asl
@@ -256,7 +256,7 @@ end
     ldy #@(- bonus_init sprite_inits)
     jsr add_sprite
 
-reflect:
+apply_reflection:
     ; Play reflection sound.
     lda snd_reflection
     bne +n
