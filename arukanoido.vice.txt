@@ -182,7 +182,7 @@ al 11ff .load_address
 al 120b .basic_end
 al 2300 .relocated_start
 al 10b7 .relocation_offset
-al 4868 .loaded_end
+al 4862 .loaded_end
 al 120d .main
 al 121f .l
 al 123c .dec_zp
@@ -582,5 +582,5 @@ al 4f59 .m
 al 4f5e .n
 al 4f63 .wait_sound
 al 4f6c .loaded_music_player
-al 591f .relocated_end
+al 5919 .relocated_end
 break .stop

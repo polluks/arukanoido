@@ -334,8 +334,6 @@ initmusic:	; initialize the music
   sta sndbase + 1; disable channels 0-2
   sta sndbase + 2	; disable channels 0-2
   sta sndbase + 3	; disable channels 0-2
-  sta curSong
-  sta curSong + 1
   sta reqSong
   sta reqSong + 1
   rts
