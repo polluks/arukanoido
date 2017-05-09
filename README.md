@@ -2,11 +2,11 @@
 
 https://en.wikipedia.org/wiki/Arkanoid/
 
-This is an Arkanoid clone for the Commodore VIC–20 with at least 16K
+This is an Arkanoid clone for the Commodore VIC–20 with at least 24K
 memory expansion.  It should be played with paddles which are detected
-automatically.
+automatically as soon as you move them.
 
-Arukanoido is discussed and developed on the VIC–20 Denial forum:
+Arukanoido is being discussed and developed on the VIC–20 Denial forum:
 http://sleepingelephant.com/ipw-web/bulletin/bb/viewtopic.php?t=3752
 
 You've probably found these files here:
@@ -23,7 +23,6 @@ in an empty directory and it'll clone everything and build it.
 
 # Things missing:
 
-* No sound.
 * No two-player mode.
 * No intro or extra graphics.
 * Round 33 is missing.
