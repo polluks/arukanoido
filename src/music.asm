@@ -64,6 +64,7 @@ n:  pla
     rts
 
 wait_sound:
+    jsr random              ; Avoid CRTC hsync sine wave wobble.
     lda requested_song
     bne wait_sound
     rts

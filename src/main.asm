@@ -296,7 +296,7 @@ poke_unlimited:
 o:  jmp game_over
 n:
 
-    jsr random      ; Improve randomness.
+    jsr random      ; Improve randomness. Avoid CRTC hsync sine wave wobble.
 
 if @*shadowvic?*
    $22 $02
