@@ -108,6 +108,18 @@ test_distractor_collision:
     asl
     sta side_degrees
 
+    ; Avoid going straigt up.
+    jsr abs
+    cmp #$04
+    bcs +n
+    lda side_degrees
+    bmi +m
+    lda #$04
+    jmp +j
+m:  lda #$f8
+j:  sta side_degrees
+n:
+
     lda #0
     sta sprites_d,x
     lda #@(- vaus_y ball_height)
