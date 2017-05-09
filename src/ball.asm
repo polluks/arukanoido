@@ -207,11 +207,10 @@ no_hit:
     jsr get_ball_collision
     jsr reflect_h
 
-    jsr correct_trajectory
     jsr get_ball_position
     jsr get_ball_collision
     jsr hit_brick
-    bcs apply_reflection
+    bcs hit_solid
 
     ; Make bonus.
     lda mode
@@ -255,6 +254,10 @@ end
     sta @(+ bonus_init 3)
     ldy #@(- bonus_init sprite_inits)
     jsr add_sprite
+    jmp apply_reflection
+
+hit_solid:
+    jsr correct_trajectory
 
 apply_reflection:
     ; Play reflection sound.
