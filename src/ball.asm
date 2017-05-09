@@ -192,7 +192,7 @@ n:
     jmp play_sound
 
 n:  jmp reflect
-t:  jmp traject_ball
+t:  jmp move_ball
 
 no_hit:
     lda #0
@@ -287,8 +287,8 @@ n:
     adc #128            ; Rotate to opposite direction.
     sta sprites_d,x
 
-traject_ball:
-    ; Traject on X axis.
+move_ball:
+    ; Move on X axis.
     ldy sprites_d,x
     lda ball_directions_x,y
     bmi +m
@@ -309,7 +309,7 @@ m:  jsr neg
 
 n:  sta sprites_dx,x
 
-    ; Traject on Y axis.
+    ; Move on Y axis.
     lda ball_directions_y,y
     bmi +m
     lda sprites_dy,x
@@ -356,7 +356,6 @@ play_reflection_sound:
     stx snd_reflection
     jmp play_sound
 n:  rts
-
 
 hit_brick:
     lda #0
