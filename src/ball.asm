@@ -202,30 +202,12 @@ no_hit:
     jsr get_ball_collision
     bne -t
 
-    ; Reflect ball from chars.
-    ; Check steepness of ball to pick the axis to check first.
-    lda sprites_d,x
-    cmp #$5f
-    bcc +n
-    cmp #$9f
-    bcc +y
-n:  cmp #$1f
-    bcs +o
-    cmp #$bf
-    bcc +o
-
 y:  jsr reflect_v
     jsr get_ball_position
     jsr get_ball_collision
     jsr reflect_h
-    jmp +h
 
-o:  jsr reflect_h
-    jsr get_ball_position
-    jsr get_ball_collision
-    jsr reflect_v
-
-h:  jsr correct_trajectory
+    jsr correct_trajectory
     jsr get_ball_position
     jsr get_ball_collision
     jsr hit_brick
