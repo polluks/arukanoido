@@ -1,8 +1,20 @@
+clear_data:
+    lda #0
+    tax
+l:  sta 0,x
+    cpx #@(-- hiscore)
+    bcs +n
+    sta 200,x
+n:  dex
+    bne -l
+    rts
+
 start:
-    jsr init_hiscore
 if @*preshifted-sprites?*
     jsr preshift_sprites
 end
+    jsr clear_data
+    jsr init_hiscore
     jsr init_music
     jsr start_irq
     lda #snd_test
@@ -21,6 +33,8 @@ game_over:
     jsr play_sound
 
 restart:
+    jsr clear_data
+
 if @(not *shadowvic?*)
     lda #<gfx_title
     sta s
