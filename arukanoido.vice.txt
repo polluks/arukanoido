@@ -182,7 +182,7 @@ al 11ff .load_address
 al 120b .basic_end
 al 2300 .relocated_start
 al 10b7 .relocation_offset
-al 485f .loaded_end
+al 4865 .loaded_end
 al 120d .main
 al 121f .l
 al 123c .dec_zp
@@ -400,9 +400,8 @@ al 2efa .n
 al 2f1b .n
 al 2f1e .t
 al 2f21 .no_hit
-al 2f2d .y
 al 2f64 .a
-al 2f81 .reflect
+al 2f81 .apply_reflection
 al 2f91 .n
 al 2fa5 .n
 al 2fb5 .move_ball
@@ -582,5 +581,5 @@ al 4f56 .m
 al 4f5b .n
 al 4f60 .wait_sound
 al 4f69 .loaded_music_player
-al 5916 .relocated_end
+al 591c .relocated_end
 break .stop
