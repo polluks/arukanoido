@@ -1,6 +1,23 @@
 ball_directions_x:  @(ball-directions-x)
 ball_directions_y:  @(ball-directions-y)
 
+ball_x:     0
+ball_y:     0
+
+get_ball_position:
+    ldy sprites_x,x
+    iny
+    sty ball_x
+    ldy sprites_y,x
+    iny
+    iny
+    sty ball_y
+    rts
+
+get_ball_collision:
+    lda ball_x
+    ldy ball_y
+
 ; Test on collision with foreground char.
 ;
 ; A: X position
@@ -16,6 +33,7 @@ get_soft_collision:
     lsr
     lsr
     sta scry
+get_hard_collision:
     jsr scrcoladdr
     lda (scr),y
     cmp #bg_minivaus    ; Ignore miniature Vaus displaying # of lifes.
@@ -26,6 +44,7 @@ r:  rts
 n:  lda #1
     rts
 
+ 
 ctrl_ball:
     lda caught_ball
     bpl -r
@@ -110,131 +129,77 @@ test_distractor_collision:
     jmp play_sound
 
 n:  jmp reflect
+t:  jmp traject_ball
 
 no_hit:
     lda #0
     sta side_degrees
-    sta this_reflections
+
+    jsr get_ball_position
+    jsr get_ball_collision
+    bne -t
 
     ; Bounce back left.
-    lda sprites_d,x
-    bmi +n
-    lda sprites_x,x
-    clc
-    adc #ball_width
-    ldy sprites_y,x
-    iny
-    iny
-    iny
-    jsr get_soft_collision
-    bne +n
-    lda this_reflections
-    ora #r_horizontal
-    sta this_reflections
-    lda sprites_x,x
+    lda sprites_d,x         ; Moving to the left?
+    bpl +n                  ; No…
+    lda ball_x              ; Are we hitting the right hand side of the char?
     and #%100
-    beq +n
-    lda last_reflections,x
-    and #r_horizontal
-    bne +n
+    beq +m                  ; No…
+    inc scrx                ; Check if there's a char right to it.
+    jsr get_hard_collision
+    beq +m                  ; Yes. cannot reflect on this axis…
     lda #64
-    clc
-    adc side_degrees
-    sta side_degrees
-    jmp +h
+    jmp +j
 n:
 
     ; Bounce back right.
-    lda sprites_d,x
-    bpl +n
-    ldy sprites_x,x
-    dey
-    tya
-    ldy sprites_y,x
-    iny
-    iny
-    iny
-    jsr get_soft_collision
-    bne +n
-    lda this_reflections
-    ora #r_horizontal
-    sta this_reflections
-    lda sprites_x,x
+    lda ball_x              ; Are we hitting the left hand side of the char?
     and #%100
-    bne +n
-    lda last_reflections,x
-    and #r_horizontal
-    bne +n
+    bne +m                  ; No…
+    dec scrx                ; Check if there's a char left to it.
+    jsr get_hard_collision
+    beq +m                  ; Yes. cannot reflect on this axis…
     lda #192
-    clc
+j:  clc
     adc side_degrees
     sta side_degrees
-    jmp +h
 n:
 
+m:  jsr get_ball_position
+    jsr get_ball_collision
+
+    ; Bounce back from top.
+    lda sprites_d,x         ; Are we flying upwards?
+    clc
+    adc #64
+    bpl +n                  ; No…
+    lda ball_y              ; Have we hit the bottom half of the char?
+    and #%100
+    beq +m                  ; No…
+    inc scry                ; Is there a char beneath it?
+    jsr get_hard_collision
+    beq +m
+    lda #128
+    jmp +j
+n:
+
+    ; Bounce back from bottom.
+    lda ball_y              ; Are we hitting the top half of the char?
+    and #%100
+    bne +m
+    dec scry                ; Is there a char above it?
+    jsr get_hard_collision
+    beq +m                  ; Yes…
+    lda #128
+j:  clc
+    adc side_degrees
+    sta side_degrees
+n:
 m:
-    ; Bounce back upwards.
-    ldy sprites_x,x
-    iny
-    tya
-    ldy sprites_y,x
-    iny
-    iny
-    iny
-    iny
-    iny
-    jsr get_soft_collision
-    bne +n
-    lda this_reflections
-    ora #r_vertical
-    sta this_reflections
-    lda sprites_x,x
-    and #%100
-    bne +n
-    lda sprites_d,x
-    clc
-    adc #64
-    bmi +n
-    lda last_reflections,x
-    and #r_vertical
-    bne +n
-    lda #128
-    clc
-    adc side_degrees
-    sta side_degrees
-    jmp +h
-n:
-
-    ; Bounce back downwards.
-    ldy sprites_x,x
-    iny
-    tya
-    ldy sprites_y,x
-    dey
-    jsr get_soft_collision
-    bne +t
-    lda this_reflections
-    ora #r_vertical
-    sta this_reflections
-    lda sprites_x,x
-    and #%100
-    beq +n
-    lda sprites_d,x
-    clc
-    adc #64
-    bpl +n
-    lda last_reflections,x
-    and #r_vertical
-    bne +n
-    lda #128
-    clc
-    adc side_degrees
-    sta side_degrees
-n:  jmp +h
-
-t:  jmp traject_ball
 
 h:  jsr correct_trajectory
+    jsr get_ball_position
+    jsr get_ball_collision
     jsr hit_brick
     bcs reflect         ; Not a brick.
 
@@ -313,9 +278,6 @@ n:
     sta sprites_d,x
 
 traject_ball:
-    lda this_reflections
-    sta last_reflections,x
-
     ; Traject on X axis.
     ldy sprites_d,x
     lda ball_directions_x,y

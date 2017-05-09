@@ -97,9 +97,6 @@ sprites_oy:         fill num_sprites ; Former Y positions for cleaning up.
 r_horizontal    = 1
 r_vertical      = 2
 
-last_reflections:   fill num_sprites
-this_reflections:   0
-
     end
 
 ; Minigrafik viewer

@@ -19,7 +19,6 @@ end
     jsr start_irq
     lda #snd_test
     jsr play_sound
-    jsr wait_sound
     jmp restart
 
 game_over:
@@ -28,7 +27,6 @@ game_over:
 
     lda #snd_game_over
     jsr play_sound
-    jsr wait_sound
     lda #snd_hiscore
     jsr play_sound
 
@@ -57,10 +55,8 @@ end
 
     lda #snd_coin
     jsr play_sound
-    jsr wait_sound
     lda #snd_theme
     jsr play_sound
-    jsr wait_sound
 
     jsr init_game_mode
 
