@@ -51,8 +51,11 @@ reflect_h:
     lda ball_x              ; Are we hitting the right hand side of the char?
     and #%100
     beq +m                  ; No…
-    inc scrx                ; Check if there's a char right to it.
-    jsr get_hard_collision
+    lda ball_x
+    ldy ball_y
+    clc
+    adc #1
+    jsr get_soft_collision
     beq +m                  ; Yes. cannot reflect on this axis…
     bne +j
 n:
@@ -61,8 +64,11 @@ n:
     lda ball_x              ; Are we hitting the left hand side of the char?
     and #%100
     bne +m                  ; No…
-    dec scrx                ; Check if there's a char left to it.
-    jsr get_hard_collision
+    lda ball_x
+    ldy ball_y
+    sec
+    sbc #1
+    jsr get_soft_collision
     beq +m                  ; Yes. cannot reflect on this axis…
 j:  lda #64
     jmp +l
@@ -76,8 +82,10 @@ reflect_v:
     lda ball_y              ; Have we hit the bottom half of the char?
     and #%100
     beq +m                  ; No…
-    inc scry                ; Is there a char beneath it?
-    jsr get_hard_collision
+    lda ball_x
+    ldy ball_y
+    iny
+    jsr get_soft_collision
     beq +m
     bne +j
 n:
@@ -86,8 +94,10 @@ n:
     lda ball_y              ; Are we hitting the top half of the char?
     and #%100
     bne +m
-    dec scry                ; Is there a char above it?
-    jsr get_hard_collision
+    lda ball_x
+    ldy ball_y
+    dey
+    jsr get_soft_collision
     beq +m                  ; Yes…
 j:  lda #128
 l:  clc
@@ -159,7 +169,7 @@ test_distractor_collision:
     asl
     sta side_degrees
 
-    ; Avoid going straigt up.
+    ; Avoid going straight up.
     jsr abs
     cmp #$04
     bcs +n
