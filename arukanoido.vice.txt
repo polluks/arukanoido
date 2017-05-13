@@ -90,7 +90,7 @@ al 0001 .first_sprite_char
 al 0060 .foreground
 al 1400 .frame_a
 al 1800 .frame_b
-al 0014 .default_num_lifes
+al 0003 .default_num_lifes
 al 0007 .default_ball_speed
 al 0078 .default_ball_direction
 al 0003 .ball_width
