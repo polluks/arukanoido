@@ -4,19 +4,15 @@ ball_directions_y:  @(ball-directions-y)
 ball_x:     0
 ball_y:     0
 
-get_ball_position:
+get_ball_collision:
     ldy sprites_x,x
     iny
     sty ball_x
+    tya
     ldy sprites_y,x
     iny
     iny
     sty ball_y
-    rts
-
-get_ball_collision:
-    lda ball_x
-    ldy ball_y
 
 ; Test on collision with foreground char.
 ;
@@ -48,20 +44,20 @@ reflect_h:
     ; Bounce back left.
     lda sprites_d,x         ; Moving to the left?
     bpl +n                  ; No…
-    lda ball_x
+    ldy ball_x
+    iny
+    tya
     ldy ball_y
-    clc
-    adc #1
     jsr get_soft_collision
     beq +m                  ; Yes. cannot reflect on this axis…
     bne +j
 n:
 
     ; Bounce back right.
-    lda ball_x
+    ldy ball_x
+    dey
+    tya
     ldy ball_y
-    sec
-    sbc #1
     jsr get_soft_collision
     beq +m                  ; Yes. cannot reflect on this axis…
 j:  lda #64
@@ -190,25 +186,41 @@ n:
     jmp play_sound
 
 n:  jmp apply_reflection
+
+m:  lda #0
+    sta sprites_old_coll_x,x
+    sta sprites_old_coll_y,x
+    jsr correct_trajectory
 t:  jmp move_ball
 
 no_hit:
     lda #0
     sta side_degrees
 
-    jsr get_ball_position
     jsr get_ball_collision
-    bne -t
+    bne -m
+
+    lda sprites_old_coll_x,x
+    cmp scrx
+    bne +n
+    lda sprites_old_coll_y,x
+    cmp scry
+    beq -t
+n:  lda scrx
+    sta sprites_old_coll_x,x
+    lda scry
+    sta sprites_old_coll_y,x
 
     jsr reflect_v
-    jsr get_ball_position
     jsr get_ball_collision
     jsr reflect_h
 
-    jsr get_ball_position
     jsr get_ball_collision
     jsr hit_brick
     bcs hit_solid
+
+    lda #0
+    sta reflections_since_last_vaus_hit
 
     ; Make bonus.
     lda mode
@@ -255,7 +267,7 @@ end
     jmp apply_reflection
 
 hit_solid:
-    jsr correct_trajectory
+    inc reflections_since_last_vaus_hit
 
 apply_reflection:
     ; Play reflection sound.
@@ -289,46 +301,7 @@ n:
     sta sprites_d,x
 
 move_ball:
-    ; Move on X axis.
-    ldy sprites_d,x
-    lda ball_directions_x,y
-    bmi +m
-    lda sprites_dx,x
-    clc
-    adc ball_directions_x,y
-    bcc +n
-    inc sprites_x,x
-    jmp +n
-
-m:  jsr neg
-    sta tmp
-    lda sprites_dx,x
-    sec
-    sbc tmp
-    bcs +n
-    dec sprites_x,x
-
-n:  sta sprites_dx,x
-
-    ; Move on Y axis.
-    lda ball_directions_y,y
-    bmi +m
-    lda sprites_dy,x
-    clc
-    adc ball_directions_y,y
-    bcc +n
-    inc sprites_y,x
-    jmp +n
-
-m:  jsr neg
-    sta tmp
-    lda sprites_dy,x
-    sec
-    sbc tmp
-    bcs +n
-    dec sprites_y,x
-
-n:  sta sprites_dy,x
+    jsr ball_step
 
     ; Deal with lost ball.
     lda sprites_y,x
@@ -359,9 +332,6 @@ play_reflection_sound:
 n:  rts
 
 hit_brick:
-    lda #0
-    sta reflections_since_last_vaus_hit
-
     ; Check brick type.
     ldy scrx
     lda (scr),y
@@ -422,7 +392,6 @@ r:  sec
     rts
 
 correct_trajectory:
-    inc reflections_since_last_vaus_hit
     lda reflections_since_last_vaus_hit
     cmp #8
     bcc +r
@@ -431,11 +400,54 @@ correct_trajectory:
     bne +n
     lda sprites_d,x
     clc
-    adc #16
+    adc #8
     sta sprites_d,x
     rts
 n:  lda sprites_d,x
     sec
-    sbc #16
+    sbc #8
     sta sprites_d,x
 r:  rts
+
+ball_step:
+    ; Move on X axis.
+    ldy sprites_d,x
+    lda ball_directions_x,y
+    bmi +m
+    lda sprites_dx,x
+    clc
+    adc ball_directions_x,y
+    bcc +n
+    inc sprites_x,x
+    jmp +n
+
+m:  jsr neg
+    sta tmp
+    lda sprites_dx,x
+    sec
+    sbc tmp
+    bcs +n
+    dec sprites_x,x
+
+n:  sta sprites_dx,x
+
+    ; Move on Y axis.
+    lda ball_directions_y,y
+    bmi +m
+    lda sprites_dy,x
+    clc
+    adc ball_directions_y,y
+    bcc +n
+    inc sprites_y,x
+    jmp +n
+
+m:  jsr neg
+    sta tmp
+    lda sprites_dy,x
+    sec
+    sbc tmp
+    bcs +n
+    dec sprites_y,x
+
+n:  sta sprites_dy,x
+    rts

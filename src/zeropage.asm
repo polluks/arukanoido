@@ -93,6 +93,8 @@ sprites_dx:         fill num_sprites ; Whatever the controllers want.
 sprites_dy:         fill num_sprites ; Whatever the controllers want.
 sprites_ox:         fill num_sprites ; Former X positions for cleaning up.
 sprites_oy:         fill num_sprites ; Former Y positions for cleaning up.
+sprites_old_coll_x: fill num_sprites ; Last X char position where collision occured.
+sprites_old_coll_y: fill num_sprites ; Last Y char position where collision occured.
 
 r_horizontal    = 1
 r_vertical      = 2
