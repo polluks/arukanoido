@@ -48,9 +48,6 @@ reflect_h:
     ; Bounce back left.
     lda sprites_d,x         ; Moving to the left?
     bpl +n                  ; No…
-    lda ball_x              ; Are we hitting the right hand side of the char?
-    and #%100
-    beq +m                  ; No…
     lda ball_x
     ldy ball_y
     clc
@@ -61,9 +58,6 @@ reflect_h:
 n:
 
     ; Bounce back right.
-    lda ball_x              ; Are we hitting the left hand side of the char?
-    and #%100
-    bne +m                  ; No…
     lda ball_x
     ldy ball_y
     sec
@@ -79,9 +73,6 @@ reflect_v:
     clc
     adc #64
     bpl +n                  ; No…
-    lda ball_y              ; Have we hit the bottom half of the char?
-    and #%100
-    beq +m                  ; No…
     lda ball_x
     ldy ball_y
     iny
@@ -91,9 +82,6 @@ reflect_v:
 n:
 
     ; Bounce back from bottom.
-    lda ball_y              ; Are we hitting the top half of the char?
-    and #%100
-    bne +m
     lda ball_x
     ldy ball_y
     dey
@@ -436,18 +424,18 @@ r:  sec
 correct_trajectory:
     inc reflections_since_last_vaus_hit
     lda reflections_since_last_vaus_hit
-    cmp #16
+    cmp #8
     bcc +r
     lda sprites_d,x
     and #%00100000
     bne +n
     lda sprites_d,x
     clc
-    adc #8
+    adc #16
     sta sprites_d,x
     rts
 n:  lda sprites_d,x
     sec
-    sbc #8
+    sbc #16
     sta sprites_d,x
 r:  rts
