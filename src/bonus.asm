@@ -15,7 +15,11 @@ ctrl_bonus:
     lda sprites_i,y
     and #is_vaus
     beq +m
-    lda #0
+    lda mode
+    cmp #mode_break
+    bne +n
+    jsr draw_walls
+n:  lda #0
     sta mode
 if @(not *preshifted-sprites?*)
     lda sprites_l,x
@@ -82,6 +86,19 @@ apply_bonus_s:
 n:  rts
 
 apply_bonus_b:
+    lda #mode_break
+    sta mode
+    lda #14
+    sta scrx
+    lda #28
+    sta scry
+l:  jsr scrcoladdr
+    lda #0
+    sta (scr),y
+    inc scry
+    lda scry
+    cmp #31
+    bne -l
     rts
 
 apply_bonus_d:

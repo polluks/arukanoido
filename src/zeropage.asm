@@ -23,9 +23,10 @@ spriteframe:          0   ; Character offset into lower or upper half of charset
 sprite_rr:            0   ; Round-robin sprite allocation index.
 foreground_collision: 0   ; Set if a sprite collision has been detected.
 
-mode_laser = 1
-mode_catching = 2
+mode_laser      = 1
+mode_catching   = 2
 mode_disruption = 3
+mode_break      = 4
 mode:                 0
 
 side_degrees:         0

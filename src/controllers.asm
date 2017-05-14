@@ -80,7 +80,7 @@ n:  lda #0          ;Fetch rest of joystick status.
     bmi +r
     lda sprites_x,x
     cmp #@(* (- screen_columns 3) 8)
-    bcs ctrl_dummy
+    bcs handle_break_mode
     lda #2
     jsr sprite_right
 
@@ -124,6 +124,14 @@ fire:
 no_fire:
 ctrl_dummy:
     rts
+
+handle_break_mode:
+    lda mode
+    cmp #mode_break
+    bne +n
+    lda #0
+    sta bricks_left
+n:  rts
 
 ctrl_vaus_right:
     lda @(+ sprites_x (- num_sprites 1))

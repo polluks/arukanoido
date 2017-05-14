@@ -593,7 +593,7 @@
 
 (defun paddle-xlat ()
   (maptimes [bit-and (integer (+ 8 (/ (- 255 _) ; TODO: Häh?
-                                      (/ 256 (++ (* 8 11))))))
+                                      (/ 256 (++ (* 8 13))))))
                      #xfe] 256))
 
 (= *model* :vic-20+xk)

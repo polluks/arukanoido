@@ -1,6 +1,6 @@
 ; Fixed addresses
 
-preshifted_sprites  = $6000
+preshifted_sprites  = $6800
 music_player        = $7000
 
 ; VIC settings
