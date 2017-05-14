@@ -70,8 +70,6 @@ apply_bonus_l:
     rts
 
 apply_bonus_e:
-    lda #snd_extend
-    jsr play_sound
     rts
 
 apply_bonus_c:
@@ -153,5 +151,7 @@ f:  lda #0
     rts
 
 apply_bonus_p:
+    lda #snd_bonus_life
+    jsr play_sound
     inc lifes
     jmp draw_lifes

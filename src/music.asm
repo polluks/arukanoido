@@ -6,7 +6,7 @@ requested_song = $702d
 snd_test              = 3
 snd_theme             = 1
 snd_round             = 2
-snd_extend            = 3
+snd_bonus_life        = 3
 snd_game_over         = 4
 snd_doh_round         = 5
 snd_hiscore           = 6
@@ -16,8 +16,8 @@ snd_reflection_silver = 9
 snd_catched_ball      = 10
 snd_miss              = 11
 snd_coin              = 11
-snd_twelve            = 12
-snd_thirteen          = 13
+snd_hit_doh           = 12
+snd_doh_dissolving    = 13
 snd_growing_vaus      = 14
 snd_hit_distractor    = 15
 snd_laser             = 16
@@ -27,7 +27,7 @@ sound_priorities:
     0 ; no sound
     2 ; 1
     2 ; 2
-    1 ; 3
+    2 ; 3
     2 ; 4
     2 ; 5
     2 ; 6

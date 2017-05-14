@@ -34,7 +34,16 @@ ctrl_vaus_left:
 
 p:  ldy $9008
     lda paddle_xlat,y
-    sec
+    cmp #@(* (- screen_columns 3) 8)
+    bcc +n
+    ldy mode
+    cpy #mode_break
+    bne +m
+    lda #0
+    sta bricks_left
+    rts
+m:  lda #@(* (- screen_columns 3) 8)
+n:  sec
     sbc sprites_x,x
     sta tmp2
     jsr sprite_right

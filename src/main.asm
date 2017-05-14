@@ -17,7 +17,7 @@ end
     jsr init_hiscore
     jsr init_music
     jsr start_irq
-    lda #snd_test
+    lda #snd_bonus_life ; Tell that the tape has finished loading.
     jsr play_sound
     jsr wait_sound
     jmp restart
@@ -157,6 +157,7 @@ l:  jsr remove_sprite
     sta balls
 
     jsr draw_lifes
+    jsr draw_walls      ; Freshen up after mode_break.
 
     ; Initialize sprite frame.
     lda #0
@@ -238,19 +239,19 @@ l:  sta @(-- (+ screen (* 25 15) 4)),x
 
 mainloop:
     lda bricks_left
-    bne +n
-    jmp next_level
-n:  lda is_running_game
+    beq +m
+    bmi +m
+    lda is_running_game
     bne +n
     jsr wait_sound
 poke_unlimited:
     dec lifes
     beq +o
-    jmp retry                                                                                                
+    jmp retry
+m:  jmp next_level
 o:  jmp game_over
-n:
 
-    jsr random      ; Improve randomness. Avoid CRTC hsync sine wave wobble.
+n:  jsr random      ; Improve randomness. Avoid CRTC hsync sine wave wobble.
 
 if @*shadowvic?*
    $22 $02
