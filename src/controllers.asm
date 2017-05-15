@@ -60,7 +60,7 @@ n:  sec
 n:  lda joystick_status
     and #joy_left
     beq do_fire
-    bne no_fire
+    bne +f
 
 joy:
     ; Joystick left.
@@ -81,6 +81,8 @@ n:  lda joystick_status
     jsr sprite_left
     ldx tmp
     jmp +r
+
+f:  jmp no_fire
 
     ; Joystick right.
 n:  lda #0          ;Fetch rest of joystick status.
@@ -106,7 +108,11 @@ r:  lda joystick_status
     bne no_fire
 
 do_fire:
-    lda #255
+    lda caught_ball
+    bmi +n
+    lda #snd_reflection_low
+    jsr play_sound
+n:  lda #255
     sta caught_ball
 
     lda mode
