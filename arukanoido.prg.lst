@@ -89,7 +89,7 @@
 0000: 5 440 :            foreground          = @(+ (half framechars) (quarter framechars))
 0000: 5 445 :            frame_a             = charset
 0000: 5 450 :            frame_b             = @(+ charset framesize)
-0000: 5 455 :            default_num_lifes       = 100
+0000: 5 455 :            default_num_lifes       = 3
 0000: 5 460 :            default_ball_speed      = 7
 0000: 5 465 :            default_ball_direction  = 120
 0000: 5 470 :            ball_width              = 3
@@ -1058,7 +1058,7 @@
 27b6: 4 4323 : 8d 0b 02      sta is_using_paddle
 27b9: 4 4327 : ad 08 90      lda $9008
 27bc: 4 4331 : 8d 0a 02      sta old_paddle_value
-27bf: 2 4335 : a9 64         lda #default_num_lifes
+27bf: 2 4335 : a9 03         lda #default_num_lifes
 27c1: 4 4337 : 8d 04 02      sta lifes
 27c4: 2 4341 : a9 00         lda #0
 27c6: 3 4343 : 85 1b         sta level
