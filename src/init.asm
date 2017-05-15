@@ -3,15 +3,23 @@ if @*shadowvic?*
 end
 
 relocated_start = @(+ charset 3840)
-
 relocation_offset = @(- relocated_start loaded_start)
 loaded_end = @(- relocated_end relocation_offset)
 
-main:
-if @*shadowvic?*
-    jmp loaded_start
-end
+music_player_size = @(length (fetch-file "sound-beamrider/MusicTester.prg"))
+loaded_music_player_end = @(+ loaded_music_player (-- music_player_size))
+music_player_end = @(+ music_player (-- music_player_size))
 
+main:
+    sei
+    lda #$7f
+    sta $912e       ; Disable and acknowledge interrupts.
+    sta $912d
+    sta $911e       ; Disable restore key NMIs.
+
+if @(not *shadowvic?*)
+    ; Relocate loaded data by copying it to the right position backwards
+    ; as it's beeing moved up to make space for the VIC.
     lda #<loaded_end
     sta s
     lda #>loaded_end
@@ -35,6 +43,7 @@ l:  lda (s),y
     bne -l
     jmp relocated_start
 
+; Decrement zero page word X.
 dec_zp:
     dec 0,x
     pha
@@ -44,16 +53,14 @@ dec_zp:
     dec 1,x
 n:  pla
     rts
+end
 
 loaded_start:
 if @(not *shadowvic?*)
     org relocated_start
 end
 
-music_player_size = @(length (fetch-file "sound-beamrider/MusicTester.prg"))
-loaded_music_player_end = @(+ loaded_music_player (-- music_player_size))
-music_player_end = @(+ music_player (-- music_player_size))
-
+    ; Now relocate the music player.
     lda #<loaded_music_player_end
     sta s
     lda #>loaded_music_player_end
@@ -83,7 +90,7 @@ q2: dex
     dec @(++ c)
     bne l2
 
-    jmp start
+    jmp start       ; Start the game…
 
 m2: dec @(++ s)
     jmp n2
