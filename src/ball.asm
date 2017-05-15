@@ -178,10 +178,7 @@ n:
 
     ; Catch ball.
     stx caught_ball
-    lda #default_ball_direction
-    sta sprites_d,x
-    lda #@(- vaus_y 5)
-    sta sprites_y,x
+    jsr apply_reflection
     lda #snd_catched_ball
     jmp play_sound
 
