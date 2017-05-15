@@ -301,7 +301,7 @@ draw_lifes:
     bcs +n
     lda #0
     sta lifes_on_screen,x
-l:  cpx #13
+l:  cpx #14
     bcs +n
     cpx #0
     beq +done
