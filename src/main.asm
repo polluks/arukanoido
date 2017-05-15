@@ -1,8 +1,10 @@
 clear_data:
     lda #0
     tax
-l:  sta 0,x
-    sta 200,x
+l:  cpx #@(-- current_song)
+    bcc +n
+    sta 0,x
+n:  sta 200,x
     dex
     bne -l
     rts
