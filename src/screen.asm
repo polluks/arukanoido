@@ -13,3 +13,16 @@ scrcoladdr:
     sta @(++ col)
     ldy scrx
     rts
+
+; Clear screen.
+clear_screen:
+    ldx #0
+l:  lda #0
+    sta screen,x
+    sta @(+ 256 screen),x
+    lda #@(+ multicolor white)
+    sta colors,x
+    sta @(+ 256 colors),x
+    dex
+    bne -l
+    rts

@@ -2,10 +2,8 @@ clear_data:
     lda #0
     tax
 l:  sta 0,x
-    cpx #@(-- hiscore)
-    bcs +n
     sta 200,x
-n:  dex
+    dex
     bne -l
     rts
 
@@ -105,6 +103,7 @@ l:  lda #0
     dex
     bne -l
 
+    jsr clear_screen
     jsr draw_level
     jsr draw_walls
     jsr display_score
