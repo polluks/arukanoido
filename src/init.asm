@@ -17,6 +17,10 @@ main:
     sta $912d
     sta $911e       ; Disable restore key NMIs.
 
+    ; Blank screen.
+    lda #0
+    sta $9002
+
 if @(not *shadowvic?*)
     ; Relocate loaded data by copying it to the right position backwards
     ; as it's beeing moved up to make space for the VIC.
@@ -35,6 +39,7 @@ l:  lda (s),y
     jsr dec_zp
     ldx #d
     jsr dec_zp
+    inc $900f
     lda s
     cmp #@(low (-- loaded_start))
     bne -l
@@ -77,6 +82,7 @@ copy_backwards:
     ldy #0
 l2: lda (s),y
     sta (d),y
+    inc $900f
     dec s
     lda s
     cmp #$ff
@@ -90,6 +96,7 @@ q2: dex
     dec @(++ c)
     bne l2
 
+    stx $900f
     jmp start       ; Start the game…
 
 m2: dec @(++ s)

@@ -10,6 +10,9 @@ n:  sta 200,x
     rts
 
 start:
+    ldx #$ff
+    txs
+
 if @*preshifted-sprites?*
     jsr preshift_sprites
 end
@@ -111,9 +114,6 @@ l:  lda #0
     jsr display_score
 
 retry:
-    ldx #$ff
-    txs
-
     lda #0
     sta is_running_game
     sta reflections_on_top
@@ -290,25 +290,30 @@ n1: dex
     bpl -l1
     rts
 
+lifes_on_screen = @(+ (* 31 15) 1 screen)
+lifes_on_colors = @(+ (* 31 15) 1 colors)
+
 draw_lifes:
-    lda #1
-    sta scrx
-    lda #31
-    sta scry
-    lda lifes
-    sta tmp
-l:  dec tmp
-    beq +n
-    jsr scrcoladdr
-    lda #bg_minivaus
-    sta (scr),y
-    lda #@(+ multicolor white)
-    sta (col),y
-    inc scrx
-    jmp -l
-n:  jsr scrcoladdr
+    txa
+    pha
+    ldx lifes
+    cpx #13
+    bcs +n
     lda #0
-    sta (scr),y
+    sta lifes_on_screen,x
+n:  dex
+    bmi +done
+l:  cpx #13
+    bcs +n
+    lda #bg_minivaus
+    sta lifes_on_screen,x
+    lda #@(+ multicolor white)
+    sta lifes_on_colors,x
+n:  dex
+    bpl -l
+done:
+    pla
+    tax
     rts
 
 txt_round:

@@ -60,8 +60,10 @@ l:  lda score,x
     rts
 
 add_to_score:
-    stx tmp
-    sty tmp2
+    txa
+    pha
+    tya
+    pha
 
     ldx #@(-- num_score_digits)
     clc
@@ -69,7 +71,16 @@ l:  lda score,x
     adc @(-- scores),y
     cmp #@(+ score_char0 10)
     bcc +n
-    sec
+    cpx #@(- num_score_digits 4)
+    bne +j
+    pha
+    txa
+    pha
+    jsr apply_bonus_p
+    pla
+    tax
+    pla
+j:  sec
     sbc #10
 n:  sta score,x
     dey
@@ -100,6 +111,8 @@ next:
 
 done:
     jsr display_score
-    ldx tmp
-    ldy tmp2
+    pla
+    tay
+    pla
+    tax
     rts
