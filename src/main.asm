@@ -157,8 +157,8 @@ l:  jsr remove_sprite
     lda #1
     sta balls
 
-    jsr draw_lifes
     jsr draw_walls      ; Freshen up after mode_break.
+    jsr draw_lifes
 
     ; Initialize sprite frame.
     lda #0
@@ -301,16 +301,16 @@ draw_lifes:
     bcs +n
     lda #0
     sta lifes_on_screen,x
-n:  dex
-    bmi +done
 l:  cpx #13
     bcs +n
+    cpx #0
+    beq +done
     lda #bg_minivaus
-    sta lifes_on_screen,x
+    sta @(-- lifes_on_screen),x
     lda #@(+ multicolor white)
-    sta lifes_on_colors,x
+    sta @(-- lifes_on_colors),x
 n:  dex
-    bpl -l
+    jmp -l
 done:
     pla
     tax
