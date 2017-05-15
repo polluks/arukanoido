@@ -297,6 +297,7 @@ draw_lifes:
     txa
     pha
     ldx lifes
+    dex
     cpx #13
     bcs +n
     lda #0
