@@ -241,7 +241,6 @@ l:  sta @(-- (+ screen (* 25 15) 4)),x
 mainloop:
     lda bricks_left
     beq +m
-    bmi +m
     lda is_running_game
     bne +n
     jsr wait_sound
