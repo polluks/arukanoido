@@ -9,18 +9,6 @@ b_yellow = 8
 b_silver = 9
 b_golden = 10
 
-;; Future compression scheme
-
-; Set number of repititions for next brick.
-b_run_length = 8
-
-; Copy window someplace else on the screen.
-; Existing bricks aren't cleared.
-;
-; Bit 0 tells to reverse the X axis, bit 1 tells to reverse the Y axis.
-; The next two nibbles contain the destination.
-b_run_copy = %1100
-
 brick_colors:
     white
     orange
