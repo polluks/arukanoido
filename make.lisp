@@ -1,6 +1,6 @@
 (defvar *shadowvic?* nil)
 (defvar *add-charset-base?* t)
-(defvar *preshifted-sprites?* t)
+(defvar *preshifted-sprites?* nil)
 (defvar *show-cpu?* nil)
 (defvar *make-only-vic?* t)
 

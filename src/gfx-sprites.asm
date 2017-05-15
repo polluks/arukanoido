@@ -57,6 +57,7 @@ laser:
     %11000011
     %10000001
 
+bonus_gfx_start:
 bonus_l:
     %00010100
     %01010101
@@ -126,5 +127,6 @@ bonus_p:
     %10011010
     %10011010
     %00101000
+bonus_gfx_end:
 
 sprite_gfx_end:

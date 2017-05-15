@@ -76,7 +76,6 @@ joystick_status:      0
 
 last_random_value:    0   ; Random number generator's last returned value.
 framecounter:         0   ; Current frame number relative to start of game.
-framecounter_high:    0
 lifes:                0
 balls:                0
 

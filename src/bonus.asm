@@ -155,3 +155,53 @@ apply_bonus_p:
     jsr play_sound
     inc lifes
     jmp draw_lifes
+
+rotate_bonus:
+    sta s
+    stx @(++ s)
+    ldy #6
+    lda (s),y
+    pha
+    dey
+l:  lda (s),y
+    iny
+    sta (s),y
+    dey
+    dey
+    bne -l
+    pla
+    iny
+    sta (s),y
+r:  rts
+
+rotate_bonuses:
+    lda framecounter
+    lsr
+    bcc -r
+    lsr
+    bcc +n
+    lsr
+    bcc +m
+    lda #<bonus_l
+    ldx #>bonus_l
+    jsr rotate_bonus
+    lda #<bonus_e
+    ldx #>bonus_e
+    jmp rotate_bonus
+m:  lda #<bonus_c
+    ldx #>bonus_c
+    jsr rotate_bonus
+    lda #<bonus_s
+    ldx #>bonus_s
+    jmp rotate_bonus
+n:  lsr
+    bcc +m
+    lda #<bonus_b
+    ldx #>bonus_b
+    jsr rotate_bonus
+    lda #<bonus_d
+    ldx #>bonus_d
+    jmp rotate_bonus
+m:  lda #<bonus_p
+    ldx #>bonus_p
+    jmp rotate_bonus

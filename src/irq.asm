@@ -35,10 +35,12 @@ if @*show-cpu?*
     lda #@(+ 8 3)
     sta $900f
 end
+    inc framecounter
     jsr play_music
     lda is_running_game
     beq +n
     jsr call_sprite_controllers
+    jsr rotate_bonuses
     lda #1
     sta has_moved_sprites
 n:  lda #$7f
