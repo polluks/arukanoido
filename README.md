@@ -28,7 +28,7 @@ in an empty directory and it'll clone everything and build it.
 * Round 33 is missing.
 * No animated sprites.
 * No distractions floating down.
-* No B or E bonuses although they show.
+* No E bonus although it shows.
 * No title screen nor intro.
 
 
