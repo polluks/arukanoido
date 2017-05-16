@@ -547,6 +547,7 @@
                           ; Graphics
                           "gfx-background.asm"
                           "gfx-sprites.asm"
+                          "charset-4x8.asm"
 
                           ; Tables
                           "brick-info.asm"
@@ -564,6 +565,7 @@
                           "random.asm"
                           "math.asm"
                           "gfx.asm"
+                          "print.asm"
                           ,@(unless *shadowvic?*
                               '("../bender/vic-20/minigrafik-display.asm"))
                           "sprites.asm"
