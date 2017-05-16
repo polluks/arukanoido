@@ -16,10 +16,7 @@ ctrl_bonus:
     and #is_vaus
     beq +m
     lda mode
-    cmp #mode_break
-    bne +n
-    jsr draw_walls
-n:  lda #0
+    lda #0
     sta mode
     lda caught_ball
     bmi +n
@@ -92,8 +89,7 @@ n:  lda #5
     rts
 
 apply_bonus_b:
-    lda #mode_break
-    sta mode
+    inc mode_break
     lda #14
     sta scrx
     lda #28

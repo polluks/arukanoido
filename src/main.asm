@@ -154,6 +154,7 @@ l:  jsr remove_sprite
     sta ball_speed
     lda #0
     sta mode
+    sta mode_break
     lda #1
     sta balls
 

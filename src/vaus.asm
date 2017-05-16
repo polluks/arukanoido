@@ -22,9 +22,8 @@ handle_paddle:
     lda paddle_xlat,y
     cmp #@(* (- screen_columns 3) 8)
     bcc +n
-    ldy mode
-    cpy #mode_break
-    bne +m
+    ldy mode_break
+    beq +m
     lda #0
     sta bricks_left
     rts
@@ -124,9 +123,8 @@ ctrl_dummy:
 r:  rts
 
 handle_break_mode:
-    lda mode
-    cmp #mode_break
-    bne +n
+    lda mode_break
+    beq +n
     lda #0
     sta bricks_left
 n:  rts
