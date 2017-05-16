@@ -13,9 +13,6 @@ start:
     ldx #$ff
     txs
 
-if @*preshifted-sprites?*
-    jsr preshift_sprites
-end
     jsr clear_data
     jsr init_hiscore
     jsr init_music

@@ -157,17 +157,11 @@ a:  jsr random
     cmp #%111
     beq -a      ; Only seven bonuses available.
     pha
-if @(not *preshifted-sprites?*)
     asl
     asl
     asl
     clc
     adc #<bonus_l
-end
-if @*preshifted-sprites?*
-    clc
-    adc #@(/ (- bonus_l sprite_gfx) 8)
-end
     sta @(+ bonus_init 4)
     pla
     tay

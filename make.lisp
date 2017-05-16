@@ -1,6 +1,5 @@
 (defvar *shadowvic?* nil)
 (defvar *add-charset-base?* t)
-(defvar *preshifted-sprites?* nil)
 (defvar *show-cpu?* nil)
 (defvar *make-only-vic?* t)
 
@@ -567,9 +566,7 @@
                           "bonus.asm"
                           "sprites.asm"
                           "sprites-vic-common.asm"
-                          ,(? *preshifted-sprites?*
-                              "sprites-vic-3k.asm"
-                              "sprites-vic.asm")
+                          "sprites-vic.asm"
                           "draw-level.asm"
                           "score.asm"
                           ,@(unless *shadowvic?*

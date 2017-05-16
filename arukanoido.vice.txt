@@ -70,7 +70,6 @@ al 0020 .joy_fire
 al 0004 .joy_up
 al 0008 .joy_down
 al 0010 .joy_left
-al 6800 .preshifted_sprites
 al 7000 .music_player
 al 1000 .screen
 al 1400 .charset
