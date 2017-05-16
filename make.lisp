@@ -563,6 +563,7 @@
                           "vaus.asm"
                           "laser.asm"
                           "ball.asm"
+                          "reflect.asm"
                           "bonus.asm"
                           "sprites.asm"
                           "sprites-vic-common.asm"
