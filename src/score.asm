@@ -46,20 +46,6 @@ l:  lda #score_char0
     bpl -l
     rts
 
-display_score:
-    ldx #@(-- num_score_digits)
-l:  lda score,x
-    sta score_on_screen,x
-    lda #white
-    sta @(+ (- score_on_screen screen) colors),x
-    lda hiscore,x
-    sta hiscore_on_screen,x
-    lda #white
-    sta @(+ (- hiscore_on_screen screen) colors),x
-    dex
-    bpl -l
-    rts
-
 add_to_score:
     txa
     pha

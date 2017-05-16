@@ -10,6 +10,9 @@
        _]
      (string-list x)))
 
+(fn string4x8 (x)
+  (@ [- (char-code _) 32] (string-list x)))
+
 (const *bricks* '(#\  #\w #\o #\c #\g #\r #\b #\p #\y #\s #\x))
 
 (const *levels* '(
@@ -576,9 +579,10 @@
                           ; Level display
                           "lifes.asm"
                           "draw-level.asm"
-                          "score.asm"
+                          "score-display.asm"
 
                           ; Display object interactions
+                          "score.asm"
                           "reflect.asm"
                           "hit-brick.asm"
 

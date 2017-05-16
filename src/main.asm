@@ -1,10 +1,10 @@
 clear_data:
     lda #0
     tax
-l:  cpx #@(-- current_song)
-    bcc +n
+l:  cpx #@(-- hiscore)
+    bcs +n
     sta 0,x
-n:  sta 200,x
+n:  sta $200,x
     dex
     bne -l
     rts
@@ -108,6 +108,7 @@ l:  lda #0
     jsr clear_screen
     jsr draw_level
     jsr draw_walls
+    jsr make_score_screen
     jsr display_score
 
 retry:

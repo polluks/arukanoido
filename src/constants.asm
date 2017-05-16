@@ -46,7 +46,4 @@ vaus_edge_distraction   = 16
 ; Score settings
 
 num_score_digits    = 7
-score_char0         = foreground
-scorechars          = @(+ charset (* 8 score_char0))
-score_on_screen     = @(+ screen screen_columns)
-hiscore_on_screen   = @(+ score_on_screen num_score_digits 1)
+score_char0         = 16    ; Digit '0' in 4x8 charset.

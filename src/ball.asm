@@ -189,7 +189,8 @@ move_ball:
 
     ; Deal with lost ball.
     lda sprites_y,x
-    bne play_reflection_sound
+    cmp #@(- (* 8 screen_rows) 4)
+    bcc play_reflection_sound
 
     dec balls
     bne still_balls_left

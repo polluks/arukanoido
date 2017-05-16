@@ -44,13 +44,4 @@ n:  lda #15         ; Number of columns.
     lda #@(+ reverse red)   ; Screen and border color.
     sta $900f
 
-    ; Copy digits from character ROM.
-    ldx #0
-l:  cpx #81
-    bcs +n
-    lda @(-- (+ charset_locase (* 8 #x30))),x
-    sta @(-- scorechars),x
-n:  dex
-    bne -l
-
     rts
