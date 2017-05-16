@@ -1,18 +1,24 @@
 laser_has_hit: 0
 
 ctrl_laser:
-    lda #0
+    ; We check two collisions, on the left and the right, so we need this flag.
+    lda #0              ; No brick hit.
     sta laser_has_hit
+
     lda sprites_y,x
     cmp #24
-    bcc +n
+    bcc +n              ; Laser left the playfield.
+
+    ; Check on collision on the left hand side.
     lda sprites_x,x
     ldy sprites_y,x
     jsr get_soft_collision
-    bne +o
+    bne +o              ; Nothing, try on the right…
     jsr hit_brick
-    bcs +o
+    bcs +o              ; No brick hit.
     inc laser_has_hit
+
+    ; Check on collision on the right hand side.
 o:  lda sprites_x,x
     clc
     adc #7
@@ -20,9 +26,12 @@ o:  lda sprites_x,x
     jsr get_soft_collision
     bne +m
     jsr hit_brick
-    bcc +n
+    bcc +n              ; We hit a brick…
+
+    ; Move laser up unless it hit a brick with its left.
     lda laser_has_hit
     bne +n
 m:  lda #8
     jmp sprite_up
-n:  jmp remove_sprite
+
+n:  jmp remove_sprite   ; Remove laser sprite.
