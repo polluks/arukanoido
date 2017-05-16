@@ -13,21 +13,27 @@ l:  lda @(-- gfx_background),x
     dex
     bne -l
 
+    ; Check if it's NTSC or PAL.
     lda $ede4
     cmp #$0c
-    beq +p
-    lda #12     ; Horizontal screen origin.
+    beq +pal
+
+ntsc:
+    lda #12         ; Horizontal screen origin.
     sta $9000
-    lda #5      ; Vertical screen origin.
+    lda #5          ; Vertical screen origin.
     sta $9001
     jmp +n
-p:  lda #20     ; Horizontal screen origin.
+
+pal:
+    lda #20         ; Horizontal screen origin.
     sta $9000
-    lda #21     ; Vertical screen origin.
+    lda #21         ; Vertical screen origin.
     sta $9001
-n:  lda #15     ; Number of columns.
+
+n:  lda #15         ; Number of columns.
     sta $9002
-    lda #@(* 32 2) ; Number of rows.
+    lda #@(* 32 2)  ; Number of rows.
     sta $9003
     lda #@(+ vic_screen_1000 vic_charset_1400)
     sta $9005
@@ -38,12 +44,10 @@ n:  lda #15     ; Number of columns.
     lda #@(+ reverse red)   ; Screen and border color.
     sta $900f
 
-    ldx #0
-l:  lda #0
-    sta 0,x
-    cpx #81
-    bcs +n
     ; Copy digits from character ROM.
+    ldx #0
+l:  cpx #81
+    bcs +n
     lda @(-- (+ charset_locase (* 8 #x30))),x
     sta @(-- scorechars),x
 n:  dex
