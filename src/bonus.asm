@@ -21,7 +21,15 @@ ctrl_bonus:
     jsr draw_walls
 n:  lda #0
     sta mode
-    lda sprites_l,x
+    lda caught_ball
+    bmi +n
+    lda #255
+    sta caught_ball
+    lda #snd_reflection_low
+    jsr play_sound
+    lda #0
+    sta sfx_reflection
+n:  lda sprites_l,x
     sec
     sbc #bonus_l
     lsr

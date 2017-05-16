@@ -87,7 +87,7 @@ n:
     ; Catch ball.
     stx caught_ball
     jsr apply_reflection
-    lda #snd_catched_ball
+    lda #snd_caught_ball
     jmp play_sound
 
 n:  jmp apply_reflection
