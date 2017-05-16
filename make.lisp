@@ -1,6 +1,6 @@
 (var *shadowvic?* nil)
 (var *add-charset-base?* t)
-(var *show-cpu?* t)
+(var *show-cpu?* nil)
 (var *make-only-vic?* t)
 
 (fn ascii2pixcii (x)
@@ -547,8 +547,6 @@
                           ; Graphics
                           "gfx-background.asm"
                           "gfx-sprites.asm"
-                          "gfx-doh.asm"
-                          "gfx-title.asm"
 
                           ; Tables
                           "brick-info.asm"
@@ -556,7 +554,8 @@
                           "bits.asm"
                           "line-addresses.asm"
                           "paddle-xlat.asm"
-                          "level-data.asm"
+                          "ball-directions.asm"
+
 
                           ; Library
                           "chars.asm"
@@ -570,6 +569,7 @@
                           "sprites.asm"
                           "sprites-vic-common.asm"
                           "sprites-vic.asm"
+                          "music.asm"
 
                           ; Level display
                           "lifes.asm"
@@ -591,7 +591,14 @@
                           "roundstart.asm"
                           "main.asm"
 
-                          "music.asm"
+                          ; Streamable or loadable on occasion.
+                          "level-data.asm"
+                          "gfx-doh.asm"
+                          "gfx-title.asm"
+
+                          ; Imported music player binary.
+                          "music-player.asm"
+
                           "end.asm"))
         cmds))
 
