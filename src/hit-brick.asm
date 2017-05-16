@@ -4,7 +4,7 @@ hit_brick:
     ; Check brick type.
     ldy scrx
     lda (scr),y
-    cmp #@(++ bg_brick_special4)
+    cmp #bg_brick_special4
     bcs +r              ; Not a brick of any type…
     cmp #bg_brick_special1
     beq check_golden_brick
