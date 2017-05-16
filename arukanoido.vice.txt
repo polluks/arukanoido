@@ -172,10 +172,6 @@ al 020d .sprites_dx
 al 021d .sprites_dy
 al 022d .sprites_ox
 al 023d .sprites_oy
-al 024d .sprites_old_coll_x
-al 025d .sprites_old_coll_y
-al 0001 .r_horizontal
-al 0002 .r_vertical
 al 0000 .mg_s
 al 0002 .mg_d
 al 0006 .mg_c
