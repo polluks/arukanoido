@@ -588,7 +588,9 @@
 
                           ; Top level
                           "irq.asm"
-                          "roundstart.asm"
+                          "round-start.asm"
+                          "round-intro.asm"
+                          "hiscore.asm"
                           "main.asm"
 
                           ; Streamable or loadable on occasion.
