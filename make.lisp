@@ -543,37 +543,53 @@
                           "zeropage.asm"
                           ,@(unless *shadowvic?*
                               '("../bender/vic-20/basic-loader.asm"))
-                          "init.asm"
+                          "init.asm"    ; Used only to start up.
+
+                          ; Graphics
                           "gfx-background.asm"
                           "gfx-sprites.asm"
+                          "gfx-doh.asm"
+                          "gfx-title.asm"
+
+                          ; Tables
                           "brick-info.asm"
                           "sprite-inits.asm"
+                          "bits.asm"
+                          "line-addresses.asm"
+
+                          ; Library
                           "chars.asm"
                           "screen.asm"
                           "blitter.asm"
                           "random.asm"
                           "math.asm"
-                          "bits.asm"
-                          "line-addresses.asm"
-                          "irq.asm"
-                          "main.asm"
-                          "lifes.asm"
                           "gfx.asm"
-                          "roundstart.asm"
-                          "vaus.asm"
-                          "laser.asm"
-                          "ball.asm"
-                          "reflect.asm"
-                          "bonus.asm"
+                          ,@(unless *shadowvic?*
+                              '("../bender/vic-20/minigrafik-display.asm"))
                           "sprites.asm"
                           "sprites-vic-common.asm"
                           "sprites-vic.asm"
+
+                          ; Level display
+                          "lifes.asm"
                           "draw-level.asm"
                           "score.asm"
-                          ,@(unless *shadowvic?*
-                              '("../bender/vic-20/minigrafik-display.asm"))
-                          "gfx-doh.asm"
-                          "gfx-title.asm"
+
+                          ; Display object interactions
+                          "reflect.asm"
+                          "hit-brick.asm"
+
+                          ; Sprite controllers
+                          "vaus.asm"
+                          "laser.asm"
+                          "ball.asm"
+                          "bonus.asm"
+
+                          ; Top level
+                          "irq.asm"
+                          "roundstart.asm"
+                          "main.asm"
+
                           "music.asm"
                           "end.asm"))
         cmds))

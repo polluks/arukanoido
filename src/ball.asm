@@ -95,37 +95,21 @@ n:
 
 n:  jmp apply_reflection
 
-m:  lda #0
-    sta sprites_old_coll_x,x
-    sta sprites_old_coll_y,x
-    jsr correct_trajectory
-t:  jmp move_ball
+m:  jsr correct_trajectory
+    jmp move_ball
 
 no_vaus_hit:
+    ; Reflect ball.
     lda #0
     sta side_degrees
+    sta has_collision
+    sta has_hit_brick
 
-    jsr get_ball_collision
-    bne -m
-
-    lda sprites_old_coll_x,x
-    cmp scrx
-    bne +n
-    lda sprites_old_coll_y,x
-    cmp scry
-    beq -t
-n:  lda scrx
-    sta sprites_old_coll_x,x
-    lda scry
-    sta sprites_old_coll_y,x
-
-    jsr reflect_v
-    jsr get_ball_collision
-    jsr reflect_h
-
-    jsr get_ball_collision
-    jsr hit_brick
-    bcs hit_solid
+    jsr reflect
+    lda has_collision
+    beq -m
+    lda has_hit_brick
+    beq hit_solid
 
     lda #0
     sta reflections_since_last_vaus_hit
@@ -232,68 +216,6 @@ play_reflection_sound:
     stx snd_reflection
     jmp play_sound
 n:  rts
-
-hit_brick:
-    ; Check brick type.
-    ldy scrx
-    lda (scr),y
-    cmp #@(++ bg_brick_special4)
-    bcs +r              ; Not a brick of any type…
-    cmp #bg_brick_special1
-    beq check_golden_brick
-    cmp #bg_brick_orange
-    bcc +r              ; Not a brick of any type…
-    beq remove_brick
-    cmp #bg_brick
-    beq remove_brick
-
-    lda #snd_reflection_silver
-    sta snd_reflection
-
-    ; Degrade silver brick.
-    lda (scr),y
-    sec
-    sbc #1
-    jmp modify_brick
-
-check_golden_brick:
-    lda (col),y
-    and #$0f
-    cmp #yellow
-    beq +golden
-
-    ; Silver brick's score is 50 multiplied by round number.
-    txa
-    pha
-    ldx level
-l:  ldy #@(- score_50 scores)
-    jsr add_to_score
-    dex
-    bne -l
-    pla
-    tax
-    jmp +o
-
-remove_brick:
-    lda (col),y
-    and #$0f
-    tay
-    lda color_scores,y
-    tay
-    jsr add_to_score
-o:  dec bricks_left
-    lda #0
-    ldy scrx
-modify_brick:
-    sta (scr),y
-    clc
-    rts
-
-golden:
-    lda #snd_reflection_silver
-    sta snd_reflection
-r:  sec
-    rts
 
 correct_trajectory:
     lda reflections_since_last_vaus_hit

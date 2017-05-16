@@ -1,15 +1,6 @@
-ball_x:     0
-ball_y:     0
-
-get_ball_collision:
-    ldy sprites_x,x
-    iny
-    sty ball_x
-    tya
-    ldy sprites_y,x
-    iny
-    iny
-    sty ball_y
+has_collision:  0
+ball_x:         0
+ball_y:         0
 
 ; Test on collision with foreground char.
 ;
@@ -42,23 +33,33 @@ reflect_h:
     lda sprites_d,x         ; Moving to the left?
     bpl +n                  ; No…
     ldy ball_x
-    iny
-    tya
-    ldy ball_y
-    jsr get_soft_collision
-    beq +m                  ; Yes. cannot reflect on this axis…
-    bne +j
-n:
-
-    ; Bounce back right.
-    ldy ball_x
     dey
     tya
     ldy ball_y
     jsr get_soft_collision
-    beq +m                  ; Yes. cannot reflect on this axis…
+    bne +r
+    beq +j
+
+    ; Bounce back right.
+n:  ldy ball_x
+    iny
+    tya
+    ldy ball_y
+    jsr get_soft_collision
+    bne +r
 j:  lda #64
     jmp +l
+
+reflect:
+    ldy sprites_x,x
+    iny
+    sty ball_x
+    tya
+    ldy sprites_y,x
+    iny
+    iny
+    sty ball_y
+    jsr reflect_h
 
 reflect_v:
     ; Bounce back from top.
@@ -68,21 +69,24 @@ reflect_v:
     bpl +n                  ; No…
     lda ball_x
     ldy ball_y
-    iny
-    jsr get_soft_collision
-    beq +m
-    bne +j
-n:
-
-    ; Bounce back from bottom.
-    lda ball_x
-    ldy ball_y
     dey
     jsr get_soft_collision
-    beq +m                  ; Yes…
+    bne +r
+    beq +j
+
+    ; Bounce back from bottom.
+n:  lda ball_x
+    ldy ball_y
+    iny
+    jsr get_soft_collision
+    bne +r
 j:  lda #128
 l:  clc
     adc side_degrees
     sta side_degrees
+    inc has_collision
+    jsr hit_brick
+    bcs +r
+    inc has_hit_brick
 
-m:  rts
+r:  rts
