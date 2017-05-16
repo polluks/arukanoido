@@ -118,8 +118,10 @@ retry:
     sta is_running_game
     sta reflections_on_top
     sta reflections_since_last_vaus_hit
-    sta sfx_reflection
+    sta snd_reflection
     sta is_firing
+    lda #1
+    sta sfx_reflection
 
     jsr clear_sprites
 
