@@ -5,7 +5,7 @@ ctrl_vaus_left:
     sta joystick_status
 
     lda is_using_paddle
-    bne +p
+    bne handle_paddle
 
     ; Check if paddle is being used.
     lda $9008
@@ -13,11 +13,12 @@ ctrl_vaus_left:
     sbc old_paddle_value
     jsr abs
     and #%11111000
-    beq joy             ; Nope…
-    lda #1              ; Yes, lock the joystick.
+    beq handle_joystick
+    lda #1
     sta is_using_paddle
 
-p:  ldy $9008
+handle_paddle:
+    ldy $9008
     lda paddle_xlat,y
     cmp #@(* (- screen_columns 3) 8)
     bcc +n
@@ -45,9 +46,9 @@ n:  sec
 n:  lda joystick_status
     and #joy_left
     beq do_fire
-    bne +f
+    rts
 
-joy:
+handle_joystick:
     ; Joystick left.
 n:  lda joystick_status
     and #joy_left
@@ -59,21 +60,19 @@ n:  lda joystick_status
     jsr sprite_left
 
     lda caught_ball
-    bmi +r
+    bmi handle_joystick_fire
     stx tmp
     tax
     lda #2
     jsr sprite_left
     ldx tmp
-    jmp +r
-
-f:  jmp no_fire
+    jmp handle_joystick_fire
 
     ; Joystick right.
 n:  lda #0          ;Fetch rest of joystick status.
     sta $9122
     lda $9120
-    bmi +r
+    bmi handle_joystick_fire
     lda sprites_x,x
     cmp #@(* (- screen_columns 3) 8)
     bcs handle_break_mode
@@ -81,16 +80,17 @@ n:  lda #0          ;Fetch rest of joystick status.
     jsr sprite_right
 
     lda caught_ball
-    bmi +r
+    bmi handle_joystick_fire
     stx tmp
     tax
     lda #2
     jsr sprite_right
     ldx tmp
 
-r:  lda joystick_status
+handle_joystick_fire:
+    lda joystick_status
     and #joy_fire
-    bne no_fire
+    bne +r
 
 do_fire:
     lda caught_ball
@@ -102,15 +102,14 @@ n:  lda #255
 
     lda mode
     cmp #mode_laser
-    bne no_fire
+    bne +r
 
     lda is_firing
-    beq fire
+    beq +n
     dec is_firing
-    bne no_fire
+    bne +r
 
-fire:
-    lda #snd_laser
+n:  lda #snd_laser
     jsr play_sound
     lda #9
     sta is_firing
@@ -119,11 +118,10 @@ fire:
     adc #4
     sta laser_init
     ldy #@(- laser_init sprite_inits)
-    jsr add_sprite
+    jmp add_sprite
 
-no_fire:
 ctrl_dummy:
-    rts
+r:  rts
 
 handle_break_mode:
     lda mode
