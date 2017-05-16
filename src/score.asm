@@ -18,14 +18,15 @@ score_120:
 
 color_scores:
     0
-    @(- score_50 scores)
-    @(- score_90 scores)
-    @(- score_70 scores)
-    @(- score_110 scores)
-    @(- score_80 scores)
-    @(- score_100 scores)
-    @(- score_120 scores)
-    @(- score_60 scores)
+    @(- score_50 scores)    ; 1 white
+    @(- score_90 scores)    ; 2 red
+    @(- score_70 scores)    ; 3 cyan
+    @(- score_110 scores)   ; 4 purple
+    @(- score_80 scores)    ; 5 green
+    @(- score_100 scores)   ; 6 blue
+    @(- score_120 scores)   ; 7 yellow
+    0 0 0 0 0 0 0
+    @(- score_60 scores)    ; 15 orange
 
 score: @(maptimes [identity 0] num_score_digits)
 

@@ -20,17 +20,21 @@ l:  jsr fetch_brick
     sta curcol
     txa
     cpx #0
-    beq +n
+    beq +plot
+    lda #bg_brick_orange
+    cpx #b_orange
+    beq +plot
     lda #bg_brick
     cpx #b_silver
-    bcc +n
+    bcc +plot
     cpx #b_golden
     bne +m
     dec bricks_left
     lda #bg_brick_special1
-    jmp +n
+    jmp +plot
 m:  lda #bg_brick_special2
-n:  jsr plot_brick
+plot:
+    jsr plot_brick
     jmp -l
     
 done:

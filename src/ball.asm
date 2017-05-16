@@ -247,11 +247,13 @@ hit_brick:
     ldy scrx
     lda (scr),y
     cmp #@(++ bg_brick_special4)
-    bcs +r
+    bcs +r              ; Not a brick of any type…
     cmp #bg_brick_special1
     beq check_golden_brick
+    cmp #bg_brick_orange
+    bcc +r              ; Not a brick of any type…
+    beq remove_brick
     cmp #bg_brick
-    bcc +r
     beq remove_brick
 
     lda #snd_reflection_silver

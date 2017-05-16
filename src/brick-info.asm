@@ -11,7 +11,7 @@ b_golden = 10
 
 brick_colors:
     white
-    orange
+    @(+ yellow multicolor)
     cyan
     green
     red
