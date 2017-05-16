@@ -1,19 +1,18 @@
-(defvar *shadowvic?* nil)
-(defvar *add-charset-base?* t)
-(defvar *show-cpu?* nil)
-(defvar *make-only-vic?* t)
+(var *shadowvic?* nil)
+(var *add-charset-base?* t)
+(var *show-cpu?* t)
+(var *make-only-vic?* t)
 
-(defun ascii2pixcii (x)
+(fn ascii2pixcii (x)
   (@ [?
        (== 32 (char-code _))  (code-char 255)
        (alpha-char? _)        (code-char (+ (- (char-code _) (char-code #\A)) (get-label 'framechars)))
        _]
      (string-list x)))
 
-(defconstant *bricks*
-    '(#\  #\w #\o #\c #\g #\r #\b #\p #\y #\s #\x))
+(const *bricks* '(#\  #\w #\o #\c #\g #\r #\b #\p #\y #\s #\x))
 
-(defconstant *levels* '(
+(const *levels* '(
 ; Round 01
 (4
 "sssssssssssss"
@@ -500,23 +499,23 @@
 
 (= *model* :vic-20)
 
-(defun check-zeropage-size ()
+(fn check-zeropage-size ()
   (when (< #x100 *pc*)
     (error "Zero page overflow by ~A bytes." (- *pc* #x100))))
 
-(defconstant +degrees+ 256)
-(defconstant smax 127)
+(const +degrees+ 256)
+(const smax 127)
 
-(defun negate (x)
+(fn negate (x)
   (@ [- _] x))
 
-(defun full-sin-wave (x)
+(fn full-sin-wave (x)
   (+ x
      (reverse x)
      (negate x)
      (reverse (negate x))))
 
-(defun full-cos-wave (x)
+(fn full-cos-wave (x)
   (+ x
      (reverse (negate x))
      (negate x)
@@ -524,19 +523,19 @@
 
 (define-filter bytes #'byte)
 
-(defun ball-directions-x ()
+(fn ball-directions-x ()
   (let m (/ 360 +degrees+)
     (bytes (full-sin-wave (maptimes [integer (/ (* 3 smax (degree-sin (* m _))) 5)] (/ +degrees+ 4))))))
 
-(defun ball-directions-y ()
+(fn ball-directions-y ()
   (let m (/ 360 +degrees+)
     (bytes (full-cos-wave (maptimes [integer (* smax (degree-cos (* m _)))] (/ +degrees+ 4))))))
 
-(defun make (to files cmds)
+(fn make (to files cmds)
   (apply #'assemble-files to files)
   (make-vice-commands cmds "break .stop"))
 
-(defun make-game (version file cmds)
+(fn make-game (version file cmds)
   (make file
         (@ [+ "src/" _] `("../bender/vic-20/vic.asm"
                           "constants.asm"
@@ -556,6 +555,8 @@
                           "sprite-inits.asm"
                           "bits.asm"
                           "line-addresses.asm"
+                          "paddle-xlat.asm"
+                          "level-data.asm"
 
                           ; Library
                           "chars.asm"
@@ -594,22 +595,22 @@
                           "end.asm"))
         cmds))
 
-(defun get-brick (x)
+(fn get-brick (x)
   (position x *bricks*))
 
-(defconstant +level-data+ (with-queue q
-                            (dolist (level *levels*)
-                              (enqueue q (+ 3 level.)) ; Y offset of bricks.
-                              (dolist (line .level)
-                                (dolist (brick (string-list line))
-                                  (enqueue q (get-brick brick))))
-                              (enqueue q 15))
-                            (with-queue qo
-                              (dolist (j (group (queue-list q) 32) (queue-list qo))
-                                (dolist (i (group j 2))
-                                  (enqueue qo (+ (* i. 16) (| .i. 0))))))))
+(const +level-data+ (with-queue q
+                      (dolist (level *levels*)
+                        (enqueue q (+ 3 level.)) ; Y offset of bricks.
+                        (dolist (line .level)
+                          (dolist (brick (string-list line))
+                            (enqueue q (get-brick brick))))
+                        (enqueue q 15))
+                      (with-queue qo
+                        (dolist (j (group (queue-list q) 32) (queue-list qo))
+                          (dolist (i (group j 2))
+                            (enqueue qo (+ (* i. 16) (| .i. 0))))))))
 
-(defun paddle-xlat ()
+(fn paddle-xlat ()
   (maptimes [bit-and (integer (+ 8 (/ (- 255 _) ; TODO: Häh?
                                       (/ 256 (++ (* 8 12))))))
                      #xfe] 256))

@@ -138,5 +138,3 @@ done:
     pla
     tax
     rts
-
-level_data: @+level-data+

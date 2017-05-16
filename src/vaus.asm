@@ -1,5 +1,3 @@
-paddle_xlat: @(paddle-xlat)
-
 wait:
 l:  lda #0
     sta $9113
