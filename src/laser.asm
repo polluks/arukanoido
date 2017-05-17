@@ -29,9 +29,9 @@ o:  lda sprites_x,x
     bcc +n              ; We hit a brick…
 
     ; Move laser up unless it hit a brick with its left.
-    lda laser_has_hit
+m:  lda laser_has_hit
     bne +n
-m:  lda #8
+    lda #8
     jmp sprite_up
 
 n:  jmp remove_sprite   ; Remove laser sprite.
