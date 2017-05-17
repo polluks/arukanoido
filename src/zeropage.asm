@@ -65,8 +65,9 @@ sprites_d:  fill num_sprites  ; Whatever the controllers want.
 
 @(check-zeropage-size #x00ab)
 
-    org $f8
+    org $f0
 
+score:      fill num_score_digits
 hiscore:    fill num_score_digits
 
 @(check-zeropage-size #x0100)

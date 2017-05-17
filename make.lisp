@@ -575,12 +575,13 @@
                           "charset-4x8.asm"
 
                           ; Tables
-                          "brick-info.asm"
-                          "sprite-inits.asm"
                           "bits.asm"
                           "line-addresses.asm"
                           "paddle-xlat.asm"
                           "ball-directions.asm"
+                          "score-infos.asm"
+                          "brick-info.asm"
+                          "sprite-inits.asm"
 
                           ; VCPU
                           "vcpu.asm"
