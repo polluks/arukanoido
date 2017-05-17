@@ -1,6 +1,3 @@
-p_x:    0
-p_y:    0
-
 ; d: Destination
 ; A: char
 ; C: 0: left half, 1: right half

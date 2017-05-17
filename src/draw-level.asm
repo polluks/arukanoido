@@ -1,6 +1,3 @@
-current_half:   0
-bricks_in_line: 0
-
 draw_level:
     lda #16
     sta bricks_in_line

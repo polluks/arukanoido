@@ -1,5 +1,3 @@
-laser_has_hit: 0
-
 ctrl_laser:
     ; We check two collisions, on the left and the right, so we need this flag.
     lda #0              ; No brick hit.

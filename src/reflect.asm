@@ -1,7 +1,3 @@
-has_collision:  0
-ball_x:         0
-ball_y:         0
-
 ; Test on collision with foreground char.
 ;
 ; A: X position

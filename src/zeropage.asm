@@ -53,27 +53,6 @@ mode_disruption = 3
 mode:                 0
 mode_break:           0
 
-
-sprites_x:  fill num_sprites  ; X positions.
-sprites_y:  fill num_sprites  ; Y positions.
-sprites_i:  fill num_sprites  ; Flags.
-sprites_c:  fill num_sprites  ; Colors.
-sprites_l:  fill num_sprites  ; Low character addresses.
-sprites_fl: fill num_sprites  ; Function controlling the sprite (low).
-sprites_fh: fill num_sprites  ; Function controlling the sprite (high).
-sprites_d:  fill num_sprites  ; Whatever the controllers want.
-
-@(check-zeropage-size #x00ab)
-
-    org $f0
-
-score:      fill num_score_digits
-hiscore:    fill num_score_digits
-
-@(check-zeropage-size #x0100)
-
-    org $200
-
 side_degrees:         0
 caught_ball:          0
 reflections_on_top:   0
@@ -102,6 +81,39 @@ is_using_paddle:      0
 sfx_reflection:       0
 snd_reflection:       0
 old_paddle_value:     0
+
+has_collision:  0                                                               
+ball_x:         0
+ball_y:         0
+
+p_x:    0                                                                   
+p_y:    0
+
+current_half:   0                                                           
+bricks_in_line: 0
+
+has_hit_brick:  0                                                           
+was_golden:     0
+
+laser_has_hit:  0
+
+score:      fill num_score_digits
+
+sprites_x:  fill num_sprites  ; X positions.
+sprites_y:  fill num_sprites  ; Y positions.
+sprites_i:  fill num_sprites  ; Flags.
+sprites_c:  fill num_sprites  ; Colors.
+sprites_l:  fill num_sprites  ; Low character addresses.
+sprites_fl: fill num_sprites  ; Function controlling the sprite (low).
+sprites_fh: fill num_sprites  ; Function controlling the sprite (high).
+sprites_d:  fill num_sprites  ; Whatever the controllers want.
+
+    @(check-zeropage-size (- #x00fc num_score_digits))
+    org @(- #x00fc num_score_digits)
+
+hiscore:    fill num_score_digits
+
+    org $200
 
 sprites_dx:     fill num_sprites ; Whatever the controllers want.
 sprites_dy:     fill num_sprites ; Whatever the controllers want.

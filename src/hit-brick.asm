@@ -1,6 +1,3 @@
-has_hit_brick:  0
-was_golden:     0
-
 hit_brick:
     ; Check brick type.
     ldy scrx
