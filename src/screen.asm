@@ -14,15 +14,9 @@ scrcoladdr:
     ldy scrx
     rts
 
-; Clear screen.
 clear_screen:
-    ldx #0
-l:  lda #0
-    sta screen,x
-    sta @(+ 256 screen),x
-    lda #@(+ multicolor white)
-    sta colors,x
-    sta @(+ 256 colors),x
-    dex
-    bne -l
+    0
+    c_clrmw <screen >screen @(low 512) @(high 512)
+    c_setmw <colors >colors @(low 512) @(high 512) @(+ multicolor white)
+    0
     rts

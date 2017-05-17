@@ -622,7 +622,8 @@
                           ; Top level
                           "irq.asm"
                           "round-start.asm"
-                          "round-intro.asm"
+                          ,@(unless *shadowvic?*
+                              '("round-intro.asm"))
                           "hiscore.asm"
                           "main.asm"
 

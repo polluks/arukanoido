@@ -1,3 +1,22 @@
+roundintro:
+    lda #<gfx_title
+    sta s
+    lda #>gfx_title
+    sta @(++ s)
+    jsr mg_display
+
+l:  lda #0              ; Fetch joystick status.
+    sta $9113
+    lda $9111
+    tax
+    and #joy_fire
+    beq +n
+    txa
+    and #joy_left
+    bne -l
+
+n:  rts
+
 txt_round_intro:
     "THE ERA AND TIME OF" 1
     "THIS STORY IS UNKNOWN" 0

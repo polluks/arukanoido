@@ -33,7 +33,9 @@ tmp2:                 0
 tmp3:                 0
 
 ; Temporary stores for index registers.
+p_x:
 add_sprite_x:         0
+p_y:
 add_sprite_y:         0
 draw_sprite_x:        0
 call_controllers_x:   0
@@ -85,9 +87,6 @@ old_paddle_value:     0
 has_collision:  0                                                               
 ball_x:         0
 ball_y:         0
-
-p_x:    0                                                                   
-p_y:    0
 
 current_half:   0                                                           
 bricks_in_line: 0

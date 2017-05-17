@@ -45,23 +45,7 @@ restart:
     jsr clear_data
 
 if @(not *shadowvic?*)
-    lda #<gfx_title
-    sta s
-    lda #>gfx_title
-    sta @(++ s)
-    jsr mg_display
-
-
-l:  lda #0              ; Fetch joystick status.
-    sta $9113
-    lda $9111
-    tax
-    and #joy_fire
-    beq +n
-    txa
-    and #joy_left
-    bne -l
-n:
+    jsr roundintro
 end
 
     lda #snd_coin
@@ -85,13 +69,11 @@ end
     sta level
     jsr init_score
 
-    ; Set pointer to first level data.
+    ; Reset level data stream.
     lda #<level_data
     sta current_level
     lda #>level_data
     sta @(++ current_level)
-
-    ; Init draw_level.
     lda #0
     sta current_half
 
@@ -102,12 +84,6 @@ next_level:
     lda level
     cmp #33
     beq game_over
-
-    ; Clear screen.
-    0
-    c_clrmw <screen >screen @(low 512) @(high 512)
-    c_setmw <colors >colors @(low 512) @(high 512) @(+ multicolor white)
-    0
 
     jsr clear_screen
     jsr draw_level
@@ -133,31 +109,18 @@ retry:
     sta vaus_width
 
     jsr clear_sprites
+    jsr draw_walls      ; Freshen up after mode_break.
+    jsr draw_lifes
+    jsr roundstart
 
     ; Empty sprite slots.
-    ldx #@(- num_sprites 3)     ; TODO: Don't mess around here. Clear them all.
+    ldx #@(-- num_sprites)
 l:  jsr remove_sprite
     dex
     bpl -l
 
     jsr make_vaus
-
-    ; Make ball sprite.
-    lda #70
-    sta @(+ ball_init sprite_init_x)
-    lda #@(* 28 8)
-    sta @(+ ball_init sprite_init_y)
-    lda #<ball_caught
-    sta @(+ ball_init sprite_init_gfx_l)
-    lda #default_ball_direction
-    sta @(+ ball_init sprite_init_data)
-    ldx #@(- num_sprites 3)
-    stx caught_ball
-    ldy #@(- ball_init sprite_inits)
-    jsr replace_sprite 
-
-    jsr draw_walls      ; Freshen up after mode_break.
-    jsr draw_lifes
+    jsr make_ball
 
     ; Initialise sprite frame.
     lda #0
@@ -165,9 +128,6 @@ l:  jsr remove_sprite
     ora #first_sprite_char
     sta next_sprite_char
     jsr draw_sprites
-
-    jsr roundstart
-
     lda #1
     sta is_running_game
 
