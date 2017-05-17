@@ -1,6 +1,5 @@
-fill @(- 256 (low *pc*))
-
 bg_start = @(* (/ num_chars 8) 7)
+
 gfx_background:
 
 bg_brick_orange = @(+ bg_start 0)
