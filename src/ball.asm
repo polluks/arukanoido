@@ -86,6 +86,10 @@ n:
 
     ; Catch ball.
     stx caught_ball
+    lda #<ball_caught
+    sta sprites_l,x
+    lda #@(* 28 8)
+    sta sprites_y,x
     jsr apply_reflection
     lda #snd_caught_ball
     jmp play_sound

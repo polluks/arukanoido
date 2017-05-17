@@ -149,8 +149,10 @@ l:  jsr remove_sprite
     ; Make ball sprite.
     lda #70
     sta @(+ ball_init sprite_init_x)
-    lda #@(- (* 29 8) 5)
+    lda #@(* 28 8)
     sta @(+ ball_init sprite_init_y)
+    lda #<ball_caught
+    sta @(+ ball_init sprite_init_gfx_l)
     lda #default_ball_direction
     sta @(+ ball_init sprite_init_data)
     ldx #@(- num_sprites 3)

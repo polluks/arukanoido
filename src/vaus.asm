@@ -92,8 +92,12 @@ handle_joystick_fire:
     bne +r
 
 do_fire:
-    lda caught_ball
+    ldy caught_ball
     bmi +n
+    lda #@(- (* 29 8) 5)
+    sta sprites_y,y
+    lda #<ball
+    sta sprites_l,y
     lda #snd_reflection_low
     jsr play_sound
 n:  lda #255
