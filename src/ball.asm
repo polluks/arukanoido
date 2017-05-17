@@ -173,7 +173,6 @@ n:  inc sfx_reflection
     and #%111
     bne +n
     inc ball_speed
-    inc ball_speed
 n:
     lda sprites_d,x     ; Get degrees.
     sec
@@ -236,6 +235,9 @@ n:  lda sprites_d,x
 r:  rts
 
 ball_step:
+    jsr ball_step2
+
+ball_step2:
     ; Move on X axis.
     ldy sprites_d,x
     lda ball_directions_x,y

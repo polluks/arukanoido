@@ -35,7 +35,7 @@ frame_b             = @(+ charset framesize)
 ; Game settings
 
 default_num_lifes       = 3
-default_ball_speed      = 6
+default_ball_speed      = 3
 default_ball_direction  = 112
 ball_width              = 3
 double_ball_width       = @(* 2 ball_width)

@@ -71,16 +71,10 @@ apply_bonus_c:
 
 apply_bonus_s:
     lda ball_speed
-    cmp #5
-    bcs +n
-    sec
-    sbc #2
-    sta ball_speed
-    bcc +n
-    rts
-n:  lda #5
-    sta ball_speed
-    rts
+    cmp #1
+    beq +n
+    dec ball_speed
+n:  rts
 
 apply_bonus_b:
     inc mode_break
