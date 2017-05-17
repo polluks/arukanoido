@@ -129,10 +129,10 @@ f:  lda #0
     lda sprites_y,y
     sta @(+ ball_init 1)
     lda sprites_d,y
+    pha
     ldy #@(- ball_init sprite_inits)
     clc
-    adc #8
-    pha
+    adc #16
     sta @(+ ball_init 7)
     ldy #@(- ball_init sprite_inits)
     jsr add_sprite

@@ -3257,10 +3257,10 @@
 36fe: 4 12688 : b9 3b 00     lda sprites_y,y
 3701: 4 12692 : 8d 5b 27     sta @(+ ball_init 1)
 3704: 4 12696 : b9 9b 00     lda sprites_d,y
-3707: 2 12700 : a0 10        ldy #@(- ball_init sprite_inits)
-3709: 2 12702 : 18           clc
-370a: 2 12704 : 69 08        adc #8
-370c: 3 12706 : 48           pha
+3707: 3 12700 : 48           pha
+3708: 2 12703 : a0 10        ldy #@(- ball_init sprite_inits)
+370a: 2 12705 : 18           clc
+370b: 2 12707 : 69 10        adc #16
 370d: 4 12709 : 8d 61 27     sta @(+ ball_init 7)
 3710: 2 12713 : a0 10        ldy #@(- ball_init sprite_inits)
 3712: 6 12715 : 20 5d 2e     jsr add_sprite
