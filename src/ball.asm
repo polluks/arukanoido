@@ -170,7 +170,7 @@ n:  inc sfx_reflection
     bcs +n
     inc reflections_on_top
     lda reflections_on_top
-    and #%111
+    and #%1111
     bne +n
     inc ball_speed
 n:
