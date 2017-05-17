@@ -26,13 +26,7 @@ ctrl_bonus:
     jsr play_sound
     lda #0
     sta sfx_reflection
-n:  lda sprites_l,x
-    sec
-    sbc #bonus_l
-    lsr
-    lsr
-    lsr
-    tay
+n:  ldy sprites_d,x
     lda bonus_funs_l,y
     sta @(+ +selfmod 1)
     lda bonus_funs_h,y

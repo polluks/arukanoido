@@ -124,12 +124,12 @@ no_vaus_hit:
     asl
     asl
     asl
-    sta bonus_init
+    sta @(+ bonus_init sprite_init_x)
     lda scry
     asl
     asl
     asl
-    sta @(++ bonus_init)
+    sta @(+ bonus_init sprite_init_y)
 a:  jsr random
     and #%111
     cmp #%111
@@ -140,11 +140,12 @@ a:  jsr random
     asl
     clc
     adc #<bonus_l
-    sta @(+ bonus_init 4)
+    sta @(+ bonus_init sprite_init_gfx_l)
     pla
+    sta @(+ bonus_init sprite_init_data)
     tay
     lda bonus_colors,y
-    sta @(+ bonus_init 3)
+    sta @(+ bonus_init sprite_init_color)
     ldy #@(- bonus_init sprite_inits)
     jsr add_sprite
     jmp apply_reflection
