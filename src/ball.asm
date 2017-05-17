@@ -176,6 +176,9 @@ n:  inc sfx_reflection
     lda reflections_on_top
     and #%1111
     bne +n
+    lda ball_speed
+    cmp #max_ball_speed
+    beq +n
     inc ball_speed
 n:
     lda sprites_d,x     ; Get degrees.

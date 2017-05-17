@@ -76,7 +76,7 @@ apply_bonus_c:
 
 apply_bonus_s:
     lda ball_speed
-    cmp #1
+    cmp #min_ball_speed
     beq +n
     dec ball_speed
 n:  rts
