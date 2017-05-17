@@ -659,6 +659,8 @@
 (= *model* :vic-20+xk)
 
 (gen-vcpu-tables "src/_vcpu.asm")
+(with-temporary *show-cpu?* t
+  (make-game :prg "arukanoido-cpumon.prg" "arukanoido-cpumon.vice.txt"))
 (make-game :prg "arukanoido.prg" "arukanoido.vice.txt")
 
 (format t "Updating POKEs…~%")
