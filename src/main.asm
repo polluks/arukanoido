@@ -65,11 +65,11 @@ end
 
     lda #default_num_lifes
     sta lifes
-    lda #0
-    sta level
     jsr init_score
 
     ; Reset level data stream.
+    lda #0
+    sta level
     lda #<level_data
     sta current_level
     lda #>level_data
@@ -133,7 +133,8 @@ l:  jsr remove_sprite
 
 mainloop:
     lda bricks_left
-    beq +m
+    beq next_level
+
     lda is_running_game
     bne +n
     jsr wait_sound
@@ -141,44 +142,19 @@ poke_unlimited:
     dec lifes
     beq +o
     jmp retry
-
-m:  jmp next_level
 o:  jmp game_over
 
-n:  jsr random      ; Improve randomness. Avoid CRTC hsync sine wave wobble.
-
-if @*shadowvic?*
-   $22 $02
-end
-
-    ; Toggle sprite frame.
+n:  ; Toggle sprite frame.
     lda spriteframe
     eor #framemask
     sta spriteframe
     ora #first_sprite_char
     sta next_sprite_char
 
-n:  jsr random
+n:  jsr random              ; Improve randomness and avoid CRTC hsync wobble.
     lda has_moved_sprites
     beq -n
     lda #0
     sta has_moved_sprites
     jsr draw_sprites
     jmp mainloop
-
-call_sprite_controllers:
-    ; Call the functions that control sprite behaviour.
-    ldx #@(-- num_sprites)
-l1: lda sprites_fh,x
-    sta @(+ +m1 2)
-    lda sprites_fl,x
-    sta @(++ +m1)
-    stx call_controllers_x
-    lda #8
-    sta collision_x_distance
-    sta collision_y_distance
-m1: jsr $1234
-    ldx call_controllers_x
-n1: dex
-    bpl -l1
-    rts
