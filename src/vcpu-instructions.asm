@@ -71,6 +71,22 @@ n:  dec c
     bne -l
     rts
 
+; Clear memory area. Byte length.
+setmb:
+    lda a0
+    sec
+    sbc #1
+    sta d
+    lda a1
+    sbc #0
+    sta @(++ d)
+    ldy a2
+    lda a3
+l:  sta (d),y
+    dey
+    bne -l
+    rts
+
 ; Set memory area. Word length.
 setmw:
     lda a0

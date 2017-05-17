@@ -31,19 +31,15 @@ color_scores:
 score: @(maptimes [identity 0] num_score_digits)
 
 init_score:
-    ldx #@(-- num_score_digits)
-l:  lda #score_char0
-    sta score,x
-    dex
-    bpl -l
+    0
+    c_setmb <score >score num_score_digits score_char0
+    0
     rts
 
 init_hiscore:
-    ldx #@(-- num_score_digits)
-l:  lda #score_char0
-    sta hiscore,x
-    dex
-    bpl -l
+    0
+    c_setmb <hiscore >hiscore num_score_digits score_char0
+    0
     rts
 
 add_to_score:
