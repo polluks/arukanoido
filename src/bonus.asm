@@ -19,10 +19,6 @@ ctrl_bonus:
 
     lda #0
     sta mode
-    lda #<vaus_left
-    sta @(+ sprites_l spriteidx_vaus_left)
-    lda #<vaus_right
-    sta @(+ sprites_l spriteidx_vaus_right)
 
     ; Release caught ball.
     lda caught_ball
@@ -68,10 +64,6 @@ bonus_funs_h:
 apply_bonus_l:
     lda #mode_laser
     sta mode
-    lda #<vaus_left_laser
-    sta @(+ sprites_l spriteidx_vaus_left)
-    lda #<vaus_right_laser
-    sta @(+ sprites_l spriteidx_vaus_right)
     rts
 
 apply_bonus_e:
@@ -205,3 +197,20 @@ n:  lsr
 m:  lda #<bonus_p
     ldx #>bonus_p
     jmp rotate_bonus
+
+set_vaus_color:
+    lda #<vaus_left
+    sta @(+ sprites_l spriteidx_vaus_left)
+    lda #<vaus_right
+    sta @(+ sprites_l spriteidx_vaus_right)
+    lda mode
+    cmp #mode_laser
+    bne +n
+    lda framecounter
+    lsr
+    bcs +n
+    lda #<vaus_left_laser
+    sta @(+ sprites_l spriteidx_vaus_left)
+    lda #<vaus_right_laser
+    sta @(+ sprites_l spriteidx_vaus_right)
+n:  rts

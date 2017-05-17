@@ -37,6 +37,7 @@ if @*show-cpu?*
 end
     inc framecounter
     jsr play_music
+    jsr set_vaus_color
     lda is_running_game
     beq +n
     jsr call_sprite_controllers
