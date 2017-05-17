@@ -110,12 +110,12 @@ n:  lda #255
 
 n:  lda #snd_laser
     jsr play_sound
-    lda #9
+    lda #9              ;  TODO: constant fire_delay
     sta is_firing
     lda sprites_x,x
     clc
     adc #4
-    sta laser_init
+    sta @(+ laser_init sprite_init_x)
     ldy #@(- laser_init sprite_inits)
     jmp add_sprite
 

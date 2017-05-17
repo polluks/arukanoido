@@ -2844,12 +2844,12 @@
 3406: 2 11355 :          n:  lda #snd_laser
 3408: 2 11357 : a9 10    n:  lda #snd_laser
 340a: 6 11359 : 20 3b 30     jsr play_sound
-340d: 2 11365 : a9 09        lda #9
+340d: 2 11365 : a9 09        lda #9              ;  TODO: constant fire_delay
 340f: 4 11367 : 8d 11 02     sta is_firing
 3412: 4 11371 : b5 2b        lda sprites_x,x
 3414: 2 11375 : 18           clc
 3415: 2 11377 : 69 04        adc #4
-3417: 4 11379 : 8d da 2a     sta laser_init
+3417: 4 11379 : 8d da 2a     sta @(+ laser_init sprite_init_x)
 341a: 2 11383 : a0 18        ldy #@(- laser_init sprite_inits)
 341c: 4 11385 : 4c a5 2e     jmp add_sprite
 341c: 4 11389 :          ctrl_dummy:
@@ -3045,7 +3045,7 @@
 357b: 2 12036 : b0 0d        bcs +n
 357d: 6 12038 : ee 02 02     inc reflections_on_top
 3580: 4 12044 : ad 02 02     lda reflections_on_top
-3583: 2 12048 : 29 07        and #%111
+3583: 2 12048 : 29 0f        and #%1111
 3585: 2 12050 : d0 03        bne +n
 3587: 6 12052 : ee 10 02     inc ball_speed
 3587: 6 12058 :          n:
@@ -3252,25 +3252,25 @@
 36de: 2 12831 : f0 03        beq +f
 36e0: 2 12833 : 88           dey
 36e1: 2 12835 : 10 f6        bpl -l
-36e1: 2 12837 :          f:  lda #0
-36e3: 2 12839 : a9 00    f:  lda #0
-36e5: 4 12841 : 8d d4 2a     sta @(+ ball_init 2)
-36e8: 4 12845 : b9 2b 00     lda sprites_x,y
-36eb: 4 12849 : 8d d2 2a     sta ball_init
-36ee: 4 12853 : b9 3b 00     lda sprites_y,y
-36f1: 4 12857 : 8d d3 2a     sta @(+ ball_init 1)
+36e1: 2 12837 :          f:  lda sprites_x,y
+36e3: 4 12839 : b9 2b 00 f:  lda sprites_x,y
+36e6: 4 12843 : 8d d2 2a     sta @(+ ball_init sprite_init_x)
+36e9: 4 12847 : b9 3b 00     lda sprites_y,y
+36ec: 4 12851 : 8d d3 2a     sta @(+ ball_init sprite_init_y)
+36ef: 2 12855 : a9 00        lda #0
+36f1: 4 12857 : 8d d4 2a     sta @(+ ball_init sprite_init_flags)
 36f4: 4 12861 : b9 9b 00     lda sprites_d,y
 36f7: 3 12865 : 48           pha
 36f8: 2 12868 : a0 10        ldy #@(- ball_init sprite_inits)
 36fa: 2 12870 : 18           clc
 36fb: 2 12872 : 69 10        adc #16
-36fd: 4 12874 : 8d d9 2a     sta @(+ ball_init 7)
+36fd: 4 12874 : 8d d9 2a     sta @(+ ball_init sprite_init_data)
 3700: 2 12878 : a0 10        ldy #@(- ball_init sprite_inits)
 3702: 6 12880 : 20 a5 2e     jsr add_sprite
 3705: 4 12886 : 68           pla
 3706: 2 12890 : 38           sec
 3707: 2 12892 : e9 10        sbc #16
-3709: 4 12894 : 8d d9 2a     sta @(+ ball_init 7)
+3709: 4 12894 : 8d d9 2a     sta @(+ ball_init sprite_init_data)
 370c: 2 12898 : a0 10        ldy #@(- ball_init sprite_inits)
 370e: 6 12900 : 20 a5 2e     jsr add_sprite
 3711: 6 12906 : ee 0d 02     inc balls
@@ -3673,7 +3673,7 @@
 3a8f: 2 14428 : a9 03        lda #default_ball_speed
 3a91: 4 14430 : 8d 10 02     sta ball_speed
 3a94: 6 14434 : 20 89 2f     jsr clear_sprites
-3a97: 2 14440 : a2 0d        ldx #@(- num_sprites 3)
+3a97: 2 14440 : a2 0d        ldx #@(- num_sprites 3)     ; TODO: Don't mess around here. Clear them all.
 3a97: 2 14442 :          l:  jsr remove_sprite
 3a99: 6 14444 : 20 c3 2e l:  jsr remove_sprite
 3a9c: 2 14450 : ca           dex
@@ -3685,11 +3685,11 @@
 3aa8: 2 14466 : a0 08        ldy #@(- vaus_right_init sprite_inits)
 3aaa: 6 14468 : 20 c9 2e     jsr replace_sprite 
 3aad: 2 14474 : a9 46        lda #70
-3aaf: 4 14476 : 8d d2 2a     sta ball_init
+3aaf: 4 14476 : 8d d2 2a     sta @(+ ball_init sprite_init_x)
 3ab2: 2 14480 : a9 e3        lda #@(- (* 29 8) 5)
-3ab4: 4 14482 : 8d d3 2a     sta @(+ ball_init 1)
+3ab4: 4 14482 : 8d d3 2a     sta @(+ ball_init sprite_init_y)
 3ab7: 2 14486 : a9 70        lda #default_ball_direction
-3ab9: 4 14488 : 8d d9 2a     sta @(+ ball_init 7)
+3ab9: 4 14488 : 8d d9 2a     sta @(+ ball_init sprite_init_data)
 3abc: 2 14492 : a2 0d        ldx #@(- num_sprites 3)
 3abe: 4 14494 : 8e 01 02     stx caught_ball
 3ac1: 2 14498 : a0 10        ldy #@(- ball_init sprite_inits)

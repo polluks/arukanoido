@@ -110,24 +110,24 @@ l:  lda sprites_l,y
     dey
     bpl -l
 
-f:  lda #0
-    sta @(+ ball_init 2)
-    lda sprites_x,y
-    sta ball_init
+f:  lda sprites_x,y
+    sta @(+ ball_init sprite_init_x)
     lda sprites_y,y
-    sta @(+ ball_init 1)
+    sta @(+ ball_init sprite_init_y)
+    lda #0
+    sta @(+ ball_init sprite_init_flags)
     lda sprites_d,y
     pha
     ldy #@(- ball_init sprite_inits)
     clc
     adc #16
-    sta @(+ ball_init 7)
+    sta @(+ ball_init sprite_init_data)
     ldy #@(- ball_init sprite_inits)
     jsr add_sprite
     pla
     sec
     sbc #16
-    sta @(+ ball_init 7)
+    sta @(+ ball_init sprite_init_data)
     ldy #@(- ball_init sprite_inits)
     jsr add_sprite
     

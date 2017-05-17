@@ -133,7 +133,7 @@ retry:
     jsr clear_sprites
 
     ; Empty sprite slots.
-    ldx #@(- num_sprites 3)
+    ldx #@(- num_sprites 3)     ; TODO: Don't mess around here. Clear them all.
 l:  jsr remove_sprite
     dex
     bpl -l
@@ -146,12 +146,13 @@ l:  jsr remove_sprite
     ldy #@(- vaus_right_init sprite_inits)
     jsr replace_sprite 
 
+    ; Make ball sprite.
     lda #70
-    sta ball_init
+    sta @(+ ball_init sprite_init_x)
     lda #@(- (* 29 8) 5)
-    sta @(+ ball_init 1)
+    sta @(+ ball_init sprite_init_y)
     lda #default_ball_direction
-    sta @(+ ball_init 7)
+    sta @(+ ball_init sprite_init_data)
     ldx #@(- num_sprites 3)
     stx caught_ball
     ldy #@(- ball_init sprite_inits)
@@ -162,7 +163,7 @@ l:  jsr remove_sprite
     jsr draw_walls      ; Freshen up after mode_break.
     jsr draw_lifes
 
-    ; Initialize sprite frame.
+    ; Initialise sprite frame.
     lda #0
     sta spriteframe
     ora #first_sprite_char
@@ -184,6 +185,7 @@ poke_unlimited:
     dec lifes
     beq +o
     jmp retry
+
 m:  jmp next_level
 o:  jmp game_over
 
