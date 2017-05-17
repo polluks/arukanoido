@@ -1,3 +1,16 @@
+len_round   = 9
+len_ready   = 5
+ofs_round = @(+ (* 15 22) 5)
+ofs_ready = @(+ (* 15 24) 6)
+screen_round = @(+ screen ofs_round)
+screen_ready = @(+ screen ofs_ready)
+colors_round = @(+ colors ofs_round)
+colors_ready = @(+ colors ofs_ready)
+chars_round = @(quarter framechars)
+chars_ready = @(+ chars_round len_round)
+charset_round = @(+ charset (* 8 chars_round))
+charset_ready = @(+ charset (* 8 chars_ready))
+
 roundstart:
     ; Copy round number digits into round message.
     lda #score_char0
@@ -12,28 +25,11 @@ n:  clc
     adc #@(+ 10 (char-code #\0) (- score_char0 (char-code #\0)))
     sta @(+ txt_round_nn 8)
 
-len_round   = 9
-len_ready   = 5
-ofs_round = @(+ (* 15 22) 5)
-ofs_ready = @(+ (* 15 24) 6)
-screen_round = @(+ screen ofs_round)
-screen_ready = @(+ screen ofs_ready)
-colors_round = @(+ colors ofs_round)
-colors_ready = @(+ colors ofs_ready)
-chars_round = @(quarter framechars)
-chars_ready = @(+ chars_round len_round)
-charset_round = @(+ charset (* 8 chars_round))
-charset_ready = @(+ charset (* 8 chars_ready))
-
     ; Clear bitmaps
-    ldx #@(-- (* 8 len_round))
-l:  lda #0
-    sta charset_round,x
-    cpx #@(-- (* 8 len_ready))
-    bcs +n
-    sta charset_ready,x
-n:  dex
-    bpl -l
+    0
+    c_clrmb <charset_round >charset_round @(* 8 len_round)
+    c_clrmb <charset_ready >charset_ready @(* 8 len_ready)
+    0
 
     ; Make bitmap chars for "ROUND XX".
     lda #<screen_round
@@ -62,14 +58,10 @@ l:  sta colors_round,x
     bpl -l
 
     ; Print "ROUND XX".
-    lda #@(low (-- txt_round_nn))
-    sta s
-    lda #@(high (-- txt_round_nn))
-    sta @(++ s)
-    lda #<charset_round
-    sta d
-    lda #>charset_round
-    sta @(++ d)
+    txt_round_nnm = @(-- txt_round_nn)
+    0
+    c_setsd <txt_round_nnm >txt_round_nnm <charset_round >charset_round
+    0
     ldx #len_round
     ldy #1
     jsr print_string2
@@ -88,14 +80,10 @@ n:  lda $9004
     bne -l
 
     ; Print "READY".
-    lda #@(low (-- txt_ready))
-    sta s
-    lda #@(high (-- txt_ready))
-    sta @(++ s)
-    lda #<charset_ready
-    sta d
-    lda #>charset_ready
-    sta @(++ d)
+    txt_readym = @(-- txt_ready)
+    0
+    c_setsd <txt_readym >txt_readym <charset_ready >charset_ready
+    0
     ldx #len_ready
     ldy #1
     jsr print_string2
@@ -103,12 +91,10 @@ n:  lda $9004
     jsr wait_sound
 
     ; Remove message.
-    ldx #5
-    lda #0
-l:  sta screen_round,x
-    sta screen_ready,x
-    dex
-    bpl -l
+    0
+    c_clrmb <screen_round >screen_round 5
+    c_clrmb <screen_ready >screen_ready 5
+    0
     rts
 
 make_4x8_line:

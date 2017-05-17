@@ -10,3 +10,40 @@ apply:
     sta @(+ 2 +mod_call)
 mod_call:
     jmp $ffff
+
+; Set zero page word.
+setzw:
+    ldx a0
+    lda a1
+    sta 0,x
+    lda a2
+    sta 1,x
+    rts
+
+; Set zero page word s and d.
+setsd:
+    lda a0
+    sta s
+    lda a1
+    sta @(++ s)
+    lda a2
+    sta d
+    lda a3
+    sta @(++ d)
+    rts
+
+; Clear memory area. Byte length.
+clrmb:
+    lda a0
+    sec
+    sbc #1
+    sta d
+    lda a1
+    sbc #0
+    sta @(++ d)
+    ldy a2
+    lda #0
+l:  sta (d),y
+    dey
+    bne -l
+    rts

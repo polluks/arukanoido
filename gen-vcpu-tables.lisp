@@ -36,9 +36,9 @@
      (acons! name args *bytecodes*))
   nil)
 
-;;;;;;;;;;;;;;;;;;;;;;
-;;; Function calls :::
-;;;;;;;;;;;;;;;;;;;;;;
+(define-bytecode setzw a0 a1 a2)        ; zp, word
+(define-bytecode setsd a0 a1 a2 a3)     ; <s, >s, <d, >d
+(define-bytecode clrmb a0 a1 a2)        ; <d, >d, l
 (define-bytecode apply) ; Argument is destination address.
 
 (= *bytecodes* (reverse *bytecodes*))
