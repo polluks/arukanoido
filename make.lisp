@@ -1,3 +1,5 @@
+(load "gen-vcpu-tables.lisp")
+
 (var *shadowvic?* nil)
 (var *add-charset-base?* t)
 (var *show-cpu?* nil)
@@ -579,6 +581,10 @@
                           "paddle-xlat.asm"
                           "ball-directions.asm"
 
+                          ; VCPU
+                          "vcpu.asm"
+                          "vcpu-instructions.asm"
+                          "_vcpu.asm"
 
                           ; Library
                           "chars.asm"
@@ -651,6 +657,7 @@
 
 (= *model* :vic-20+xk)
 
+(gen-vcpu-tables "src/_vcpu.asm")
 (make-game :prg "arukanoido.prg" "arukanoido.vice.txt")
 
 (format t "Updating POKEs…~%")

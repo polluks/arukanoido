@@ -14,6 +14,12 @@ scrx:                 8   ; X position.
 scry:                 0   ; Y position.
 curcol:               0   ; Character colour.
 
+; VCPU
+bcp:                  0 0
+bca:                  0 0
+num_args:             0
+srx:                  0
+
 next_sprite_char:     0   ; Next free character for sprites.
 sprite_shift_y:       0   ; Number of character line where sprite starts.
 sprite_data_top:      0   ; Start of sprite data in upper chars.
