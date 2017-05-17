@@ -1,4 +1,5 @@
 has_hit_brick:  0
+was_golden:     0
 
 hit_brick:
     ; Check brick type.
@@ -57,6 +58,7 @@ modify_brick:
     rts
 
 golden:
+    inc was_golden
     lda #snd_reflection_silver
     sta snd_reflection
 r:  sec
