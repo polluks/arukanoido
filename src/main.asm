@@ -119,6 +119,7 @@ retry:
     lda #0
     sta is_running_game
     sta is_firing
+    sta mode
     sta mode_break
     sta reflections_on_top
     sta reflections_since_last_vaus_hit
@@ -128,8 +129,6 @@ retry:
     sta sfx_reflection
     lda #default_ball_speed
     sta ball_speed
-    lda #mode_laser
-    sta mode
 
     jsr clear_sprites
 
