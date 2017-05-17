@@ -1,3 +1,6 @@
+; String from original ROM.
+"Wed,  4 Jun 1986, 16:34 Programmed By Yasu."
+
 clear_data:
     lda #0
     tax
