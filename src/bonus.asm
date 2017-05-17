@@ -9,15 +9,22 @@ bonus_colors:
 
 ctrl_bonus:
     lda sprites_y,x
-    beq +r
+    beq +r              ; Bonus left playfield…
     jsr find_hit
-    bcs +m
+    bcs +m              ; Nothing hit…
+
     lda sprites_i,y
     and #is_vaus
-    beq +m
-    lda mode
+    beq +m              ; Didn't hit the Vaus…
+
     lda #0
     sta mode
+    lda #<vaus_left
+    sta @(+ sprites_l spriteidx_vaus_left)
+    lda #<vaus_right
+    sta @(+ sprites_l spriteidx_vaus_right)
+
+    ; Release caught ball.
     lda caught_ball
     bmi +n
     lda #255
@@ -26,7 +33,9 @@ ctrl_bonus:
     jsr play_sound
     lda #0
     sta sfx_reflection
-n:  ldy sprites_d,x
+n:
+
+    ldy sprites_d,x
     lda bonus_funs_l,y
     sta @(+ +selfmod 1)
     lda bonus_funs_h,y
@@ -59,6 +68,10 @@ bonus_funs_h:
 apply_bonus_l:
     lda #mode_laser
     sta mode
+    lda #<vaus_left_laser
+    sta @(+ sprites_l spriteidx_vaus_left)
+    lda #<vaus_right_laser
+    sta @(+ sprites_l spriteidx_vaus_right)
     rts
 
 apply_bonus_e:

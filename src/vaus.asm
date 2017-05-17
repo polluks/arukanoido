@@ -139,3 +139,15 @@ ctrl_vaus_right:
     adc #8
     sta sprites_x,x
     rts
+
+spriteidx_vaus_left = @(- num_sprites 1)
+spriteidx_vaus_right = @(- num_sprites 2)
+
+make_vaus:
+    ldx #spriteidx_vaus_left
+    ldy #@(- vaus_left_init sprite_inits)
+    jsr replace_sprite 
+    ldx #spriteidx_vaus_right
+    ldy #@(- vaus_right_init sprite_inits)
+    jmp replace_sprite 
+

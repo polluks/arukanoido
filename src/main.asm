@@ -129,6 +129,8 @@ retry:
     sta sfx_reflection
     lda #default_ball_speed
     sta ball_speed
+    lda #16
+    sta vaus_width
 
     jsr clear_sprites
 
@@ -138,13 +140,7 @@ l:  jsr remove_sprite
     dex
     bpl -l
 
-    ; Make player sprite.
-    ldx #@(- num_sprites 1)
-    ldy #@(- vaus_left_init sprite_inits)
-    jsr replace_sprite 
-    ldx #@(- num_sprites 2)
-    ldy #@(- vaus_right_init sprite_inits)
-    jsr replace_sprite 
+    jsr make_vaus
 
     ; Make ball sprite.
     lda #70
@@ -159,8 +155,6 @@ l:  jsr remove_sprite
     stx caught_ball
     ldy #@(- ball_init sprite_inits)
     jsr replace_sprite 
-    lda #16
-    sta vaus_width
 
     jsr draw_walls      ; Freshen up after mode_break.
     jsr draw_lifes
