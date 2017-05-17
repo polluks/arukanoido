@@ -23,6 +23,7 @@ a0:                   0
 a1:                   0
 a2:                   0
 a3:                   0
+a4:                   0
 
 next_sprite_char:     0   ; Next free character for sprites.
 sprite_shift_y:       0   ; Number of character line where sprite starts.

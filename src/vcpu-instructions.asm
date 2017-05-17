@@ -47,3 +47,49 @@ l:  sta (d),y
     dey
     bne -l
     rts
+
+; Clear memory area. Word length.
+clrmw:
+    lda a0
+    sta d
+    lda a1
+    sta @(++ d)
+    lda a2
+    sta c
+    ldy a3
+    iny
+    sty @(++ c)
+    lda #0
+    tay
+l:  sta (d),y
+    inc d
+    bne +n
+    inc @(++ d)
+n:  dec c
+    bne -l
+    dec @(++ c)
+    bne -l
+    rts
+
+; Set memory area. Word length.
+setmw:
+    lda a0
+    sta d
+    lda a1
+    sta @(++ d)
+    lda a2
+    sta c
+    ldy a3
+    iny
+    sty @(++ c)
+    lda a4
+    ldy #0
+l:  sta (d),y
+    inc d
+    bne +n
+    inc @(++ d)
+n:  dec c
+    bne -l
+    dec @(++ c)
+    bne -l
+    rts
