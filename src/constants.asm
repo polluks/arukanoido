@@ -29,8 +29,6 @@ framemask           = @(half num_chars)
 framechars          = @(half num_chars)
 first_sprite_char   = 1
 foreground          = @(+ (half framechars) (quarter framechars))
-frame_a             = charset
-frame_b             = @(+ charset framesize)
 
 ; Game settings
 
@@ -40,7 +38,6 @@ min_ball_speed          = 2
 max_ball_speed          = 10
 default_ball_direction  = 112   ; TODO: Change with Vaus position.
 ball_width              = 3
-double_ball_width       = @(* 2 ball_width)
 ball_height             = 5
 bonus_probability       = %11
 vaus_edge_distraction   = 16
