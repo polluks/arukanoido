@@ -523,9 +523,10 @@
 
 (= *model* :vic-20)
 
-(fn check-zeropage-size ()
-  (when (< #x100 *pc*)
-    (error "Zero page overflow by ~A bytes." (- *pc* #x100))))
+(fn check-zeropage-size (x)
+  (? (< x *pc*)
+     (error "Address ~A overflown by ~A bytes." x (abs (- *pc* x)))
+     (format t "~A bytes free till address ~A.~%" (- x *pc*) x)))
 
 (const +degrees+ 256)
 (const smax 127)

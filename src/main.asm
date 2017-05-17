@@ -15,6 +15,7 @@ n:  sta $200,x
 start:
     ldx #$ff
     txs
+    jsr clear_data
 
     ; Init VCPU.
     lda #<exec_script
@@ -22,7 +23,6 @@ start:
     lda #>exec_script
     sta $317
 
-    jsr clear_data
     jsr init_hiscore
     jsr init_music
     jsr start_irq
