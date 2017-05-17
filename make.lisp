@@ -16,6 +16,7 @@
 (const *bricks* '(#\  #\w #\o #\c #\g #\r #\b #\p #\y #\s #\x))
 
 (const *levels* '(
+
 ; Round 01
 (4
 "sssssssssssss"
@@ -498,6 +499,24 @@
 "  x x x x x  "
 "  yyyyyyyyy  "
 "  sssssssss  ")
+
+; Round 33: Unused round 33 that is in the original ROMs but never used.
+; Not yet actived in Arukanoido.
+(5
+"   pp   pp   "
+"  pppp pppp  "
+"  pppp pppp  "
+" ppppssppppp "
+" ppppssppppp "
+" pppppsspppp "
+" pppppsspppp "
+"  pppsspppp  "
+"  pppsspppp  "
+"   pppsspp   "
+"   pppsspp   "
+"    psspp    "
+"     ssp     "
+"      s      ")
 ))
 
 (= *model* :vic-20)
