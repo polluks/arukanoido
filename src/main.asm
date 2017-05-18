@@ -26,6 +26,8 @@ start:
     jsr init_hiscore
     jsr init_music
     jsr start_irq
+    lda #0
+    sta @(++ requested_song)
     lda #snd_bonus_life ; Tell that the tape has finished loading.
     jsr play_sound
     jsr wait_sound
