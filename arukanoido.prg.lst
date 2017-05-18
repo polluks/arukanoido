@@ -3198,7 +3198,7 @@
 34f3: 6 11891 : 60       n:  rts
 34f3: 6 11897 :          correct_trajectory:
 34f4: 3 11903 : a5 2e        lda reflections_since_last_vaus_hit
-34f6: 2 11906 : c9 08        cmp #8
+34f6: 2 11906 : c9 20        cmp #32
 34f8: 2 11908 : 90 15        bcc +r
 34fa: 4 11910 : b5 c3        lda sprites_d,x
 34fc: 2 11914 : 29 20        and #%00100000
