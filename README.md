@@ -24,11 +24,8 @@ in an empty directory and it'll clone everything and build it.
 # Things missing:
 
 * No two-player mode.
-* No intro or extra graphics.
-* Round 33 is missing.
-* No animated sprites.
 * No distractions floating down.
-* No E bonus although it shows.
+* Round 33 is missing.
 * No title screen nor intro.
 
 

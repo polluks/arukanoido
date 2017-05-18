@@ -1,8 +1,5 @@
 ; Replace decorative sprite by new one.
 ;
-; Round-robin search for a decorative sprite.
-; This way decorative sprites last as long as possible.
-;
 ; Y: descriptor of new sprite in sprite_inits
 add_sprite:
     stx add_sprite_x
@@ -19,11 +16,13 @@ l:  lda sprite_rr
     bpl -l
 
 sprite_added:
+    txa
     ldx add_sprite_x
     ldy add_sprite_y
     rts
 
 replace_sprite2:
+    txa
     ldy add_sprite_y
     jmp replace_sprite
 

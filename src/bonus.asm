@@ -17,9 +17,6 @@ ctrl_bonus:
     and #is_vaus
     beq +m              ; Didn't hit the Vaus…
 
-    lda #0
-    sta mode
-
     ; Release caught ball.
     lda caught_ball
     bmi +n
@@ -30,6 +27,28 @@ ctrl_bonus:
     lda #0
     sta sfx_reflection
 n:
+
+    ; Un-extend Vaus.
+    lda mode
+    cmp #mode_extended
+    bne +n
+    txa
+    pha
+    ldx vaus_middle_idx
+    jsr remove_sprite
+    ldx #spriteidx_vaus_left
+    lda sprites_x,x
+    clc
+    adc #4
+    sta sprites_x,x
+    lda #16
+    sta vaus_width
+    pla
+    tax
+n:
+
+    lda #0
+    sta mode
 
     ldy sprites_d,x
     lda bonus_funs_l,y
@@ -67,7 +86,15 @@ apply_bonus_l:
     rts
 
 apply_bonus_e:
-    rts
+    lda #mode_extended
+    sta mode
+    lda #24
+    sta vaus_width
+    ldy #@(- vaus_middle_init sprite_inits)
+    jsr add_sprite
+    sta vaus_middle_idx
+    lda #snd_growing_vaus
+    jmp play_sound
 
 apply_bonus_c:
     lda #mode_catching

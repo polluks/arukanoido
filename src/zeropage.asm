@@ -52,6 +52,7 @@ foreground_collision: 0   ; Set if a sprite collision has been detected.
 mode_laser      = 1
 mode_catching   = 2
 mode_disruption = 3
+mode_extended   = 4
 mode:                 0
 mode_break:           0
 
@@ -95,6 +96,8 @@ has_hit_brick:  0
 was_golden:     0
 
 laser_has_hit:  0
+
+vaus_middle_idx:    0
 
 score:      fill num_score_digits
 

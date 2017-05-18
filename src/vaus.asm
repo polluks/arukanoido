@@ -1,3 +1,13 @@
+test_vaus_hit_right:
+    ldy mode
+    cpy #mode_extended
+    bne +n
+    cmp #@(* (- screen_columns 4) 8)
+    bcs +r
+    bcc +r
+n:  cmp #@(* (- screen_columns 3) 8)
+r:  rts
+
 ctrl_vaus_left:
     lda #0              ; Fetch joystick status.
     sta $9113
@@ -20,14 +30,18 @@ ctrl_vaus_left:
 handle_paddle:
     ldy $9008
     lda paddle_xlat,y
-    cmp #@(* (- screen_columns 3) 8)
+    jsr test_vaus_hit_right
     bcc +n
+
     ldy mode_break
     beq +m
     lda #0
     sta bricks_left
     rts
-m:  lda #@(* (- screen_columns 3) 8)
+
+m:  lda #@(* (- screen_columns 1) 8)
+    sec
+    sbc vaus_width
 n:  sec
     sbc sprites_x,x
     sta tmp2
@@ -73,7 +87,7 @@ n:  lda #0          ;Fetch rest of joystick status.
     lda $9120
     bmi handle_joystick_fire
     lda sprites_x,x
-    cmp #@(* (- screen_columns 3) 8)
+    jsr test_vaus_hit_right
     bcs handle_break_mode
     lda #2
     jsr sprite_right
@@ -131,12 +145,26 @@ handle_break_mode:
     beq +n
     lda #0
     sta bricks_left
-n:  rts
+    rts
+n:  lda #@(* (- screen_columns 1) 8)
+    sec
+    sbc vaus_width
+    sta sprites_x,x
+    rts
 
-ctrl_vaus_right:
-    lda @(+ sprites_x (- num_sprites 1))
+ctrl_vaus_middle:
+    lda @(+ sprites_x spriteidx_vaus_left)
     clc
     adc #8
+    sta sprites_x,x
+    rts
+
+ctrl_vaus_right:
+    lda @(+ sprites_x spriteidx_vaus_left)
+    sec
+    sbc #8
+    clc
+    adc vaus_width
     sta sprites_x,x
     rts
 
