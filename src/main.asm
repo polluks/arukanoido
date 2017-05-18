@@ -129,8 +129,15 @@ l:  jsr remove_sprite
     ora #first_sprite_char
     sta next_sprite_char
     jsr draw_sprites
-    lda #1
-    sta is_running_game
+
+    ; Kick off game code in IRQ handler.
+    sei
+    ldy #0
+    sty framecounter
+    sty @(++ framecounter)
+    iny
+    sty is_running_game
+    cli
 
 mainloop:
     lda bricks_left

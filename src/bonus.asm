@@ -106,6 +106,9 @@ apply_bonus_s:
     cmp #min_ball_speed
     beq +n
     dec ball_speed
+    lda #0              ; Time acceleration back to default.
+    sta framecounter
+    sta @(++ framecounter)
 n:  rts
 
 apply_bonus_b:

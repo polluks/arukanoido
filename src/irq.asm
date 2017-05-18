@@ -35,8 +35,12 @@ if @*show-cpu?*
     lda #@(+ 8 3)
     sta $900f
 end
+
     inc framecounter
-    jsr play_music
+    bne +n
+    inc @(++ framecounter)
+
+n:  jsr play_music
     jsr set_vaus_color
     lda is_running_game
     beq +n
@@ -44,10 +48,13 @@ end
     jsr rotate_bonuses
     lda #1
     sta has_moved_sprites
-n:  lda #$7f
+
+n:  lda #$7f        ; Acknowledge IRQ.
     sta $912d
+
 if @*show-cpu?*
     lda #@(+ 8 2)
     sta $900f
 end
-    jmp $eb18
+
+    jmp $eb18       ; CBM ROM IRQ return

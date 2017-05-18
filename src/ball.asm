@@ -3,9 +3,7 @@ ctrl_ball:
     bpl +r
 
     ; Call the ball controller ball_speed times.
-    lda ball_speed
-    asl
-    tay
+    ldy ball_speed
 l:  tya
     pha
     jsr ctrl_ball_subpixel
@@ -170,19 +168,7 @@ apply_reflection:
     sta snd_reflection
 n:  inc sfx_reflection
 
-    ; Increase ball speed every 8th time it hit the top border.
-    lda sprites_y,x
-    cmp #@(+ 2 (* 3 8))
-    bcs +n
-    inc reflections_on_top
-    lda reflections_on_top
-    and #%1111
-    bne +n
-    lda ball_speed
-    cmp #max_ball_speed
-    beq +n
-    inc ball_speed
-n:
+    ; Calculate new direction.
     lda sprites_d,x     ; Get degrees.
     sec
     sbc side_degrees    ; Rotate back to zero degrees.
@@ -192,6 +178,8 @@ n:
     clc
     adc #128            ; Rotate to opposite direction.
     sta sprites_d,x
+
+    jsr adjust_ball_speed
 
 move_ball:
     jsr ball_step
@@ -299,3 +287,17 @@ make_ball:
     stx caught_ball
     ldy #@(- ball_init sprite_inits)
     jmp replace_sprite
+
+; Reset ball speed when it's slow after 5 seconds.                                                           
+adjust_ball_speed:
+    lda ball_speed
+    cmp #max_ball_speed
+    beq +n
+    lda @(++ framecounter)
+    cmp #4
+    bne +n
+    inc ball_speed
+    lda #0
+    sta framecounter
+    sta @(++ framecounter)
+n:  rts

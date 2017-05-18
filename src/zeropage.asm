@@ -71,7 +71,7 @@ collision_x_distance: 0
 joystick_status:      0
 
 last_random_value:    0   ; Random number generator's last returned value.
-framecounter:         0   ; Current frame number relative to start of game.
+framecounter:         0 0
 lifes:                0
 balls:                0
 

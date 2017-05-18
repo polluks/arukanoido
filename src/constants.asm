@@ -33,9 +33,9 @@ foreground          = @(+ (half framechars) (quarter framechars))
 ; Game settings
 
 default_num_lifes       = 3
-default_ball_speed      = 3
-min_ball_speed          = 2
-max_ball_speed          = 10
+default_ball_speed      = 6
+min_ball_speed          = 4
+max_ball_speed          = 20
 default_ball_direction  = 112   ; TODO: Change with Vaus position.
 ball_width              = 3
 ball_height             = 5
