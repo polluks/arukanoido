@@ -292,12 +292,16 @@ make_ball:
 adjust_ball_speed:
     lda ball_speed
     cmp #max_ball_speed
-    beq +n
-    lda @(++ framecounter)
-    cmp #4
+    beq +n                  ; Already at maximum speed. Do nothing…
+    lda is_using_paddle     ; Paddle users gets it twice.
+    eor #1
+    clc
+    adc #1
+    asl
+    cmp @(++ framecounter)
     bne +n
-    inc ball_speed
-    lda #0
+    inc ball_speed          ; Play the blues…
+    lda #0                  ; …but don't forget the timing.
     sta framecounter
     sta @(++ framecounter)
 n:  rts
