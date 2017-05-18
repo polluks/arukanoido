@@ -63,7 +63,6 @@ next:
     bpl -loop
 
 done:
-    jsr display_score
     pla
     tay
     pla

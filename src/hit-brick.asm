@@ -51,6 +51,11 @@ o:  dec bricks_left
     ldy scrx
 modify_brick:
     sta (scr),y
+    txa
+    pha
+    jsr display_score
+    pla
+    tax
     clc
     rts
 
