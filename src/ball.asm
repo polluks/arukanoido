@@ -3,13 +3,15 @@ ctrl_ball:
     bpl +r
 
     ; Call the ball controller ball_speed times.
-    ldy ball_speed
+    lda ball_speed
+    asl
+    tay
 l:  tya
     pha
     jsr ctrl_ball_subpixel
     lda sprites_fl,x
     cmp #<ctrl_ball
-    bne +e
+    bne +e              ; Ball sprite has been removed…
     pla
     tay
     dey
@@ -242,9 +244,6 @@ n:  lda sprites_d,x
 r:  rts
 
 ball_step:
-    jsr ball_step2
-
-ball_step2:
     ; Move on X axis.
     ldy sprites_d,x
     lda ball_directions_x,y
