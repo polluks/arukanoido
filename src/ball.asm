@@ -227,7 +227,7 @@ n:  rts
 
 correct_trajectory:
     lda reflections_since_last_vaus_hit
-    cmp #8
+    cmp #32
     bcc +r
     lda sprites_d,x
     and #%00100000
