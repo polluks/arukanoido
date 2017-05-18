@@ -11,6 +11,7 @@ init_hiscore:
     rts
 
 add_to_score:
+    inc has_score_changed
     txa
     pha
     tya

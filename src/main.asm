@@ -158,4 +158,9 @@ n:  jsr random              ; Improve randomness and avoid CRTC hsync wobble.
     lda #0
     sta has_moved_sprites
     jsr draw_sprites
+    lda has_score_changed
+    beq mainloop
+    lda #0
+    sta has_score_changed
+    jsr display_score
     jmp mainloop
