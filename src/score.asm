@@ -49,6 +49,8 @@ loop:
 
     ; Copy score to highscore.
 new_hiscore:
+    lda #1
+    sta has_hiscore
     ldx #@(-- num_score_digits)
 l:  lda score,x
     sta hiscore,x

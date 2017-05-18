@@ -99,6 +99,8 @@ laser_has_hit:  0
 
 vaus_middle_idx:    0
 
+has_hiscore:        0
+
 score:      fill num_score_digits
 
 sprites_x:  fill num_sprites  ; X positions.

@@ -31,6 +31,11 @@ start:
     jsr wait_sound
     jmp restart
 
+game_done:
+    lda #snd_doh_dissolving
+    jsr play_sound
+    jsr wait_sound
+
 game_over:
     lda #0
     sta is_running_game
@@ -38,6 +43,8 @@ game_over:
     lda #snd_game_over
     jsr play_sound
     jsr wait_sound
+    lda has_hiscore
+    beq restart
     lda #snd_hiscore
     jsr play_sound
 
@@ -58,8 +65,6 @@ end
     jsr init_game_mode
 
     ; Prepare paddle auto–detection.
-    lda #0
-    sta is_using_paddle
     lda $9008
     sta old_paddle_value
 
@@ -68,22 +73,18 @@ end
     jsr init_score
 
     ; Reset level data stream.
-    lda #0
-    sta level
     lda #<level_data
     sta current_level
     lda #>level_data
     sta @(++ current_level)
-    lda #0
-    sta current_half
 
 next_level:
     lda #0
     sta is_running_game
     inc level
     lda level
-    cmp #33
-    beq game_over
+    cmp #34
+    beq game_done
 
     jsr clear_screen
     jsr draw_level
