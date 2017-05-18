@@ -2,17 +2,17 @@
     data
 
 sl:
-s:                    0 0 ; Source pointer.
+s:                    0 0 ; Source pointer
 dl:
-d:                    0 0 ; Destination pointer.
-c:                    0 0 ; Counter.
+d:                    0 0 ; Destination pointer
+c:                    0 0 ; Counter
 sr:
-scr:                  0 0 ; Screen pointer.
+scr:                  0 0 ; Screen pointer
 dr:
-col:                  0 0 ; Colour RAM pointer.
-scrx:                 8   ; X position.
-scry:                 0   ; Y position.
-curcol:               0   ; Character colour.
+col:                  0 0 ; Colour RAM pointer
+scrx:                 8   ; X position
+scry:                 0   ; Y position
+curcol:               0   ; Character colour
 
 ; VCPU
 bcp:                  0 0
@@ -36,7 +36,7 @@ tmp3:                 0
 p_x:
 add_sprite_x:         0
 p_y:
-add_sprite_y:         0
+add_sprite_y:
 draw_sprite_x:        0
 call_controllers_x:   0
 
@@ -58,7 +58,6 @@ mode_break:           0
 
 side_degrees:         0
 caught_ball:          0
-reflections_on_top:   0
 reflections_since_last_vaus_hit: 0
 vaus_width:           0
 
@@ -99,7 +98,7 @@ laser_has_hit:  0
 
 vaus_middle_idx:    0
 
-has_score_changed:  0
+has_new_score:      0
 has_hiscore:        0
 
 score:      fill num_score_digits

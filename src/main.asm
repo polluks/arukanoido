@@ -98,7 +98,6 @@ retry:
     sta is_firing
     sta mode
     sta mode_break
-    sta reflections_on_top
     sta reflections_since_last_vaus_hit
     sta snd_reflection
     lda #1
@@ -165,9 +164,9 @@ n:  jsr random              ; Improve randomness and avoid CRTC hsync wobble.
     lda #0
     sta has_moved_sprites
     jsr draw_sprites
-    lda has_score_changed
+    lda has_new_score
     beq mainloop
     lda #0
-    sta has_score_changed
+    sta has_new_score
     jsr display_score
     jmp mainloop
