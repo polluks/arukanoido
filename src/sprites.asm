@@ -1,6 +1,7 @@
 ; Replace decorative sprite by new one.
 ;
 ; Y: descriptor of new sprite in sprite_inits
+; Returns: A: Index of new sprite or 255 if slots are full.
 add_sprite:
     stx add_sprite_x
     sty add_sprite_y
@@ -14,6 +15,8 @@ l:  lda sprite_rr
     bmi replace_sprite2 ; Yes…
     dey
     bpl -l
+
+    ldx #255
 
 sprite_added:
     txa

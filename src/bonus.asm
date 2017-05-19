@@ -86,12 +86,16 @@ apply_bonus_l:
     rts
 
 apply_bonus_e:
-    lda #mode_extended
+    ldy #@(- vaus_middle_init sprite_inits)
+    jsr add_sprite
+    cmp #255
+    bne +n
+    jsr remove_bonuses  ; No slots left, last resort.
+    jmp apply_bonus_e
+n:  lda #mode_extended
     sta mode
     lda #24
     sta vaus_width
-    ldy #@(- vaus_middle_init sprite_inits)
-    jsr add_sprite
     sta vaus_middle_idx
     lda #snd_growing_vaus
     jmp play_sound
@@ -127,16 +131,7 @@ l:  jsr scrcoladdr
     rts
 
 apply_bonus_d:
-    ; Remove bonuses.
-    stx tmp
-    ldx #@(- num_sprites 2)
-l:  lda sprites_i,x
-    and #is_bonus
-    beq +n
-    jsr remove_sprite
-n:  dex
-    bpl -l
-    ldx tmp
+    jsr remove_bonuses
 
     ; Find ball.
     ldy #@(- num_sprites 2)
@@ -230,3 +225,15 @@ n:  lsr
 m:  lda #<bonus_p
     ldx #>bonus_p
     jmp rotate_bonus
+
+remove_bonuses:
+    stx tmp
+    ldx #@(- num_sprites 2)
+l:  lda sprites_i,x
+    and #is_bonus
+    beq +n
+    jsr remove_sprite
+n:  dex
+    bpl -l
+    ldx tmp
+    rts
