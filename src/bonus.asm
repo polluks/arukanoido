@@ -138,14 +138,16 @@ n:  dex
     bpl -l
     ldx tmp
 
-    ldy #@(- num_sprites 2) ; Find ball.
+    ; Find ball.
+    ldy #@(- num_sprites 2)
 l:  lda sprites_l,y
     cmp #<ball
     beq +f
     dey
     bpl -l
 
-f:  lda sprites_x,y
+    ; Add two new balls with +/- 22.5° change in direction.
+f:  lda sprites_x,y                     ; Copy coordinates of current ball.
     sta @(+ ball_init sprite_init_x)
     lda sprites_y,y
     sta @(+ ball_init sprite_init_y)
@@ -165,7 +167,8 @@ f:  lda sprites_x,y
     sta @(+ ball_init sprite_init_data)
     ldy #@(- ball_init sprite_inits)
     jsr add_sprite
-    
+
+    ; Finish up so the rest of the game knows.
     inc balls
     inc balls
     lda #mode_disruption
@@ -227,20 +230,3 @@ n:  lsr
 m:  lda #<bonus_p
     ldx #>bonus_p
     jmp rotate_bonus
-
-set_vaus_color:
-    lda #<vaus_left
-    sta @(+ sprites_l spriteidx_vaus_left)
-    lda #<vaus_right
-    sta @(+ sprites_l spriteidx_vaus_right)
-    lda mode
-    cmp #mode_laser
-    bne +n
-    lda framecounter
-    lsr
-    bcs +n
-    lda #<vaus_left_laser
-    sta @(+ sprites_l spriteidx_vaus_left)
-    lda #<vaus_right_laser
-    sta @(+ sprites_l spriteidx_vaus_right)
-n:  rts

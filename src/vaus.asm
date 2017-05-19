@@ -179,3 +179,19 @@ make_vaus:
     ldy #@(- vaus_right_init sprite_inits)
     jmp replace_sprite 
 
+set_vaus_color:
+    lda #<vaus_left
+    sta @(+ sprites_l spriteidx_vaus_left)
+    lda #<vaus_right
+    sta @(+ sprites_l spriteidx_vaus_right)
+    lda mode
+    cmp #mode_laser
+    bne +n
+    lda framecounter
+    lsr
+    bcs +n
+    lda #<vaus_left_laser
+    sta @(+ sprites_l spriteidx_vaus_left)
+    lda #<vaus_right_laser
+    sta @(+ sprites_l spriteidx_vaus_right)
+n:  rts
