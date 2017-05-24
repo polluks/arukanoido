@@ -80,27 +80,21 @@ end
 
 copy_backwards:
     ldy #0
-l2: lda (s),y
+l:  lda (s),y
     sta (d),y
     inc $900f
-    dec s
-    lda s
-    cmp #$ff
-    beq m2
-n2: dec d
-    lda d
-    cmp #$ff
-    beq j2
-q2: dex
-    bne l2
+    dey
+    cpy #$ff
+    beq +n
+q:  dex
+    bne -l
     dec @(++ c)
-    bne l2
+    bne -l
 
     stx $900f
     jmp start       ; Start the game…
 
-m2: dec @(++ s)
-    jmp n2
+n:  dec @(++ s)
+    dec @(++ d)
+    jmp -q
 
-j2: dec @(++ d)
-    jmp q2
