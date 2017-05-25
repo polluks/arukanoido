@@ -24,7 +24,7 @@ start:
     sta $317
 
     jsr init_hiscore
-    jsr init_music
+;    jsr init_music
     jsr start_irq
     lda #0
     sta @(++ requested_song)

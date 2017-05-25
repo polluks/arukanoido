@@ -618,6 +618,7 @@
                           "laser.asm"
                           "ball.asm"
                           "bonus.asm"
+                          "distractor.asm"
 
                           ; Top level
                           "irq.asm"
