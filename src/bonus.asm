@@ -141,7 +141,7 @@ l:  lda sprites_l,y
     dey
     bpl -l
 
-    ; Add two new balls with +/- 22.5° change in direction.
+    ; Add two new balls with +/- 45° change in direction.
 f:  lda sprites_x,y                     ; Copy coordinates of current ball.
     sta @(+ ball_init sprite_init_x)
     lda sprites_y,y
@@ -152,13 +152,13 @@ f:  lda sprites_x,y                     ; Copy coordinates of current ball.
     pha
     ldy #@(- ball_init sprite_inits)
     clc
-    adc #16
+    adc #32
     sta @(+ ball_init sprite_init_data)
     ldy #@(- ball_init sprite_inits)
     jsr add_sprite
     pla
     sec
-    sbc #16
+    sbc #32
     sta @(+ ball_init sprite_init_data)
     ldy #@(- ball_init sprite_inits)
     jsr add_sprite
@@ -227,7 +227,8 @@ m:  lda #<bonus_p
     jmp rotate_bonus
 
 remove_bonuses:
-    stx tmp
+    txa
+    pha
     ldx #@(- num_sprites 2)
 l:  lda sprites_i,x
     and #is_bonus
@@ -235,5 +236,6 @@ l:  lda sprites_i,x
     jsr remove_sprite
 n:  dex
     bpl -l
-    ldx tmp
+    pla
+    tax
     rts
