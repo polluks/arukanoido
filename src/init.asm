@@ -22,6 +22,7 @@ main:
     sta $9002
 
 if @(not *shadowvic?*)
+prg_size = @(+ (- loaded_end loaded_start) #x100)
     ; Relocate loaded data by copying it to the right position backwards
     ; as it's beeing moved up to make space for the VIC.
     lda #<loaded_end
@@ -32,32 +33,23 @@ if @(not *shadowvic?*)
     sta d
     lda #>relocated_end
     sta @(++ d)
+    ldx #<prg_size
+    lda #>prg_size
+    sta @(++ c)
     ldy #0
 l:  lda (s),y
     sta (d),y
-    ldx #s
-    jsr dec_zp
-    ldx #d
-    jsr dec_zp
-    inc $900f
-    lda s
-    cmp #@(low (-- loaded_start))
+    dey
+    cpy #255
+    bne +n
+    dec @(++ s)
+    dec @(++ d)
+n:  inc $900f
+    dex
     bne -l
-    lda @(++ s)
-    cmp #@(high (-- loaded_start))
+    dec @(++ c)
     bne -l
     jmp relocated_start
-
-; Decrement zero page word X.
-dec_zp:
-    dec 0,x
-    pha
-    lda 0,x
-    cmp #255
-    bne +n
-    dec 1,x
-n:  pla
-    rts
 end
 
 loaded_start:
