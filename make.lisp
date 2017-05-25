@@ -630,7 +630,7 @@
 
                           ; Streamable or loadable on occasion.
                           "level-data.asm"
-                          "gfx-doh.asm"
+;                          "gfx-doh.asm"
                           "gfx-title.asm"
 
                           ; Imported music player binary.

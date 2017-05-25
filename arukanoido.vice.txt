@@ -196,12 +196,12 @@ al 11ff .load_address
 al 120b .basic_end
 al 2300 .relocated_start
 al 10b0 .relocation_offset
-al 4f52 .loaded_end
+al 4d72 .loaded_end
 al 0a0d .music_player_size
-al 6061 .loaded_music_player_end
+al 5e81 .loaded_music_player_end
 al 7a0c .music_player_end
 al 120d .main
-al 3e02 .prg_size
+al 3c22 .prg_size
 al 1236 .l
 al 1243 .n
 al 1250 .loaded_start
@@ -289,6 +289,7 @@ al 0007 .sprite_init_data
 al 0080 .is_inactive
 al 0040 .was_cleared
 al 0020 .fg_collision
+al 0008 .is_ball
 al 0004 .is_distrator
 al 0002 .is_bonus
 al 0001 .is_vaus
@@ -707,8 +708,7 @@ al 3a89 .o
 al 3a8c .n
 al 3a96 .n
 al 3ab2 .level_data
-al 44fb .dph_gfx
-al 46db .gfx_title
-al 5655 .loaded_music_player
-al 6002 .relocated_end
+al 44fb .gfx_title
+al 5475 .loaded_music_player
+al 5e22 .relocated_end
 break .stop

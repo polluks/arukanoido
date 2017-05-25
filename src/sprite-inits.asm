@@ -10,6 +10,7 @@ sprite_init_data    = 7
 is_inactive  = 128
 was_cleared  = 64
 fg_collision = 32
+is_ball      = 8
 is_distrator = 4
 is_bonus     = 2
 is_vaus      = 1
@@ -25,7 +26,7 @@ vaus_middle_init:
 vaus_right_init:
     72 vaus_y is_vaus     multiwhite <vaus_right  <ctrl_vaus_right >ctrl_vaus_right 0
 ball_init:
-    70 0      0           white      <ball        <ctrl_ball >ctrl_ball 0
+    70 0      is_ball     white      <ball        <ctrl_ball >ctrl_ball 0
 laser_init:
     0 vaus_y  0           white      <laser       <ctrl_laser >ctrl_laser 0
 bonus_init:

@@ -134,10 +134,10 @@ apply_bonus_d:
     jsr remove_bonuses
 
     ; Find ball.
-    ldy #@(- num_sprites 2)
-l:  lda sprites_l,y
-    cmp #<ball
-    beq +f
+    ldy #@(-- num_sprites)
+l:  lda sprites_i,y
+    and #is_ball
+    bne +f
     dey
     bpl -l
 
