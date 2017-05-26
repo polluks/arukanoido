@@ -86,6 +86,11 @@ apply_bonus_l:
     rts
 
 apply_bonus_e:
+    ldy #spriteidx_vaus_left
+    lda sprites_x,y
+    sec
+    sbc #4
+    sta sprites_x,y
     ldy #@(- vaus_middle_init sprite_inits)
     jsr add_sprite
     cmp #255
