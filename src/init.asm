@@ -53,7 +53,6 @@ n:
     lda @(++ c)
     cmp #255
     bne -l
-stop:
     jmp relocated_start
 end
 
@@ -67,35 +66,35 @@ loaded_music_player_end = @(+ loaded_music_player (-- music_player_size))
 music_player_end = @(+ music_player (-- music_player_size))
 
     ; Now relocate the music player.
-    lda #<loaded_music_player_end
+base_loaded_music_player_end = @(- loaded_music_player_end (low (-- music_player_size)))
+base_relocated_music_player_end = @(- music_player_end (low (-- music_player_size)))
+    lda #<base_loaded_music_player_end
     sta s
-    lda #>loaded_music_player_end
+    lda #>base_loaded_music_player_end
     sta @(++ s)
-    lda #<music_player_end
+    lda #<base_relocated_music_player_end
     sta d
-    lda #>music_player_end
+    lda #>base_relocated_music_player_end
     sta @(++ d)
-    ldx #<music_player_size
-    lda #@(++ (high music_player_size))
+    ldx #@(low music_player_size)
+    lda #@(high music_player_size)
     sta @(++ c)
-
-copy_backwards:
-    ldy #0
-l:  lda (s),y
+    ldy #@(low (-- music_player_size))
+l:  inc $900f
+    lda (s),y
     sta (d),y
-    inc $900f
     dey
-    cpy #$ff
-    beq +n
-q:  dex
+    cpy #255
+    bne +n
+    dec @(++ s)
+    dec @(++ d)
+n:
+    dex
+    cpx #255
     bne -l
     dec @(++ c)
+    lda @(++ c)
+    cmp #255
     bne -l
-
-    stx $900f
+ 
     jmp start       ; Start the game…
-
-n:  dec @(++ s)
-    dec @(++ d)
-    jmp -q
-
