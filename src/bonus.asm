@@ -151,8 +151,6 @@ f:  lda sprites_x,y                     ; Copy coordinates of current ball.
     sta @(+ ball_init sprite_init_x)
     lda sprites_y,y
     sta @(+ ball_init sprite_init_y)
-    lda #0
-    sta @(+ ball_init sprite_init_flags)
     lda sprites_d,y
     pha
     ldy #@(- ball_init sprite_inits)
