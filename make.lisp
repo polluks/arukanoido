@@ -596,8 +596,8 @@
                           "math.asm"
                           "gfx.asm"
                           "print.asm"
-                          ,@(unless *shadowvic?*
-                              '("../bender/vic-20/minigrafik-display.asm"))
+;                          ,@(unless *shadowvic?*
+;                              '("../bender/vic-20/minigrafik-display.asm"))
                           "sprites.asm"
                           "sprites-vic-common.asm"
                           "sprites-vic.asm"
@@ -631,7 +631,7 @@
                           ; Streamable or loadable on occasion.
                           "level-data.asm"
 ;                          "gfx-doh.asm"
-                          "gfx-title.asm"
+;                          "gfx-title.asm"
 
                           ; Imported music player binary.
                           "music-player.asm"

@@ -1,10 +1,4 @@
 roundintro:
-    lda #<gfx_title
-    sta s
-    lda #>gfx_title
-    sta @(++ s)
-    jsr mg_display
-
 l:  lda #0              ; Fetch joystick status.
     sta $9113
     lda $9111
