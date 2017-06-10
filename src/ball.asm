@@ -120,9 +120,10 @@ no_vaus_hit:
     cmp #mode_disruption    ; No bonuses in disruption mode.
     beq apply_reflection
 
-    jsr random
-    and #bonus_probability
+    dec bricks_till_bonus
     bne apply_reflection
+    lda #8
+    sta bricks_till_bonus
 
     lda scrx
     asl

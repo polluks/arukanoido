@@ -39,7 +39,6 @@ max_ball_speed          = 20
 default_ball_direction  = 112   ; TODO: Change with Vaus position.
 ball_width              = 3
 ball_height             = 5
-bonus_probability       = %11
 vaus_edge_distraction   = 16
 
 ; Score settings

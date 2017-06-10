@@ -108,6 +108,8 @@ retry:
     sta ball_speed
     lda #16
     sta vaus_width
+    lda #8
+    sta bricks_till_bonus
 
     jsr clear_sprites
     jsr draw_walls      ; Freshen up after mode_break.
