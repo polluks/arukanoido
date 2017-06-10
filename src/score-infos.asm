@@ -6,7 +6,8 @@ score_80:   0 0 0 0 0 9 0
 score_90:   0 0 0 0 1 0 0
 score_100:  0 0 0 0 1 1 0
 score_110:  0 0 0 0 1 2 0
-score_120:
+score_120:  0 0 0 1 0 0 0
+score_1000:
 
 ; Mapping colour RAM values to scores.
 ; (When the plan was to make this unexpanded.)

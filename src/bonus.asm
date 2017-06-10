@@ -17,6 +17,9 @@ ctrl_bonus:
     and #is_vaus
     beq +m              ; Didn't hit the Vaus…
 
+    ldy #@(- score_1000 scores)
+    jsr add_to_score
+
     ; Release caught ball.
     lda caught_ball
     bmi +n
