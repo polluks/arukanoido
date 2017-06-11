@@ -59,9 +59,9 @@ end
     lda #snd_coin
     jsr play_sound
     jsr wait_sound
-    lda #snd_theme
-    jsr play_sound
-    jsr wait_sound
+;    lda #snd_theme
+;    jsr play_sound
+;    jsr wait_sound
 
     jsr init_game_mode
 
