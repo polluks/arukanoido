@@ -104,12 +104,13 @@ retry:
     lda #1
     sta balls
     sta sfx_reflection
+    sta bricks_until_bonus
     lda #default_ball_speed
     sta ball_speed
     lda #16
     sta vaus_width
-    lda #8
-    sta bricks_till_bonus
+    lda #255
+    sta current_bonus
 
     jsr clear_sprites
     jsr draw_walls      ; Freshen up after mode_break.

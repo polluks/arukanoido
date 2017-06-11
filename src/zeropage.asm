@@ -55,6 +55,7 @@ mode_disruption = 3
 mode_extended   = 4
 mode:                 0
 mode_break:           0
+current_bonus:        0
 
 side_degrees:         0
 caught_ball:          0
@@ -63,7 +64,7 @@ vaus_width:           0
 
 level:                0
 bricks_left:          0
-bricks_till_bonus:    0
+bricks_until_bonus:   0
 
 collision_y_distance: 0
 collision_x_distance: 0
@@ -79,25 +80,25 @@ is_running_game:      0
 has_moved_sprites:    0
 
 ball_speed:           0
-is_firing:            0 ; Laser interval countdown.
+is_firing:            0   ; Laser interval countdown.
 is_using_paddle:      0
 sfx_reflection:       0
 snd_reflection:       0
 old_paddle_value:     0
 
-has_collision:  0                                                               
-ball_x:         0
-ball_y:         0
+has_collision:        0                                                               
+ball_x:               0
+ball_y:               0
 
-current_half:   0                                                           
-bricks_in_line: 0
+current_half:         0
+bricks_in_line:       0
 
-has_hit_brick:  0                                                           
-was_golden:     0
+has_hit_brick:        0
+was_golden:           0
 
-laser_has_hit:  0
+laser_has_hit:        0   ; For the laser controller to remember if it hit one the left.
 
-vaus_middle_idx:    0
+vaus_middle_idx:      0   ; Index of middle sprite of extended Vaus.
 
 has_new_score:      0
 has_hiscore:        0
