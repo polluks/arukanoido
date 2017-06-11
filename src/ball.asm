@@ -139,10 +139,9 @@ a:  jsr random
     and #%111
     cmp #%111
     beq -a      ; Only seven bonuses available.
-;    cmp current_bonus
-;    beq -a
-;    sta current_bonus
-lda #5
+    cmp current_bonus
+    beq -a
+    sta current_bonus
     pha
     asl
     asl
