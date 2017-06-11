@@ -1,3 +1,47 @@
+vaus_directions:
+    169
+    169
+    160
+    160
+    137
+    137
+    137
+    137
+    119
+    119
+    119
+    119
+    96
+    96
+    87
+    87
+
+vaus_directions_extended:
+    169
+    169
+    160
+    160
+    137
+    137
+    137
+    137
+    137
+    137
+    137
+    137
+    119
+    119
+    119
+    119
+    119
+    119
+    119
+    119
+    96
+    96
+    87
+    87
+
 ctrl_ball:
     lda caught_ball
     bpl +r
@@ -27,59 +71,50 @@ ctrl_ball_subpixel:
 ;    jsr find_hit
 ;    bcs no_vaus_hit
 
-    ; Test on collision with Vaus.
+    ; Test on vertical collision with Vaus.
     lda sprites_y,x
-    cmp #@(- vaus_y (-- ball_height))
+    cmp #@(- vaus_y 2)
     bcc no_vaus_hit
     cmp #@(+ vaus_y 8)
     bcs no_vaus_hit
 
+    ldy sprites_x,x
+    iny
+    sty tmp
+
+    ; Test on horizontal collision with Vaus (middle pixel).
     lda @(+ sprites_x (-- num_sprites))
-    sec
-    sbc #ball_width
-    cmp sprites_x,x
+    cmp tmp
     bcs no_vaus_hit
 
     lda @(+ sprites_x (-- num_sprites))
     clc
     adc vaus_width
-    cmp sprites_x,x
+    sec
+    sbc #1
+    cmp tmp
     bcc no_vaus_hit
     
-    ; Calculate reflection from Vaus.
-    lda vaus_width
-    clc
-    adc #ball_width
-    lsr
-    sta tmp
-    lda sprites_x,x
+    ; Get reflection from Vaus.
+    lda tmp
     sec
     sbc @(+ sprites_x (-- num_sprites))
-    adc #ball_width
-    sbc tmp
-    jsr neg
-    asl
-    sta side_degrees
+    tay
 
-    ; Avoid going straight up.
-    jsr abs
-    cmp #$04
-    bcs +n
-    lda side_degrees
-    bmi +m
-    lda #$04
-    jmp +j
-m:  lda #$f8
-j:  sta side_degrees
-n:
+    lda #16
+    cmp vaus_width
+    bcc +n
+    lda vaus_directions,y
+    jmp +m
+n:  lda vaus_directions_extended,y
+m:  sta sprites_d,x
 
-    lda #0
-    sta sprites_d,x
-    lda #@(- vaus_y ball_height)
+    lda #@(- vaus_y 3)
     sta sprites_y,x
 
     lda #0
     sta reflections_since_last_vaus_hit
+
     lda mode
     cmp #mode_catching
     bne +n
@@ -90,11 +125,11 @@ n:
     sta sprites_l,x
     lda #@(* 28 8)
     sta sprites_y,x
-    jsr apply_reflection
+    jsr applied_reflection
     lda #snd_caught_ball
     jmp play_sound
 
-n:  jmp apply_reflection
+n:  jmp applied_reflection
 
 m:  jsr correct_trajectory
     jmp move_ball
@@ -162,16 +197,6 @@ hit_solid:
     inc reflections_since_last_vaus_hit
 
 apply_reflection:
-    ; Play reflection sound.
-    lda snd_reflection
-    bne +n
-    lda sfx_reflection
-    and #1
-    clc
-    adc #snd_reflection_low
-    sta snd_reflection
-n:  inc sfx_reflection
-
     ; Calculate new direction.
     lda sprites_d,x     ; Get degrees.
     sec
@@ -182,6 +207,17 @@ n:  inc sfx_reflection
     clc
     adc #128            ; Rotate to opposite direction.
     sta sprites_d,x
+
+applied_reflection:
+    ; Play reflection sound.
+    lda snd_reflection
+    bne +n
+    lda sfx_reflection
+    and #1
+    clc
+    adc #snd_reflection_low
+    sta snd_reflection
+n:  inc sfx_reflection
 
     jsr adjust_ball_speed
 
