@@ -4,10 +4,12 @@
 s:                    0 0 ; Source pointer
 d:                    0 0 ; Destination pointer
 c:                    0 0 ; Counter
-scr:                  0 0 ; Screen pointer
+
+scr:                  0 0 ; Screen pointer (line start)
 col:                  0 0 ; Colour RAM pointer
 scrx:                 8   ; X position
 scry:                 0   ; Y position
+curchar:              0   ; Last allocated character
 curcol:               0   ; Character colour
 
 ; VCPU
@@ -21,7 +23,7 @@ a2:                   0
 a3:                   0
 a4:                   0
 
-current_level:        0 0
+current_level:        0 0 ; Pointer to next level's data.
 
 ; Temporaries.
 tmp:                  0
