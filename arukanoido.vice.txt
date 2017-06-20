@@ -585,8 +585,8 @@ al 317e .hit_solid
 al 3180 .apply_reflection
 al 3190 .applied_reflection
 al 31a3 .n
+al 31a5 .move_ball
 al 31a5 .m
-al 31a8 .move_ball
 al 31be .still_balls_left
 al 31c8 .r
 al 31cb .play_reflection_sound

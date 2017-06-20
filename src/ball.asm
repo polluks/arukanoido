@@ -199,9 +199,8 @@ applied_reflection:
     sta snd_reflection
 n:  inc sfx_reflection
 
-m:  jsr adjust_ball_speed
-
 move_ball:
+m:  jsr adjust_ball_speed
     jsr ball_step
 
     ; Deal with lost ball.
