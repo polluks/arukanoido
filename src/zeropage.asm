@@ -83,6 +83,7 @@ is_using_paddle:      0
 sfx_reflection:       0
 snd_reflection:       0
 old_paddle_value:     0
+digisound_counter:    0 0
 
 has_collision:        0                                                               
 ball_x:               0
@@ -99,8 +100,8 @@ laser_has_hit:        0   ; For the laser controller to remember if it hit one t
 
 vaus_middle_idx:      0   ; Index of middle sprite of extended Vaus.
 
-has_new_score:      0
-has_hiscore:        0
+has_new_score:        0
+has_hiscore:          0
 
 score:      fill num_score_digits
 
