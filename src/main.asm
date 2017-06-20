@@ -101,6 +101,8 @@ retry:
     sta mode_break
     sta reflections_since_last_vaus_hit
     sta snd_reflection
+    sta framecounter
+    sta @(++ framecounter)
     lda #1
     sta balls
     sta sfx_reflection
