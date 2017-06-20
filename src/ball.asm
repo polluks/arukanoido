@@ -71,6 +71,9 @@ ctrl_ball_subpixel:
 ;    jsr find_hit
 ;    bcs no_vaus_hit
 
+    lda #0
+    sta has_hit_vaus
+
     ; Test on vertical collision with Vaus.
     lda sprites_y,x
     cmp #@(- vaus_y 2)
@@ -95,6 +98,8 @@ ctrl_ball_subpixel:
     cmp tmp
     bcc no_vaus_hit
     
+    inc has_hit_vaus
+
     ; Get reflection from Vaus.
     lda tmp
     sec
@@ -209,7 +214,10 @@ apply_reflection:
     sta sprites_d,x
 
 applied_reflection:
-    ; Play reflection sound.
+    ; Determine reflection sound.
+    lda has_hit_brick
+    ora has_hit_vaus
+    beq +m
     lda snd_reflection
     bne +n
     lda sfx_reflection
@@ -219,7 +227,7 @@ applied_reflection:
     sta snd_reflection
 n:  inc sfx_reflection
 
-    jsr adjust_ball_speed
+m:  jsr adjust_ball_speed
 
 move_ball:
     jsr ball_step
@@ -246,6 +254,9 @@ still_balls_left:
 r:  jsr remove_sprite
 
 play_reflection_sound:
+    lda has_hit_brick
+    ora has_hit_vaus
+    beq +n
     lda snd_reflection
     beq +n
     ldx #0

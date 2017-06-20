@@ -34,7 +34,7 @@ foreground          = @(+ (half framechars) (quarter framechars))
 
 default_num_lifes       = 3
 default_ball_speed      = 6
-min_ball_speed          = 4
+min_ball_speed          = 2
 max_ball_speed          = 20
 default_ball_direction  = 119   ; TODO: Change with Vaus position.
 ball_width              = 3

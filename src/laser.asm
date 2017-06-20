@@ -2,7 +2,7 @@ ctrl_laser:
     ; We check two collisions, on the left and the right, so we need this flag.
     lda #0              ; No brick hit.
     sta laser_has_hit
-    sta was_golden
+    sta has_hit_golden_brick
 
     lda sprites_y,x
     cmp #24
@@ -29,7 +29,7 @@ o:  lda sprites_x,x
 
     ; Move laser up unless it hit a brick with its left.
 m:  lda laser_has_hit
-    ora was_golden
+    ora has_hit_golden_brick
     bne +n
     lda #8
     jmp sprite_up
