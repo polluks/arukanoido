@@ -1,10 +1,13 @@
 vaus_directions:
+    168
     168 168 168 168
     144 144 144 144
     112 112 112 112
     88 88 88 88
+    88
 
 vaus_directions_extended:
+    168
     168 168 168 168
     168 168 168 168
     144 144 144 144
@@ -13,6 +16,7 @@ vaus_directions_extended:
     112 112 112 112
     88 88 88 88
     88 88 88 88
+    88
 
 ctrl_ball:
     lda caught_ball
@@ -59,14 +63,14 @@ ctrl_ball_subpixel:
 
     ; Test on horizontal collision with Vaus (middle pixel).
     lda @(+ sprites_x (-- num_sprites))
+    sec
+    sbc #1
     cmp tmp
     bcs no_vaus_hit
 
     lda @(+ sprites_x (-- num_sprites))
     clc
     adc vaus_width
-    sec
-    sbc #1
     cmp tmp
     bcc no_vaus_hit
     

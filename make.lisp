@@ -602,6 +602,7 @@
                           "sprites-vic-common.asm"
                           "sprites-vic.asm"
                           "music.asm"
+                          "digisound.asm"
 
                           ; Level display
                           "lifes.asm"
