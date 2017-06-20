@@ -90,7 +90,7 @@
 0000: 4 356 :            default_ball_speed      = 6
 0000: 4 360 :            min_ball_speed          = 2
 0000: 4 364 :            max_ball_speed          = 20
-0000: 4 368 :            default_ball_direction  = 119   ; TODO: Change with Vaus position.
+0000: 4 368 :            default_ball_direction  = 112
 0000: 4 372 :            ball_width              = 3
 0000: 4 376 :            ball_height             = 5
 0000: 4 380 :            vaus_edge_distraction   = 16
@@ -331,10 +331,10 @@
 1228: 3 1306 : 85 02         sta d
 122a: 2 1309 : a9 4b         lda #>base_relocated_end
 122c: 3 1311 : 85 03         sta @(++ d)
-122e: 2 1314 : a2 48         ldx #@(low relocation_size)
+122e: 2 1314 : a2 50         ldx #@(low relocation_size)
 1230: 2 1316 : a9 2b         lda #@(high relocation_size)
 1232: 3 1318 : 85 05         sta @(++ c)
-1234: 2 1321 : a0 47         ldy #@(low (-- relocation_size))
+1234: 2 1321 : a0 4f         ldy #@(low (-- relocation_size))
 1234: 2 1323 :           l:  inc $900f
 1236: 6 1325 : ee 0f 90  l:  inc $900f
 1239: 5 1331 : b1 00         lda (s),y
@@ -363,7 +363,7 @@
 1253: 4 1412 :           music_player_end = @(+ music_player (-- music_player_size))
 1253: 4 1416 :           base_loaded_music_player_end = @(- loaded_music_player_end (low (-- music_player_size)))
 1253: 4 1420 :           base_relocated_music_player_end = @(- music_player_end (low (-- music_player_size)))
-2000: 2 1424 : a9 9b         lda #<base_loaded_music_player_end
+2000: 2 1424 : a9 a3         lda #<base_loaded_music_player_end
 2002: 3 1426 : 85 00         sta s
 2004: 2 1429 : a9 4b         lda #>base_loaded_music_player_end
 2006: 3 1431 : 85 01         sta @(++ s)
@@ -392,7 +392,7 @@
 202f: 3 1503 : a5 05         lda @(++ c)
 2031: 2 1506 : c9 ff         cmp #255
 2033: 2 1508 : d0 e3         bne -l
-2035: 4 1510 : 4c 3e 36      jmp start       ; Start the game…
+2035: 4 1510 : 4c 46 36      jmp start       ; Start the game…
 2035: 4 1514 :           bg_start = @(* (/ num_chars 8) 7)
 2035: 4 1518 :           gfx_background:
 2035: 4 1522 :           bg_brick_orange = @(+ bg_start 0)
@@ -1376,7 +1376,7 @@
 2709: 4 5434 : 08            70 0      is_ball     white      <ball        <ctrl_ball >ctrl_ball 0
 270a: 4 5438 : 01            70 0      is_ball     white      <ball        <ctrl_ball >ctrl_ball 0
 270b: 4 5442 : 28            70 0      is_ball     white      <ball        <ctrl_ball >ctrl_ball 0
-270c: 4 5446 : 95            70 0      is_ball     white      <ball        <ctrl_ball >ctrl_ball 0
+270c: 4 5446 : 9d            70 0      is_ball     white      <ball        <ctrl_ball >ctrl_ball 0
 270d: 4 5450 : 30            70 0      is_ball     white      <ball        <ctrl_ball >ctrl_ball 0
 270e: 4 5454 : 00            70 0      is_ball     white      <ball        <ctrl_ball >ctrl_ball 0
 270e: 4 5458 :           laser_init:
@@ -1394,7 +1394,7 @@
 2719: 4 5506 : 02            0 0       is_bonus    black      <bonus_l     <ctrl_bonus >ctrl_bonus 0
 271a: 4 5510 : 00            0 0       is_bonus    black      <bonus_l     <ctrl_bonus >ctrl_bonus 0
 271b: 4 5514 : 40            0 0       is_bonus    black      <bonus_l     <ctrl_bonus >ctrl_bonus 0
-271c: 4 5518 : 7d            0 0       is_bonus    black      <bonus_l     <ctrl_bonus >ctrl_bonus 0
+271c: 4 5518 : 85            0 0       is_bonus    black      <bonus_l     <ctrl_bonus >ctrl_bonus 0
 271d: 4 5522 : 32            0 0       is_bonus    black      <bonus_l     <ctrl_bonus >ctrl_bonus 0
 271e: 4 5526 : 00            0 0       is_bonus    black      <bonus_l     <ctrl_bonus >ctrl_bonus 0
 271e: 4 5530 :           distractor_ball_top_init:
@@ -1403,7 +1403,7 @@
 2721: 4 5542 : 04            30 24     is_distrator white      <distractor_ball_top     <ctrl_distractor_top >ctrl_distractor_top 0
 2722: 4 5546 : 01            30 24     is_distrator white      <distractor_ball_top     <ctrl_distractor_top >ctrl_distractor_top 0
 2723: 4 5550 : 78            30 24     is_distrator white      <distractor_ball_top     <ctrl_distractor_top >ctrl_distractor_top 0
-2724: 4 5554 : ee            30 24     is_distrator white      <distractor_ball_top     <ctrl_distractor_top >ctrl_distractor_top 0
+2724: 4 5554 : f6            30 24     is_distrator white      <distractor_ball_top     <ctrl_distractor_top >ctrl_distractor_top 0
 2725: 4 5558 : 33            30 24     is_distrator white      <distractor_ball_top     <ctrl_distractor_top >ctrl_distractor_top 0
 2726: 4 5562 : 00            30 24     is_distrator white      <distractor_ball_top     <ctrl_distractor_top >ctrl_distractor_top 0
 2726: 4 5566 :           distractor_ball_bottom_init:
@@ -1412,7 +1412,7 @@
 2729: 4 5578 : 04            30 24     is_distrator white      <distractor_ball_bottom  <ctrl_distractor_bottom >ctrl_distractor_bottom 0
 272a: 4 5582 : 01            30 24     is_distrator white      <distractor_ball_bottom  <ctrl_distractor_bottom >ctrl_distractor_bottom 0
 272b: 4 5586 : 80            30 24     is_distrator white      <distractor_ball_bottom  <ctrl_distractor_bottom >ctrl_distractor_bottom 0
-272c: 4 5590 : ee            30 24     is_distrator white      <distractor_ball_bottom  <ctrl_distractor_bottom >ctrl_distractor_bottom 0
+272c: 4 5590 : f6            30 24     is_distrator white      <distractor_ball_bottom  <ctrl_distractor_bottom >ctrl_distractor_bottom 0
 272d: 4 5594 : 33            30 24     is_distrator white      <distractor_ball_bottom  <ctrl_distractor_bottom >ctrl_distractor_bottom 0
 272e: 4 5598 : 00            30 24     is_distrator white      <distractor_ball_bottom  <ctrl_distractor_bottom >ctrl_distractor_bottom 0
 272e: 4 5602 :           dummy_init:
@@ -2507,7 +2507,7 @@
 2d73: 3 9653 : 85 02         sta d
 2d75: 2 9656 : a9 17         lda #>txt_hiscore_charset
 2d77: 3 9658 : 85 03         sta @(++ d)
-2d79: 2 9661 : a9 d5         lda #<txt_hiscore
+2d79: 2 9661 : a9 dd         lda #<txt_hiscore
 2d7b: 3 9663 : 85 00         sta s
 2d7d: 2 9666 : a9 35         lda #>txt_hiscore
 2d7f: 3 9668 : 85 01         sta @(++ s)
@@ -2595,7 +2595,7 @@
 2df2: 3 9958 : 48            pha
 2df3: 2 9961 : 8a            txa
 2df4: 3 9963 : 48            pha
-2df5: 6 9966 : 20 7a 33      jsr apply_bonus_p
+2df5: 6 9966 : 20 82 33      jsr apply_bonus_p
 2df8: 4 9972 : 68            pla
 2df9: 2 9976 : aa            tax
 2dfa: 4 9978 : 68            pla
@@ -2983,932 +2983,940 @@
 3067: 4 11203 :          n:  jmp remove_sprite   ; Remove laser sprite.
 306a: 4 11207 : 4c 6a 2a n:  jmp remove_sprite   ; Remove laser sprite.
 306a: 4 11211 :          vaus_directions:
-306b: 4 11215 : a9           169
-306c: 4 11219 : a9           169
-306d: 4 11223 : a0           160
-306e: 4 11227 : a0           160
-306f: 4 11231 : a0           160
-3070: 4 11235 : 89           137
-3071: 4 11239 : 89           137
-3072: 4 11243 : 89           137
-3073: 4 11247 : 89           137
-3074: 4 11251 : 77           119
-3075: 4 11255 : 77           119
-3076: 4 11259 : 77           119
-3077: 4 11263 : 60           96
-3078: 4 11267 : 60           96
-3079: 4 11271 : 57           87
-307a: 4 11275 : 57           87
+306b: 4 11215 : a8           168 168 168 168
+306c: 4 11219 : a8           168 168 168 168
+306d: 4 11223 : a8           168 168 168 168
+306e: 4 11227 : a8           168 168 168 168
+306f: 4 11231 : 90           144 144 144 144
+3070: 4 11235 : 90           144 144 144 144
+3071: 4 11239 : 90           144 144 144 144
+3072: 4 11243 : 90           144 144 144 144
+3073: 4 11247 : 70           112 112 112 112
+3074: 4 11251 : 70           112 112 112 112
+3075: 4 11255 : 70           112 112 112 112
+3076: 4 11259 : 70           112 112 112 112
+3077: 4 11263 : 58           88 88 88 88
+3078: 4 11267 : 58           88 88 88 88
+3079: 4 11271 : 58           88 88 88 88
+307a: 4 11275 : 58           88 88 88 88
 307a: 4 11279 :          vaus_directions_extended:
-307b: 4 11283 : a9           169
-307c: 4 11287 : a9           169
-307d: 4 11291 : a0           160
-307e: 4 11295 : a0           160
-307f: 4 11299 : a0           160
-3080: 4 11303 : a0           160
-3081: 4 11307 : 89           137
-3082: 4 11311 : 89           137
-3083: 4 11315 : 89           137
-3084: 4 11319 : 89           137
-3085: 4 11323 : 89           137
-3086: 4 11327 : 89           137
-3087: 4 11331 : 77           119
-3088: 4 11335 : 77           119
-3089: 4 11339 : 77           119
-308a: 4 11343 : 77           119
-308b: 4 11347 : 77           119
-308c: 4 11351 : 77           119
-308d: 4 11355 : 60           96
-308e: 4 11359 : 60           96
-308f: 4 11363 : 60           96
-3090: 4 11367 : 60           96
-3091: 4 11371 : 57           87
-3092: 4 11375 : 57           87
-3092: 4 11379 :          ctrl_ball:
-3095: 3 11383 : a5 2d        lda caught_ball
-3097: 2 11386 : 10 12        bpl +r
-3099: 3 11388 : a4 3d        ldy ball_speed
-3099: 3 11391 :          l:  tya
-309b: 2 11394 : 98       l:  tya
-309c: 3 11396 : 48           pha
-309d: 6 11399 : 20 ae 30     jsr ctrl_ball_subpixel
-30a0: 4 11405 : b5 a6        lda sprites_fl,x
-30a2: 2 11409 : c9 95        cmp #<ctrl_ball
-30a4: 2 11411 : d0 06        bne +e              ; Ball sprite has been removed…
-30a6: 4 11413 : 68           pla
-30a7: 2 11417 : a8           tay
-30a8: 2 11419 : 88           dey
-30a9: 2 11421 : d0 f0        bne -l
-30a9: 2 11423 :          r:  rts
-30ab: 6 11425 : 60       r:  rts
-30ab: 6 11431 :          e:  pla
-30ac: 4 11437 : 68       e:  pla
-30ad: 6 11441 : 60           rts
-30ad: 6 11447 :          ctrl_ball_subpixel:
-30ae: 2 11453 : a9 00        lda #0
-30b0: 3 11455 : 85 4a        sta has_hit_vaus
-30b2: 4 11458 : b5 66        lda sprites_y,x
-30b4: 2 11462 : c9 e6        cmp #@(- vaus_y 2)
-30b6: 2 11464 : 90 5d        bcc no_vaus_hit
-30b8: 2 11466 : c9 f0        cmp #@(+ vaus_y 8)
-30ba: 2 11468 : b0 59        bcs no_vaus_hit
-30bc: 4 11470 : b4 56        ldy sprites_x,x
-30be: 2 11474 : c8           iny
-30bf: 3 11476 : 84 1b        sty tmp
-30c1: 3 11479 : a5 65        lda @(+ sprites_x (-- num_sprites))
-30c3: 3 11482 : c5 1b        cmp tmp
-30c5: 2 11485 : b0 4e        bcs no_vaus_hit
-30c7: 3 11487 : a5 65        lda @(+ sprites_x (-- num_sprites))
-30c9: 2 11490 : 18           clc
-30ca: 3 11492 : 65 2f        adc vaus_width
-30cc: 2 11495 : 38           sec
-30cd: 2 11497 : e9 01        sbc #1
-30cf: 3 11499 : c5 1b        cmp tmp
-30d1: 2 11502 : 90 42        bcc no_vaus_hit
-30d3: 5 11504 : e6 4a        inc has_hit_vaus
-30d5: 3 11509 : a5 1b        lda tmp
-30d7: 2 11512 : 38           sec
-30d8: 3 11514 : e5 65        sbc @(+ sprites_x (-- num_sprites))
-30da: 2 11517 : a8           tay
-30db: 2 11519 : a9 10        lda #16
-30dd: 3 11521 : c5 2f        cmp vaus_width
-30df: 2 11524 : 90 06        bcc +n
-30e1: 4 11526 : b9 6d 30     lda vaus_directions,y
-30e4: 4 11530 : 4c ea 30     jmp +m
-30e4: 4 11534 :          n:  lda vaus_directions_extended,y
-30e7: 4 11538 : b9 7d 30 n:  lda vaus_directions_extended,y
-30e7: 4 11542 :          m:  sta sprites_d,x
-30ea: 4 11546 : 95 c6    m:  sta sprites_d,x
-30ec: 2 11550 : a9 e5        lda #@(- vaus_y 3)
-30ee: 4 11552 : 95 66        sta sprites_y,x
-30f0: 2 11556 : a9 00        lda #0
-30f2: 3 11558 : 85 2e        sta reflections_since_last_vaus_hit
-30f4: 3 11561 : a5 29        lda mode
-30f6: 2 11564 : c9 02        cmp #mode_catching
-30f8: 2 11566 : d0 12        bne +n
-30fa: 3 11568 : 86 2d        stx caught_ball
-30fc: 2 11571 : a9 30        lda #<ball_caught
-30fe: 4 11573 : 95 96        sta sprites_l,x
-3100: 2 11577 : a9 e0        lda #@(* 28 8)
-3102: 4 11579 : 95 66        sta sprites_y,x
-3104: 6 11583 : 20 88 31     jsr applied_reflection
-3107: 2 11589 : a9 0a        lda #snd_caught_ball
-3109: 4 11591 : 4c 14 2c     jmp play_sound
-3109: 4 11595 :          n:  jmp applied_reflection
-310c: 4 11599 : 4c 88 31 n:  jmp applied_reflection
-310c: 4 11603 :          m:  jsr correct_trajectory
-310f: 6 11607 : 20 d5 31 m:  jsr correct_trajectory
-3112: 4 11613 : 4c a0 31     jmp move_ball
-3112: 4 11617 :          no_vaus_hit:
-3115: 2 11621 : a9 00        lda #0
-3117: 3 11623 : 85 2c        sta side_degrees
-3119: 3 11626 : 85 43        sta has_collision
-311b: 3 11629 : 85 48        sta has_hit_brick
-311d: 6 11632 : 20 62 2e     jsr reflect
-3120: 3 11638 : a5 43        lda has_collision
-3122: 2 11641 : f0 eb        beq -m
-3124: 3 11643 : a5 48        lda has_hit_brick
-3126: 2 11646 : f0 4e        beq hit_solid
-3128: 2 11648 : a9 00        lda #0
-312a: 3 11650 : 85 2e        sta reflections_since_last_vaus_hit
-312c: 3 11653 : a5 29        lda mode
-312e: 2 11656 : c9 03        cmp #mode_disruption    ; No bonuses in disruption mode.
-3130: 2 11658 : f0 46        beq apply_reflection
-3132: 5 11660 : c6 32        dec bricks_until_bonus
-3134: 2 11665 : d0 42        bne apply_reflection
-3136: 2 11667 : a9 08        lda #8
-3138: 3 11669 : 85 32        sta bricks_until_bonus
-313a: 3 11672 : a5 0a        lda scrx
-313c: 2 11675 : 0a           asl
-313d: 2 11677 : 0a           asl
-313e: 2 11679 : 0a           asl
-313f: 4 11681 : 8d 19 27     sta @(+ bonus_init sprite_init_x)
-3142: 3 11685 : a5 0b        lda scry
-3144: 2 11688 : 0a           asl
-3145: 2 11690 : 0a           asl
-3146: 2 11692 : 0a           asl
-3147: 4 11694 : 8d 1a 27     sta @(+ bonus_init sprite_init_y)
-3147: 4 11698 :          a:  jsr random
-314a: 6 11702 : 20 a0 29 a:  jsr random
-314d: 2 11708 : 29 07        and #%111
-314f: 2 11710 : c9 07        cmp #%111
-3151: 2 11712 : f0 f7        beq -a      ; Only seven bonuses available.
-3153: 3 11714 : c5 2b        cmp current_bonus
-3155: 2 11717 : f0 f3        beq -a
-3157: 3 11719 : 85 2b        sta current_bonus
-3159: 3 11722 : 48           pha
-315a: 2 11725 : 0a           asl
-315b: 2 11727 : 0a           asl
-315c: 2 11729 : 0a           asl
-315d: 2 11731 : 18           clc
-315e: 2 11733 : 69 40        adc #<bonus_l
-3160: 4 11735 : 8d 1d 27     sta @(+ bonus_init sprite_init_gfx_l)
-3163: 4 11739 : 68           pla
-3164: 4 11743 : 8d 20 27     sta @(+ bonus_init sprite_init_data)
-3167: 2 11747 : a8           tay
-3168: 4 11749 : b9 76 32     lda bonus_colors,y
-316b: 4 11753 : 8d 1c 27     sta @(+ bonus_init sprite_init_color)
-316e: 2 11757 : a0 28        ldy #@(- bonus_init sprite_inits)
-3170: 6 11759 : 20 44 2a     jsr add_sprite
-3173: 4 11765 : 4c 78 31     jmp apply_reflection
-3173: 4 11769 :          hit_solid:
-3176: 5 11773 : e6 2e        inc reflections_since_last_vaus_hit
-3176: 5 11778 :          apply_reflection:
-3178: 4 11783 : b5 c6        lda sprites_d,x     ; Get degrees.
-317a: 2 11787 : 38           sec
-317b: 3 11789 : e5 2c        sbc side_degrees    ; Rotate back to zero degrees.
-317d: 6 11792 : 20 ad 29     jsr neg             ; Get opposite deviation from general direction.
-3180: 2 11798 : 18           clc
-3181: 3 11800 : 65 2c        adc side_degrees    ; Rotate back to original axis.
-3183: 2 11803 : 18           clc
-3184: 2 11805 : 69 80        adc #128            ; Rotate to opposite direction.
-3186: 4 11807 : 95 c6        sta sprites_d,x
-3186: 4 11811 :          applied_reflection:
-3188: 3 11815 : a5 48        lda has_hit_brick
-318a: 3 11818 : 05 4a        ora has_hit_vaus
-318c: 2 11821 : f0 0f        beq +m
-318e: 3 11823 : a5 41        lda snd_reflection
-3190: 2 11826 : d0 09        bne +n
-3192: 3 11828 : a5 40        lda sfx_reflection
-3194: 2 11831 : 29 01        and #1
-3196: 2 11833 : 18           clc
-3197: 2 11835 : 69 07        adc #snd_reflection_low
-3199: 3 11837 : 85 41        sta snd_reflection
-3199: 3 11840 :          n:  inc sfx_reflection
-319b: 5 11843 : e6 40    n:  inc sfx_reflection
-319b: 5 11848 :          m:  jsr adjust_ball_speed
-319d: 6 11853 : 20 5b 32 m:  jsr adjust_ball_speed
-319d: 6 11859 :          move_ball:
-31a0: 6 11865 : 20 f1 31     jsr ball_step
-31a3: 4 11871 : b5 66        lda sprites_y,x
-31a5: 2 11875 : c9 fc        cmp #@(- (* 8 screen_rows) 4)
-31a7: 2 11877 : 90 1a        bcc play_reflection_sound
-31a9: 5 11879 : c6 3a        dec balls
-31ab: 2 11884 : d0 09        bne still_balls_left
-31ad: 2 11886 : a9 00        lda #0
-31af: 3 11888 : 85 3b        sta is_running_game
-31b1: 2 11891 : a9 0b        lda #snd_miss
-31b3: 4 11893 : 4c 14 2c     jmp play_sound
-31b3: 4 11897 :          still_balls_left:
-31b6: 3 11901 : a5 3a        lda balls
-31b8: 2 11904 : c9 01        cmp #1
-31ba: 2 11906 : d0 04        bne +r
-31bc: 2 11908 : a9 00        lda #0              ; Reset from disruption bonus.
-31be: 3 11910 : 85 29        sta mode
-31be: 3 11913 :          r:  jsr remove_sprite
-31c0: 6 11916 : 20 6a 2a r:  jsr remove_sprite
-31c0: 6 11922 :          play_reflection_sound:
-31c3: 3 11928 : a5 48        lda has_hit_brick
-31c5: 3 11931 : 05 4a        ora has_hit_vaus
-31c7: 2 11934 : f0 0b        beq +n
-31c9: 3 11936 : a5 41        lda snd_reflection
-31cb: 2 11939 : f0 07        beq +n
-31cd: 2 11941 : a2 00        ldx #0
-31cf: 3 11943 : 86 41        stx snd_reflection
-31d1: 4 11946 : 4c 14 2c     jmp play_sound
-31d1: 4 11950 :          n:  rts
-31d4: 6 11954 : 60       n:  rts
-31d4: 6 11960 :          correct_trajectory:
-31d5: 3 11966 : a5 2e        lda reflections_since_last_vaus_hit
-31d7: 2 11969 : c9 20        cmp #32
-31d9: 2 11971 : 90 15        bcc +r
-31db: 4 11973 : b5 c6        lda sprites_d,x
-31dd: 2 11977 : 29 20        and #%00100000
-31df: 2 11979 : d0 08        bne +n
-31e1: 4 11981 : b5 c6        lda sprites_d,x
-31e3: 2 11985 : 18           clc
-31e4: 2 11987 : 69 08        adc #8
-31e6: 4 11989 : 95 c6        sta sprites_d,x
-31e8: 6 11993 : 60           rts
-31e8: 6 11999 :          n:  lda sprites_d,x
-31e9: 4 12005 : b5 c6    n:  lda sprites_d,x
-31eb: 2 12009 : 38           sec
-31ec: 2 12011 : e9 08        sbc #8
-31ee: 4 12013 : 95 c6        sta sprites_d,x
-31ee: 4 12017 :          r:  rts
-31f0: 6 12021 : 60       r:  rts
-31f0: 6 12027 :          ball_step:
-31f1: 4 12033 : b4 c6        ldy sprites_d,x
-31f3: 4 12037 : b9 90 24     lda ball_directions_x,y
-31f6: 2 12041 : 30 0e        bmi +m
-31f8: 4 12043 : bd 00 02     lda sprites_dx,x
-31fb: 2 12047 : 18           clc
-31fc: 4 12049 : 79 90 24     adc ball_directions_x,y
-31ff: 2 12053 : 90 14        bcc +n
-3201: 6 12055 : f6 56        inc sprites_x,x
-3203: 4 12061 : 4c 15 32     jmp +n
-3203: 4 12065 :          m:  jsr neg
-3206: 6 12069 : 20 ad 29 m:  jsr neg
-3209: 3 12075 : 85 1b        sta tmp
-320b: 4 12078 : bd 00 02     lda sprites_dx,x
-320e: 2 12082 : 38           sec
-320f: 3 12084 : e5 1b        sbc tmp
-3211: 2 12087 : b0 02        bcs +n
-3213: 6 12089 : d6 56        dec sprites_x,x
-3213: 6 12095 :          n:  sta sprites_dx,x
-3215: 4 12101 : 9d 00 02 n:  sta sprites_dx,x
-3218: 4 12105 : b9 90 25     lda ball_directions_y,y
-321b: 2 12109 : 30 0e        bmi +m
-321d: 4 12111 : bd 10 02     lda sprites_dy,x
-3220: 2 12115 : 18           clc
-3221: 4 12117 : 79 90 25     adc ball_directions_y,y
-3224: 2 12121 : 90 14        bcc +n
-3226: 6 12123 : f6 66        inc sprites_y,x
-3228: 4 12129 : 4c 3a 32     jmp +n
-3228: 4 12133 :          m:  jsr neg
-322b: 6 12137 : 20 ad 29 m:  jsr neg
-322e: 3 12143 : 85 1b        sta tmp
-3230: 4 12146 : bd 10 02     lda sprites_dy,x
-3233: 2 12150 : 38           sec
-3234: 3 12152 : e5 1b        sbc tmp
-3236: 2 12155 : b0 02        bcs +n
-3238: 6 12157 : d6 66        dec sprites_y,x
-3238: 6 12163 :          n:  sta sprites_dy,x
-323a: 4 12169 : 9d 10 02 n:  sta sprites_dy,x
-323d: 6 12173 : 60           rts
-323d: 6 12179 :          make_ball:
-323e: 2 12185 : a9 46        lda #70
-3240: 4 12187 : 8d 09 27     sta @(+ ball_init sprite_init_x)
-3243: 2 12191 : a9 e0        lda #@(* 28 8)
-3245: 4 12193 : 8d 0a 27     sta @(+ ball_init sprite_init_y)
-3248: 2 12197 : a9 30        lda #<ball_caught
-324a: 4 12199 : 8d 0d 27     sta @(+ ball_init sprite_init_gfx_l)
-324d: 2 12203 : a9 77        lda #default_ball_direction
-324f: 4 12205 : 8d 10 27     sta @(+ ball_init sprite_init_data)
-3252: 2 12209 : a2 0d        ldx #@(- num_sprites 3)
-3254: 3 12211 : 86 2d        stx caught_ball
-3256: 2 12214 : a0 18        ldy #@(- ball_init sprite_inits)
-3258: 4 12216 : 4c 70 2a     jmp replace_sprite
-3258: 4 12220 :          adjust_ball_speed:
-325b: 3 12224 : a5 38        lda @(++ framecounter)
-325d: 2 12227 : c9 05        cmp #5
-325f: 2 12229 : d0 14        bne +n
-3261: 3 12231 : a5 3d        lda ball_speed
-3263: 2 12234 : c9 14        cmp #max_ball_speed
-3265: 2 12236 : b0 0e        bcs +n                  ; Already at maximum speed. Do nothing…
-3267: 5 12238 : e6 3d        inc ball_speed          ; Play the blues…
-3269: 3 12243 : a5 3f        lda is_using_paddle
-326b: 2 12246 : f0 02        beq +m
-326d: 5 12248 : e6 3d        inc ball_speed
-326d: 5 12253 :          m:  lda #0
-326f: 2 12258 : a9 00    m:  lda #0
-3271: 3 12260 : 85 37        sta framecounter
-3273: 3 12263 : 85 38        sta @(++ framecounter)
-3273: 3 12266 :          n:  rts
-3275: 6 12269 : 60       n:  rts
-3275: 6 12275 :          bonus_colors:
-3276: 6 12281 : 0f           @(+ multicolor yellow)
-3277: 6 12287 : 0e           @(+ multicolor blue)
-3278: 6 12293 : 0d           @(+ multicolor green)
-3279: 6 12299 : 0f           @(+ multicolor yellow)
-327a: 6 12305 : 0c           @(+ multicolor purple)
-327b: 6 12311 : 0b           @(+ multicolor cyan)
-327c: 6 12317 : 09           @(+ multicolor white)
-327c: 6 12323 :          ctrl_bonus:
-327d: 4 12329 : b5 66        lda sprites_y,x
-327f: 2 12333 : f0 53        beq +r              ; Bonus left playfield…
-3281: 6 12335 : 20 b1 2a     jsr find_hit
-3284: 2 12341 : b0 51        bcs +m              ; Nothing hit…
-3286: 4 12343 : b9 76 00     lda sprites_i,y
-3289: 2 12347 : 29 01        and #is_vaus
-328b: 2 12349 : f0 4a        beq +m              ; Didn't hit the Vaus…
-328d: 2 12351 : a0 3f        ldy #@(- score_1000 scores)
-328f: 6 12353 : 20 dc 2d     jsr add_to_score
-3292: 3 12359 : a5 2d        lda caught_ball
-3294: 2 12362 : 30 0d        bmi +n
-3296: 2 12364 : a9 ff        lda #255
-3298: 3 12366 : 85 2d        sta caught_ball
-329a: 2 12369 : a9 07        lda #snd_reflection_low
-329c: 6 12371 : 20 14 2c     jsr play_sound
-329f: 2 12377 : a9 00        lda #0
-32a1: 3 12379 : 85 40        sta sfx_reflection
-32a1: 3 12382 :          n:
-32a3: 3 12385 : a5 29        lda mode
-32a5: 2 12388 : c9 04        cmp #mode_extended
-32a7: 2 12390 : d0 16        bne +n
-32a9: 2 12392 : 8a           txa
-32aa: 3 12394 : 48           pha
-32ab: 3 12397 : a6 4c        ldx vaus_middle_idx
-32ad: 6 12400 : 20 6a 2a     jsr remove_sprite
-32b0: 2 12406 : a2 0f        ldx #spriteidx_vaus_left
-32b2: 4 12408 : b5 56        lda sprites_x,x
-32b4: 2 12412 : 18           clc
-32b5: 2 12414 : 69 04        adc #4
-32b7: 4 12416 : 95 56        sta sprites_x,x
-32b9: 2 12420 : a9 10        lda #16
-32bb: 3 12422 : 85 2f        sta vaus_width
-32bd: 4 12425 : 68           pla
-32be: 2 12429 : aa           tax
-32be: 2 12431 :          n:
-32bf: 2 12433 : a9 00        lda #0
-32c1: 3 12435 : 85 29        sta mode
-32c3: 4 12438 : b4 c6        ldy sprites_d,x
-32c5: 4 12442 : b9 dc 32     lda bonus_funs_l,y
-32c8: 4 12446 : 8d d2 32     sta @(+ +selfmod 1)
-32cb: 4 12450 : b9 e3 32     lda bonus_funs_h,y
-32ce: 4 12454 : 8d d3 32     sta @(+ +selfmod 2)
-32ce: 4 12458 :          selfmod:
-32d1: 6 12462 : 20 34 12     jsr $1234
-32d1: 6 12468 :          r:  jmp remove_sprite
-32d4: 4 12474 : 4c 6a 2a r:  jmp remove_sprite
-32d4: 4 12478 :          m:  lda #1
-32d7: 2 12482 : a9 01    m:  lda #1
-32d9: 4 12484 : 4c 91 2a     jmp sprite_down
-32d9: 4 12488 :          bonus_funs_l:
-32da: 4 12492 : ea           <apply_bonus_l
-32db: 4 12496 : ef           <apply_bonus_e
-32dc: 4 12500 : 18           <apply_bonus_c
-32dd: 4 12504 : 1d           <apply_bonus_s
-32de: 4 12508 : 2c           <apply_bonus_b
-32df: 4 12512 : 46           <apply_bonus_d
-32e0: 4 12516 : 7a           <apply_bonus_p
-32e0: 4 12520 :          bonus_funs_h:
-32e1: 4 12524 : 32           >apply_bonus_l
-32e2: 4 12528 : 32           >apply_bonus_e
-32e3: 4 12532 : 33           >apply_bonus_c
-32e4: 4 12536 : 33           >apply_bonus_s
-32e5: 4 12540 : 33           >apply_bonus_b
-32e6: 4 12544 : 33           >apply_bonus_d
-32e7: 4 12548 : 33           >apply_bonus_p
-32e7: 4 12552 :          apply_bonus_l:
-32ea: 2 12556 : a9 01        lda #mode_laser
-32ec: 3 12558 : 85 29        sta mode
-32ee: 6 12561 : 60           rts
-32ee: 6 12567 :          apply_bonus_e:
-32ef: 2 12573 : a0 0f        ldy #spriteidx_vaus_left
-32f1: 4 12575 : b9 56 00     lda sprites_x,y
-32f4: 2 12579 : 38           sec
-32f5: 2 12581 : e9 04        sbc #4
-32f7: 4 12583 : 99 56 00     sta sprites_x,y
-32fa: 2 12587 : a0 08        ldy #@(- vaus_middle_init sprite_inits)
-32fc: 6 12589 : 20 44 2a     jsr add_sprite
-32ff: 2 12595 : c9 ff        cmp #255
-3301: 2 12597 : d0 06        bne +n
-3303: 6 12599 : 20 db 33     jsr remove_bonuses  ; No slots left, last resort.
-3306: 4 12605 : 4c ef 32     jmp apply_bonus_e
-3306: 4 12609 :          n:  sta vaus_middle_idx
-3309: 3 12613 : 85 4c    n:  sta vaus_middle_idx
-330b: 2 12616 : a9 04        lda #mode_extended
-330d: 3 12618 : 85 29        sta mode
-330f: 2 12621 : a9 18        lda #24
-3311: 3 12623 : 85 2f        sta vaus_width
-3313: 2 12626 : a9 0e        lda #snd_growing_vaus
-3315: 4 12628 : 4c 14 2c     jmp play_sound
-3315: 4 12632 :          apply_bonus_c:
-3318: 2 12636 : a9 02        lda #mode_catching
-331a: 3 12638 : 85 29        sta mode
-331c: 6 12641 : 60           rts
-331c: 6 12647 :          apply_bonus_s:
-331d: 3 12653 : a5 3d        lda ball_speed
-331f: 2 12656 : c9 02        cmp #min_ball_speed
-3321: 2 12658 : f0 08        beq +n
-3323: 5 12660 : c6 3d        dec ball_speed
-3325: 2 12665 : a9 00        lda #0              ; Time acceleration back to default.
-3327: 3 12667 : 85 37        sta framecounter
-3329: 3 12670 : 85 38        sta @(++ framecounter)
-3329: 3 12673 :          n:  rts
-332b: 6 12676 : 60       n:  rts
-332b: 6 12682 :          apply_bonus_b:
-332c: 5 12688 : e6 2a        inc mode_break
-332e: 2 12693 : a9 0e        lda #14
-3330: 3 12695 : 85 0a        sta scrx
-3332: 2 12698 : a9 1c        lda #28
-3334: 3 12700 : 85 0b        sta scry
-3334: 3 12703 :          l:  jsr scrcoladdr
-3336: 6 12706 : 20 33 29 l:  jsr scrcoladdr
-3339: 2 12712 : a9 00        lda #0
-333b: 5 12714 : 91 06        sta (scr),y
-333d: 5 12719 : e6 0b        inc scry
-333f: 3 12724 : a5 0b        lda scry
-3341: 2 12727 : c9 1f        cmp #31
-3343: 2 12729 : d0 f1        bne -l
-3345: 6 12731 : 60           rts
-3345: 6 12737 :          apply_bonus_d:
-3346: 6 12743 : 20 db 33     jsr remove_bonuses
-3349: 2 12749 : a0 0f        ldy #@(-- num_sprites)
-3349: 2 12751 :          l:  lda sprites_i,y
-334b: 4 12753 : b9 76 00 l:  lda sprites_i,y
-334e: 2 12757 : 29 08        and #is_ball
-3350: 2 12759 : d0 03        bne +f
-3352: 2 12761 : 88           dey
-3353: 2 12763 : 10 f6        bpl -l
-3353: 2 12765 :          f:  lda sprites_x,y                     ; Copy coordinates of current ball.
-3355: 4 12767 : b9 56 00 f:  lda sprites_x,y                     ; Copy coordinates of current ball.
-3358: 4 12771 : 8d 09 27     sta @(+ ball_init sprite_init_x)
-335b: 4 12775 : b9 66 00     lda sprites_y,y
-335e: 4 12779 : 8d 0a 27     sta @(+ ball_init sprite_init_y)
-3361: 4 12783 : b9 c6 00     lda sprites_d,y
-3364: 4 12787 : 8d 10 27     sta @(+ ball_init sprite_init_data)
-3367: 2 12791 : a0 18        ldy #@(- ball_init sprite_inits)
-3369: 6 12793 : 20 44 2a     jsr add_sprite
-336c: 2 12799 : a0 18        ldy #@(- ball_init sprite_inits)
-336e: 6 12801 : 20 44 2a     jsr add_sprite
-3371: 5 12807 : e6 3a        inc balls
-3373: 5 12812 : e6 3a        inc balls
-3375: 2 12817 : a9 03        lda #mode_disruption
-3377: 3 12819 : 85 29        sta mode
-3379: 6 12822 : 60           rts
-3379: 6 12828 :          apply_bonus_p:
-337a: 2 12834 : a9 03        lda #snd_bonus_life
-337c: 6 12836 : 20 14 2c     jsr play_sound
-337f: 5 12842 : e6 39        inc lifes
-3381: 4 12847 : 4c 3c 2c     jmp draw_lifes
-3381: 4 12851 :          rotate_bonus:
-3384: 3 12855 : 85 00        sta s
-3386: 3 12858 : 86 01        stx @(++ s)
-3388: 2 12861 : a0 06        ldy #6
-338a: 5 12863 : b1 00        lda (s),y
-338c: 3 12868 : 48           pha
-338d: 2 12871 : 88           dey
-338d: 2 12873 :          l:  lda (s),y
-338e: 5 12875 : b1 00    l:  lda (s),y
-3390: 2 12880 : c8           iny
-3391: 5 12882 : 91 00        sta (s),y
-3393: 2 12887 : 88           dey
-3394: 2 12889 : 88           dey
-3395: 2 12891 : d0 f7        bne -l
-3397: 4 12893 : 68           pla
-3398: 2 12897 : c8           iny
-3399: 5 12899 : 91 00        sta (s),y
-3399: 5 12904 :          r:  rts
-339b: 6 12909 : 60       r:  rts
-339b: 6 12915 :          rotate_bonuses:
-339c: 3 12921 : a5 37        lda framecounter
-339e: 2 12924 : 4a           lsr
-339f: 2 12926 : 90 fa        bcc -r
-33a1: 2 12928 : 4a           lsr
-33a2: 2 12930 : 90 1f        bcc +n
-33a4: 2 12932 : 4a           lsr
-33a5: 2 12934 : 90 0e        bcc +m
-33a7: 2 12936 : a9 40        lda #<bonus_l
-33a9: 2 12938 : a2 21        ldx #>bonus_l
-33ab: 6 12940 : 20 84 33     jsr rotate_bonus
-33ae: 2 12946 : a9 48        lda #<bonus_e
-33b0: 2 12948 : a2 21        ldx #>bonus_e
-33b2: 4 12950 : 4c 84 33     jmp rotate_bonus
-33b2: 4 12954 :          m:  lda #<bonus_c
-33b5: 2 12958 : a9 50    m:  lda #<bonus_c
-33b7: 2 12960 : a2 21        ldx #>bonus_c
-33b9: 6 12962 : 20 84 33     jsr rotate_bonus
-33bc: 2 12968 : a9 58        lda #<bonus_s
-33be: 2 12970 : a2 21        ldx #>bonus_s
-33c0: 4 12972 : 4c 84 33     jmp rotate_bonus
-33c0: 4 12976 :          n:  lsr
-33c3: 2 12980 : 4a       n:  lsr
-33c4: 2 12982 : 90 0e        bcc +m
-33c6: 2 12984 : a9 60        lda #<bonus_b
-33c8: 2 12986 : a2 21        ldx #>bonus_b
-33ca: 6 12988 : 20 84 33     jsr rotate_bonus
-33cd: 2 12994 : a9 68        lda #<bonus_d
-33cf: 2 12996 : a2 21        ldx #>bonus_d
-33d1: 4 12998 : 4c 84 33     jmp rotate_bonus
-33d1: 4 13002 :          m:  lda #<bonus_p
-33d4: 2 13006 : a9 70    m:  lda #<bonus_p
-33d6: 2 13008 : a2 21        ldx #>bonus_p
-33d8: 4 13010 : 4c 84 33     jmp rotate_bonus
-33d8: 4 13014 :          remove_bonuses:
-33db: 2 13018 : 8a           txa
-33dc: 3 13020 : 48           pha
-33dd: 2 13023 : a2 0e        ldx #@(- num_sprites 2)
-33dd: 2 13025 :          l:  lda sprites_i,x
-33df: 4 13027 : b5 76    l:  lda sprites_i,x
-33e1: 2 13031 : 29 02        and #is_bonus
-33e3: 2 13033 : f0 03        beq +n
-33e5: 6 13035 : 20 6a 2a     jsr remove_sprite
-33e5: 6 13041 :          n:  dex
-33e8: 2 13047 : ca       n:  dex
-33e9: 2 13049 : 10 f4        bpl -l
-33eb: 4 13051 : 68           pla
-33ec: 2 13055 : aa           tax
-33ed: 6 13057 : 60           rts
-33ed: 6 13063 :          ctrl_distractor_top:
-33ed: 6 13069 :          ctrl_distractor_bottom:
-33ee: 6 13075 : 60           rts
-33ee: 6 13081 :          frame_timer_pal = @(- (/ (cpu-cycles :pal) 50) 18)
-33ee: 6 13087 :          frame_timer_ntsc = @(- (/ (cpu-cycles :ntsc) 50) 158)
-33ee: 6 13093 :          start_irq:
-33ef: 2 13099 : a9 00        lda #0
-33f1: 3 13101 : 85 3b        sta is_running_game
-33f1: 3 13104 :          l:  lda $9004
-33f3: 4 13107 : ad 04 90 l:  lda $9004
-33f6: 2 13111 : d0 fb        bne -l
-33f8: 2 13113 : a9 23        lda #<irq
-33fa: 4 13115 : 8d 14 03     sta $314
-33fd: 2 13119 : a9 34        lda #>irq
-33ff: 4 13121 : 8d 15 03     sta $315
-3402: 2 13125 : a2 86        ldx #<frame_timer_pal
-3404: 2 13127 : a0 56        ldy #>frame_timer_pal
-3406: 4 13129 : ad e4 ed     lda $ede4
-3409: 2 13133 : c9 0c        cmp #$0c
-340b: 2 13135 : f0 04        beq +p
-340d: 2 13137 : a2 a3        ldx #<frame_timer_ntsc
-340f: 2 13139 : a0 4f        ldy #>frame_timer_ntsc
-340f: 2 13141 :          p:  stx $9124
-3411: 4 13143 : 8e 24 91 p:  stx $9124
-3414: 4 13147 : 8c 25 91     sty $9125
-3417: 2 13151 : a9 40        lda #%01000000  : free-running
-3419: 4 13153 : 8d 2b 91     sta $912b
-341c: 2 13157 : a9 c0        lda #%11000000  ; IRQ enable
-341e: 4 13159 : 8d 2e 91     sta $912e
-3421: 2 13163 : 58           cli
-3422: 6 13165 : 60           rts
-3422: 6 13171 :          irq:
-3422: 6 13177 :          if @*show-cpu?*
-3422: 6 13183 :              lda #@(+ 8 3)
-3422: 6 13189 :              sta $900f
-3422: 6 13195 :          end
-3423: 5 13201 : e6 37        inc framecounter
-3425: 2 13206 : d0 02        bne +n
-3427: 5 13208 : e6 38        inc @(++ framecounter)
-3427: 5 13213 :          n:  jsr play_music
-3429: 6 13218 : 20 53 70 n:  jsr play_music
-342c: 6 13224 : 20 16 30     jsr set_vaus_color
-342f: 3 13230 : a5 3b        lda is_running_game
-3431: 2 13233 : f0 0a        beq +n
-3433: 6 13235 : 20 dd 2a     jsr call_sprite_controllers
-3436: 6 13241 : 20 9c 33     jsr rotate_bonuses
-3439: 2 13247 : a9 01        lda #1
-343b: 3 13249 : 85 3c        sta has_moved_sprites
-343b: 3 13252 :          n:  lda #$7f        ; Acknowledge IRQ.
-343d: 2 13255 : a9 7f    n:  lda #$7f        ; Acknowledge IRQ.
-343f: 4 13257 : 8d 2d 91     sta $912d
-343f: 4 13261 :          if @*show-cpu?*
-343f: 4 13265 :              lda #@(+ 8 2)
-343f: 4 13269 :              sta $900f
-343f: 4 13273 :          end
-3442: 4 13277 : 4c 18 eb     jmp $eb18       ; CBM ROM IRQ return
-3442: 4 13281 :          len_round   = 9
-3442: 4 13285 :          len_ready   = 5
-3442: 4 13289 :          ofs_round = @(+ (* 15 22) 5)
-3442: 4 13293 :          ofs_ready = @(+ (* 15 24) 6)
-3442: 4 13297 :          screen_round = @(+ screen ofs_round)
-3442: 4 13301 :          screen_ready = @(+ screen ofs_ready)
-3442: 4 13305 :          colors_round = @(+ colors ofs_round)
-3442: 4 13309 :          colors_ready = @(+ colors ofs_ready)
-3442: 4 13313 :          chars_round = @(quarter framechars)
-3442: 4 13317 :          chars_ready = @(+ chars_round len_round)
-3442: 4 13321 :          charset_round = @(+ charset (* 8 chars_round))
-3442: 4 13325 :          charset_ready = @(+ charset (* 8 chars_ready))
-3442: 4 13329 :          roundstart:
-3445: 2 13333 : a9 10        lda #score_char0
-3447: 4 13335 : 8d e5 34     sta @(+ txt_round_nn 7)
-344a: 3 13339 : a5 30        lda level
-344a: 3 13342 :          l:  sec
-344c: 2 13345 : 38       l:  sec
-344d: 2 13347 : e9 0a        sbc #10
-344f: 2 13349 : 90 06        bcc +n
-3451: 6 13351 : ee e5 34     inc @(+ txt_round_nn 7)
-3454: 4 13357 : 4c 4c 34     jmp -l
-3454: 4 13361 :          n:  clc
-3457: 2 13365 : 18       n:  clc
-3458: 2 13367 : 69 1a        adc #@(+ 10 (char-code #\0) (- score_char0 (char-code #\0)))
-345a: 4 13369 : 8d e6 34     sta @(+ txt_round_nn 8)
-345b: 4 13373 : 00           0
-345c: 4 13377 : 03           c_clrmb <charset_round >charset_round @(* 8 len_round)
-345d: 4 13381 : 00           c_clrmb <charset_round >charset_round @(* 8 len_round)
-345e: 4 13385 : 15           c_clrmb <charset_round >charset_round @(* 8 len_round)
-345f: 4 13389 : 48           c_clrmb <charset_round >charset_round @(* 8 len_round)
-3460: 4 13393 : 03           c_clrmb <charset_ready >charset_ready @(* 8 len_ready)
-3461: 4 13397 : 48           c_clrmb <charset_ready >charset_ready @(* 8 len_ready)
-3462: 4 13401 : 15           c_clrmb <charset_ready >charset_ready @(* 8 len_ready)
-3463: 4 13405 : 28           c_clrmb <charset_ready >charset_ready @(* 8 len_ready)
-3464: 4 13409 : 00           0
-3467: 2 13413 : a9 4f        lda #<screen_round
-3469: 3 13415 : 85 02        sta d
-346b: 2 13418 : a9 11        lda #>screen_round
-346d: 3 13420 : 85 03        sta @(++ d)
-346f: 2 13423 : a2 05        ldx #5
-3471: 2 13425 : a9 20        lda #chars_round
-3473: 6 13427 : 20 d2 34     jsr make_4x8_line
-3476: 2 13433 : a9 6e        lda #<screen_ready
-3478: 3 13435 : 85 02        sta d
-347a: 2 13438 : a9 11        lda #>screen_ready
-347c: 3 13440 : 85 03        sta @(++ d)
-347e: 2 13443 : a2 03        ldx #3
-3480: 2 13445 : a9 29        lda #chars_ready
-3482: 6 13447 : 20 d2 34     jsr make_4x8_line
-3485: 2 13453 : a2 09        ldx #len_round
-3487: 2 13455 : a9 01        lda #white
-3487: 2 13457 :          l:  sta colors_round,x
-3489: 4 13459 : 9d 4f 95 l:  sta colors_round,x
-348c: 4 13463 : 9d 6e 95     sta colors_ready,x
-348f: 2 13467 : ca           dex
-3490: 2 13469 : 10 f7        bpl -l
-3490: 2 13471 :              txt_round_nnm = @(-- txt_round_nn)
-3491: 2 13473 : 00           0
-3492: 2 13475 : 02           c_setsd <txt_round_nnm >txt_round_nnm <charset_round >charset_round
-3493: 2 13477 : dd           c_setsd <txt_round_nnm >txt_round_nnm <charset_round >charset_round
-3494: 2 13479 : 34           c_setsd <txt_round_nnm >txt_round_nnm <charset_round >charset_round
-3495: 2 13481 : 00           c_setsd <txt_round_nnm >txt_round_nnm <charset_round >charset_round
-3496: 2 13483 : 15           c_setsd <txt_round_nnm >txt_round_nnm <charset_round >charset_round
-3497: 2 13485 : 00           0
-3499: 2 13487 : a2 09        ldx #len_round
-349b: 2 13489 : a0 01        ldy #1
-349d: 6 13491 : 20 ad 2d     jsr print_string2
-34a0: 2 13497 : a9 02        lda #snd_round
-34a2: 6 13499 : 20 14 2c     jsr play_sound
-34a5: 2 13505 : a2 82        ldx #130
-34a5: 2 13507 :          l:  lda $9004
-34a7: 4 13509 : ad 04 90 l:  lda $9004
-34aa: 2 13513 : 4a           lsr
-34ab: 2 13515 : d0 fa        bne -l
-34ab: 2 13517 :          n:  lda $9004
-34ad: 4 13519 : ad 04 90 n:  lda $9004
-34b0: 2 13523 : 4a           lsr
-34b1: 2 13525 : d0 fa        bne -n
-34b3: 2 13527 : ca           dex
-34b4: 2 13529 : d0 f1        bne -l
-34b4: 2 13531 :              txt_readym = @(-- txt_ready)
-34b5: 2 13533 : 00           0
-34b6: 2 13535 : 02           c_setsd <txt_readym >txt_readym <charset_ready >charset_ready
-34b7: 2 13537 : e6           c_setsd <txt_readym >txt_readym <charset_ready >charset_ready
-34b8: 2 13539 : 34           c_setsd <txt_readym >txt_readym <charset_ready >charset_ready
-34b9: 2 13541 : 48           c_setsd <txt_readym >txt_readym <charset_ready >charset_ready
-34ba: 2 13543 : 15           c_setsd <txt_readym >txt_readym <charset_ready >charset_ready
-34bb: 2 13545 : 00           0
-34bd: 2 13547 : a2 05        ldx #len_ready
-34bf: 2 13549 : a0 01        ldy #1
-34c1: 6 13551 : 20 ad 2d     jsr print_string2
-34c4: 6 13557 : 20 33 2c     jsr wait_sound
-34c5: 6 13563 : 00           0
-34c6: 6 13569 : 03           c_clrmb <screen_round >screen_round 5
-34c7: 6 13575 : 4f           c_clrmb <screen_round >screen_round 5
-34c8: 6 13581 : 11           c_clrmb <screen_round >screen_round 5
-34c9: 6 13587 : 05           c_clrmb <screen_round >screen_round 5
-34ca: 6 13593 : 03           c_clrmb <screen_ready >screen_ready 5
-34cb: 6 13599 : 6e           c_clrmb <screen_ready >screen_ready 5
-34cc: 6 13605 : 11           c_clrmb <screen_ready >screen_ready 5
-34cd: 6 13611 : 05           c_clrmb <screen_ready >screen_ready 5
-34ce: 6 13617 : 00           0
-34d1: 6 13623 : 60           rts
-34d1: 6 13629 :          make_4x8_line:
-34d2: 2 13635 : a0 00        ldy #0
-34d2: 2 13637 :          l:  sta (d),y
-34d4: 5 13639 : 91 02    l:  sta (d),y
-34d6: 2 13644 : 18           clc
-34d7: 2 13646 : 69 01        adc #1
-34d9: 2 13648 : c8           iny
-34da: 2 13650 : ca           dex
-34db: 2 13652 : d0 f7        bne -l
-34dd: 6 13654 : 60           rts
-34dd: 6 13660 :          txt_round_nn:   @(string4x8 "ROUND  XX")
-34e6: 6 13666 : 32 2f 35 2e 24 00 00 38 38txt_round_nn:   @(string4x8 "ROUND  XX")
-34e6: 6 13672 :          txt_ready:      @(string4x8 "READY")
-34eb: 6 13678 : 32 25 21 24 39txt_ready:      @(string4x8 "READY")
-34eb: 6 13684 :          roundintro:
-34eb: 6 13690 :          l:  lda #0              ; Fetch joystick status.
-34ec: 2 13696 : a9 00    l:  lda #0              ; Fetch joystick status.
-34ee: 4 13698 : 8d 13 91     sta $9113
-34f1: 4 13702 : ad 11 91     lda $9111
-34f4: 2 13706 : aa           tax
-34f5: 2 13708 : 29 20        and #joy_fire
-34f7: 2 13710 : f0 05        beq +n
-34f9: 2 13712 : 8a           txa
-34fa: 2 13714 : 29 10        and #joy_left
-34fc: 2 13716 : d0 ee        bne -l
-34fc: 2 13718 :          n:  rts
-34fe: 6 13720 : 60       n:  rts
-34fe: 6 13726 :          txt_round_intro:
-3511: 6 13732 : 54 48 45 20 45 52 41 20 41 4e 44 20 54 49 4d 45 20 4f 46    "THE ERA AND TIME OF" 1
-3512: 6 13738 : 01           "THE ERA AND TIME OF" 1
-3527: 6 13744 : 54 48 49 53 20 53 54 4f 52 59 20 49 53 20 55 4e 4b 4e 4f 57 4e    "THIS STORY IS UNKNOWN" 0
-3528: 6 13750 : 00           "THIS STORY IS UNKNOWN" 0
-353c: 6 13756 : 41 46 54 45 52 20 54 48 45 20 4d 4f 54 48 45 52 53 48 49 50    "AFTER THE MOTHERSHIP" 1
-353d: 6 13762 : 01           "AFTER THE MOTHERSHIP" 1
-3556: 6 13768 : 22 41 52 4b 41 4e 4f 49 44 22 20 57 41 53 20 44 45 53 54 52 4f 59 45 44 2c    "\"ARKANOID\" WAS DESTROYED," 1
-3557: 6 13774 : 01           "\"ARKANOID\" WAS DESTROYED," 1
-356a: 6 13780 : 41 20 53 50 41 43 45 43 52 41 46 54 20 22 56 41 55 53 22    "A SPACECRAFT \"VAUS\"" 1
-356b: 6 13786 : 01           "A SPACECRAFT \"VAUS\"" 1
-3582: 6 13792 : 53 43 52 41 4d 42 4c 45 44 20 41 57 41 59 20 46 52 4f 4d 20 49 54 2e    "SCRAMBLED AWAY FROM IT." 0
-3583: 6 13798 : 00           "SCRAMBLED AWAY FROM IT." 0
-3591: 6 13804 : 42 55 54 20 4f 4e 4c 59 20 54 4f 20 42 45    "BUT ONLY TO BE" 1
-3592: 6 13810 : 01           "BUT ONLY TO BE" 1
-35a9: 6 13816 : 54 52 41 50 50 45 44 20 49 4e 20 53 50 41 43 45 20 57 41 52 50 45 44    "TRAPPED IN SPACE WARPED" 1
-35aa: 6 13822 : 01           "TRAPPED IN SPACE WARPED" 1
-35bc: 6 13828 : 42 59 20 53 4f 4d 45 4f 4e 45 2e 2e 2e 2e 2e 2e 2e 2e    "BY SOMEONE........" 0
-35bd: 6 13834 : 00           "BY SOMEONE........" 0
-35be: 6 13840 : 00           0
-35be: 6 13846 :          txt_enter:      @(string4x8 "ENTER YOUR INITIALS !") 255
-35d3: 6 13852 : 25 2e 34 25 32 00 39 2f 35 32 00 29 2e 29 34 29 21 2c 33 00 01txt_enter:      @(string4x8 "ENTER YOUR INITIALS !") 255
-35d4: 6 13858 : ff       txt_enter:      @(string4x8 "ENTER YOUR INITIALS !") 255
-35d4: 6 13864 :          txt_hiscore:    @(string4x8 "HIGH ")
-35d9: 6 13870 : 28 29 27 28 00txt_hiscore:    @(string4x8 "HIGH ")
-35d9: 6 13876 :          txt_score:      @(string4x8 "SCORE") 255
-35de: 6 13882 : 33 23 2f 32 25txt_score:      @(string4x8 "SCORE") 255
-35df: 6 13888 : ff       txt_score:      @(string4x8 "SCORE") 255
-35df: 6 13894 :          txt_round:      @(string4x8 "ROUND") 255
-35e4: 6 13900 : 32 2f 35 2e 24txt_round:      @(string4x8 "ROUND") 255
-35e5: 6 13906 : ff       txt_round:      @(string4x8 "ROUND") 255
-35e5: 6 13912 :          txt_name:       @(string4x8 "NAME") 255
-35e9: 6 13918 : 2e 21 2d 25txt_name:       @(string4x8 "NAME") 255
-35ea: 6 13924 : ff       txt_name:       @(string4x8 "NAME") 255
-35ea: 6 13930 :          txt_all:        @(string4x8 "ALL") 255
-35ed: 6 13936 : 21 2c 2c txt_all:        @(string4x8 "ALL") 255
-35ee: 6 13942 : ff       txt_all:        @(string4x8 "ALL") 255
-35ee: 6 13948 :          txt_first:      @(string4x8 "1ST") 255
-35f1: 6 13954 : 11 33 34 txt_first:      @(string4x8 "1ST") 255
-35f2: 6 13960 : ff       txt_first:      @(string4x8 "1ST") 255
-35f2: 6 13966 :          txt_second:     @(string4x8 "2ND") 255
-35f5: 6 13972 : 12 2e 24 txt_second:     @(string4x8 "2ND") 255
-35f6: 6 13978 : ff       txt_second:     @(string4x8 "2ND") 255
-35f6: 6 13984 :          txt_third:      @(string4x8 "3RD") 255
-35f9: 6 13990 : 13 32 24 txt_third:      @(string4x8 "3RD") 255
-35fa: 6 13996 : ff       txt_third:      @(string4x8 "3RD") 255
-35fa: 6 14002 :          txt_fourth:     @(string4x8 "4TH") 255
-35fd: 6 14008 : 14 34 28 txt_fourth:     @(string4x8 "4TH") 255
-35fe: 6 14014 : ff       txt_fourth:     @(string4x8 "4TH") 255
-35fe: 6 14020 :          txt_fifth:      @(string4x8 "5TH") 255
-3601: 6 14026 : 15 34 28 txt_fifth:      @(string4x8 "5TH") 255
-3602: 6 14032 : ff       txt_fifth:      @(string4x8 "5TH") 255
-362d: 6 14038 : 57 65 64 2c 20 20 34 20 4a 75 6e 20 31 39 38 36 2c 20 31 36 3a 33 34 20 50 72 6f 67 72 61 6d 6d 65 64 20 42 79 20 59 61 73 75 2e"Wed,  4 Jun 1986, 16:34 Programmed By Yasu."
-362d: 6 14044 :          clear_data:
-362e: 2 14050 : a9 00        lda #0
-3630: 2 14052 : aa           tax
-3630: 2 14054 :          l:  cpx #@(-- hiscore)
-3631: 2 14056 : e0 f4    l:  cpx #@(-- hiscore)
-3633: 2 14058 : b0 02        bcs +n
-3635: 4 14060 : 95 00        sta 0,x
-3635: 4 14064 :          n:  sta $200,x
-3637: 4 14068 : 9d 00 02 n:  sta $200,x
-363a: 2 14072 : ca           dex
-363b: 2 14074 : d0 f4        bne -l
-363d: 6 14076 : 60           rts
-363d: 6 14082 :          start:
-363e: 2 14088 : a2 ff        ldx #$ff
-3640: 2 14090 : 9a           txs
-3641: 6 14092 : 20 2e 36     jsr clear_data
-3644: 2 14098 : a9 47        lda #<exec_script
-3646: 4 14100 : 8d 16 03     sta $316
-3649: 2 14104 : a9 27        lda #>exec_script
-364b: 4 14106 : 8d 17 03     sta $317
-364e: 6 14110 : 20 d4 2d     jsr init_hiscore
-3651: 6 14116 : 20 ef 33     jsr start_irq
-3654: 2 14122 : a9 00        lda #0
-3656: 4 14124 : 8d 2e 70     sta @(++ requested_song)
-3659: 2 14128 : a9 03        lda #snd_bonus_life ; Tell that the tape has finished loading.
-365b: 6 14130 : 20 14 2c     jsr play_sound
-365e: 6 14136 : 20 33 2c     jsr wait_sound
-3661: 4 14142 : 4c 81 36     jmp restart
-3661: 4 14146 :          game_done:
-3664: 2 14150 : a9 0d        lda #snd_doh_dissolving
-3666: 6 14152 : 20 14 2c     jsr play_sound
-3669: 6 14158 : 20 33 2c     jsr wait_sound
-3669: 6 14164 :          game_over:
-366c: 2 14170 : a9 00        lda #0
-366e: 3 14172 : 85 3b        sta is_running_game
-3670: 2 14175 : a9 04        lda #snd_game_over
-3672: 6 14177 : 20 14 2c     jsr play_sound
-3675: 6 14183 : 20 33 2c     jsr wait_sound
-3678: 3 14189 : a5 4e        lda has_hiscore
-367a: 2 14192 : f0 05        beq restart
-367c: 2 14194 : a9 06        lda #snd_hiscore
-367e: 6 14196 : 20 14 2c     jsr play_sound
-367e: 6 14202 :          restart:
-3681: 6 14208 : 20 2e 36     jsr clear_data
-3681: 6 14214 :          if @(not *shadowvic?*)
-3684: 6 14220 : 20 ec 34     jsr roundintro
-3684: 6 14226 :          end
-3687: 2 14232 : a9 0b        lda #snd_coin
-3689: 6 14234 : 20 14 2c     jsr play_sound
-368c: 6 14240 : 20 33 2c     jsr wait_sound
-368f: 6 14246 : 20 b3 29     jsr init_game_mode
-3692: 4 14252 : ad 08 90     lda $9008
-3695: 3 14256 : 85 42        sta old_paddle_value
-3697: 2 14259 : a9 03        lda #default_num_lifes
-3699: 3 14261 : 85 39        sta lifes
-369b: 6 14264 : 20 cc 2d     jsr init_score
-369e: 2 14270 : a9 52        lda #<level_data
-36a0: 3 14272 : 85 19        sta current_level
-36a2: 2 14275 : a9 37        lda #>level_data
-36a4: 3 14277 : 85 1a        sta @(++ current_level)
-36a4: 3 14280 :          next_level:
-36a6: 2 14283 : a9 00        lda #0
-36a8: 3 14285 : 85 3b        sta is_running_game
-36aa: 5 14288 : e6 30        inc level
-36ac: 3 14293 : a5 30        lda level
-36ae: 2 14296 : c9 22        cmp #34
-36b0: 2 14298 : f0 b2        beq game_done
-36b2: 6 14300 : 20 4c 29     jsr clear_screen
-36b5: 6 14306 : 20 63 2c     jsr draw_level
-36b8: 6 14312 : 20 f5 2c     jsr draw_walls
-36bb: 6 14318 : 20 47 2d     jsr make_score_screen
-36be: 6 14324 : 20 84 2d     jsr display_score
-36be: 6 14330 :          retry:
-36c1: 2 14336 : a9 00        lda #0
-36c3: 3 14338 : 85 3b        sta is_running_game
-36c5: 3 14341 : 85 3e        sta is_firing
-36c7: 3 14344 : 85 29        sta mode
-36c9: 3 14347 : 85 2a        sta mode_break
-36cb: 3 14350 : 85 2e        sta reflections_since_last_vaus_hit
-36cd: 3 14353 : 85 41        sta snd_reflection
-36cf: 3 14356 : 85 37        sta framecounter
-36d1: 3 14359 : 85 38        sta @(++ framecounter)
-36d3: 2 14362 : a9 01        lda #1
-36d5: 3 14364 : 85 3a        sta balls
-36d7: 3 14367 : 85 40        sta sfx_reflection
-36d9: 3 14370 : 85 32        sta bricks_until_bonus
-36db: 2 14373 : a9 06        lda #default_ball_speed
-36dd: 3 14375 : 85 3d        sta ball_speed
-36df: 2 14378 : a9 10        lda #16
-36e1: 3 14380 : 85 2f        sta vaus_width
-36e3: 2 14383 : a9 ff        lda #255
-36e5: 3 14385 : 85 2b        sta current_bonus
-36e7: 6 14388 : 20 56 2b     jsr clear_sprites
-36ea: 6 14394 : 20 f5 2c     jsr draw_walls      ; Freshen up after mode_break.
-36ed: 6 14400 : 20 3c 2c     jsr draw_lifes
-36f0: 6 14406 : 20 45 34     jsr roundstart
-36f3: 2 14412 : a2 0f        ldx #@(-- num_sprites)
-36f3: 2 14414 :          l:  jsr remove_sprite
-36f5: 6 14416 : 20 6a 2a l:  jsr remove_sprite
-36f8: 2 14422 : ca           dex
-36f9: 2 14424 : 10 fa        bpl -l
-36fb: 6 14426 : 20 08 30     jsr make_vaus
-36fe: 6 14432 : 20 3e 32     jsr make_ball
-3701: 2 14438 : a9 00        lda #0
-3703: 3 14440 : 85 26        sta spriteframe
-3705: 2 14443 : 09 01        ora #first_sprite_char
-3707: 3 14445 : 85 21        sta next_sprite_char
-3709: 6 14448 : 20 01 2b     jsr draw_sprites
-370c: 2 14454 : 78           sei
-370d: 2 14456 : a0 00        ldy #0
-370f: 3 14458 : 84 37        sty framecounter
-3711: 3 14461 : 84 38        sty @(++ framecounter)
-3713: 2 14464 : c8           iny
-3714: 3 14466 : 84 3b        sty is_running_game
-3716: 2 14469 : 58           cli
-3716: 2 14471 :          mainloop:
-3717: 3 14473 : a5 31        lda bricks_left
-3719: 2 14476 : f0 8b        beq next_level
-371b: 3 14478 : a5 3b        lda is_running_game
-371d: 2 14481 : d0 0d        bne +n
-371f: 6 14483 : 20 33 2c     jsr wait_sound
-371f: 6 14489 :          poke_unlimited:
-3722: 5 14495 : c6 39        dec lifes
-3724: 2 14500 : f0 03        beq +o
-3726: 4 14502 : 4c c1 36     jmp retry
-3726: 4 14506 :          o:  jmp game_over
-3729: 4 14510 : 4c 6c 36 o:  jmp game_over
-3729: 4 14514 :          n:  ; Toggle sprite frame.
-372c: 3 14518 : a5 26        lda spriteframe
-372e: 2 14521 : 49 80        eor #framemask
-3730: 3 14523 : 85 26        sta spriteframe
-3732: 2 14526 : 09 01        ora #first_sprite_char
-3734: 3 14528 : 85 21        sta next_sprite_char
-3734: 3 14531 :          n:  jsr random              ; Improve randomness and avoid CRTC hsync wobble.
-3736: 6 14534 : 20 a0 29 n:  jsr random              ; Improve randomness and avoid CRTC hsync wobble.
-3739: 3 14540 : a5 3c        lda has_moved_sprites
-373b: 2 14543 : f0 f9        beq -n
-373d: 2 14545 : a9 00        lda #0
-373f: 3 14547 : 85 3c        sta has_moved_sprites
-3741: 6 14550 : 20 01 2b     jsr draw_sprites
-3744: 3 14556 : a5 4d        lda has_new_score
-3746: 2 14559 : f0 cf        beq mainloop
-3748: 2 14561 : a9 00        lda #0
-374a: 3 14563 : 85 4d        sta has_new_score
-374c: 6 14566 : 20 84 2d     jsr display_score
-374f: 4 14572 : 4c 17 37     jmp mainloop
-374f: 4 14576 :          level_data: @+level-data+
-4198: 4 14580 : 79 99 99 99 99 99 99 55 55 55 55 55 55 58 88 88 88 88 88 88 66 66 66 66 66 66 67 77 77 77 77 77 77 44 44 44 44 44 44 4f 51 00 00 00 00 00 00 12 00 00 00 00 00 01 23 00 00 00 00 00 12 34 00 00 00 00 01 23 45 00 00 00 00 12 34 56 00 00 00 01 23 45 67 00 00 00 12 34 56 78 00 00 01 23 45 67 81 00 00 12 34 56 78 12 00 01 23 45 67 81 23 00 12 34 56 78 12 34 09 99 99 99 99 99 95 f6 44 44 44 44 44 44 40 00 00 00 00 00 00 11 1a aa aa aa aa a0 00 00 00 00 00 00 55 55 55 55 55 55 50 00 00 00 00 00 00 aa aa aa aa aa 11 10 00 00 00 00 00 00 77 77 77 77 77 77 70 00 00 00 00 00 00 66 6a aa aa aa aa a0 00 00 00 00 00 00 33 33 33 33 33 33 30 00 00 00 00 00 00 aa aa aa aa aa 33 3f 70 23 49 60 81 23 40 03 49 68 01 23 49 00 49 68 10 23 49 60 09 68 12 03 49 67 00 68 12 30 49 67 80 08 12 34 09 67 81 00 12 34 90 67 81 20 02 34 96 07 81 23 00 34 96 70 81 23 40 04 96 78 01 23 49 00 96 78 10 23 49 60 06 78 12 03 49 67 00 78 12 30 49 67 80 08 12 34 09 67 81 0f 50 00 80 00 00 80 00 00 08 00 00 08 00 00 00 08 00 08 00 00 00 00 80 00 80 00 00 00 99 99 99 90 00 00 09 99 99 99 00 00 09 95 99 95 99 00 00 99 59 99 59 90 00 99 99 99 99 99 90 09 99 99 99 99 99 00 99 99 99 99 99 90 09 09 99 99 99 09 00 90 90 00 00 90 90 09 09 00 00 09 09 00 00 09 90 99 00 00 00 00 99 09 90 00 0f 76 05 04 03 04 05 06 60 50 40 30 40 50 66 05 04 03 04 05 06 60 50 40 30 40 50 66 05 04 03 04 05 06 60 a2 a2 a2 a2 a0 66 05 04 03 04 05 06 60 50 40 30 40 50 66 05 04 03 04 05 06 60 50 40 30 40 50 62 02 0a 02 0a 02 02 60 50 40 30 40 50 6f 70 00 00 88 70 00 00 00 00 88 77 60 00 00 00 88 77 66 50 00 00 08 77 66 55 00 00 08 77 66 55 44 00 00 77 66 55 44 30 00 07 66 55 44 33 00 00 66 55 44 33 20 00 06 55 44 33 22 00 00 55 44 33 22 10 00 00 44 33 22 10 00 00 04 33 22 11 00 00 00 03 22 11 00 00 00 00 02 11 00 00 0f 70 00 a0 a0 a0 a0 00 0a 00 00 00 00 0a 00 aa 0a 00 0a 0a a0 00 00 00 10 00 00 00 a0 00 a2 a0 00 a0 00 0a 00 30 0a 00 00 00 00 04 00 00 00 00 0a 00 50 0a 00 00 a0 00 a6 a0 00 a0 00 00 00 70 00 00 00 aa 0a 00 0a 0a a0 0a 00 00 00 00 0a 00 00 a0 a0 a0 a0 00 f5 0a 0a 00 00 0a 0a 00 a4 a0 00 00 a4 a0 0a 3a 00 00 0a 3a 00 aa a0 00 00 aa a0 00 00 00 00 00 00 00 00 07 11 18 00 00 00 00 72 22 80 00 00 00 07 33 38 00 00 00 00 74 44 80 00 00 00 07 55 58 00 00 00 00 76 66 80 00 0f 30 a0 00 00 00 00 00 00 00 00 00 00 00 00 a0 00 00 00 00 00 0a 00 00 00 00 00 00 a0 00 00 00 00 00 0a 00 00 06 00 00 00 a0 00 06 36 00 00 0a 00 06 31 36 00 00 a0 06 31 31 36 00 0a 06 31 39 31 36 00 a0 06 31 31 36 00 0a 00 06 31 36 00 00 a0 00 06 36 00 00 0a 00 00 06 00 00 00 a0 00 00 00 00 00 0a 00 00 00 00 00 00 a0 00 00 00 00 00 0a aa aa aa aa aa af 70 99 99 99 99 99 90 09 00 00 00 00 09 00 90 99 99 99 90 90 09 09 00 00 09 09 00 90 90 99 90 90 90 09 09 09 09 09 09 00 90 90 99 90 90 90 09 09 00 00 09 09 00 90 99 99 99 90 90 09 00 00 00 00 09 00 99 99 99 99 99 90 f7 aa aa aa aa aa aa a0 00 0a 00 00 0a 70 0a 10 a0 00 00 a0 00 a0 0a 00 a0 0a 00 0a 00 a4 0a 00 a0 00 a0 0a 00 a0 0a 00 0a 02 a0 0a 06 a0 00 a0 0a 00 a0 0a 00 0a 00 a0 0a 00 a0 00 a0 0a 05 a0 0a 00 0a 00 a0 0a 00 a0 00 a3 00 00 a0 00 00 0a 00 00 0a 00 00 80 aa aa aa aa aa aa f7 08 88 01 11 08 88 00 77 70 22 20 77 70 06 66 03 33 06 66 00 55 50 44 40 55 50 04 44 05 55 04 44 00 33 30 66 60 33 30 02 22 07 77 02 22 00 11 10 88 80 11 10 f7 66 66 66 66 66 66 6a 00 00 00 00 00 0a 66 66 66 66 66 66 60 00 00 00 00 00 00 29 99 99 99 99 99 2a 00 00 00 00 00 0a 11 11 11 11 11 11 10 00 00 00 00 00 00 39 99 99 99 99 99 3a 00 00 00 00 00 0a 55 55 55 55 55 55 50 00 00 00 00 00 00 55 55 55 55 55 55 5a 00 00 00 00 00 0a f9 31 a3 33 33 33 a1 33 18 a3 33 33 a4 13 31 88 a3 33 a4 41 33 18 88 a1 a4 44 13 31 88 88 14 44 41 33 18 88 81 44 44 13 31 88 88 14 44 41 33 98 88 81 44 44 93 33 98 88 14 44 93 33 33 98 81 44 93 33 33 33 98 14 93 33 33 33 33 91 93 33 33 f7 00 00 00 a0 00 00 00 00 01 10 11 00 00 00 11 00 a0 01 10 01 10 02 20 22 00 11 00 22 00 a0 02 20 02 20 08 80 88 00 22 00 88 00 a0 08 80 08 80 04 40 44 00 88 00 44 00 a0 04 40 04 40 05 50 55 00 44 00 55 00 a0 05 50 05 50 06 60 66 00 55 00 66 00 00 06 60 06 60 00 00 00 00 66 f7 00 00 00 90 00 00 00 00 66 69 44 40 00 00 66 61 11 44 40 00 06 61 11 11 44 00 06 66 11 11 14 44 00 66 61 11 11 44 40 06 66 11 11 14 44 00 90 09 09 09 00 90 00 00 00 90 00 00 00 00 00 09 00 00 00 00 00 00 90 00 00 00 00 0a 0a 00 00 00 00 00 aa a0 00 00 00 00 00 a0 00 00 00 f7 20 a8 88 88 88 a0 22 0a a8 88 88 aa 02 20 a0 a8 88 a0 a0 22 0a 07 a8 a3 0a 02 20 a0 70 90 30 a0 22 0a 07 04 03 0a 02 20 a0 70 40 30 a0 22 0a 07 04 03 0a 02 20 a0 70 40 30 a0 22 aa a7 04 03 aa a2 f7 00 aa aa aa aa a0 00 04 56 7a 76 54 00 00 45 67 a7 65 40 00 04 56 7a 76 54 00 00 45 67 87 65 40 00 04 56 7a 76 54 00 00 45 67 a7 65 40 00 04 56 7a 76 54 00 00 aa aa aa aa a0 0f 7a 1a 2a 3a 4a 5a 6a a7 a9 a9 a9 a9 a8 a0 00 00 00 00 00 00 a7 a0 a0 a0 a0 a0 aa 0a 7a 0a 0a 0a 0a a0 a0 a7 a0 a0 a0 aa 0a 0a 0a 7a 0a 0a a0 a0 a0 a0 a7 a0 a0 00 00 00 00 00 70 00 a0 a0 a0 a7 a0 00 0a 0a 0a 7a 0a 00 00 a0 a7 a0 a0 a0 00 00 7a 0a 0a 00 00 07 00 00 a0 00 00 0f 70 a2 22 22 22 22 a0 0a 00 00 00 00 0a 00 a0 aa aa aa a0 a0 0a 0a 00 00 0a 0a 00 a0 a0 00 00 a0 a0 0a 0a 05 55 0a 0a 00 a0 a0 44 40 a0 a0 0a 0a 06 66 0a 0a 00 a0 a0 11 10 a0 a0 0a 0a 00 00 0a 0a 00 a0 a3 33 33 a0 a0 0a 00 00 00 00 0a 00 a0 00 00 00 00 a0 0a aa aa aa aa aa 0f 78 88 88 88 88 88 88 88 88 88 88 88 88 80 00 00 00 00 00 00 55 a0 a5 55 a0 a5 55 5a 0a 55 5a 0a 55 55 a0 a5 55 a0 a5 55 5a 0a 55 5a 0a 55 00 00 00 00 00 00 01 11 11 11 11 11 11 11 11 11 11 11 11 1f 73 33 33 33 33 33 33 00 00 00 00 00 00 00 09 99 09 99 09 99 00 94 90 94 90 94 90 09 99 09 99 09 99 00 00 00 00 00 00 00 99 90 99 90 99 90 09 59 09 59 09 59 00 99 90 99 90 99 90 00 00 00 00 00 00 09 99 09 99 09 99 00 96 90 96 90 96 90 09 99 09 99 09 99 00 fa 00 00 01 11 00 00 00 00 00 11 10 00 00 00 00 01 11 00 00 00 00 01 11 11 00 00 00 00 16 16 10 00 00 00 16 61 66 10 00 00 06 66 66 66 00 00 06 66 66 66 66 00 00 66 66 66 66 60 00 66 66 66 66 66 60 66 66 66 66 66 66 6f 75 55 55 55 55 55 55 44 44 44 44 44 44 46 66 66 66 66 66 66 aa aa a9 99 aa aa aa 55 5a 00 0a 66 6a a5 55 a0 00 a6 66 aa 00 00 00 00 00 0a a0 00 00 00 00 00 aa 00 0a 44 4a 00 0a a0 00 a4 44 a0 00 aa 99 9a aa aa 99 9a f7 00 a9 99 a0 00 00 00 a0 00 00 a0 00 00 a0 03 33 00 a0 00 0a 04 44 44 0a 00 00 a0 66 66 60 a0 00 0a 00 77 70 0a 00 00 0a 00 00 0a 00 00 00 0a aa aa 00 00 00 fe 99 99 99 99 99 99 98 88 88 88 88 88 88 99 99 99 99 99 99 90 00 00 00 00 00 00 99 99 99 99 99 99 95 55 55 55 55 55 55 99 99 99 99 99 99 9f 66 66 66 66 66 66 66 6a aa a7 a7 aa aa 66 a0 00 00 00 00 a6 6a 70 00 00 00 7a 66 a7 70 00 00 77 a6 6a 77 70 00 77 7a 60 6a 77 70 77 7a 60 00 6a 77 77 7a 60 00 00 6a 77 7a 60 00 00 00 6a 7a 60 00 00 00 00 67 60 00 00 00 00 00 60 00 00 0f 78 88 88 a0 a8 88 88 77 77 7a 0a 77 77 7a a1 aa a0 aa a1 aa 66 66 6a 0a 66 66 65 55 55 60 a5 55 55 44 44 4a 0a 44 44 49 91 99 a0 a9 91 99 33 33 3a 0a 33 33 32 22 22 a0 a2 22 22 11 11 1a 0a 11 11 1f 78 70 00 00 00 00 00 87 65 00 00 00 00 08 76 54 30 00 00 00 87 65 43 21 00 00 08 76 54 32 18 70 00 97 65 43 21 87 65 00 a9 54 32 18 76 54 00 0a 93 21 87 65 40 00 00 a9 18 76 54 00 00 00 0a 97 65 40 00 00 00 00 a9 54 00 00 00 00 00 0a 9f 74 05 06 07 08 01 02 90 90 90 90 90 90 90 60 50 40 30 20 10 09 09 09 09 09 09 03 04 05 06 07 08 01 90 90 90 90 90 90 90 70 60 50 40 30 20 09 09 09 09 09 09 02 03 04 05 06 07 08 90 90 90 90 90 90 90 80 70 60 50 40 30 09 09 09 09 09 09 01 02 03 04 05 06 07 90 90 90 90 90 90 9f 70 0a 0a 0a 0a 0a 00 00 a0 a0 a0 a0 a0 00 0a 0a 0a 0a 44 00 00 a0 a0 a0 a0 a0 00 0a 0a 0a 55 55 00 00 a0 a0 a0 a0 a0 00 0a 0a 66 66 66 00 00 a0 a0 a0 a0 a0 00 0a 77 77 77 77 00 00 a0 a0 a0 a0 a0 00 08 88 88 88 88 00 00 99 99 99 99 90 0f 80 00 77 00 07 70 00 00 77 77 07 77 70 00 07 77 70 77 77 00 07 77 79 97 77 77 00 77 77 99 77 77 70 07 77 77 99 77 77 00 77 77 79 97 77 70 00 77 79 97 77 70 00 07 77 99 77 77 00 00 07 77 99 77 00 00 00 77 79 97 70 00 00 00 79 97 70 00 00 00 00 99 70 00 00 00 00 00 90 00 00 0flevel_data: @+level-data+
-4198: 4 14584 :          loaded_music_player: @(fetch-file "sound.bin")
-4b45: 4 14588 : 00 00 08 10 18 20 28 30 38 40 48 50 58 60 68 70 78 80 88 90 98 a0 a8 b0 b8 c0 c8 d0 d8 e0 e8 f0 f8 00 04 04 08 00 ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 00 00 00 00 a9 00 8d 27 70 ae 27 70 bd 21 70 8d 29 70 bd 23 70 8d 2a 70 bd 25 70 8d 28 70 bd 2d 70 c9 ff f0 4b 9d 2b 70 a9 ff 9d 2d 70 ac 2b 70 b9 86 79 85 fe ac 2c 70 b9 86 79 05 fe a0 00 4a b0 03 8c 0a 90 4a b0 03 8c 0b 90 4a b0 03 8c 0c 90 4a b0 03 8c 0d 90 ae 27 70 ac 29 70 a9 00 99 37 70 a9 01 99 47 70 99 3f 70 c8 cc 2a 70 d0 ed bd 2b 70 8d 51 70 d0 03 4c 7a 71 a9 01 8d 52 70 ad 4f 70 f0 15 ce 4f 70 d0 10 ce 0e 90 ad 0e 90 29 0f f0 03 ad 50 70 8d 4f 70 ae 29 70 ac 51 70 b9 86 79 2d 52 70 f0 77 de 3f 70 d0 72 8a 18 79 00 70 a8 2c 28 70 30 0a b9 fe 78 85 fc b9 02 79 10 08 b9 fa 78 85 fc b9 fe 78 f0 53 85 fd bc 37 70 b1 fc c8 c9 77 b0 05 9d 47 70 90 f4 c9 7f b0 27 c9 7e f0 64 c9 7d f0 50 c9 7a f0 57 c9 7b f0 68 c9 79 f0 20 c9 78 f0 6b c9 7c d0 0a 98 9d 2f 70 b1 fc a8 4c 20 71 00 2c 28 70 30 05 9d 0a 90 10 03 9d 06 90 bd 47 70 9d 3f 70 98 9d 37 70 0e 52 70 e8 ec 2a 70 f0 03 4c ec 70 ee 27 70 ad 27 70 c9 02 f0 03 4c 58 70 60 b1 fc 8d 50 70 8d 4f 70 4c a2 71 b1 fc 4c aa 71 ad 0e 90 29 f0 11 fc 8d 0e 90 c8 f0 03 4c 20 71 a9 00 ae 27 70 9d 2d 70 4c 7a 71 bc 2f 70 4c 20 71 7e 08 7d 05 0a 7e 08 df 7f 7e 08 d5 7f 7e 08 df 7f 7e 08 d5 7f 7e 08 df 7f 7e 08 d5 7f 05 7e 08 df 7f 7e 08 d5 7f 7e 08 d9 7f 7e 08 dd 7f 0a 7e 08 df 7f 7e 08 d5 7f 7e 08 df 7f 7e 08 d5 7f 7e 08 df 05 7f 40 7f 7b 06 d5 0a 7f 04 d5 06 df 22 7f 06 e4 01 7f 06 e6 01 7f 06 e7 e6 4a 7f 06 d5 0a 7f 04 d5 06 df 22 7f 05 e7 e6 e4 e7 06 e6 09 7f 40 7f 7b 06 bf 0a 7f 04 bf 06 d5 22 7f 06 d2 01 7f 06 d5 01 7f 06 d9 d5 4a 7f 06 bf 0a 7f 04 bf 06 d5 22 7f 05 d9 d5 d2 d9 06 d5 09 7f 40 7f 7b 7e 08 7d 04 14 7f 06 7e 08 cc 01 7f 06 7e 08 cc 01 7f 05 7e 08 cc 01 7f 0a 7e 08 cc 7f 7e 08 cf 7f 7e 08 d9 7f 05 7e 08 df 7f 7e 08 d5 7f 7e 08 df 7f 7e 08 d5 7f df 0f 7f 7b 06 df 0a 7f 04 df 06 ea 22 7f 06 e7 04 7f 06 e3 04 7f 06 df 04 7f 06 e7 04 7f 06 df 36 7f 7b 06 d5 0a 7f 04 d5 06 db 22 7f 06 d9 04 7f 06 d5 04 7f 06 cf 04 7f 06 d9 04 7f 06 d5 36 7f 7b 7d 00 7e 08 05 db 07 d5 e1 e3 e8 ea ee 7f 7b 7e 08 07 aa c3 c6 d2 d5 dd 0c e3 7b 7e 08 7d 00 64 7f 7b 7e 08 08 ed e8 ea e3 e7 e1 e3 db 04 d5 7f d5 7f d5 7f d5 08 7f 40 7f 7b 7e 08 10 db 08 d2 d5 c6 cf c3 c6 b7 1c aa 40 7f 7b 7e 08 05 df 7f df 7f df 7f df 7f d5 7f ea 7f d5 7f ea 7f d5 7f ea 7f d5 7f ea 5f 7f 02 d5 7f 01 d5 27 7f 7b 7e 08 03 dd 07 7f 03 dd 07 7f 03 dd 07 7f 03 dd 11 7f 03 dd 07 7f 03 dd 11 7f 03 dd 07 7f 03 dd 11 7f 03 dd 07 7f 03 dd 11 7f 03 dd 07 7f 03 dd 16 7f 11 ec 03 7f 02 e8 03 7f 02 e4 03 7f 02 df 03 7f 02 d9 03 7f 02 d2 03 7f 02 d9 03 7f 02 df 03 7f 02 e4 03 7f 02 e8 03 7f 02 ec 03 7f 05 dd 02 7f dd 27 7f 7b 7e 08 03 d5 07 7f 03 d2 07 7f 03 c9 07 7f 03 cf 11 7f 03 d2 07 7f 03 d5 11 7f 03 d2 07 7f 03 d2 11 7f 03 d2 07 7f 03 d2 11 7f 03 d2 07 7f 03 d2 11 7f 03 e8 02 7f 03 e4 02 7f 03 df 02 7f 03 d9 02 7f 03 d2 02 7f 03 c9 02 7f 03 bf 02 7f 03 b3 02 7f 03 a4 02 7f 03 b3 02 7f 03 bf 02 7f 03 c9 02 7f 03 d2 02 7f 03 d9 02 7f 03 df 02 7f 03 e4 02 7f 03 d2 02 7f d2 27 7f 7b 7e 08 7c 0c 7c 4f 7c 0c 7c 0c 7c 02 04 dd 7f dd 7f ee 7f ee 7f dd 7f dd 7f ee 7f ee 7f d9 7f d9 7f ec 7f ec 7f d9 7f d9 7f ec 7f ec 7f d5 7f d5 7f ea 7f ea 7f d5 7f d5 7f ea 7f ea 7f d2 7f d2 7f e8 7f e8 7f d2 7f d2 7f e8 7f e8 03 7f 78 04 dd 7f dd 7f ee 7f ee 7f dd 7f dd 7f ee 7f ee 7f d9 7f d9 7f ec 7f ec 7f d9 7f d9 7f ec 7f ec 7f d5 7f d5 7f ea 7f ea 7f d5 7f d5 7f ea 7f ea 7f d9 7f d9 7f ec 7f ec 7f d9 7f d9 7f ec 7f ec 03 7f 78 7e 08 10 a4 08 b3 bb 05 b3 0b 7f 05 a4 0b 7f 05 b3 0b 7f 05 c3 0b 7f 20 b3 10 aa 08 b3 bb 05 b3 0b 7f 05 aa 0b 7f 05 a4 0d 7f 03 a4 0d 7f 0e a4 0f b3 10 a4 08 b3 bb 05 b3 0b 7f 05 a4 0b 7f 05 b3 0b 7f 05 c3 0b 7f 20 b3 10 bb 08 c3 c6 05 c3 0b 7f 05 bb 0b 7f 05 c3 0b 7f 05 cc 0b 7f 1f c3 02 e1 06 7f 02 e1 16 7f 02 e1 06 7f 02 e1 16 7f 02 e1 06 7f 02 e1 16 7f 02 e1 06 7f 08 d2 cc c3 40 c6 3f c3 02 e1 06 7f 02 e1 16 7f 02 e1 06 7f 02 e1 16 7f 02 e1 06 7f 02 e1 16 7f 02 e1 06 7f 08 d2 cc c3 40 c6 3f c3 7c 02 7e 08 10 bb 08 c3 c6 07 c3 09 7f 07 bb 09 7f 07 c3 09 7f 07 d2 09 7f 20 c3 10 bb 08 c3 c6 07 c3 09 7f 07 bb 09 7f 07 bb 09 7f 07 b7 09 7f 10 bb 0f c3 10 bb 08 c3 c6 07 c3 09 7f 07 bb 09 7f 07 c3 09 7f 07 d2 09 7f 20 c3 10 c6 08 cc d2 07 cc 09 7f 07 c6 09 7f 07 cc 09 7f 07 d9 09 7f 1f cc 04 e1 7f e1 14 7f 04 e1 7f e1 14 7f 04 e1 7f e1 14 7f 04 e1 7f 08 dd d9 cc 74 d2 0b 79 04 e1 7f e1 14 7f 04 e1 7f e1 14 7f 04 e1 7f e1 14 7f 04 e1 7f 08 dd d9 cc 74 d2 0b 79 7c 02 7e 08 02 df 7f 7e 07 02 df 7f 7e 06 02 df 7f 7e 05 02 df 7f 7e 04 02 df 7f 7e 03 02 df 7f 7e 02 02 df 7f 7e 01 02 df 7f 7e 00 02 df 7f 22 7f 7b 7e 08 02 ea 7f 7e 07 02 ea 7f 7e 06 02 ea 7f 7e 05 02 ea 7f 7e 04 02 ea 7f 7e 03 02 ea 7f 7e 02 02 ea 7f 7e 01 02 ea 7f 7e 00 02 ea 7f 22 7f 7b 7e 08 02 ef 7f 7e 07 02 ef 7f 7e 06 02 ef 7f 7e 05 02 ef 7f 7e 04 02 ef 7f 7e 03 02 ef 7f 7e 02 02 ef 7f 7e 01 02 ef 7f 7e 00 02 ef 7f 22 7f 7b 7e 08 02 df 00 7f 7b 7e 08 01 c3 b3 8d 7f 7f 04 7f 7e 07 01 cf b3 a4 7f 7f 04 7f 7e 06 01 cf b3 8d 7f 7f 04 7f 7e 05 01 cf c3 a4 7f 7f 04 7f 7e 03 01 cf b3 a4 7f 7f 04 7f 7e 02 01 c3 b3 8d 7f 7f 04 7f 7e 01 01 c3 a4 8d 7f 7f 02 7f 7b 7e 08 3b 7f 7b 7e 08 02 df e1 7e 07 df e1 7e 06 df e1 7e 05 df e1 7e 04 df e1 7e 03 df e1 7e 02 df 7e 01 e1 df 1d 7f 7b 7e 08 74 7f 74 79 7b 7e 02 02 df e1 df e1 df e1 df e1 7e 03 df e1 df e1 df e1 df e1 df e1 7e 04 df e1 df e1 df e1 df e1 7e 05 df e1 df e1 df e1 df e1 7e 06 df e1 df e1 df e1 df e1 7e 07 df e1 df e1 df e1 df e1 df e1 7e 08 df e1 df e1 df e1 df e1 7e 07 df e1 df e1 df e1 df e1 7e 06 df e1 df e1 df e1 df e1 df e1 7e 05 df e1 df e1 df e1 df e1 df e1 df e1 df e1 df e1 7e 04 df e1 df e1 df e1 7e 03 df e1 df e1 7e 02 df e1 df e1 7e 01 df e1 df e1 df e1 df e1 00 7f 7b 7e 08 02 80 86 8d 93 99 9f a4 aa b3 b7 bb bf c3 01 c6 7b 7e 08 02 7f 04 7f 7f 03 7f 04 7f 7f 01 7f 7b 7e 08 08 7f 7b 7e 08 01 b7 ae 99 8d 7f 7f 7f 7f 00 7f 7b 7e 08 18 7f 7b 7e 08 01 d7 d2 c6 bf 7e 06 ae 99 db d2 cc bf 7e 04 ae a4 db d7 cc bf 7e 02 b7 a4 99 80 7f 7f 7f 7f 00 7f 7b 7e 08 01 d9 d5 c9 c3 b3 9f dd d5 cf c3 b3 aa dd d9 cf c3 bb aa 9f 86 7f 7f 7f 7f 00 7f 7b 7e 08 04 e4 02 e3 03 e1 02 df 03 dd 02 db 03 d9 02 d7 7e 07 03 d5 01 d2 03 cf 02 cc 03 c9 02 c6 03 c3 02 bf 7e 06 03 bb 02 b7 b3 03 ae 02 aa 03 a4 02 9f 03 99 02 7e 05 93 8d 03 86 02 80 03 7f 02 9f 05 a4 aa ae b3 b7 7e 04 04 bb 05 bf 04 c3 05 c6 05 c9 cc cf d2 d5 d7 7e 03 05 d9 db 05 dd df e1 05 e3 e4 7e 02 e6 06 e7 05 e8 ea eb 06 ec 7e 01 08 ed 07 ee 7f 7b 7e 08 04 e3 01 e1 04 df 02 dd db 03 d9 02 d7 d5 03 d2 02 cf 03 cc 02 c9 03 c6 02 c3 03 bf 02 bb 03 b7 02 b3 ae 03 aa 02 a4 03 9f 02 99 93 03 8d 02 86 03 80 02 7f 03 99 04 9f a4 05 aa 04 ae b3 05 b7 04 bb 05 bf 03 c3 05 c6 04 c9 cc cf 05 d2 04 d5 d7 d9 05 db 03 dd 05 df 03 e1 04 e3 05 e4 04 e6 e7 e8 03 ea eb 04 ec 05 ed 03 ee 04 7f 7b b9 00 2d 00 71 72 72 00 5a 94 b3 00 72 72 72 00 00 d2 e1 00 00 72 72 00 ed f4 0c 00 72 72 73 00 1d 41 a7 00 73 73 73 00 21 b3 5d 00 74 74 75 00 00 00 f9 00 00 00 75 00 00 00 29 00 00 00 76 00 00 00 59 00 00 00 76 00 00 00 89 00 00 00 76 00 00 00 00 90 00 00 00 76 00 d7 dc 00 00 76 76 00 00 ff 06 00 00 76 77 00 00 9a ad 00 00 77 77 00 bc c1 00 00 77 77 00 00 cf d4 f8 00 77 77 77 00 00 16 8e 00 00 78 78 00 00 07 07 06 07 07 07 04 04 04 04 08 06 06 06 03 07 06 a9 00 8d 0a 90 8d 0b 90 8d 0c 90 8d 0d 90 8d 2d 70 8d 2e 70 60loaded_music_player: @(fetch-file "sound.bin")
-4b45: 4 14592 :          relocated_end:
+307b: 4 11283 : a8           168 168 168 168
+307c: 4 11287 : a8           168 168 168 168
+307d: 4 11291 : a8           168 168 168 168
+307e: 4 11295 : a8           168 168 168 168
+307f: 4 11299 : a8           168 168 168 168
+3080: 4 11303 : a8           168 168 168 168
+3081: 4 11307 : a8           168 168 168 168
+3082: 4 11311 : a8           168 168 168 168
+3083: 4 11315 : 90           144 144 144 144
+3084: 4 11319 : 90           144 144 144 144
+3085: 4 11323 : 90           144 144 144 144
+3086: 4 11327 : 90           144 144 144 144
+3087: 4 11331 : 90           144 144 144 144
+3088: 4 11335 : 90           144 144 144 144
+3089: 4 11339 : 90           144 144 144 144
+308a: 4 11343 : 90           144 144 144 144
+308b: 4 11347 : 70           112 112 112 112
+308c: 4 11351 : 70           112 112 112 112
+308d: 4 11355 : 70           112 112 112 112
+308e: 4 11359 : 70           112 112 112 112
+308f: 4 11363 : 70           112 112 112 112
+3090: 4 11367 : 70           112 112 112 112
+3091: 4 11371 : 70           112 112 112 112
+3092: 4 11375 : 70           112 112 112 112
+3093: 4 11379 : 58           88 88 88 88
+3094: 4 11383 : 58           88 88 88 88
+3095: 4 11387 : 58           88 88 88 88
+3096: 4 11391 : 58           88 88 88 88
+3097: 4 11395 : 58           88 88 88 88
+3098: 4 11399 : 58           88 88 88 88
+3099: 4 11403 : 58           88 88 88 88
+309a: 4 11407 : 58           88 88 88 88
+309a: 4 11411 :          ctrl_ball:
+309d: 3 11415 : a5 2d        lda caught_ball
+309f: 2 11418 : 10 12        bpl +r
+30a1: 3 11420 : a4 3d        ldy ball_speed
+30a1: 3 11423 :          l:  tya
+30a3: 2 11426 : 98       l:  tya
+30a4: 3 11428 : 48           pha
+30a5: 6 11431 : 20 b6 30     jsr ctrl_ball_subpixel
+30a8: 4 11437 : b5 a6        lda sprites_fl,x
+30aa: 2 11441 : c9 9d        cmp #<ctrl_ball
+30ac: 2 11443 : d0 06        bne +e              ; Ball sprite has been removed…
+30ae: 4 11445 : 68           pla
+30af: 2 11449 : a8           tay
+30b0: 2 11451 : 88           dey
+30b1: 2 11453 : d0 f0        bne -l
+30b1: 2 11455 :          r:  rts
+30b3: 6 11457 : 60       r:  rts
+30b3: 6 11463 :          e:  pla
+30b4: 4 11469 : 68       e:  pla
+30b5: 6 11473 : 60           rts
+30b5: 6 11479 :          ctrl_ball_subpixel:
+30b6: 2 11485 : a9 00        lda #0
+30b8: 3 11487 : 85 4a        sta has_hit_vaus
+30ba: 4 11490 : b5 66        lda sprites_y,x
+30bc: 2 11494 : c9 e6        cmp #@(- vaus_y 2)
+30be: 2 11496 : 90 5d        bcc no_vaus_hit
+30c0: 2 11498 : c9 f0        cmp #@(+ vaus_y 8)
+30c2: 2 11500 : b0 59        bcs no_vaus_hit
+30c4: 4 11502 : b4 56        ldy sprites_x,x
+30c6: 2 11506 : c8           iny
+30c7: 3 11508 : 84 1b        sty tmp
+30c9: 3 11511 : a5 65        lda @(+ sprites_x (-- num_sprites))
+30cb: 3 11514 : c5 1b        cmp tmp
+30cd: 2 11517 : b0 4e        bcs no_vaus_hit
+30cf: 3 11519 : a5 65        lda @(+ sprites_x (-- num_sprites))
+30d1: 2 11522 : 18           clc
+30d2: 3 11524 : 65 2f        adc vaus_width
+30d4: 2 11527 : 38           sec
+30d5: 2 11529 : e9 01        sbc #1
+30d7: 3 11531 : c5 1b        cmp tmp
+30d9: 2 11534 : 90 42        bcc no_vaus_hit
+30db: 5 11536 : e6 4a        inc has_hit_vaus
+30dd: 3 11541 : a5 1b        lda tmp
+30df: 2 11544 : 38           sec
+30e0: 3 11546 : e5 65        sbc @(+ sprites_x (-- num_sprites))
+30e2: 2 11549 : a8           tay
+30e3: 2 11551 : a9 10        lda #16
+30e5: 3 11553 : c5 2f        cmp vaus_width
+30e7: 2 11556 : 90 06        bcc +n
+30e9: 4 11558 : b9 6d 30     lda vaus_directions,y
+30ec: 4 11562 : 4c f2 30     jmp +m
+30ec: 4 11566 :          n:  lda vaus_directions_extended,y
+30ef: 4 11570 : b9 7d 30 n:  lda vaus_directions_extended,y
+30ef: 4 11574 :          m:  sta sprites_d,x
+30f2: 4 11578 : 95 c6    m:  sta sprites_d,x
+30f4: 2 11582 : a9 e5        lda #@(- vaus_y 3)
+30f6: 4 11584 : 95 66        sta sprites_y,x
+30f8: 2 11588 : a9 00        lda #0
+30fa: 3 11590 : 85 2e        sta reflections_since_last_vaus_hit
+30fc: 3 11593 : a5 29        lda mode
+30fe: 2 11596 : c9 02        cmp #mode_catching
+3100: 2 11598 : d0 12        bne +n
+3102: 3 11600 : 86 2d        stx caught_ball
+3104: 2 11603 : a9 30        lda #<ball_caught
+3106: 4 11605 : 95 96        sta sprites_l,x
+3108: 2 11609 : a9 e0        lda #@(* 28 8)
+310a: 4 11611 : 95 66        sta sprites_y,x
+310c: 6 11615 : 20 90 31     jsr applied_reflection
+310f: 2 11621 : a9 0a        lda #snd_caught_ball
+3111: 4 11623 : 4c 14 2c     jmp play_sound
+3111: 4 11627 :          n:  jmp applied_reflection
+3114: 4 11631 : 4c 90 31 n:  jmp applied_reflection
+3114: 4 11635 :          m:  jsr correct_trajectory
+3117: 6 11639 : 20 dd 31 m:  jsr correct_trajectory
+311a: 4 11645 : 4c a8 31     jmp move_ball
+311a: 4 11649 :          no_vaus_hit:
+311d: 2 11653 : a9 00        lda #0
+311f: 3 11655 : 85 2c        sta side_degrees
+3121: 3 11658 : 85 43        sta has_collision
+3123: 3 11661 : 85 48        sta has_hit_brick
+3125: 6 11664 : 20 62 2e     jsr reflect
+3128: 3 11670 : a5 43        lda has_collision
+312a: 2 11673 : f0 eb        beq -m
+312c: 3 11675 : a5 48        lda has_hit_brick
+312e: 2 11678 : f0 4e        beq hit_solid
+3130: 2 11680 : a9 00        lda #0
+3132: 3 11682 : 85 2e        sta reflections_since_last_vaus_hit
+3134: 3 11685 : a5 29        lda mode
+3136: 2 11688 : c9 03        cmp #mode_disruption    ; No bonuses in disruption mode.
+3138: 2 11690 : f0 46        beq apply_reflection
+313a: 5 11692 : c6 32        dec bricks_until_bonus
+313c: 2 11697 : d0 42        bne apply_reflection
+313e: 2 11699 : a9 08        lda #8
+3140: 3 11701 : 85 32        sta bricks_until_bonus
+3142: 3 11704 : a5 0a        lda scrx
+3144: 2 11707 : 0a           asl
+3145: 2 11709 : 0a           asl
+3146: 2 11711 : 0a           asl
+3147: 4 11713 : 8d 19 27     sta @(+ bonus_init sprite_init_x)
+314a: 3 11717 : a5 0b        lda scry
+314c: 2 11720 : 0a           asl
+314d: 2 11722 : 0a           asl
+314e: 2 11724 : 0a           asl
+314f: 4 11726 : 8d 1a 27     sta @(+ bonus_init sprite_init_y)
+314f: 4 11730 :          a:  jsr random
+3152: 6 11734 : 20 a0 29 a:  jsr random
+3155: 2 11740 : 29 07        and #%111
+3157: 2 11742 : c9 07        cmp #%111
+3159: 2 11744 : f0 f7        beq -a      ; Only seven bonuses available.
+315b: 3 11746 : c5 2b        cmp current_bonus
+315d: 2 11749 : f0 f3        beq -a
+315f: 3 11751 : 85 2b        sta current_bonus
+3161: 3 11754 : 48           pha
+3162: 2 11757 : 0a           asl
+3163: 2 11759 : 0a           asl
+3164: 2 11761 : 0a           asl
+3165: 2 11763 : 18           clc
+3166: 2 11765 : 69 40        adc #<bonus_l
+3168: 4 11767 : 8d 1d 27     sta @(+ bonus_init sprite_init_gfx_l)
+316b: 4 11771 : 68           pla
+316c: 4 11775 : 8d 20 27     sta @(+ bonus_init sprite_init_data)
+316f: 2 11779 : a8           tay
+3170: 4 11781 : b9 7e 32     lda bonus_colors,y
+3173: 4 11785 : 8d 1c 27     sta @(+ bonus_init sprite_init_color)
+3176: 2 11789 : a0 28        ldy #@(- bonus_init sprite_inits)
+3178: 6 11791 : 20 44 2a     jsr add_sprite
+317b: 4 11797 : 4c 80 31     jmp apply_reflection
+317b: 4 11801 :          hit_solid:
+317e: 5 11805 : e6 2e        inc reflections_since_last_vaus_hit
+317e: 5 11810 :          apply_reflection:
+3180: 4 11815 : b5 c6        lda sprites_d,x     ; Get degrees.
+3182: 2 11819 : 38           sec
+3183: 3 11821 : e5 2c        sbc side_degrees    ; Rotate back to zero degrees.
+3185: 6 11824 : 20 ad 29     jsr neg             ; Get opposite deviation from general direction.
+3188: 2 11830 : 18           clc
+3189: 3 11832 : 65 2c        adc side_degrees    ; Rotate back to original axis.
+318b: 2 11835 : 18           clc
+318c: 2 11837 : 69 80        adc #128            ; Rotate to opposite direction.
+318e: 4 11839 : 95 c6        sta sprites_d,x
+318e: 4 11843 :          applied_reflection:
+3190: 3 11847 : a5 48        lda has_hit_brick
+3192: 3 11850 : 05 4a        ora has_hit_vaus
+3194: 2 11853 : f0 0f        beq +m
+3196: 3 11855 : a5 41        lda snd_reflection
+3198: 2 11858 : d0 09        bne +n
+319a: 3 11860 : a5 40        lda sfx_reflection
+319c: 2 11863 : 29 01        and #1
+319e: 2 11865 : 18           clc
+319f: 2 11867 : 69 07        adc #snd_reflection_low
+31a1: 3 11869 : 85 41        sta snd_reflection
+31a1: 3 11872 :          n:  inc sfx_reflection
+31a3: 5 11875 : e6 40    n:  inc sfx_reflection
+31a3: 5 11880 :          m:  jsr adjust_ball_speed
+31a5: 6 11885 : 20 63 32 m:  jsr adjust_ball_speed
+31a5: 6 11891 :          move_ball:
+31a8: 6 11897 : 20 f9 31     jsr ball_step
+31ab: 4 11903 : b5 66        lda sprites_y,x
+31ad: 2 11907 : c9 fc        cmp #@(- (* 8 screen_rows) 4)
+31af: 2 11909 : 90 1a        bcc play_reflection_sound
+31b1: 5 11911 : c6 3a        dec balls
+31b3: 2 11916 : d0 09        bne still_balls_left
+31b5: 2 11918 : a9 00        lda #0
+31b7: 3 11920 : 85 3b        sta is_running_game
+31b9: 2 11923 : a9 0b        lda #snd_miss
+31bb: 4 11925 : 4c 14 2c     jmp play_sound
+31bb: 4 11929 :          still_balls_left:
+31be: 3 11933 : a5 3a        lda balls
+31c0: 2 11936 : c9 01        cmp #1
+31c2: 2 11938 : d0 04        bne +r
+31c4: 2 11940 : a9 00        lda #0              ; Reset from disruption bonus.
+31c6: 3 11942 : 85 29        sta mode
+31c6: 3 11945 :          r:  jsr remove_sprite
+31c8: 6 11948 : 20 6a 2a r:  jsr remove_sprite
+31c8: 6 11954 :          play_reflection_sound:
+31cb: 3 11960 : a5 48        lda has_hit_brick
+31cd: 3 11963 : 05 4a        ora has_hit_vaus
+31cf: 2 11966 : f0 0b        beq +n
+31d1: 3 11968 : a5 41        lda snd_reflection
+31d3: 2 11971 : f0 07        beq +n
+31d5: 2 11973 : a2 00        ldx #0
+31d7: 3 11975 : 86 41        stx snd_reflection
+31d9: 4 11978 : 4c 14 2c     jmp play_sound
+31d9: 4 11982 :          n:  rts
+31dc: 6 11986 : 60       n:  rts
+31dc: 6 11992 :          correct_trajectory:
+31dd: 3 11998 : a5 2e        lda reflections_since_last_vaus_hit
+31df: 2 12001 : c9 20        cmp #32
+31e1: 2 12003 : 90 15        bcc +r
+31e3: 4 12005 : b5 c6        lda sprites_d,x
+31e5: 2 12009 : 29 20        and #%00100000
+31e7: 2 12011 : d0 08        bne +n
+31e9: 4 12013 : b5 c6        lda sprites_d,x
+31eb: 2 12017 : 18           clc
+31ec: 2 12019 : 69 08        adc #8
+31ee: 4 12021 : 95 c6        sta sprites_d,x
+31f0: 6 12025 : 60           rts
+31f0: 6 12031 :          n:  lda sprites_d,x
+31f1: 4 12037 : b5 c6    n:  lda sprites_d,x
+31f3: 2 12041 : 38           sec
+31f4: 2 12043 : e9 08        sbc #8
+31f6: 4 12045 : 95 c6        sta sprites_d,x
+31f6: 4 12049 :          r:  rts
+31f8: 6 12053 : 60       r:  rts
+31f8: 6 12059 :          ball_step:
+31f9: 4 12065 : b4 c6        ldy sprites_d,x
+31fb: 4 12069 : b9 90 24     lda ball_directions_x,y
+31fe: 2 12073 : 30 0e        bmi +m
+3200: 4 12075 : bd 00 02     lda sprites_dx,x
+3203: 2 12079 : 18           clc
+3204: 4 12081 : 79 90 24     adc ball_directions_x,y
+3207: 2 12085 : 90 14        bcc +n
+3209: 6 12087 : f6 56        inc sprites_x,x
+320b: 4 12093 : 4c 1d 32     jmp +n
+320b: 4 12097 :          m:  jsr neg
+320e: 6 12101 : 20 ad 29 m:  jsr neg
+3211: 3 12107 : 85 1b        sta tmp
+3213: 4 12110 : bd 00 02     lda sprites_dx,x
+3216: 2 12114 : 38           sec
+3217: 3 12116 : e5 1b        sbc tmp
+3219: 2 12119 : b0 02        bcs +n
+321b: 6 12121 : d6 56        dec sprites_x,x
+321b: 6 12127 :          n:  sta sprites_dx,x
+321d: 4 12133 : 9d 00 02 n:  sta sprites_dx,x
+3220: 4 12137 : b9 90 25     lda ball_directions_y,y
+3223: 2 12141 : 30 0e        bmi +m
+3225: 4 12143 : bd 10 02     lda sprites_dy,x
+3228: 2 12147 : 18           clc
+3229: 4 12149 : 79 90 25     adc ball_directions_y,y
+322c: 2 12153 : 90 14        bcc +n
+322e: 6 12155 : f6 66        inc sprites_y,x
+3230: 4 12161 : 4c 42 32     jmp +n
+3230: 4 12165 :          m:  jsr neg
+3233: 6 12169 : 20 ad 29 m:  jsr neg
+3236: 3 12175 : 85 1b        sta tmp
+3238: 4 12178 : bd 10 02     lda sprites_dy,x
+323b: 2 12182 : 38           sec
+323c: 3 12184 : e5 1b        sbc tmp
+323e: 2 12187 : b0 02        bcs +n
+3240: 6 12189 : d6 66        dec sprites_y,x
+3240: 6 12195 :          n:  sta sprites_dy,x
+3242: 4 12201 : 9d 10 02 n:  sta sprites_dy,x
+3245: 6 12205 : 60           rts
+3245: 6 12211 :          make_ball:
+3246: 2 12217 : a9 46        lda #70
+3248: 4 12219 : 8d 09 27     sta @(+ ball_init sprite_init_x)
+324b: 2 12223 : a9 e0        lda #@(* 28 8)
+324d: 4 12225 : 8d 0a 27     sta @(+ ball_init sprite_init_y)
+3250: 2 12229 : a9 30        lda #<ball_caught
+3252: 4 12231 : 8d 0d 27     sta @(+ ball_init sprite_init_gfx_l)
+3255: 2 12235 : a9 70        lda #default_ball_direction
+3257: 4 12237 : 8d 10 27     sta @(+ ball_init sprite_init_data)
+325a: 2 12241 : a2 0d        ldx #@(- num_sprites 3)
+325c: 3 12243 : 86 2d        stx caught_ball
+325e: 2 12246 : a0 18        ldy #@(- ball_init sprite_inits)
+3260: 4 12248 : 4c 70 2a     jmp replace_sprite
+3260: 4 12252 :          adjust_ball_speed:
+3263: 3 12256 : a5 38        lda @(++ framecounter)
+3265: 2 12259 : c9 05        cmp #5
+3267: 2 12261 : d0 14        bne +n
+3269: 3 12263 : a5 3d        lda ball_speed
+326b: 2 12266 : c9 14        cmp #max_ball_speed
+326d: 2 12268 : b0 0e        bcs +n                  ; Already at maximum speed. Do nothing…
+326f: 5 12270 : e6 3d        inc ball_speed          ; Play the blues…
+3271: 3 12275 : a5 3f        lda is_using_paddle
+3273: 2 12278 : f0 02        beq +m
+3275: 5 12280 : e6 3d        inc ball_speed
+3275: 5 12285 :          m:  lda #0
+3277: 2 12290 : a9 00    m:  lda #0
+3279: 3 12292 : 85 37        sta framecounter
+327b: 3 12295 : 85 38        sta @(++ framecounter)
+327b: 3 12298 :          n:  rts
+327d: 6 12301 : 60       n:  rts
+327d: 6 12307 :          bonus_colors:
+327e: 6 12313 : 0f           @(+ multicolor yellow)
+327f: 6 12319 : 0e           @(+ multicolor blue)
+3280: 6 12325 : 0d           @(+ multicolor green)
+3281: 6 12331 : 0f           @(+ multicolor yellow)
+3282: 6 12337 : 0c           @(+ multicolor purple)
+3283: 6 12343 : 0b           @(+ multicolor cyan)
+3284: 6 12349 : 09           @(+ multicolor white)
+3284: 6 12355 :          ctrl_bonus:
+3285: 4 12361 : b5 66        lda sprites_y,x
+3287: 2 12365 : f0 53        beq +r              ; Bonus left playfield…
+3289: 6 12367 : 20 b1 2a     jsr find_hit
+328c: 2 12373 : b0 51        bcs +m              ; Nothing hit…
+328e: 4 12375 : b9 76 00     lda sprites_i,y
+3291: 2 12379 : 29 01        and #is_vaus
+3293: 2 12381 : f0 4a        beq +m              ; Didn't hit the Vaus…
+3295: 2 12383 : a0 3f        ldy #@(- score_1000 scores)
+3297: 6 12385 : 20 dc 2d     jsr add_to_score
+329a: 3 12391 : a5 2d        lda caught_ball
+329c: 2 12394 : 30 0d        bmi +n
+329e: 2 12396 : a9 ff        lda #255
+32a0: 3 12398 : 85 2d        sta caught_ball
+32a2: 2 12401 : a9 07        lda #snd_reflection_low
+32a4: 6 12403 : 20 14 2c     jsr play_sound
+32a7: 2 12409 : a9 00        lda #0
+32a9: 3 12411 : 85 40        sta sfx_reflection
+32a9: 3 12414 :          n:
+32ab: 3 12417 : a5 29        lda mode
+32ad: 2 12420 : c9 04        cmp #mode_extended
+32af: 2 12422 : d0 16        bne +n
+32b1: 2 12424 : 8a           txa
+32b2: 3 12426 : 48           pha
+32b3: 3 12429 : a6 4c        ldx vaus_middle_idx
+32b5: 6 12432 : 20 6a 2a     jsr remove_sprite
+32b8: 2 12438 : a2 0f        ldx #spriteidx_vaus_left
+32ba: 4 12440 : b5 56        lda sprites_x,x
+32bc: 2 12444 : 18           clc
+32bd: 2 12446 : 69 04        adc #4
+32bf: 4 12448 : 95 56        sta sprites_x,x
+32c1: 2 12452 : a9 10        lda #16
+32c3: 3 12454 : 85 2f        sta vaus_width
+32c5: 4 12457 : 68           pla
+32c6: 2 12461 : aa           tax
+32c6: 2 12463 :          n:
+32c7: 2 12465 : a9 00        lda #0
+32c9: 3 12467 : 85 29        sta mode
+32cb: 4 12470 : b4 c6        ldy sprites_d,x
+32cd: 4 12474 : b9 e4 32     lda bonus_funs_l,y
+32d0: 4 12478 : 8d da 32     sta @(+ +selfmod 1)
+32d3: 4 12482 : b9 eb 32     lda bonus_funs_h,y
+32d6: 4 12486 : 8d db 32     sta @(+ +selfmod 2)
+32d6: 4 12490 :          selfmod:
+32d9: 6 12494 : 20 34 12     jsr $1234
+32d9: 6 12500 :          r:  jmp remove_sprite
+32dc: 4 12506 : 4c 6a 2a r:  jmp remove_sprite
+32dc: 4 12510 :          m:  lda #1
+32df: 2 12514 : a9 01    m:  lda #1
+32e1: 4 12516 : 4c 91 2a     jmp sprite_down
+32e1: 4 12520 :          bonus_funs_l:
+32e2: 4 12524 : f2           <apply_bonus_l
+32e3: 4 12528 : f7           <apply_bonus_e
+32e4: 4 12532 : 20           <apply_bonus_c
+32e5: 4 12536 : 25           <apply_bonus_s
+32e6: 4 12540 : 34           <apply_bonus_b
+32e7: 4 12544 : 4e           <apply_bonus_d
+32e8: 4 12548 : 82           <apply_bonus_p
+32e8: 4 12552 :          bonus_funs_h:
+32e9: 4 12556 : 32           >apply_bonus_l
+32ea: 4 12560 : 32           >apply_bonus_e
+32eb: 4 12564 : 33           >apply_bonus_c
+32ec: 4 12568 : 33           >apply_bonus_s
+32ed: 4 12572 : 33           >apply_bonus_b
+32ee: 4 12576 : 33           >apply_bonus_d
+32ef: 4 12580 : 33           >apply_bonus_p
+32ef: 4 12584 :          apply_bonus_l:
+32f2: 2 12588 : a9 01        lda #mode_laser
+32f4: 3 12590 : 85 29        sta mode
+32f6: 6 12593 : 60           rts
+32f6: 6 12599 :          apply_bonus_e:
+32f7: 2 12605 : a0 0f        ldy #spriteidx_vaus_left
+32f9: 4 12607 : b9 56 00     lda sprites_x,y
+32fc: 2 12611 : 38           sec
+32fd: 2 12613 : e9 04        sbc #4
+32ff: 4 12615 : 99 56 00     sta sprites_x,y
+3302: 2 12619 : a0 08        ldy #@(- vaus_middle_init sprite_inits)
+3304: 6 12621 : 20 44 2a     jsr add_sprite
+3307: 2 12627 : c9 ff        cmp #255
+3309: 2 12629 : d0 06        bne +n
+330b: 6 12631 : 20 e3 33     jsr remove_bonuses  ; No slots left, last resort.
+330e: 4 12637 : 4c f7 32     jmp apply_bonus_e
+330e: 4 12641 :          n:  sta vaus_middle_idx
+3311: 3 12645 : 85 4c    n:  sta vaus_middle_idx
+3313: 2 12648 : a9 04        lda #mode_extended
+3315: 3 12650 : 85 29        sta mode
+3317: 2 12653 : a9 18        lda #24
+3319: 3 12655 : 85 2f        sta vaus_width
+331b: 2 12658 : a9 0e        lda #snd_growing_vaus
+331d: 4 12660 : 4c 14 2c     jmp play_sound
+331d: 4 12664 :          apply_bonus_c:
+3320: 2 12668 : a9 02        lda #mode_catching
+3322: 3 12670 : 85 29        sta mode
+3324: 6 12673 : 60           rts
+3324: 6 12679 :          apply_bonus_s:
+3325: 3 12685 : a5 3d        lda ball_speed
+3327: 2 12688 : c9 02        cmp #min_ball_speed
+3329: 2 12690 : f0 08        beq +n
+332b: 5 12692 : c6 3d        dec ball_speed
+332d: 2 12697 : a9 00        lda #0              ; Time acceleration back to default.
+332f: 3 12699 : 85 37        sta framecounter
+3331: 3 12702 : 85 38        sta @(++ framecounter)
+3331: 3 12705 :          n:  rts
+3333: 6 12708 : 60       n:  rts
+3333: 6 12714 :          apply_bonus_b:
+3334: 5 12720 : e6 2a        inc mode_break
+3336: 2 12725 : a9 0e        lda #14
+3338: 3 12727 : 85 0a        sta scrx
+333a: 2 12730 : a9 1c        lda #28
+333c: 3 12732 : 85 0b        sta scry
+333c: 3 12735 :          l:  jsr scrcoladdr
+333e: 6 12738 : 20 33 29 l:  jsr scrcoladdr
+3341: 2 12744 : a9 00        lda #0
+3343: 5 12746 : 91 06        sta (scr),y
+3345: 5 12751 : e6 0b        inc scry
+3347: 3 12756 : a5 0b        lda scry
+3349: 2 12759 : c9 1f        cmp #31
+334b: 2 12761 : d0 f1        bne -l
+334d: 6 12763 : 60           rts
+334d: 6 12769 :          apply_bonus_d:
+334e: 6 12775 : 20 e3 33     jsr remove_bonuses
+3351: 2 12781 : a0 0f        ldy #@(-- num_sprites)
+3351: 2 12783 :          l:  lda sprites_i,y
+3353: 4 12785 : b9 76 00 l:  lda sprites_i,y
+3356: 2 12789 : 29 08        and #is_ball
+3358: 2 12791 : d0 03        bne +f
+335a: 2 12793 : 88           dey
+335b: 2 12795 : 10 f6        bpl -l
+335b: 2 12797 :          f:  lda sprites_x,y                     ; Copy coordinates of current ball.
+335d: 4 12799 : b9 56 00 f:  lda sprites_x,y                     ; Copy coordinates of current ball.
+3360: 4 12803 : 8d 09 27     sta @(+ ball_init sprite_init_x)
+3363: 4 12807 : b9 66 00     lda sprites_y,y
+3366: 4 12811 : 8d 0a 27     sta @(+ ball_init sprite_init_y)
+3369: 4 12815 : b9 c6 00     lda sprites_d,y
+336c: 4 12819 : 8d 10 27     sta @(+ ball_init sprite_init_data)
+336f: 2 12823 : a0 18        ldy #@(- ball_init sprite_inits)
+3371: 6 12825 : 20 44 2a     jsr add_sprite
+3374: 2 12831 : a0 18        ldy #@(- ball_init sprite_inits)
+3376: 6 12833 : 20 44 2a     jsr add_sprite
+3379: 5 12839 : e6 3a        inc balls
+337b: 5 12844 : e6 3a        inc balls
+337d: 2 12849 : a9 03        lda #mode_disruption
+337f: 3 12851 : 85 29        sta mode
+3381: 6 12854 : 60           rts
+3381: 6 12860 :          apply_bonus_p:
+3382: 2 12866 : a9 03        lda #snd_bonus_life
+3384: 6 12868 : 20 14 2c     jsr play_sound
+3387: 5 12874 : e6 39        inc lifes
+3389: 4 12879 : 4c 3c 2c     jmp draw_lifes
+3389: 4 12883 :          rotate_bonus:
+338c: 3 12887 : 85 00        sta s
+338e: 3 12890 : 86 01        stx @(++ s)
+3390: 2 12893 : a0 06        ldy #6
+3392: 5 12895 : b1 00        lda (s),y
+3394: 3 12900 : 48           pha
+3395: 2 12903 : 88           dey
+3395: 2 12905 :          l:  lda (s),y
+3396: 5 12907 : b1 00    l:  lda (s),y
+3398: 2 12912 : c8           iny
+3399: 5 12914 : 91 00        sta (s),y
+339b: 2 12919 : 88           dey
+339c: 2 12921 : 88           dey
+339d: 2 12923 : d0 f7        bne -l
+339f: 4 12925 : 68           pla
+33a0: 2 12929 : c8           iny
+33a1: 5 12931 : 91 00        sta (s),y
+33a1: 5 12936 :          r:  rts
+33a3: 6 12941 : 60       r:  rts
+33a3: 6 12947 :          rotate_bonuses:
+33a4: 3 12953 : a5 37        lda framecounter
+33a6: 2 12956 : 4a           lsr
+33a7: 2 12958 : 90 fa        bcc -r
+33a9: 2 12960 : 4a           lsr
+33aa: 2 12962 : 90 1f        bcc +n
+33ac: 2 12964 : 4a           lsr
+33ad: 2 12966 : 90 0e        bcc +m
+33af: 2 12968 : a9 40        lda #<bonus_l
+33b1: 2 12970 : a2 21        ldx #>bonus_l
+33b3: 6 12972 : 20 8c 33     jsr rotate_bonus
+33b6: 2 12978 : a9 48        lda #<bonus_e
+33b8: 2 12980 : a2 21        ldx #>bonus_e
+33ba: 4 12982 : 4c 8c 33     jmp rotate_bonus
+33ba: 4 12986 :          m:  lda #<bonus_c
+33bd: 2 12990 : a9 50    m:  lda #<bonus_c
+33bf: 2 12992 : a2 21        ldx #>bonus_c
+33c1: 6 12994 : 20 8c 33     jsr rotate_bonus
+33c4: 2 13000 : a9 58        lda #<bonus_s
+33c6: 2 13002 : a2 21        ldx #>bonus_s
+33c8: 4 13004 : 4c 8c 33     jmp rotate_bonus
+33c8: 4 13008 :          n:  lsr
+33cb: 2 13012 : 4a       n:  lsr
+33cc: 2 13014 : 90 0e        bcc +m
+33ce: 2 13016 : a9 60        lda #<bonus_b
+33d0: 2 13018 : a2 21        ldx #>bonus_b
+33d2: 6 13020 : 20 8c 33     jsr rotate_bonus
+33d5: 2 13026 : a9 68        lda #<bonus_d
+33d7: 2 13028 : a2 21        ldx #>bonus_d
+33d9: 4 13030 : 4c 8c 33     jmp rotate_bonus
+33d9: 4 13034 :          m:  lda #<bonus_p
+33dc: 2 13038 : a9 70    m:  lda #<bonus_p
+33de: 2 13040 : a2 21        ldx #>bonus_p
+33e0: 4 13042 : 4c 8c 33     jmp rotate_bonus
+33e0: 4 13046 :          remove_bonuses:
+33e3: 2 13050 : 8a           txa
+33e4: 3 13052 : 48           pha
+33e5: 2 13055 : a2 0e        ldx #@(- num_sprites 2)
+33e5: 2 13057 :          l:  lda sprites_i,x
+33e7: 4 13059 : b5 76    l:  lda sprites_i,x
+33e9: 2 13063 : 29 02        and #is_bonus
+33eb: 2 13065 : f0 03        beq +n
+33ed: 6 13067 : 20 6a 2a     jsr remove_sprite
+33ed: 6 13073 :          n:  dex
+33f0: 2 13079 : ca       n:  dex
+33f1: 2 13081 : 10 f4        bpl -l
+33f3: 4 13083 : 68           pla
+33f4: 2 13087 : aa           tax
+33f5: 6 13089 : 60           rts
+33f5: 6 13095 :          ctrl_distractor_top:
+33f5: 6 13101 :          ctrl_distractor_bottom:
+33f6: 6 13107 : 60           rts
+33f6: 6 13113 :          frame_timer_pal = @(- (/ (cpu-cycles :pal) 50) 18)
+33f6: 6 13119 :          frame_timer_ntsc = @(- (/ (cpu-cycles :ntsc) 50) 158)
+33f6: 6 13125 :          start_irq:
+33f7: 2 13131 : a9 00        lda #0
+33f9: 3 13133 : 85 3b        sta is_running_game
+33f9: 3 13136 :          l:  lda $9004
+33fb: 4 13139 : ad 04 90 l:  lda $9004
+33fe: 2 13143 : d0 fb        bne -l
+3400: 2 13145 : a9 2b        lda #<irq
+3402: 4 13147 : 8d 14 03     sta $314
+3405: 2 13151 : a9 34        lda #>irq
+3407: 4 13153 : 8d 15 03     sta $315
+340a: 2 13157 : a2 86        ldx #<frame_timer_pal
+340c: 2 13159 : a0 56        ldy #>frame_timer_pal
+340e: 4 13161 : ad e4 ed     lda $ede4
+3411: 2 13165 : c9 0c        cmp #$0c
+3413: 2 13167 : f0 04        beq +p
+3415: 2 13169 : a2 a3        ldx #<frame_timer_ntsc
+3417: 2 13171 : a0 4f        ldy #>frame_timer_ntsc
+3417: 2 13173 :          p:  stx $9124
+3419: 4 13175 : 8e 24 91 p:  stx $9124
+341c: 4 13179 : 8c 25 91     sty $9125
+341f: 2 13183 : a9 40        lda #%01000000  : free-running
+3421: 4 13185 : 8d 2b 91     sta $912b
+3424: 2 13189 : a9 c0        lda #%11000000  ; IRQ enable
+3426: 4 13191 : 8d 2e 91     sta $912e
+3429: 2 13195 : 58           cli
+342a: 6 13197 : 60           rts
+342a: 6 13203 :          irq:
+342a: 6 13209 :          if @*show-cpu?*
+342a: 6 13215 :              lda #@(+ 8 3)
+342a: 6 13221 :              sta $900f
+342a: 6 13227 :          end
+342b: 5 13233 : e6 37        inc framecounter
+342d: 2 13238 : d0 02        bne +n
+342f: 5 13240 : e6 38        inc @(++ framecounter)
+342f: 5 13245 :          n:  jsr play_music
+3431: 6 13250 : 20 53 70 n:  jsr play_music
+3434: 6 13256 : 20 16 30     jsr set_vaus_color
+3437: 3 13262 : a5 3b        lda is_running_game
+3439: 2 13265 : f0 0a        beq +n
+343b: 6 13267 : 20 dd 2a     jsr call_sprite_controllers
+343e: 6 13273 : 20 a4 33     jsr rotate_bonuses
+3441: 2 13279 : a9 01        lda #1
+3443: 3 13281 : 85 3c        sta has_moved_sprites
+3443: 3 13284 :          n:  lda #$7f        ; Acknowledge IRQ.
+3445: 2 13287 : a9 7f    n:  lda #$7f        ; Acknowledge IRQ.
+3447: 4 13289 : 8d 2d 91     sta $912d
+3447: 4 13293 :          if @*show-cpu?*
+3447: 4 13297 :              lda #@(+ 8 2)
+3447: 4 13301 :              sta $900f
+3447: 4 13305 :          end
+344a: 4 13309 : 4c 18 eb     jmp $eb18       ; CBM ROM IRQ return
+344a: 4 13313 :          len_round   = 9
+344a: 4 13317 :          len_ready   = 5
+344a: 4 13321 :          ofs_round = @(+ (* 15 22) 5)
+344a: 4 13325 :          ofs_ready = @(+ (* 15 24) 6)
+344a: 4 13329 :          screen_round = @(+ screen ofs_round)
+344a: 4 13333 :          screen_ready = @(+ screen ofs_ready)
+344a: 4 13337 :          colors_round = @(+ colors ofs_round)
+344a: 4 13341 :          colors_ready = @(+ colors ofs_ready)
+344a: 4 13345 :          chars_round = @(quarter framechars)
+344a: 4 13349 :          chars_ready = @(+ chars_round len_round)
+344a: 4 13353 :          charset_round = @(+ charset (* 8 chars_round))
+344a: 4 13357 :          charset_ready = @(+ charset (* 8 chars_ready))
+344a: 4 13361 :          roundstart:
+344d: 2 13365 : a9 10        lda #score_char0
+344f: 4 13367 : 8d ed 34     sta @(+ txt_round_nn 7)
+3452: 3 13371 : a5 30        lda level
+3452: 3 13374 :          l:  sec
+3454: 2 13377 : 38       l:  sec
+3455: 2 13379 : e9 0a        sbc #10
+3457: 2 13381 : 90 06        bcc +n
+3459: 6 13383 : ee ed 34     inc @(+ txt_round_nn 7)
+345c: 4 13389 : 4c 54 34     jmp -l
+345c: 4 13393 :          n:  clc
+345f: 2 13397 : 18       n:  clc
+3460: 2 13399 : 69 1a        adc #@(+ 10 (char-code #\0) (- score_char0 (char-code #\0)))
+3462: 4 13401 : 8d ee 34     sta @(+ txt_round_nn 8)
+3463: 4 13405 : 00           0
+3464: 4 13409 : 03           c_clrmb <charset_round >charset_round @(* 8 len_round)
+3465: 4 13413 : 00           c_clrmb <charset_round >charset_round @(* 8 len_round)
+3466: 4 13417 : 15           c_clrmb <charset_round >charset_round @(* 8 len_round)
+3467: 4 13421 : 48           c_clrmb <charset_round >charset_round @(* 8 len_round)
+3468: 4 13425 : 03           c_clrmb <charset_ready >charset_ready @(* 8 len_ready)
+3469: 4 13429 : 48           c_clrmb <charset_ready >charset_ready @(* 8 len_ready)
+346a: 4 13433 : 15           c_clrmb <charset_ready >charset_ready @(* 8 len_ready)
+346b: 4 13437 : 28           c_clrmb <charset_ready >charset_ready @(* 8 len_ready)
+346c: 4 13441 : 00           0
+346f: 2 13445 : a9 4f        lda #<screen_round
+3471: 3 13447 : 85 02        sta d
+3473: 2 13450 : a9 11        lda #>screen_round
+3475: 3 13452 : 85 03        sta @(++ d)
+3477: 2 13455 : a2 05        ldx #5
+3479: 2 13457 : a9 20        lda #chars_round
+347b: 6 13459 : 20 da 34     jsr make_4x8_line
+347e: 2 13465 : a9 6e        lda #<screen_ready
+3480: 3 13467 : 85 02        sta d
+3482: 2 13470 : a9 11        lda #>screen_ready
+3484: 3 13472 : 85 03        sta @(++ d)
+3486: 2 13475 : a2 03        ldx #3
+3488: 2 13477 : a9 29        lda #chars_ready
+348a: 6 13479 : 20 da 34     jsr make_4x8_line
+348d: 2 13485 : a2 09        ldx #len_round
+348f: 2 13487 : a9 01        lda #white
+348f: 2 13489 :          l:  sta colors_round,x
+3491: 4 13491 : 9d 4f 95 l:  sta colors_round,x
+3494: 4 13495 : 9d 6e 95     sta colors_ready,x
+3497: 2 13499 : ca           dex
+3498: 2 13501 : 10 f7        bpl -l
+3498: 2 13503 :              txt_round_nnm = @(-- txt_round_nn)
+3499: 2 13505 : 00           0
+349a: 2 13507 : 02           c_setsd <txt_round_nnm >txt_round_nnm <charset_round >charset_round
+349b: 2 13509 : e5           c_setsd <txt_round_nnm >txt_round_nnm <charset_round >charset_round
+349c: 2 13511 : 34           c_setsd <txt_round_nnm >txt_round_nnm <charset_round >charset_round
+349d: 2 13513 : 00           c_setsd <txt_round_nnm >txt_round_nnm <charset_round >charset_round
+349e: 2 13515 : 15           c_setsd <txt_round_nnm >txt_round_nnm <charset_round >charset_round
+349f: 2 13517 : 00           0
+34a1: 2 13519 : a2 09        ldx #len_round
+34a3: 2 13521 : a0 01        ldy #1
+34a5: 6 13523 : 20 ad 2d     jsr print_string2
+34a8: 2 13529 : a9 02        lda #snd_round
+34aa: 6 13531 : 20 14 2c     jsr play_sound
+34ad: 2 13537 : a2 82        ldx #130
+34ad: 2 13539 :          l:  lda $9004
+34af: 4 13541 : ad 04 90 l:  lda $9004
+34b2: 2 13545 : 4a           lsr
+34b3: 2 13547 : d0 fa        bne -l
+34b3: 2 13549 :          n:  lda $9004
+34b5: 4 13551 : ad 04 90 n:  lda $9004
+34b8: 2 13555 : 4a           lsr
+34b9: 2 13557 : d0 fa        bne -n
+34bb: 2 13559 : ca           dex
+34bc: 2 13561 : d0 f1        bne -l
+34bc: 2 13563 :              txt_readym = @(-- txt_ready)
+34bd: 2 13565 : 00           0
+34be: 2 13567 : 02           c_setsd <txt_readym >txt_readym <charset_ready >charset_ready
+34bf: 2 13569 : ee           c_setsd <txt_readym >txt_readym <charset_ready >charset_ready
+34c0: 2 13571 : 34           c_setsd <txt_readym >txt_readym <charset_ready >charset_ready
+34c1: 2 13573 : 48           c_setsd <txt_readym >txt_readym <charset_ready >charset_ready
+34c2: 2 13575 : 15           c_setsd <txt_readym >txt_readym <charset_ready >charset_ready
+34c3: 2 13577 : 00           0
+34c5: 2 13579 : a2 05        ldx #len_ready
+34c7: 2 13581 : a0 01        ldy #1
+34c9: 6 13583 : 20 ad 2d     jsr print_string2
+34cc: 6 13589 : 20 33 2c     jsr wait_sound
+34cd: 6 13595 : 00           0
+34ce: 6 13601 : 03           c_clrmb <screen_round >screen_round 5
+34cf: 6 13607 : 4f           c_clrmb <screen_round >screen_round 5
+34d0: 6 13613 : 11           c_clrmb <screen_round >screen_round 5
+34d1: 6 13619 : 05           c_clrmb <screen_round >screen_round 5
+34d2: 6 13625 : 03           c_clrmb <screen_ready >screen_ready 5
+34d3: 6 13631 : 6e           c_clrmb <screen_ready >screen_ready 5
+34d4: 6 13637 : 11           c_clrmb <screen_ready >screen_ready 5
+34d5: 6 13643 : 05           c_clrmb <screen_ready >screen_ready 5
+34d6: 6 13649 : 00           0
+34d9: 6 13655 : 60           rts
+34d9: 6 13661 :          make_4x8_line:
+34da: 2 13667 : a0 00        ldy #0
+34da: 2 13669 :          l:  sta (d),y
+34dc: 5 13671 : 91 02    l:  sta (d),y
+34de: 2 13676 : 18           clc
+34df: 2 13678 : 69 01        adc #1
+34e1: 2 13680 : c8           iny
+34e2: 2 13682 : ca           dex
+34e3: 2 13684 : d0 f7        bne -l
+34e5: 6 13686 : 60           rts
+34e5: 6 13692 :          txt_round_nn:   @(string4x8 "ROUND  XX")
+34ee: 6 13698 : 32 2f 35 2e 24 00 00 38 38txt_round_nn:   @(string4x8 "ROUND  XX")
+34ee: 6 13704 :          txt_ready:      @(string4x8 "READY")
+34f3: 6 13710 : 32 25 21 24 39txt_ready:      @(string4x8 "READY")
+34f3: 6 13716 :          roundintro:
+34f3: 6 13722 :          l:  lda #0              ; Fetch joystick status.
+34f4: 2 13728 : a9 00    l:  lda #0              ; Fetch joystick status.
+34f6: 4 13730 : 8d 13 91     sta $9113
+34f9: 4 13734 : ad 11 91     lda $9111
+34fc: 2 13738 : aa           tax
+34fd: 2 13740 : 29 20        and #joy_fire
+34ff: 2 13742 : f0 05        beq +n
+3501: 2 13744 : 8a           txa
+3502: 2 13746 : 29 10        and #joy_left
+3504: 2 13748 : d0 ee        bne -l
+3504: 2 13750 :          n:  rts
+3506: 6 13752 : 60       n:  rts
+3506: 6 13758 :          txt_round_intro:
+3519: 6 13764 : 54 48 45 20 45 52 41 20 41 4e 44 20 54 49 4d 45 20 4f 46    "THE ERA AND TIME OF" 1
+351a: 6 13770 : 01           "THE ERA AND TIME OF" 1
+352f: 6 13776 : 54 48 49 53 20 53 54 4f 52 59 20 49 53 20 55 4e 4b 4e 4f 57 4e    "THIS STORY IS UNKNOWN" 0
+3530: 6 13782 : 00           "THIS STORY IS UNKNOWN" 0
+3544: 6 13788 : 41 46 54 45 52 20 54 48 45 20 4d 4f 54 48 45 52 53 48 49 50    "AFTER THE MOTHERSHIP" 1
+3545: 6 13794 : 01           "AFTER THE MOTHERSHIP" 1
+355e: 6 13800 : 22 41 52 4b 41 4e 4f 49 44 22 20 57 41 53 20 44 45 53 54 52 4f 59 45 44 2c    "\"ARKANOID\" WAS DESTROYED," 1
+355f: 6 13806 : 01           "\"ARKANOID\" WAS DESTROYED," 1
+3572: 6 13812 : 41 20 53 50 41 43 45 43 52 41 46 54 20 22 56 41 55 53 22    "A SPACECRAFT \"VAUS\"" 1
+3573: 6 13818 : 01           "A SPACECRAFT \"VAUS\"" 1
+358a: 6 13824 : 53 43 52 41 4d 42 4c 45 44 20 41 57 41 59 20 46 52 4f 4d 20 49 54 2e    "SCRAMBLED AWAY FROM IT." 0
+358b: 6 13830 : 00           "SCRAMBLED AWAY FROM IT." 0
+3599: 6 13836 : 42 55 54 20 4f 4e 4c 59 20 54 4f 20 42 45    "BUT ONLY TO BE" 1
+359a: 6 13842 : 01           "BUT ONLY TO BE" 1
+35b1: 6 13848 : 54 52 41 50 50 45 44 20 49 4e 20 53 50 41 43 45 20 57 41 52 50 45 44    "TRAPPED IN SPACE WARPED" 1
+35b2: 6 13854 : 01           "TRAPPED IN SPACE WARPED" 1
+35c4: 6 13860 : 42 59 20 53 4f 4d 45 4f 4e 45 2e 2e 2e 2e 2e 2e 2e 2e    "BY SOMEONE........" 0
+35c5: 6 13866 : 00           "BY SOMEONE........" 0
+35c6: 6 13872 : 00           0
+35c6: 6 13878 :          txt_enter:      @(string4x8 "ENTER YOUR INITIALS !") 255
+35db: 6 13884 : 25 2e 34 25 32 00 39 2f 35 32 00 29 2e 29 34 29 21 2c 33 00 01txt_enter:      @(string4x8 "ENTER YOUR INITIALS !") 255
+35dc: 6 13890 : ff       txt_enter:      @(string4x8 "ENTER YOUR INITIALS !") 255
+35dc: 6 13896 :          txt_hiscore:    @(string4x8 "HIGH ")
+35e1: 6 13902 : 28 29 27 28 00txt_hiscore:    @(string4x8 "HIGH ")
+35e1: 6 13908 :          txt_score:      @(string4x8 "SCORE") 255
+35e6: 6 13914 : 33 23 2f 32 25txt_score:      @(string4x8 "SCORE") 255
+35e7: 6 13920 : ff       txt_score:      @(string4x8 "SCORE") 255
+35e7: 6 13926 :          txt_round:      @(string4x8 "ROUND") 255
+35ec: 6 13932 : 32 2f 35 2e 24txt_round:      @(string4x8 "ROUND") 255
+35ed: 6 13938 : ff       txt_round:      @(string4x8 "ROUND") 255
+35ed: 6 13944 :          txt_name:       @(string4x8 "NAME") 255
+35f1: 6 13950 : 2e 21 2d 25txt_name:       @(string4x8 "NAME") 255
+35f2: 6 13956 : ff       txt_name:       @(string4x8 "NAME") 255
+35f2: 6 13962 :          txt_all:        @(string4x8 "ALL") 255
+35f5: 6 13968 : 21 2c 2c txt_all:        @(string4x8 "ALL") 255
+35f6: 6 13974 : ff       txt_all:        @(string4x8 "ALL") 255
+35f6: 6 13980 :          txt_first:      @(string4x8 "1ST") 255
+35f9: 6 13986 : 11 33 34 txt_first:      @(string4x8 "1ST") 255
+35fa: 6 13992 : ff       txt_first:      @(string4x8 "1ST") 255
+35fa: 6 13998 :          txt_second:     @(string4x8 "2ND") 255
+35fd: 6 14004 : 12 2e 24 txt_second:     @(string4x8 "2ND") 255
+35fe: 6 14010 : ff       txt_second:     @(string4x8 "2ND") 255
+35fe: 6 14016 :          txt_third:      @(string4x8 "3RD") 255
+3601: 6 14022 : 13 32 24 txt_third:      @(string4x8 "3RD") 255
+3602: 6 14028 : ff       txt_third:      @(string4x8 "3RD") 255
+3602: 6 14034 :          txt_fourth:     @(string4x8 "4TH") 255
+3605: 6 14040 : 14 34 28 txt_fourth:     @(string4x8 "4TH") 255
+3606: 6 14046 : ff       txt_fourth:     @(string4x8 "4TH") 255
+3606: 6 14052 :          txt_fifth:      @(string4x8 "5TH") 255
+3609: 6 14058 : 15 34 28 txt_fifth:      @(string4x8 "5TH") 255
+360a: 6 14064 : ff       txt_fifth:      @(string4x8 "5TH") 255
+3635: 6 14070 : 57 65 64 2c 20 20 34 20 4a 75 6e 20 31 39 38 36 2c 20 31 36 3a 33 34 20 50 72 6f 67 72 61 6d 6d 65 64 20 42 79 20 59 61 73 75 2e"Wed,  4 Jun 1986, 16:34 Programmed By Yasu."
+3635: 6 14076 :          clear_data:
+3636: 2 14082 : a9 00        lda #0
+3638: 2 14084 : aa           tax
+3638: 2 14086 :          l:  cpx #@(-- hiscore)
+3639: 2 14088 : e0 f4    l:  cpx #@(-- hiscore)
+363b: 2 14090 : b0 02        bcs +n
+363d: 4 14092 : 95 00        sta 0,x
+363d: 4 14096 :          n:  sta $200,x
+363f: 4 14100 : 9d 00 02 n:  sta $200,x
+3642: 2 14104 : ca           dex
+3643: 2 14106 : d0 f4        bne -l
+3645: 6 14108 : 60           rts
+3645: 6 14114 :          start:
+3646: 2 14120 : a2 ff        ldx #$ff
+3648: 2 14122 : 9a           txs
+3649: 6 14124 : 20 36 36     jsr clear_data
+364c: 2 14130 : a9 47        lda #<exec_script
+364e: 4 14132 : 8d 16 03     sta $316
+3651: 2 14136 : a9 27        lda #>exec_script
+3653: 4 14138 : 8d 17 03     sta $317
+3656: 6 14142 : 20 d4 2d     jsr init_hiscore
+3659: 6 14148 : 20 f7 33     jsr start_irq
+365c: 2 14154 : a9 00        lda #0
+365e: 4 14156 : 8d 2e 70     sta @(++ requested_song)
+3661: 2 14160 : a9 03        lda #snd_bonus_life ; Tell that the tape has finished loading.
+3663: 6 14162 : 20 14 2c     jsr play_sound
+3666: 6 14168 : 20 33 2c     jsr wait_sound
+3669: 4 14174 : 4c 89 36     jmp restart
+3669: 4 14178 :          game_done:
+366c: 2 14182 : a9 0d        lda #snd_doh_dissolving
+366e: 6 14184 : 20 14 2c     jsr play_sound
+3671: 6 14190 : 20 33 2c     jsr wait_sound
+3671: 6 14196 :          game_over:
+3674: 2 14202 : a9 00        lda #0
+3676: 3 14204 : 85 3b        sta is_running_game
+3678: 2 14207 : a9 04        lda #snd_game_over
+367a: 6 14209 : 20 14 2c     jsr play_sound
+367d: 6 14215 : 20 33 2c     jsr wait_sound
+3680: 3 14221 : a5 4e        lda has_hiscore
+3682: 2 14224 : f0 05        beq restart
+3684: 2 14226 : a9 06        lda #snd_hiscore
+3686: 6 14228 : 20 14 2c     jsr play_sound
+3686: 6 14234 :          restart:
+3689: 6 14240 : 20 36 36     jsr clear_data
+3689: 6 14246 :          if @(not *shadowvic?*)
+368c: 6 14252 : 20 f4 34     jsr roundintro
+368c: 6 14258 :          end
+368f: 2 14264 : a9 0b        lda #snd_coin
+3691: 6 14266 : 20 14 2c     jsr play_sound
+3694: 6 14272 : 20 33 2c     jsr wait_sound
+3697: 6 14278 : 20 b3 29     jsr init_game_mode
+369a: 4 14284 : ad 08 90     lda $9008
+369d: 3 14288 : 85 42        sta old_paddle_value
+369f: 2 14291 : a9 03        lda #default_num_lifes
+36a1: 3 14293 : 85 39        sta lifes
+36a3: 6 14296 : 20 cc 2d     jsr init_score
+36a6: 2 14302 : a9 5a        lda #<level_data
+36a8: 3 14304 : 85 19        sta current_level
+36aa: 2 14307 : a9 37        lda #>level_data
+36ac: 3 14309 : 85 1a        sta @(++ current_level)
+36ac: 3 14312 :          next_level:
+36ae: 2 14315 : a9 00        lda #0
+36b0: 3 14317 : 85 3b        sta is_running_game
+36b2: 5 14320 : e6 30        inc level
+36b4: 3 14325 : a5 30        lda level
+36b6: 2 14328 : c9 22        cmp #34
+36b8: 2 14330 : f0 b2        beq game_done
+36ba: 6 14332 : 20 4c 29     jsr clear_screen
+36bd: 6 14338 : 20 63 2c     jsr draw_level
+36c0: 6 14344 : 20 f5 2c     jsr draw_walls
+36c3: 6 14350 : 20 47 2d     jsr make_score_screen
+36c6: 6 14356 : 20 84 2d     jsr display_score
+36c6: 6 14362 :          retry:
+36c9: 2 14368 : a9 00        lda #0
+36cb: 3 14370 : 85 3b        sta is_running_game
+36cd: 3 14373 : 85 3e        sta is_firing
+36cf: 3 14376 : 85 29        sta mode
+36d1: 3 14379 : 85 2a        sta mode_break
+36d3: 3 14382 : 85 2e        sta reflections_since_last_vaus_hit
+36d5: 3 14385 : 85 41        sta snd_reflection
+36d7: 3 14388 : 85 37        sta framecounter
+36d9: 3 14391 : 85 38        sta @(++ framecounter)
+36db: 2 14394 : a9 01        lda #1
+36dd: 3 14396 : 85 3a        sta balls
+36df: 3 14399 : 85 40        sta sfx_reflection
+36e1: 3 14402 : 85 32        sta bricks_until_bonus
+36e3: 2 14405 : a9 06        lda #default_ball_speed
+36e5: 3 14407 : 85 3d        sta ball_speed
+36e7: 2 14410 : a9 10        lda #16
+36e9: 3 14412 : 85 2f        sta vaus_width
+36eb: 2 14415 : a9 ff        lda #255
+36ed: 3 14417 : 85 2b        sta current_bonus
+36ef: 6 14420 : 20 56 2b     jsr clear_sprites
+36f2: 6 14426 : 20 f5 2c     jsr draw_walls      ; Freshen up after mode_break.
+36f5: 6 14432 : 20 3c 2c     jsr draw_lifes
+36f8: 6 14438 : 20 4d 34     jsr roundstart
+36fb: 2 14444 : a2 0f        ldx #@(-- num_sprites)
+36fb: 2 14446 :          l:  jsr remove_sprite
+36fd: 6 14448 : 20 6a 2a l:  jsr remove_sprite
+3700: 2 14454 : ca           dex
+3701: 2 14456 : 10 fa        bpl -l
+3703: 6 14458 : 20 08 30     jsr make_vaus
+3706: 6 14464 : 20 46 32     jsr make_ball
+3709: 2 14470 : a9 00        lda #0
+370b: 3 14472 : 85 26        sta spriteframe
+370d: 2 14475 : 09 01        ora #first_sprite_char
+370f: 3 14477 : 85 21        sta next_sprite_char
+3711: 6 14480 : 20 01 2b     jsr draw_sprites
+3714: 2 14486 : 78           sei
+3715: 2 14488 : a0 00        ldy #0
+3717: 3 14490 : 84 37        sty framecounter
+3719: 3 14493 : 84 38        sty @(++ framecounter)
+371b: 2 14496 : c8           iny
+371c: 3 14498 : 84 3b        sty is_running_game
+371e: 2 14501 : 58           cli
+371e: 2 14503 :          mainloop:
+371f: 3 14505 : a5 31        lda bricks_left
+3721: 2 14508 : f0 8b        beq next_level
+3723: 3 14510 : a5 3b        lda is_running_game
+3725: 2 14513 : d0 0d        bne +n
+3727: 6 14515 : 20 33 2c     jsr wait_sound
+3727: 6 14521 :          poke_unlimited:
+372a: 5 14527 : c6 39        dec lifes
+372c: 2 14532 : f0 03        beq +o
+372e: 4 14534 : 4c c9 36     jmp retry
+372e: 4 14538 :          o:  jmp game_over
+3731: 4 14542 : 4c 74 36 o:  jmp game_over
+3731: 4 14546 :          n:  ; Toggle sprite frame.
+3734: 3 14550 : a5 26        lda spriteframe
+3736: 2 14553 : 49 80        eor #framemask
+3738: 3 14555 : 85 26        sta spriteframe
+373a: 2 14558 : 09 01        ora #first_sprite_char
+373c: 3 14560 : 85 21        sta next_sprite_char
+373c: 3 14563 :          n:  jsr random              ; Improve randomness and avoid CRTC hsync wobble.
+373e: 6 14566 : 20 a0 29 n:  jsr random              ; Improve randomness and avoid CRTC hsync wobble.
+3741: 3 14572 : a5 3c        lda has_moved_sprites
+3743: 2 14575 : f0 f9        beq -n
+3745: 2 14577 : a9 00        lda #0
+3747: 3 14579 : 85 3c        sta has_moved_sprites
+3749: 6 14582 : 20 01 2b     jsr draw_sprites
+374c: 3 14588 : a5 4d        lda has_new_score
+374e: 2 14591 : f0 cf        beq mainloop
+3750: 2 14593 : a9 00        lda #0
+3752: 3 14595 : 85 4d        sta has_new_score
+3754: 6 14598 : 20 84 2d     jsr display_score
+3757: 4 14604 : 4c 1f 37     jmp mainloop
+3757: 4 14608 :          level_data: @+level-data+
+41a0: 4 14612 : 79 99 99 99 99 99 99 55 55 55 55 55 55 58 88 88 88 88 88 88 66 66 66 66 66 66 67 77 77 77 77 77 77 44 44 44 44 44 44 4f 51 00 00 00 00 00 00 12 00 00 00 00 00 01 23 00 00 00 00 00 12 34 00 00 00 00 01 23 45 00 00 00 00 12 34 56 00 00 00 01 23 45 67 00 00 00 12 34 56 78 00 00 01 23 45 67 81 00 00 12 34 56 78 12 00 01 23 45 67 81 23 00 12 34 56 78 12 34 09 99 99 99 99 99 95 f6 44 44 44 44 44 44 40 00 00 00 00 00 00 11 1a aa aa aa aa a0 00 00 00 00 00 00 55 55 55 55 55 55 50 00 00 00 00 00 00 aa aa aa aa aa 11 10 00 00 00 00 00 00 77 77 77 77 77 77 70 00 00 00 00 00 00 66 6a aa aa aa aa a0 00 00 00 00 00 00 33 33 33 33 33 33 30 00 00 00 00 00 00 aa aa aa aa aa 33 3f 70 23 49 60 81 23 40 03 49 68 01 23 49 00 49 68 10 23 49 60 09 68 12 03 49 67 00 68 12 30 49 67 80 08 12 34 09 67 81 00 12 34 90 67 81 20 02 34 96 07 81 23 00 34 96 70 81 23 40 04 96 78 01 23 49 00 96 78 10 23 49 60 06 78 12 03 49 67 00 78 12 30 49 67 80 08 12 34 09 67 81 0f 50 00 80 00 00 80 00 00 08 00 00 08 00 00 00 08 00 08 00 00 00 00 80 00 80 00 00 00 99 99 99 90 00 00 09 99 99 99 00 00 09 95 99 95 99 00 00 99 59 99 59 90 00 99 99 99 99 99 90 09 99 99 99 99 99 00 99 99 99 99 99 90 09 09 99 99 99 09 00 90 90 00 00 90 90 09 09 00 00 09 09 00 00 09 90 99 00 00 00 00 99 09 90 00 0f 76 05 04 03 04 05 06 60 50 40 30 40 50 66 05 04 03 04 05 06 60 50 40 30 40 50 66 05 04 03 04 05 06 60 a2 a2 a2 a2 a0 66 05 04 03 04 05 06 60 50 40 30 40 50 66 05 04 03 04 05 06 60 50 40 30 40 50 62 02 0a 02 0a 02 02 60 50 40 30 40 50 6f 70 00 00 88 70 00 00 00 00 88 77 60 00 00 00 88 77 66 50 00 00 08 77 66 55 00 00 08 77 66 55 44 00 00 77 66 55 44 30 00 07 66 55 44 33 00 00 66 55 44 33 20 00 06 55 44 33 22 00 00 55 44 33 22 10 00 00 44 33 22 10 00 00 04 33 22 11 00 00 00 03 22 11 00 00 00 00 02 11 00 00 0f 70 00 a0 a0 a0 a0 00 0a 00 00 00 00 0a 00 aa 0a 00 0a 0a a0 00 00 00 10 00 00 00 a0 00 a2 a0 00 a0 00 0a 00 30 0a 00 00 00 00 04 00 00 00 00 0a 00 50 0a 00 00 a0 00 a6 a0 00 a0 00 00 00 70 00 00 00 aa 0a 00 0a 0a a0 0a 00 00 00 00 0a 00 00 a0 a0 a0 a0 00 f5 0a 0a 00 00 0a 0a 00 a4 a0 00 00 a4 a0 0a 3a 00 00 0a 3a 00 aa a0 00 00 aa a0 00 00 00 00 00 00 00 00 07 11 18 00 00 00 00 72 22 80 00 00 00 07 33 38 00 00 00 00 74 44 80 00 00 00 07 55 58 00 00 00 00 76 66 80 00 0f 30 a0 00 00 00 00 00 00 00 00 00 00 00 00 a0 00 00 00 00 00 0a 00 00 00 00 00 00 a0 00 00 00 00 00 0a 00 00 06 00 00 00 a0 00 06 36 00 00 0a 00 06 31 36 00 00 a0 06 31 31 36 00 0a 06 31 39 31 36 00 a0 06 31 31 36 00 0a 00 06 31 36 00 00 a0 00 06 36 00 00 0a 00 00 06 00 00 00 a0 00 00 00 00 00 0a 00 00 00 00 00 00 a0 00 00 00 00 00 0a aa aa aa aa aa af 70 99 99 99 99 99 90 09 00 00 00 00 09 00 90 99 99 99 90 90 09 09 00 00 09 09 00 90 90 99 90 90 90 09 09 09 09 09 09 00 90 90 99 90 90 90 09 09 00 00 09 09 00 90 99 99 99 90 90 09 00 00 00 00 09 00 99 99 99 99 99 90 f7 aa aa aa aa aa aa a0 00 0a 00 00 0a 70 0a 10 a0 00 00 a0 00 a0 0a 00 a0 0a 00 0a 00 a4 0a 00 a0 00 a0 0a 00 a0 0a 00 0a 02 a0 0a 06 a0 00 a0 0a 00 a0 0a 00 0a 00 a0 0a 00 a0 00 a0 0a 05 a0 0a 00 0a 00 a0 0a 00 a0 00 a3 00 00 a0 00 00 0a 00 00 0a 00 00 80 aa aa aa aa aa aa f7 08 88 01 11 08 88 00 77 70 22 20 77 70 06 66 03 33 06 66 00 55 50 44 40 55 50 04 44 05 55 04 44 00 33 30 66 60 33 30 02 22 07 77 02 22 00 11 10 88 80 11 10 f7 66 66 66 66 66 66 6a 00 00 00 00 00 0a 66 66 66 66 66 66 60 00 00 00 00 00 00 29 99 99 99 99 99 2a 00 00 00 00 00 0a 11 11 11 11 11 11 10 00 00 00 00 00 00 39 99 99 99 99 99 3a 00 00 00 00 00 0a 55 55 55 55 55 55 50 00 00 00 00 00 00 55 55 55 55 55 55 5a 00 00 00 00 00 0a f9 31 a3 33 33 33 a1 33 18 a3 33 33 a4 13 31 88 a3 33 a4 41 33 18 88 a1 a4 44 13 31 88 88 14 44 41 33 18 88 81 44 44 13 31 88 88 14 44 41 33 98 88 81 44 44 93 33 98 88 14 44 93 33 33 98 81 44 93 33 33 33 98 14 93 33 33 33 33 91 93 33 33 f7 00 00 00 a0 00 00 00 00 01 10 11 00 00 00 11 00 a0 01 10 01 10 02 20 22 00 11 00 22 00 a0 02 20 02 20 08 80 88 00 22 00 88 00 a0 08 80 08 80 04 40 44 00 88 00 44 00 a0 04 40 04 40 05 50 55 00 44 00 55 00 a0 05 50 05 50 06 60 66 00 55 00 66 00 00 06 60 06 60 00 00 00 00 66 f7 00 00 00 90 00 00 00 00 66 69 44 40 00 00 66 61 11 44 40 00 06 61 11 11 44 00 06 66 11 11 14 44 00 66 61 11 11 44 40 06 66 11 11 14 44 00 90 09 09 09 00 90 00 00 00 90 00 00 00 00 00 09 00 00 00 00 00 00 90 00 00 00 00 0a 0a 00 00 00 00 00 aa a0 00 00 00 00 00 a0 00 00 00 f7 20 a8 88 88 88 a0 22 0a a8 88 88 aa 02 20 a0 a8 88 a0 a0 22 0a 07 a8 a3 0a 02 20 a0 70 90 30 a0 22 0a 07 04 03 0a 02 20 a0 70 40 30 a0 22 0a 07 04 03 0a 02 20 a0 70 40 30 a0 22 aa a7 04 03 aa a2 f7 00 aa aa aa aa a0 00 04 56 7a 76 54 00 00 45 67 a7 65 40 00 04 56 7a 76 54 00 00 45 67 87 65 40 00 04 56 7a 76 54 00 00 45 67 a7 65 40 00 04 56 7a 76 54 00 00 aa aa aa aa a0 0f 7a 1a 2a 3a 4a 5a 6a a7 a9 a9 a9 a9 a8 a0 00 00 00 00 00 00 a7 a0 a0 a0 a0 a0 aa 0a 7a 0a 0a 0a 0a a0 a0 a7 a0 a0 a0 aa 0a 0a 0a 7a 0a 0a a0 a0 a0 a0 a7 a0 a0 00 00 00 00 00 70 00 a0 a0 a0 a7 a0 00 0a 0a 0a 7a 0a 00 00 a0 a7 a0 a0 a0 00 00 7a 0a 0a 00 00 07 00 00 a0 00 00 0f 70 a2 22 22 22 22 a0 0a 00 00 00 00 0a 00 a0 aa aa aa a0 a0 0a 0a 00 00 0a 0a 00 a0 a0 00 00 a0 a0 0a 0a 05 55 0a 0a 00 a0 a0 44 40 a0 a0 0a 0a 06 66 0a 0a 00 a0 a0 11 10 a0 a0 0a 0a 00 00 0a 0a 00 a0 a3 33 33 a0 a0 0a 00 00 00 00 0a 00 a0 00 00 00 00 a0 0a aa aa aa aa aa 0f 78 88 88 88 88 88 88 88 88 88 88 88 88 80 00 00 00 00 00 00 55 a0 a5 55 a0 a5 55 5a 0a 55 5a 0a 55 55 a0 a5 55 a0 a5 55 5a 0a 55 5a 0a 55 00 00 00 00 00 00 01 11 11 11 11 11 11 11 11 11 11 11 11 1f 73 33 33 33 33 33 33 00 00 00 00 00 00 00 09 99 09 99 09 99 00 94 90 94 90 94 90 09 99 09 99 09 99 00 00 00 00 00 00 00 99 90 99 90 99 90 09 59 09 59 09 59 00 99 90 99 90 99 90 00 00 00 00 00 00 09 99 09 99 09 99 00 96 90 96 90 96 90 09 99 09 99 09 99 00 fa 00 00 01 11 00 00 00 00 00 11 10 00 00 00 00 01 11 00 00 00 00 01 11 11 00 00 00 00 16 16 10 00 00 00 16 61 66 10 00 00 06 66 66 66 00 00 06 66 66 66 66 00 00 66 66 66 66 60 00 66 66 66 66 66 60 66 66 66 66 66 66 6f 75 55 55 55 55 55 55 44 44 44 44 44 44 46 66 66 66 66 66 66 aa aa a9 99 aa aa aa 55 5a 00 0a 66 6a a5 55 a0 00 a6 66 aa 00 00 00 00 00 0a a0 00 00 00 00 00 aa 00 0a 44 4a 00 0a a0 00 a4 44 a0 00 aa 99 9a aa aa 99 9a f7 00 a9 99 a0 00 00 00 a0 00 00 a0 00 00 a0 03 33 00 a0 00 0a 04 44 44 0a 00 00 a0 66 66 60 a0 00 0a 00 77 70 0a 00 00 0a 00 00 0a 00 00 00 0a aa aa 00 00 00 fe 99 99 99 99 99 99 98 88 88 88 88 88 88 99 99 99 99 99 99 90 00 00 00 00 00 00 99 99 99 99 99 99 95 55 55 55 55 55 55 99 99 99 99 99 99 9f 66 66 66 66 66 66 66 6a aa a7 a7 aa aa 66 a0 00 00 00 00 a6 6a 70 00 00 00 7a 66 a7 70 00 00 77 a6 6a 77 70 00 77 7a 60 6a 77 70 77 7a 60 00 6a 77 77 7a 60 00 00 6a 77 7a 60 00 00 00 6a 7a 60 00 00 00 00 67 60 00 00 00 00 00 60 00 00 0f 78 88 88 a0 a8 88 88 77 77 7a 0a 77 77 7a a1 aa a0 aa a1 aa 66 66 6a 0a 66 66 65 55 55 60 a5 55 55 44 44 4a 0a 44 44 49 91 99 a0 a9 91 99 33 33 3a 0a 33 33 32 22 22 a0 a2 22 22 11 11 1a 0a 11 11 1f 78 70 00 00 00 00 00 87 65 00 00 00 00 08 76 54 30 00 00 00 87 65 43 21 00 00 08 76 54 32 18 70 00 97 65 43 21 87 65 00 a9 54 32 18 76 54 00 0a 93 21 87 65 40 00 00 a9 18 76 54 00 00 00 0a 97 65 40 00 00 00 00 a9 54 00 00 00 00 00 0a 9f 74 05 06 07 08 01 02 90 90 90 90 90 90 90 60 50 40 30 20 10 09 09 09 09 09 09 03 04 05 06 07 08 01 90 90 90 90 90 90 90 70 60 50 40 30 20 09 09 09 09 09 09 02 03 04 05 06 07 08 90 90 90 90 90 90 90 80 70 60 50 40 30 09 09 09 09 09 09 01 02 03 04 05 06 07 90 90 90 90 90 90 9f 70 0a 0a 0a 0a 0a 00 00 a0 a0 a0 a0 a0 00 0a 0a 0a 0a 44 00 00 a0 a0 a0 a0 a0 00 0a 0a 0a 55 55 00 00 a0 a0 a0 a0 a0 00 0a 0a 66 66 66 00 00 a0 a0 a0 a0 a0 00 0a 77 77 77 77 00 00 a0 a0 a0 a0 a0 00 08 88 88 88 88 00 00 99 99 99 99 90 0f 80 00 77 00 07 70 00 00 77 77 07 77 70 00 07 77 70 77 77 00 07 77 79 97 77 77 00 77 77 99 77 77 70 07 77 77 99 77 77 00 77 77 79 97 77 70 00 77 79 97 77 70 00 07 77 99 77 77 00 00 07 77 99 77 00 00 00 77 79 97 70 00 00 00 79 97 70 00 00 00 00 99 70 00 00 00 00 00 90 00 00 0flevel_data: @+level-data+
+41a0: 4 14616 :          loaded_music_player: @(fetch-file "sound.bin")
+4b4d: 4 14620 : 00 00 08 10 18 20 28 30 38 40 48 50 58 60 68 70 78 80 88 90 98 a0 a8 b0 b8 c0 c8 d0 d8 e0 e8 f0 f8 00 04 04 08 00 ff 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 00 00 00 00 a9 00 8d 27 70 ae 27 70 bd 21 70 8d 29 70 bd 23 70 8d 2a 70 bd 25 70 8d 28 70 bd 2d 70 c9 ff f0 4b 9d 2b 70 a9 ff 9d 2d 70 ac 2b 70 b9 86 79 85 fe ac 2c 70 b9 86 79 05 fe a0 00 4a b0 03 8c 0a 90 4a b0 03 8c 0b 90 4a b0 03 8c 0c 90 4a b0 03 8c 0d 90 ae 27 70 ac 29 70 a9 00 99 37 70 a9 01 99 47 70 99 3f 70 c8 cc 2a 70 d0 ed bd 2b 70 8d 51 70 d0 03 4c 7a 71 a9 01 8d 52 70 ad 4f 70 f0 15 ce 4f 70 d0 10 ce 0e 90 ad 0e 90 29 0f f0 03 ad 50 70 8d 4f 70 ae 29 70 ac 51 70 b9 86 79 2d 52 70 f0 77 de 3f 70 d0 72 8a 18 79 00 70 a8 2c 28 70 30 0a b9 fe 78 85 fc b9 02 79 10 08 b9 fa 78 85 fc b9 fe 78 f0 53 85 fd bc 37 70 b1 fc c8 c9 77 b0 05 9d 47 70 90 f4 c9 7f b0 27 c9 7e f0 64 c9 7d f0 50 c9 7a f0 57 c9 7b f0 68 c9 79 f0 20 c9 78 f0 6b c9 7c d0 0a 98 9d 2f 70 b1 fc a8 4c 20 71 00 2c 28 70 30 05 9d 0a 90 10 03 9d 06 90 bd 47 70 9d 3f 70 98 9d 37 70 0e 52 70 e8 ec 2a 70 f0 03 4c ec 70 ee 27 70 ad 27 70 c9 02 f0 03 4c 58 70 60 b1 fc 8d 50 70 8d 4f 70 4c a2 71 b1 fc 4c aa 71 ad 0e 90 29 f0 11 fc 8d 0e 90 c8 f0 03 4c 20 71 a9 00 ae 27 70 9d 2d 70 4c 7a 71 bc 2f 70 4c 20 71 7e 08 7d 05 0a 7e 08 df 7f 7e 08 d5 7f 7e 08 df 7f 7e 08 d5 7f 7e 08 df 7f 7e 08 d5 7f 05 7e 08 df 7f 7e 08 d5 7f 7e 08 d9 7f 7e 08 dd 7f 0a 7e 08 df 7f 7e 08 d5 7f 7e 08 df 7f 7e 08 d5 7f 7e 08 df 05 7f 40 7f 7b 06 d5 0a 7f 04 d5 06 df 22 7f 06 e4 01 7f 06 e6 01 7f 06 e7 e6 4a 7f 06 d5 0a 7f 04 d5 06 df 22 7f 05 e7 e6 e4 e7 06 e6 09 7f 40 7f 7b 06 bf 0a 7f 04 bf 06 d5 22 7f 06 d2 01 7f 06 d5 01 7f 06 d9 d5 4a 7f 06 bf 0a 7f 04 bf 06 d5 22 7f 05 d9 d5 d2 d9 06 d5 09 7f 40 7f 7b 7e 08 7d 04 14 7f 06 7e 08 cc 01 7f 06 7e 08 cc 01 7f 05 7e 08 cc 01 7f 0a 7e 08 cc 7f 7e 08 cf 7f 7e 08 d9 7f 05 7e 08 df 7f 7e 08 d5 7f 7e 08 df 7f 7e 08 d5 7f df 0f 7f 7b 06 df 0a 7f 04 df 06 ea 22 7f 06 e7 04 7f 06 e3 04 7f 06 df 04 7f 06 e7 04 7f 06 df 36 7f 7b 06 d5 0a 7f 04 d5 06 db 22 7f 06 d9 04 7f 06 d5 04 7f 06 cf 04 7f 06 d9 04 7f 06 d5 36 7f 7b 7d 00 7e 08 05 db 07 d5 e1 e3 e8 ea ee 7f 7b 7e 08 07 aa c3 c6 d2 d5 dd 0c e3 7b 7e 08 7d 00 64 7f 7b 7e 08 08 ed e8 ea e3 e7 e1 e3 db 04 d5 7f d5 7f d5 7f d5 08 7f 40 7f 7b 7e 08 10 db 08 d2 d5 c6 cf c3 c6 b7 1c aa 40 7f 7b 7e 08 05 df 7f df 7f df 7f df 7f d5 7f ea 7f d5 7f ea 7f d5 7f ea 7f d5 7f ea 5f 7f 02 d5 7f 01 d5 27 7f 7b 7e 08 03 dd 07 7f 03 dd 07 7f 03 dd 07 7f 03 dd 11 7f 03 dd 07 7f 03 dd 11 7f 03 dd 07 7f 03 dd 11 7f 03 dd 07 7f 03 dd 11 7f 03 dd 07 7f 03 dd 16 7f 11 ec 03 7f 02 e8 03 7f 02 e4 03 7f 02 df 03 7f 02 d9 03 7f 02 d2 03 7f 02 d9 03 7f 02 df 03 7f 02 e4 03 7f 02 e8 03 7f 02 ec 03 7f 05 dd 02 7f dd 27 7f 7b 7e 08 03 d5 07 7f 03 d2 07 7f 03 c9 07 7f 03 cf 11 7f 03 d2 07 7f 03 d5 11 7f 03 d2 07 7f 03 d2 11 7f 03 d2 07 7f 03 d2 11 7f 03 d2 07 7f 03 d2 11 7f 03 e8 02 7f 03 e4 02 7f 03 df 02 7f 03 d9 02 7f 03 d2 02 7f 03 c9 02 7f 03 bf 02 7f 03 b3 02 7f 03 a4 02 7f 03 b3 02 7f 03 bf 02 7f 03 c9 02 7f 03 d2 02 7f 03 d9 02 7f 03 df 02 7f 03 e4 02 7f 03 d2 02 7f d2 27 7f 7b 7e 08 7c 0c 7c 4f 7c 0c 7c 0c 7c 02 04 dd 7f dd 7f ee 7f ee 7f dd 7f dd 7f ee 7f ee 7f d9 7f d9 7f ec 7f ec 7f d9 7f d9 7f ec 7f ec 7f d5 7f d5 7f ea 7f ea 7f d5 7f d5 7f ea 7f ea 7f d2 7f d2 7f e8 7f e8 7f d2 7f d2 7f e8 7f e8 03 7f 78 04 dd 7f dd 7f ee 7f ee 7f dd 7f dd 7f ee 7f ee 7f d9 7f d9 7f ec 7f ec 7f d9 7f d9 7f ec 7f ec 7f d5 7f d5 7f ea 7f ea 7f d5 7f d5 7f ea 7f ea 7f d9 7f d9 7f ec 7f ec 7f d9 7f d9 7f ec 7f ec 03 7f 78 7e 08 10 a4 08 b3 bb 05 b3 0b 7f 05 a4 0b 7f 05 b3 0b 7f 05 c3 0b 7f 20 b3 10 aa 08 b3 bb 05 b3 0b 7f 05 aa 0b 7f 05 a4 0d 7f 03 a4 0d 7f 0e a4 0f b3 10 a4 08 b3 bb 05 b3 0b 7f 05 a4 0b 7f 05 b3 0b 7f 05 c3 0b 7f 20 b3 10 bb 08 c3 c6 05 c3 0b 7f 05 bb 0b 7f 05 c3 0b 7f 05 cc 0b 7f 1f c3 02 e1 06 7f 02 e1 16 7f 02 e1 06 7f 02 e1 16 7f 02 e1 06 7f 02 e1 16 7f 02 e1 06 7f 08 d2 cc c3 40 c6 3f c3 02 e1 06 7f 02 e1 16 7f 02 e1 06 7f 02 e1 16 7f 02 e1 06 7f 02 e1 16 7f 02 e1 06 7f 08 d2 cc c3 40 c6 3f c3 7c 02 7e 08 10 bb 08 c3 c6 07 c3 09 7f 07 bb 09 7f 07 c3 09 7f 07 d2 09 7f 20 c3 10 bb 08 c3 c6 07 c3 09 7f 07 bb 09 7f 07 bb 09 7f 07 b7 09 7f 10 bb 0f c3 10 bb 08 c3 c6 07 c3 09 7f 07 bb 09 7f 07 c3 09 7f 07 d2 09 7f 20 c3 10 c6 08 cc d2 07 cc 09 7f 07 c6 09 7f 07 cc 09 7f 07 d9 09 7f 1f cc 04 e1 7f e1 14 7f 04 e1 7f e1 14 7f 04 e1 7f e1 14 7f 04 e1 7f 08 dd d9 cc 74 d2 0b 79 04 e1 7f e1 14 7f 04 e1 7f e1 14 7f 04 e1 7f e1 14 7f 04 e1 7f 08 dd d9 cc 74 d2 0b 79 7c 02 7e 08 02 df 7f 7e 07 02 df 7f 7e 06 02 df 7f 7e 05 02 df 7f 7e 04 02 df 7f 7e 03 02 df 7f 7e 02 02 df 7f 7e 01 02 df 7f 7e 00 02 df 7f 22 7f 7b 7e 08 02 ea 7f 7e 07 02 ea 7f 7e 06 02 ea 7f 7e 05 02 ea 7f 7e 04 02 ea 7f 7e 03 02 ea 7f 7e 02 02 ea 7f 7e 01 02 ea 7f 7e 00 02 ea 7f 22 7f 7b 7e 08 02 ef 7f 7e 07 02 ef 7f 7e 06 02 ef 7f 7e 05 02 ef 7f 7e 04 02 ef 7f 7e 03 02 ef 7f 7e 02 02 ef 7f 7e 01 02 ef 7f 7e 00 02 ef 7f 22 7f 7b 7e 08 02 df 00 7f 7b 7e 08 01 c3 b3 8d 7f 7f 04 7f 7e 07 01 cf b3 a4 7f 7f 04 7f 7e 06 01 cf b3 8d 7f 7f 04 7f 7e 05 01 cf c3 a4 7f 7f 04 7f 7e 03 01 cf b3 a4 7f 7f 04 7f 7e 02 01 c3 b3 8d 7f 7f 04 7f 7e 01 01 c3 a4 8d 7f 7f 02 7f 7b 7e 08 3b 7f 7b 7e 08 02 df e1 7e 07 df e1 7e 06 df e1 7e 05 df e1 7e 04 df e1 7e 03 df e1 7e 02 df 7e 01 e1 df 1d 7f 7b 7e 08 74 7f 74 79 7b 7e 02 02 df e1 df e1 df e1 df e1 7e 03 df e1 df e1 df e1 df e1 df e1 7e 04 df e1 df e1 df e1 df e1 7e 05 df e1 df e1 df e1 df e1 7e 06 df e1 df e1 df e1 df e1 7e 07 df e1 df e1 df e1 df e1 df e1 7e 08 df e1 df e1 df e1 df e1 7e 07 df e1 df e1 df e1 df e1 7e 06 df e1 df e1 df e1 df e1 df e1 7e 05 df e1 df e1 df e1 df e1 df e1 df e1 df e1 df e1 7e 04 df e1 df e1 df e1 7e 03 df e1 df e1 7e 02 df e1 df e1 7e 01 df e1 df e1 df e1 df e1 00 7f 7b 7e 08 02 80 86 8d 93 99 9f a4 aa b3 b7 bb bf c3 01 c6 7b 7e 08 02 7f 04 7f 7f 03 7f 04 7f 7f 01 7f 7b 7e 08 08 7f 7b 7e 08 01 b7 ae 99 8d 7f 7f 7f 7f 00 7f 7b 7e 08 18 7f 7b 7e 08 01 d7 d2 c6 bf 7e 06 ae 99 db d2 cc bf 7e 04 ae a4 db d7 cc bf 7e 02 b7 a4 99 80 7f 7f 7f 7f 00 7f 7b 7e 08 01 d9 d5 c9 c3 b3 9f dd d5 cf c3 b3 aa dd d9 cf c3 bb aa 9f 86 7f 7f 7f 7f 00 7f 7b 7e 08 04 e4 02 e3 03 e1 02 df 03 dd 02 db 03 d9 02 d7 7e 07 03 d5 01 d2 03 cf 02 cc 03 c9 02 c6 03 c3 02 bf 7e 06 03 bb 02 b7 b3 03 ae 02 aa 03 a4 02 9f 03 99 02 7e 05 93 8d 03 86 02 80 03 7f 02 9f 05 a4 aa ae b3 b7 7e 04 04 bb 05 bf 04 c3 05 c6 05 c9 cc cf d2 d5 d7 7e 03 05 d9 db 05 dd df e1 05 e3 e4 7e 02 e6 06 e7 05 e8 ea eb 06 ec 7e 01 08 ed 07 ee 7f 7b 7e 08 04 e3 01 e1 04 df 02 dd db 03 d9 02 d7 d5 03 d2 02 cf 03 cc 02 c9 03 c6 02 c3 03 bf 02 bb 03 b7 02 b3 ae 03 aa 02 a4 03 9f 02 99 93 03 8d 02 86 03 80 02 7f 03 99 04 9f a4 05 aa 04 ae b3 05 b7 04 bb 05 bf 03 c3 05 c6 04 c9 cc cf 05 d2 04 d5 d7 d9 05 db 03 dd 05 df 03 e1 04 e3 05 e4 04 e6 e7 e8 03 ea eb 04 ec 05 ed 03 ee 04 7f 7b b9 00 2d 00 71 72 72 00 5a 94 b3 00 72 72 72 00 00 d2 e1 00 00 72 72 00 ed f4 0c 00 72 72 73 00 1d 41 a7 00 73 73 73 00 21 b3 5d 00 74 74 75 00 00 00 f9 00 00 00 75 00 00 00 29 00 00 00 76 00 00 00 59 00 00 00 76 00 00 00 89 00 00 00 76 00 00 00 00 90 00 00 00 76 00 d7 dc 00 00 76 76 00 00 ff 06 00 00 76 77 00 00 9a ad 00 00 77 77 00 bc c1 00 00 77 77 00 00 cf d4 f8 00 77 77 77 00 00 16 8e 00 00 78 78 00 00 07 07 06 07 07 07 04 04 04 04 08 06 06 06 03 07 06 a9 00 8d 0a 90 8d 0b 90 8d 0c 90 8d 0d 90 8d 2d 70 8d 2e 70 60loaded_music_player: @(fetch-file "sound.bin")
+4b4d: 4 14624 :          relocated_end:
