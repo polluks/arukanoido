@@ -330,18 +330,17 @@ make_ball:
 
 ; Reset ball speed when it's slow after 5 seconds.                                                           
 adjust_ball_speed:
+    lda @(++ framecounter)
+    cmp #5
+    bne +n
     lda ball_speed
     cmp #max_ball_speed
-    beq +n                  ; Already at maximum speed. Do nothing…
-    lda is_using_paddle     ; Paddle users gets it twice.
-    eor #1
-    clc
-    adc #1
-    asl
-    cmp @(++ framecounter)
-    bne +n
+    bcs +n                  ; Already at maximum speed. Do nothing…
     inc ball_speed          ; Play the blues…
-    lda #0                  ; …but don't forget the timing.
+    lda is_using_paddle
+    beq +m
+    inc ball_speed
+m:  lda #0
     sta framecounter
     sta @(++ framecounter)
 n:  rts
