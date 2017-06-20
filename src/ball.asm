@@ -1,7 +1,6 @@
 vaus_directions:
     168 168 168 168
     144 144 144 144
-    
     112 112 112 112
     88 88 88 88
 
@@ -10,7 +9,6 @@ vaus_directions_extended:
     168 168 168 168
     144 144 144 144
     144 144 144 144
-    
     112 112 112 112
     112 112 112 112
     88 88 88 88
@@ -229,6 +227,7 @@ r:  jsr remove_sprite
 
 play_reflection_sound:
     lda has_hit_brick
+    ora has_hit_golden_brick
     ora has_hit_vaus
     beq +n
     lda snd_reflection
