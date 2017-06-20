@@ -678,10 +678,10 @@
     (format o "Unlimited lifes: POKE~A,~A:POKE~A,~A:POKE~A,~A~%"
             addr jmp (++ addr) lo (+ 2 addr) hi)))
 
-(unless *make-only-vic?*
-  (with-temporary *shadowvic?* t
-    (format t "Making shadowVIC version…~%")
-    (make-game :prg "arukanoido-shadowvic.bin" "arukanoido-shadowvic.vice.txt")))
+;(unless *make-only-vic?*
+;  (with-temporary *shadowvic?* t
+;    (format t "Making shadowVIC version…~%")
+;    (make-game :prg "arukanoido-shadowvic.bin" "arukanoido-shadowvic.vice.txt")))
 
 (format t "Level data: ~A B~%" (length +level-data+))
 (quit)
