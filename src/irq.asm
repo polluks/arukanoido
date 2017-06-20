@@ -49,7 +49,9 @@ n:  jsr play_music
     lda #1
     sta has_moved_sprites
 
-n:  lda #$7f        ; Acknowledge IRQ.
+n:  jsr adjust_ball_speed
+
+    lda #$7f        ; Acknowledge IRQ.
     sta $912d
 
 if @*show-cpu?*

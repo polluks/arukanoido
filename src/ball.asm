@@ -61,7 +61,7 @@ ctrl_ball_subpixel:
 
 h:  lda tmp2
     clc
-    adc #2              ; Allow a pixel off to the right as well.
+    adc #1              ; Allow a pixel off to the right as well.
     adc vaus_width
     cmp tmp
     bcc +no_vaus_hit
@@ -185,7 +185,7 @@ applied_reflection:
     ; Determine reflection sound.
     lda has_hit_brick
     ora has_hit_vaus
-    beq +m
+    beq +move_ball
     lda snd_reflection
     bne +n
     lda sfx_reflection
@@ -196,7 +196,6 @@ applied_reflection:
 n:  inc sfx_reflection
 
 move_ball:
-m:  jsr adjust_ball_speed
     jsr ball_step
 
     ; Deal with lost ball.
