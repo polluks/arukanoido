@@ -39,14 +39,6 @@ e:  pla
     rts
 
 ctrl_ball_subpixel:
-    ; Test on collision with sprites.
-;    lda #8 ;ball_width
-;    sta collision_x_distance
-;    lda #ball_height
-;    sta collision_y_distance
-;    jsr find_hit
-;    bcs no_vaus_hit
-
     lda #0
     sta has_hit_vaus
 
@@ -57,29 +49,29 @@ ctrl_ball_subpixel:
     cmp #@(+ vaus_y 8)
     bcs no_vaus_hit
 
+    ; Test on horizontal collision with Vaus (middle pixel).
     ldy sprites_x,x
     iny
     sty tmp
+    ldy @(+ sprites_x (-- num_sprites))     ; Vaus position left.
+    dey                 ; Allow one pixel off to the left.
+    sty tmp2
+    cpy tmp
+    bcs +no_vaus_hit
 
-    ; Test on horizontal collision with Vaus (middle pixel).
-    lda @(+ sprites_x (-- num_sprites))
-    sec
-    sbc #1
-    cmp tmp
-    bcs no_vaus_hit
-
-    lda @(+ sprites_x (-- num_sprites))
+h:  lda tmp2
     clc
+    adc #2              ; Allow a pixel off to the right as well.
     adc vaus_width
     cmp tmp
-    bcc no_vaus_hit
-    
+    bcc +no_vaus_hit
+
     inc has_hit_vaus
 
     ; Get reflection from Vaus.
     lda tmp
     sec
-    sbc @(+ sprites_x (-- num_sprites))
+    sbc tmp2
     tay
 
     lda #16
