@@ -39,6 +39,7 @@ draw_sprite:
     jsr scrcoladdr
     jsr prepare_upper_blit
     jsr blit_right
+    jsr set_char
 
     beq +n
 
@@ -46,6 +47,7 @@ draw_sprite:
     inc scrx
     jsr prepare_upper_blit
     jsr blit_left
+    jsr set_char
     dec scrx
 
 n:  lda sprite_shift_y
@@ -61,6 +63,7 @@ n:  lda sprite_shift_y
     ldy sprite_shift_y
     dey
     jsr blit_right
+    jsr set_char
 
     beq +n
 
@@ -71,6 +74,7 @@ n:  lda sprite_shift_y
     ldy sprite_shift_y
     dey
     jsr blit_left
+    jsr set_char
 
 n:  ldx draw_sprite_x
     rts

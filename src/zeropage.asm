@@ -1,17 +1,15 @@
     org 0
     data
 
-sl:
 s:                    0 0 ; Source pointer
-dl:
 d:                    0 0 ; Destination pointer
 c:                    0 0 ; Counter
-sr:
-scr:                  0 0 ; Screen pointer
-dr:
+
+scr:                  0 0 ; Screen pointer (line start)
 col:                  0 0 ; Colour RAM pointer
 scrx:                 8   ; X position
 scry:                 0   ; Y position
+curchar:              0   ; Last allocated character
 curcol:               0   ; Character colour
 
 ; VCPU
@@ -25,7 +23,7 @@ a2:                   0
 a3:                   0
 a4:                   0
 
-current_level:        0 0
+current_level:        0 0 ; Pointer to next level's data.
 
 ; Temporaries.
 tmp:                  0
@@ -55,6 +53,7 @@ mode_disruption = 3
 mode_extended   = 4
 mode:                 0
 mode_break:           0
+current_bonus:        0
 
 side_degrees:         0
 caught_ball:          0
@@ -63,6 +62,7 @@ vaus_width:           0
 
 level:                0
 bricks_left:          0
+bricks_until_bonus:   0
 
 collision_y_distance: 0
 collision_x_distance: 0
@@ -78,28 +78,30 @@ is_running_game:      0
 has_moved_sprites:    0
 
 ball_speed:           0
-is_firing:            0 ; Laser interval countdown.
+is_firing:            0   ; Laser interval countdown.
 is_using_paddle:      0
 sfx_reflection:       0
 snd_reflection:       0
 old_paddle_value:     0
+digisound_counter:    0 0
 
-has_collision:  0                                                               
-ball_x:         0
-ball_y:         0
+has_collision:        0                                                               
+ball_x:               0
+ball_y:               0
 
-current_half:   0                                                           
-bricks_in_line: 0
+current_half:         0
+bricks_in_line:       0
 
-has_hit_brick:  0                                                           
-was_golden:     0
+has_hit_brick:        0
+has_hit_golden_brick: 0
+has_hit_vaus:         0
 
-laser_has_hit:  0
+laser_has_hit:        0   ; For the laser controller to remember if it hit one the left.
 
-vaus_middle_idx:    0
+vaus_middle_idx:      0   ; Index of middle sprite of extended Vaus.
 
-has_new_score:      0
-has_hiscore:        0
+has_new_score:        0
+has_hiscore:          0
 
 score:      fill num_score_digits
 

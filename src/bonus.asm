@@ -17,6 +17,9 @@ ctrl_bonus:
     and #is_vaus
     beq +m              ; Didn't hit the Vaus…
 
+    ldy #@(- score_1000 scores)
+    jsr add_to_score
+
     ; Release caught ball.
     lda caught_ball
     bmi +n
@@ -86,6 +89,11 @@ apply_bonus_l:
     rts
 
 apply_bonus_e:
+    ldy #spriteidx_vaus_left
+    lda sprites_x,y
+    sec
+    sbc #4
+    sta sprites_x,y
     ldy #@(- vaus_middle_init sprite_inits)
     jsr add_sprite
     cmp #255
@@ -146,20 +154,10 @@ f:  lda sprites_x,y                     ; Copy coordinates of current ball.
     sta @(+ ball_init sprite_init_x)
     lda sprites_y,y
     sta @(+ ball_init sprite_init_y)
-    lda #0
-    sta @(+ ball_init sprite_init_flags)
     lda sprites_d,y
-    pha
-    ldy #@(- ball_init sprite_inits)
-    clc
-    adc #32
     sta @(+ ball_init sprite_init_data)
     ldy #@(- ball_init sprite_inits)
     jsr add_sprite
-    pla
-    sec
-    sbc #32
-    sta @(+ ball_init sprite_init_data)
     ldy #@(- ball_init sprite_inits)
     jsr add_sprite
 

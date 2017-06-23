@@ -4,6 +4,7 @@ reuse_char:
     ldy scrx
     sta (col),y
     txa
+    sta curchar
 
 ; Get address of character in charset.
 get_char_addr:
@@ -82,10 +83,22 @@ get_char:
     cmp spriteframe
     beq reuse_char      ; Already used by a sprite in current frame…
 l:  jsr alloc_char
+    sta curchar
+    rts
+
+set_char:
+    php
+    tya
+    pha
+    lda curchar
+    beq +n
     ldy scrx
     sta (scr),y
     lda curcol
     sta (col),y
+n:  pla
+    tay
+    plp
     rts
 
 on_foreground:
@@ -94,6 +107,8 @@ on_foreground:
 cant_use_position:
     lda #$f0            ; Draw into ROM.
     sta @(++ d)
+    lda #0
+    sta curchar
     rts
 
 scraddr_clear_char:

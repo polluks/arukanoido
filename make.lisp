@@ -596,12 +596,13 @@
                           "math.asm"
                           "gfx.asm"
                           "print.asm"
-                          ,@(unless *shadowvic?*
-                              '("../bender/vic-20/minigrafik-display.asm"))
+;                          ,@(unless *shadowvic?*
+;                              '("../bender/vic-20/minigrafik-display.asm"))
                           "sprites.asm"
                           "sprites-vic-common.asm"
                           "sprites-vic.asm"
                           "music.asm"
+                          "digisound.asm"
 
                           ; Level display
                           "lifes.asm"
@@ -631,7 +632,7 @@
                           ; Streamable or loadable on occasion.
                           "level-data.asm"
 ;                          "gfx-doh.asm"
-                          "gfx-title.asm"
+;                          "gfx-title.asm"
 
                           ; Imported music player binary.
                           "music-player.asm"
@@ -664,8 +665,8 @@
 (gen-vcpu-tables "src/_vcpu.asm")
 (with-temporary *show-cpu?* t
   (make-game :prg "arukanoido-cpumon.prg" "arukanoido-cpumon.vice.txt"))
-(with-temporary *shadowvic?* t
-  (make-game :prg "arukanoido-shadowvic.bin" "arukanoido-shadowvic.vice.txt"))
+;(with-temporary *shadowvic?* t
+;  (make-game :prg "arukanoido-shadowvic.bin" "arukanoido-shadowvic.vice.txt"))
 (make-game :prg "arukanoido.prg" "arukanoido.vice.txt")
 
 (format t "Updating POKEs…~%")
@@ -677,11 +678,6 @@
          hi (high (get-label 'retry)))
     (format o "Unlimited lifes: POKE~A,~A:POKE~A,~A:POKE~A,~A~%"
             addr jmp (++ addr) lo (+ 2 addr) hi)))
-
-(unless *make-only-vic?*
-  (with-temporary *shadowvic?* t
-    (format t "Making shadowVIC version…~%")
-    (make-game :prg "arukanoido-shadowvic.bin" "arukanoido-shadowvic.vice.txt")))
 
 (format t "Level data: ~A B~%" (length +level-data+))
 (quit)

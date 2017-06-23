@@ -55,7 +55,7 @@ modify_brick:
     rts
 
 golden:
-    inc was_golden
+    inc has_hit_golden_brick
     lda #snd_reflection_silver
     sta snd_reflection
 r:  sec

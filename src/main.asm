@@ -24,7 +24,6 @@ start:
     sta $317
 
     jsr init_hiscore
-;    jsr init_music
     jsr start_irq
     lda #0
     sta @(++ requested_song)
@@ -60,9 +59,9 @@ end
     lda #snd_coin
     jsr play_sound
     jsr wait_sound
-    lda #snd_theme
-    jsr play_sound
-    jsr wait_sound
+;    lda #snd_theme
+;    jsr play_sound
+;    jsr wait_sound
 
     jsr init_game_mode
 
@@ -102,13 +101,18 @@ retry:
     sta mode_break
     sta reflections_since_last_vaus_hit
     sta snd_reflection
+    sta framecounter
+    sta @(++ framecounter)
     lda #1
     sta balls
     sta sfx_reflection
+    sta bricks_until_bonus
     lda #default_ball_speed
     sta ball_speed
     lda #16
     sta vaus_width
+    lda #255
+    sta current_bonus
 
     jsr clear_sprites
     jsr draw_walls      ; Freshen up after mode_break.

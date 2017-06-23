@@ -1,3 +1,23 @@
+vaus_directions:
+    168
+    168 168 168 168
+    144 144 144 144
+    112 112 112 112
+    88 88 88 88
+    88
+
+vaus_directions_extended:
+    168
+    168 168 168 168
+    168 168 168 168
+    144 144 144 144
+    144 144 144 144
+    112 112 112 112
+    112 112 112 112
+    88 88 88 88
+    88 88 88 88
+    88
+
 ctrl_ball:
     lda caught_ball
     bpl +r
@@ -19,67 +39,55 @@ e:  pla
     rts
 
 ctrl_ball_subpixel:
-    ; Test on collision with sprites.
-;    lda #8 ;ball_width
-;    sta collision_x_distance
-;    lda #ball_height
-;    sta collision_y_distance
-;    jsr find_hit
-;    bcs no_vaus_hit
+    lda #0
+    sta has_hit_vaus
 
-    ; Test on collision with Vaus.
+    ; Test on vertical collision with Vaus.
     lda sprites_y,x
-    cmp #@(- vaus_y (-- ball_height))
+    cmp #@(- vaus_y 2)
     bcc no_vaus_hit
     cmp #@(+ vaus_y 8)
     bcs no_vaus_hit
 
-    lda @(+ sprites_x (-- num_sprites))
-    sec
-    sbc #ball_width
-    cmp sprites_x,x
-    bcs no_vaus_hit
+    ; Test on horizontal collision with Vaus (middle pixel).
+    ldy sprites_x,x
+    iny
+    sty tmp
+    ldy @(+ sprites_x (-- num_sprites))     ; Vaus position left.
+    dey                 ; Allow one pixel off to the left.
+    sty tmp2
+    cpy tmp
+    bcs +no_vaus_hit
 
-    lda @(+ sprites_x (-- num_sprites))
+h:  lda tmp2
     clc
+    adc #1              ; Allow a pixel off to the right as well.
     adc vaus_width
-    cmp sprites_x,x
-    bcc no_vaus_hit
-    
-    ; Calculate reflection from Vaus.
-    lda vaus_width
-    clc
-    adc #ball_width
-    lsr
-    sta tmp
-    lda sprites_x,x
+    cmp tmp
+    bcc +no_vaus_hit
+
+    inc has_hit_vaus
+
+    ; Get reflection from Vaus.
+    lda tmp
     sec
-    sbc @(+ sprites_x (-- num_sprites))
-    adc #ball_width
-    sbc tmp
-    jsr neg
-    asl
-    sta side_degrees
+    sbc tmp2
+    tay
 
-    ; Avoid going straight up.
-    jsr abs
-    cmp #$04
-    bcs +n
-    lda side_degrees
-    bmi +m
-    lda #$04
-    jmp +j
-m:  lda #$f8
-j:  sta side_degrees
-n:
+    lda #16
+    cmp vaus_width
+    bcc +n
+    lda vaus_directions,y
+    jmp +m
+n:  lda vaus_directions_extended,y
+m:  sta sprites_d,x
 
-    lda #0
-    sta sprites_d,x
-    lda #@(- vaus_y ball_height)
+    lda #@(- vaus_y 3)
     sta sprites_y,x
 
     lda #0
     sta reflections_since_last_vaus_hit
+
     lda mode
     cmp #mode_catching
     bne +n
@@ -90,11 +98,11 @@ n:
     sta sprites_l,x
     lda #@(* 28 8)
     sta sprites_y,x
-    jsr apply_reflection
+    jsr applied_reflection
     lda #snd_caught_ball
     jmp play_sound
 
-n:  jmp apply_reflection
+n:  jmp applied_reflection
 
 m:  jsr correct_trajectory
     jmp move_ball
@@ -120,9 +128,10 @@ no_vaus_hit:
     cmp #mode_disruption    ; No bonuses in disruption mode.
     beq apply_reflection
 
-    jsr random
-    and #bonus_probability
+    dec bricks_until_bonus
     bne apply_reflection
+    lda #8
+    sta bricks_until_bonus
 
     lda scrx
     asl
@@ -138,6 +147,9 @@ a:  jsr random
     and #%111
     cmp #%111
     beq -a      ; Only seven bonuses available.
+    cmp current_bonus
+    beq -a
+    sta current_bonus
     pha
     asl
     asl
@@ -158,16 +170,6 @@ hit_solid:
     inc reflections_since_last_vaus_hit
 
 apply_reflection:
-    ; Play reflection sound.
-    lda snd_reflection
-    bne +n
-    lda sfx_reflection
-    and #1
-    clc
-    adc #snd_reflection_low
-    sta snd_reflection
-n:  inc sfx_reflection
-
     ; Calculate new direction.
     lda sprites_d,x     ; Get degrees.
     sec
@@ -179,7 +181,19 @@ n:  inc sfx_reflection
     adc #128            ; Rotate to opposite direction.
     sta sprites_d,x
 
-    jsr adjust_ball_speed
+applied_reflection:
+    ; Determine reflection sound.
+    lda has_hit_brick
+    ora has_hit_vaus
+    beq +move_ball
+    lda snd_reflection
+    bne +n
+    lda sfx_reflection
+    and #1
+    clc
+    adc #snd_reflection_low
+    sta snd_reflection
+n:  inc sfx_reflection
 
 move_ball:
     jsr ball_step
@@ -206,6 +220,10 @@ still_balls_left:
 r:  jsr remove_sprite
 
 play_reflection_sound:
+    lda has_hit_brick
+    ora has_hit_golden_brick
+    ora has_hit_vaus
+    beq +n
     lda snd_reflection
     beq +n
     ldx #0
@@ -290,18 +308,17 @@ make_ball:
 
 ; Reset ball speed when it's slow after 5 seconds.                                                           
 adjust_ball_speed:
+    lda @(++ framecounter)
+    cmp #5
+    bne +n
     lda ball_speed
     cmp #max_ball_speed
-    beq +n                  ; Already at maximum speed. Do nothing…
-    lda is_using_paddle     ; Paddle users gets it twice.
-    eor #1
-    clc
-    adc #1
-    asl
-    cmp @(++ framecounter)
-    bne +n
+    bcs +n                  ; Already at maximum speed. Do nothing…
     inc ball_speed          ; Play the blues…
-    lda #0                  ; …but don't forget the timing.
+    lda is_using_paddle
+    beq +m
+    inc ball_speed
+m:  lda #0
     sta framecounter
     sta @(++ framecounter)
 n:  rts
